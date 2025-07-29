@@ -1,13 +1,16 @@
-import { Card, CardContent } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import { 
   Award, 
   Globe, 
   Users, 
   Target,
   CheckCircle,
-  ArrowRight
+  ArrowRight,
+  Linkedin,
+  Mail
 } from "lucide-react";
 
 const About = () => {
@@ -25,6 +28,36 @@ const About = () => {
     "DNV GL Approved Procedures",
     "NACE Certified Corrosion Specialists",
     "24/7 Global Technical Support"
+  ];
+
+  const leadership = [
+    {
+      name: "Dr. Rajesh Kumar",
+      position: "CEO & Founder",
+      company: "Shivi Energy Solutions",
+      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
+      bio: "20+ years experience in energy sector innovation and sustainable solutions development.",
+      linkedin: "#",
+      email: "rajesh@shivienergy.com"
+    },
+    {
+      name: "Ms. Priya Sharma",
+      position: "CTO",
+      company: "Shivi Energy Solutions",
+      image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
+      bio: "Expert in AI & Computer Vision applications for industrial automation and safety systems.",
+      linkedin: "#",
+      email: "priya@shivienergy.com"
+    },
+    {
+      name: "Mr. Vikram Singh",
+      position: "VP Operations",
+      company: "Shivi Energy Solutions",
+      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
+      bio: "15+ years leading complex offshore operations and corrosion management projects.",
+      linkedin: "#",
+      email: "vikram@shivienergy.com"
+    }
   ];
 
   return (
@@ -108,6 +141,58 @@ const About = () => {
               <Badge variant="secondary" className="px-3 py-1">DNV GL</Badge>
               <Badge variant="secondary" className="px-3 py-1">NACE Certified</Badge>
             </div>
+          </div>
+        </div>
+
+        {/* Leadership Team Section */}
+        <div className="mt-24">
+          <div className="text-center mb-12">
+            <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
+              Meet Our <span className="text-primary">Leadership Team</span>
+            </h3>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              Our experienced leaders drive innovation and excellence, bringing decades of 
+              combined expertise in energy solutions and sustainable technologies.
+            </p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-8">
+            {leadership.map((leader, index) => (
+              <Card key={index} className="group hover:shadow-card transition-all duration-300 hover:-translate-y-2">
+                <CardHeader className="text-center pb-4">
+                  <div className="flex justify-center mb-4">
+                    <Avatar className="w-24 h-24 border-4 border-primary/10">
+                      <AvatarImage src={leader.image} alt={leader.name} />
+                      <AvatarFallback className="text-xl font-bold bg-gradient-accent text-accent-foreground">
+                        {leader.name.split(' ').map(n => n[0]).join('')}
+                      </AvatarFallback>
+                    </Avatar>
+                  </div>
+                  <CardTitle className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
+                    {leader.name}
+                  </CardTitle>
+                  <p className="text-primary font-semibold">{leader.position}</p>
+                  <p className="text-sm text-muted-foreground">{leader.company}</p>
+                </CardHeader>
+                
+                <CardContent className="text-center">
+                  <p className="text-muted-foreground mb-6 leading-relaxed">
+                    {leader.bio}
+                  </p>
+                  
+                  <div className="flex justify-center space-x-4">
+                    <Button variant="outline" size="sm" className="hover:bg-primary hover:text-primary-foreground">
+                      <Linkedin className="h-4 w-4 mr-2" />
+                      LinkedIn
+                    </Button>
+                    <Button variant="outline" size="sm" className="hover:bg-secondary hover:text-secondary-foreground">
+                      <Mail className="h-4 w-4 mr-2" />
+                      Email
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </div>

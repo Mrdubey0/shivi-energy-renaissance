@@ -30,10 +30,10 @@ const Header = () => {
       name: "Products", 
       href: "#products",
       dropdown: [
-        { name: "Downhole Tools", href: "#downhole-tools" },
-        { name: "Drilling Chemicals", href: "#chemicals" },
-        { name: "Monitoring Equipment", href: "#monitoring" },
-        { name: "AI Devices", href: "#ai-devices" }
+        { name: "Downhole Tools", href: "#products?category=downhole-tools" },
+        { name: "Drilling Chemicals", href: "#products?category=drilling-chemicals" },
+        { name: "Monitoring Equipment", href: "#products?category=monitoring-equipment" },
+        { name: "AI Devices", href: "#products?category=ai-devices" }
       ]
     },
     { 
@@ -47,6 +47,10 @@ const Header = () => {
     { 
       name: "Projects", 
       href: "#projects" 
+    },
+    { 
+      name: "Clients", 
+      href: "#clients" 
     },
     { 
       name: "Blog", 

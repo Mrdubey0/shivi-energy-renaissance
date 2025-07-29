@@ -1,6 +1,8 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import { Input } from "@/components/ui/input";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
   ShoppingCart, 
   Package, 
@@ -10,63 +12,197 @@ import {
   Cpu,
   Plus,
   FileText,
-  ArrowRight
+  ArrowRight,
+  Search,
+  Filter,
+  Download,
+  Star,
+  Eye,
+  Trash2,
+  Send,
+  X
 } from "lucide-react";
 import { useState } from "react";
 
 const ProductCatalog = () => {
   const [inquiryCart, setInquiryCart] = useState<string[]>([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  const [activeCategory, setActiveCategory] = useState("all");
+  const [showCartDetails, setShowCartDetails] = useState(false);
 
   const categories = [
     {
       id: "downhole-tools",
       name: "Downhole Tools",
       icon: Wrench,
+      color: "from-blue-500 to-blue-600",
       description: "Complete range of completion tools, liner hangers, and casing accessories",
+      count: 24,
       products: [
-        { id: "completion-tools", name: "Completion Tools", description: "Advanced completion solutions for optimal well performance" },
-        { id: "liner-hangers", name: "Liner Hangers", description: "Reliable liner hanger systems for complex wells" },
-        { id: "casing-accessories", name: "Casing Accessories", description: "Essential accessories for casing installation" },
-        { id: "swellable-systems", name: "Swellable Systems", description: "Innovative swellable packer technology" }
+        { 
+          id: "completion-tools", 
+          name: "Advanced Completion Tools", 
+          description: "High-performance completion solutions with real-time monitoring capabilities",
+          price: "Request Quote",
+          rating: 4.8,
+          features: ["Real-time monitoring", "Corrosion resistant", "High temperature rated", "Modular design"],
+          specs: "API 5CT Grade, Pressure Rating: 15,000 PSI",
+          image: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=300&h=200&fit=crop",
+          sustainable: true,
+          inStock: true
+        },
+        { 
+          id: "liner-hangers", 
+          name: "Liner Hanger Systems", 
+          description: "Reliable liner hanger systems engineered for the most complex wells",
+          price: "Request Quote",
+          rating: 4.9,
+          features: ["Superior sealing", "Easy installation", "Debris tolerance", "Field proven"],
+          specs: "Size Range: 4.5\" - 13.375\", Working Pressure: 10,000 PSI",
+          image: "https://images.unsplash.com/photo-1590735213920-68192a487bc3?w=300&h=200&fit=crop",
+          sustainable: true,
+          inStock: true
+        },
+        { 
+          id: "casing-accessories", 
+          name: "Casing Accessories Suite", 
+          description: "Comprehensive accessories for optimal casing installation and integrity",
+          price: "Request Quote",
+          rating: 4.7,
+          features: ["Multiple configurations", "Enhanced durability", "Quick deployment", "Cost effective"],
+          specs: "Various sizes available, Temperature Rating: -40°F to 350°F",
+          image: "https://images.unsplash.com/photo-1565087838865-ad5eb48b30d9?w=300&h=200&fit=crop",
+          sustainable: false,
+          inStock: true
+        },
+        { 
+          id: "swellable-systems", 
+          name: "Swellable Packer Technology", 
+          description: "Innovative swellable packer systems for zonal isolation",
+          price: "Request Quote",
+          rating: 4.6,
+          features: ["Water activated", "Oil activated", "Long-term reliability", "No setting tool required"],
+          specs: "Activation Time: 6-24 hours, Element Length: 1-20 ft",
+          image: "https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=300&h=200&fit=crop",
+          sustainable: true,
+          inStock: false
+        }
       ]
     },
     {
       id: "drilling-chemicals",
       name: "Drilling Fluids & Chemicals", 
       icon: Beaker,
+      color: "from-green-500 to-green-600",
       description: "Environmentally friendly drilling fluids and advanced chemical solutions",
+      count: 18,
       products: [
-        { id: "drilling-fluids", name: "Drilling Fluids", description: "High-performance, eco-friendly drilling mud systems" },
-        { id: "circulation-materials", name: "Loss Circulation Materials", description: "Advanced materials for lost circulation prevention" },
-        { id: "additives", name: "Drilling Additives", description: "Specialized additives for enhanced performance" },
-        { id: "solids-control", name: "Solids Control", description: "Efficient solids control technology and chemicals" }
+        { 
+          id: "eco-drilling-fluids", 
+          name: "Eco-Friendly Drilling Fluids", 
+          description: "Biodegradable drilling mud systems with superior performance",
+          price: "Request Quote",
+          rating: 4.9,
+          features: ["100% biodegradable", "Low toxicity", "High performance", "Cost effective"],
+          specs: "Density Range: 8.5-19 ppg, Viscosity: Customizable",
+          image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=300&h=200&fit=crop",
+          sustainable: true,
+          inStock: true
+        },
+        { 
+          id: "circulation-materials", 
+          name: "Lost Circulation Materials", 
+          description: "Advanced LCM for severe loss zones and wellbore stability",
+          price: "Request Quote",
+          rating: 4.8,
+          features: ["Multiple particle sizes", "Rapid mixing", "Temperature stable", "Non-damaging"],
+          specs: "Particle Size: 50-2000 microns, Temperature Rating: 500°F",
+          image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&h=200&fit=crop",
+          sustainable: true,
+          inStock: true
+        }
       ]
     },
     {
       id: "monitoring-equipment",
       name: "Monitoring Equipment",
       icon: Monitor,
+      color: "from-purple-500 to-purple-600",
       description: "Advanced monitoring and surveillance equipment for safety and efficiency",
+      count: 16,
       products: [
-        { id: "corrosion-monitors", name: "Corrosion Monitoring Systems", description: "Real-time corrosion monitoring solutions" },
-        { id: "leak-detection", name: "Leak Detection Equipment", description: "Advanced leak detection and location systems" },
-        { id: "pressure-sensors", name: "Pressure & Temperature Sensors", description: "High-precision downhole sensors" },
-        { id: "data-loggers", name: "Data Logging Systems", description: "Comprehensive data acquisition systems" }
+        { 
+          id: "corrosion-monitors", 
+          name: "Real-Time Corrosion Monitoring", 
+          description: "Continuous corrosion monitoring with AI-powered analytics",
+          price: "Request Quote",
+          rating: 4.9,
+          features: ["Real-time data", "AI analytics", "Remote monitoring", "Predictive alerts"],
+          specs: "Accuracy: ±0.1 mpy, Data logging: 1 year, Wireless range: 5km",
+          image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=300&h=200&fit=crop",
+          sustainable: true,
+          inStock: true
+        },
+        { 
+          id: "leak-detection", 
+          name: "Advanced Leak Detection", 
+          description: "Multi-sensor leak detection with precise location identification",
+          price: "Request Quote",
+          rating: 4.8,
+          features: ["Multi-sensor array", "Precise location", "Fast response", "Weather resistant"],
+          specs: "Detection Range: 1-1000 ppm, Response Time: <30 seconds",
+          image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=300&h=200&fit=crop",
+          sustainable: true,
+          inStock: true
+        }
       ]
     },
     {
       id: "ai-devices",
       name: "AI & Digital Solutions",
       icon: Cpu,
+      color: "from-orange-500 to-orange-600",
       description: "Cutting-edge AI devices and computer vision applications",
+      count: 12,
       products: [
-        { id: "ppe-monitoring", name: "PPE Compliance Monitoring", description: "AI-powered safety equipment monitoring" },
-        { id: "anomaly-detection", name: "Anomaly Detection Systems", description: "Machine learning-based anomaly detection" },
-        { id: "digital-twins", name: "Digital Twin Solutions", description: "Advanced digital twin modeling systems" },
-        { id: "predictive-maintenance", name: "Predictive Maintenance AI", description: "AI-driven predictive maintenance solutions" }
+        { 
+          id: "ppe-monitoring", 
+          name: "AI PPE Compliance Monitor", 
+          description: "Computer vision system for automated safety equipment monitoring",
+          price: "Request Quote",
+          rating: 4.9,
+          features: ["Real-time detection", "99% accuracy", "Multi-zone coverage", "Cloud integration"],
+          specs: "Coverage: 50m radius, Accuracy: 99.2%, Processing: Edge + Cloud",
+          image: "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=300&h=200&fit=crop",
+          sustainable: true,
+          inStock: true
+        },
+        { 
+          id: "anomaly-detection", 
+          name: "AI Anomaly Detection", 
+          description: "Machine learning system for operational anomaly identification",
+          price: "Request Quote",
+          rating: 4.7,
+          features: ["Machine learning", "Pattern recognition", "Predictive alerts", "Customizable"],
+          specs: "Processing: Real-time, Accuracy: 95%+, Integration: API/SDK",
+          image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&h=200&fit=crop",
+          sustainable: true,
+          inStock: true
+        }
       ]
     }
   ];
+
+  const allProducts = categories.flatMap(cat => 
+    cat.products.map(product => ({ ...product, category: cat.id, categoryName: cat.name }))
+  );
+
+  const filteredProducts = allProducts.filter(product => {
+    const matchesSearch = product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                         product.description.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesCategory = activeCategory === "all" || product.category === activeCategory;
+    return matchesSearch && matchesCategory;
+  });
 
   const addToInquiry = (productId: string) => {
     if (!inquiryCart.includes(productId)) {
@@ -78,147 +214,360 @@ const ProductCatalog = () => {
     setInquiryCart(inquiryCart.filter(id => id !== productId));
   };
 
+  const clearCart = () => {
+    setInquiryCart([]);
+  };
+
   const isInCart = (productId: string) => inquiryCart.includes(productId);
 
+  const getProductById = (id: string) => allProducts.find(p => p.id === id);
+
+  const cartProducts = inquiryCart.map(id => getProductById(id)).filter(Boolean);
+
   return (
-    <section id="products" className="py-24 bg-muted/30">
+    <section id="products" className="py-24 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-blue-950">
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-4">
-            <Package className="h-4 w-4 text-primary mr-2" />
-            <span className="text-sm font-medium text-primary">Product Catalog</span>
+          <div className="inline-flex items-center px-6 py-3 rounded-full bg-primary/10 border border-primary/20 mb-6 shadow-sm">
+            <Package className="h-5 w-5 text-primary mr-2" />
+            <span className="text-sm font-medium text-primary">Advanced Product Solutions</span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Comprehensive Product
-            <span className="text-primary"> Portfolio</span>
+          <h2 className="text-5xl md:text-6xl font-bold text-foreground mb-6">
+            Smart Product
+            <span className="text-primary"> Catalog</span>
           </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Explore our extensive range of premium energy industry products and solutions. 
-            Add items to your inquiry cart for consolidated consultation.
+          <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
+            Discover our comprehensive range of cutting-edge energy industry products. 
+            Built with CO-MBS principles and designed for sustainable operations.
           </p>
         </div>
 
-        {/* Inquiry Cart */}
-        {inquiryCart.length > 0 && (
-          <div className="mb-12">
-            <Card className="p-6 bg-primary/5 border-primary/20">
-              <div className="flex items-center justify-between mb-4">
-                <div className="flex items-center">
-                  <ShoppingCart className="h-5 w-5 text-primary mr-2" />
-                  <h3 className="text-lg font-semibold">Inquiry Cart ({inquiryCart.length} items)</h3>
-                </div>
-                <Button variant="default" size="sm">
-                  Submit Inquiry
-                  <ArrowRight className="ml-2 h-4 w-4" />
+        {/* Search and Filter Bar */}
+        <div className="bg-background/80 backdrop-blur-sm rounded-2xl p-6 mb-12 border border-border shadow-lg">
+          <div className="flex flex-col lg:flex-row gap-4 items-center">
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+              <Input
+                placeholder="Search products, features, or specifications..."
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)}
+                className="pl-10 h-12 text-base"
+              />
+            </div>
+            
+            <div className="flex gap-2">
+              <Button
+                variant={activeCategory === "all" ? "default" : "outline"}
+                onClick={() => setActiveCategory("all")}
+                className="h-12"
+              >
+                All Products
+              </Button>
+              {categories.map((category) => (
+                <Button
+                  key={category.id}
+                  variant={activeCategory === category.id ? "default" : "outline"}
+                  onClick={() => setActiveCategory(category.id)}
+                  className="h-12 hidden md:flex"
+                >
+                  {category.name}
                 </Button>
-              </div>
-              <div className="flex flex-wrap gap-2">
-                {inquiryCart.map((productId) => {
-                  const product = categories.flatMap(cat => cat.products).find(p => p.id === productId);
-                  return (
-                    <Badge 
-                      key={productId} 
-                      variant="secondary" 
-                      className="px-3 py-1 cursor-pointer hover:bg-destructive hover:text-destructive-foreground transition-colors"
-                      onClick={() => removeFromInquiry(productId)}
-                    >
-                      {product?.name} ×
-                    </Badge>
-                  );
-                })}
-              </div>
-            </Card>
+              ))}
+            </div>
+
+            {/* Inquiry Cart Button */}
+            {inquiryCart.length > 0 && (
+              <Button 
+                variant="energy" 
+                className="h-12 relative"
+                onClick={() => setShowCartDetails(!showCartDetails)}
+              >
+                <ShoppingCart className="h-5 w-5 mr-2" />
+                Cart ({inquiryCart.length})
+                <Badge className="absolute -top-2 -right-2 bg-secondary text-secondary-foreground min-w-[1.5rem] h-6">
+                  {inquiryCart.length}
+                </Badge>
+              </Button>
+            )}
           </div>
+        </div>
+
+        {/* Inquiry Cart Details */}
+        {showCartDetails && inquiryCart.length > 0 && (
+          <Card className="mb-12 border-primary/20 shadow-xl">
+            <CardHeader className="bg-gradient-to-r from-primary/5 to-primary/10">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center">
+                  <ShoppingCart className="h-6 w-6 text-primary mr-3" />
+                  <CardTitle className="text-2xl">Inquiry Cart</CardTitle>
+                </div>
+                <div className="flex gap-2">
+                  <Button variant="outline" size="sm" onClick={clearCart}>
+                    <Trash2 className="h-4 w-4 mr-2" />
+                    Clear All
+                  </Button>
+                  <Button variant="default" size="sm">
+                    <Send className="h-4 w-4 mr-2" />
+                    Submit Inquiry
+                  </Button>
+                  <Button variant="ghost" size="sm" onClick={() => setShowCartDetails(false)}>
+                    <X className="h-4 w-4" />
+                  </Button>
+                </div>
+              </div>
+            </CardHeader>
+            <CardContent className="p-6">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+                {cartProducts.map((product) => (
+                  <Card key={product.id} className="border border-border/50">
+                    <CardContent className="p-4">
+                      <div className="flex justify-between items-start mb-2">
+                        <h4 className="font-semibold text-sm">{product.name}</h4>
+                        <Button 
+                          variant="ghost" 
+                          size="icon" 
+                          className="h-6 w-6"
+                          onClick={() => removeFromInquiry(product.id)}
+                        >
+                          <X className="h-3 w-3" />
+                        </Button>
+                      </div>
+                      <p className="text-xs text-muted-foreground mb-2">{product.categoryName}</p>
+                      <Badge variant="outline" className="text-xs">{product.price}</Badge>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </CardContent>
+          </Card>
         )}
 
-        {/* Product Categories */}
-        <div className="space-y-16">
-          {categories.map((category) => {
-            const IconComponent = category.icon;
-            return (
-              <div key={category.id} id={category.id}>
-                {/* Category Header */}
-                <div className="flex items-center mb-8">
-                  <div className="w-16 h-16 bg-gradient-accent rounded-xl flex items-center justify-center mr-6">
-                    <IconComponent className="h-8 w-8 text-accent-foreground" />
+        {/* Category Tabs */}
+        <Tabs value={activeCategory} onValueChange={setActiveCategory} className="mb-12">
+          <TabsList className="grid w-full grid-cols-5 h-14 bg-background/50 backdrop-blur-sm">
+            <TabsTrigger value="all" className="text-sm font-medium">All</TabsTrigger>
+            {categories.map((category) => (
+              <TabsTrigger key={category.id} value={category.id} className="text-sm font-medium">
+                {category.name.split(' ')[0]}
+              </TabsTrigger>
+            ))}
+          </TabsList>
+
+          <TabsContent value="all" className="mt-8">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+              {filteredProducts.map((product) => (
+                <ProductCard 
+                  key={product.id} 
+                  product={product} 
+                  isInCart={isInCart(product.id)}
+                  onAddToCart={() => addToInquiry(product.id)}
+                  onRemoveFromCart={() => removeFromInquiry(product.id)}
+                />
+              ))}
+            </div>
+          </TabsContent>
+
+          {categories.map((category) => (
+            <TabsContent key={category.id} value={category.id} className="mt-8">
+              <div className="mb-8">
+                <div className="flex items-center mb-4">
+                  <div className={`w-16 h-16 bg-gradient-to-br ${category.color} rounded-xl flex items-center justify-center mr-6 shadow-lg`}>
+                    <category.icon className="h-8 w-8 text-white" />
                   </div>
                   <div>
                     <h3 className="text-3xl font-bold text-foreground mb-2">{category.name}</h3>
                     <p className="text-lg text-muted-foreground">{category.description}</p>
+                    <Badge variant="secondary" className="mt-2">{category.count} Products Available</Badge>
                   </div>
                 </div>
-
-                {/* Products Grid */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                  {category.products.map((product) => (
-                    <Card 
-                      key={product.id} 
-                      className="group hover:shadow-lg transition-all duration-300 hover:-translate-y-1"
-                    >
-                      <CardHeader>
-                        <div className="flex items-start justify-between mb-2">
-                          <CardTitle className="text-lg font-semibold text-foreground group-hover:text-primary transition-colors">
-                            {product.name}
-                          </CardTitle>
-                          <Button
-                            variant={isInCart(product.id) ? "default" : "outline"}
-                            size="icon"
-                            className="h-8 w-8 flex-shrink-0"
-                            onClick={() => isInCart(product.id) ? removeFromInquiry(product.id) : addToInquiry(product.id)}
-                          >
-                            {isInCart(product.id) ? (
-                              <ShoppingCart className="h-4 w-4" />
-                            ) : (
-                              <Plus className="h-4 w-4" />
-                            )}
-                          </Button>
-                        </div>
-                        <CardDescription className="text-sm text-muted-foreground">
-                          {product.description}
-                        </CardDescription>
-                      </CardHeader>
-                      <CardContent>
-                        <div className="flex gap-2">
-                          <Button variant="outline" size="sm" className="flex-1">
-                            <FileText className="h-4 w-4 mr-2" />
-                            Specs
-                          </Button>
-                          <Button variant="ghost" size="sm" className="flex-1">
-                            Details
-                          </Button>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
               </div>
-            );
-          })}
-        </div>
+
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {category.products.map((product) => (
+                  <ProductCard 
+                    key={product.id} 
+                    product={{...product, categoryName: category.name}} 
+                    isInCart={isInCart(product.id)}
+                    onAddToCart={() => addToInquiry(product.id)}
+                    onRemoveFromCart={() => removeFromInquiry(product.id)}
+                  />
+                ))}
+              </div>
+            </TabsContent>
+          ))}
+        </Tabs>
+
+        {/* No Results */}
+        {filteredProducts.length === 0 && (
+          <div className="text-center py-16">
+            <Package className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
+            <h3 className="text-2xl font-semibold text-foreground mb-2">No products found</h3>
+            <p className="text-muted-foreground mb-6">Try adjusting your search or filter criteria</p>
+            <Button variant="outline" onClick={() => { setSearchTerm(""); setActiveCategory("all"); }}>
+              Clear Filters
+            </Button>
+          </div>
+        )}
 
         {/* CTA Section */}
         <div className="mt-20 text-center">
-          <div className="bg-gradient-hero rounded-2xl p-8 md:p-12 text-primary-foreground">
-            <h3 className="text-3xl md:text-4xl font-bold mb-4">
-              Need Custom Solutions?
+          <div className="bg-gradient-to-br from-primary/10 to-secondary/10 rounded-3xl p-12 border border-primary/20 shadow-xl backdrop-blur-sm">
+            <h3 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+              Can't Find What You Need?
             </h3>
-            <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
-              Our engineering team can develop custom products tailored to your specific requirements. 
-              Contact us for bespoke energy solutions.
+            <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
+              Our engineering team specializes in developing custom solutions tailored to your 
+              specific operational requirements. Every solution is designed with CO-MBS principles.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="secondary" size="lg">
-                Request Custom Quote
+              <Button variant="hero" size="xl">
+                Request Custom Solution
+                <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
-              <Button variant="outline" size="lg" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
-                Technical Consultation
+              <Button variant="outline" size="xl">
+                Schedule Technical Consultation
               </Button>
             </div>
           </div>
         </div>
       </div>
     </section>
+  );
+};
+
+// Product Card Component
+const ProductCard = ({ product, isInCart, onAddToCart, onRemoveFromCart }) => {
+  const [showDetails, setShowDetails] = useState(false);
+
+  return (
+    <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-border/50 overflow-hidden">
+      {/* Product Image */}
+      <div className="relative overflow-hidden">
+        <div 
+          className="h-48 bg-cover bg-center group-hover:scale-110 transition-transform duration-500"
+          style={{ backgroundImage: `url(${product.image})` }}
+        />
+        
+        {/* Overlay Badges */}
+        <div className="absolute top-3 left-3 flex flex-col gap-2">
+          {product.sustainable && (
+            <Badge className="bg-green-500/90 text-white border-0 shadow-md">
+              CO-MBS ✓
+            </Badge>
+          )}
+          {!product.inStock && (
+            <Badge variant="secondary" className="bg-red-500/90 text-white border-0">
+              Out of Stock
+            </Badge>
+          )}
+        </div>
+
+        {/* Quick Actions */}
+        <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+          <Button variant="secondary" size="icon" className="h-8 w-8 shadow-md">
+            <Eye className="h-4 w-4" />
+          </Button>
+          <Button variant="secondary" size="icon" className="h-8 w-8 shadow-md">
+            <Download className="h-4 w-4" />
+          </Button>
+        </div>
+      </div>
+
+      <CardHeader className="pb-3">
+        <div className="flex items-start justify-between mb-2">
+          <CardTitle className="text-lg font-bold text-foreground group-hover:text-primary transition-colors line-clamp-2">
+            {product.name}
+          </CardTitle>
+          <div className="flex items-center text-yellow-500 ml-2">
+            <Star className="h-4 w-4 fill-current" />
+            <span className="text-xs ml-1 text-muted-foreground">{product.rating}</span>
+          </div>
+        </div>
+        
+        <CardDescription className="text-sm text-muted-foreground line-clamp-2 mb-3">
+          {product.description}
+        </CardDescription>
+
+        <div className="flex items-center justify-between">
+          <Badge variant="outline" className="text-xs">
+            {product.price}
+          </Badge>
+          <Badge variant="secondary" className="text-xs">
+            {product.categoryName}
+          </Badge>
+        </div>
+      </CardHeader>
+
+      <CardContent className="pt-0">
+        {/* Key Features */}
+        <div className="mb-4">
+          <div className="flex flex-wrap gap-1 mb-3">
+            {product.features.slice(0, 2).map((feature, idx) => (
+              <Badge key={idx} variant="outline" className="text-xs px-2 py-0.5">
+                {feature}
+              </Badge>
+            ))}
+            {product.features.length > 2 && (
+              <Badge variant="outline" className="text-xs px-2 py-0.5">
+                +{product.features.length - 2} more
+              </Badge>
+            )}
+          </div>
+        </div>
+
+        {/* Action Buttons */}
+        <div className="flex gap-2">
+          <Button
+            variant={isInCart ? "default" : "outline"}
+            size="sm"
+            className="flex-1"
+            onClick={isInCart ? onRemoveFromCart : onAddToCart}
+            disabled={!product.inStock}
+          >
+            {isInCart ? (
+              <>
+                <ShoppingCart className="h-4 w-4 mr-2" />
+                Added
+              </>
+            ) : (
+              <>
+                <Plus className="h-4 w-4 mr-2" />
+                Add to Cart
+              </>
+            )}
+          </Button>
+          
+          <Button 
+            variant="ghost" 
+            size="sm"
+            onClick={() => setShowDetails(!showDetails)}
+          >
+            <FileText className="h-4 w-4" />
+          </Button>
+        </div>
+
+        {/* Expandable Details */}
+        {showDetails && (
+          <div className="mt-4 pt-4 border-t border-border space-y-3">
+            <div>
+              <h5 className="text-sm font-medium mb-1">Specifications</h5>
+              <p className="text-xs text-muted-foreground">{product.specs}</p>
+            </div>
+            <div>
+              <h5 className="text-sm font-medium mb-2">All Features</h5>
+              <div className="flex flex-wrap gap-1">
+                {product.features.map((feature, idx) => (
+                  <Badge key={idx} variant="secondary" className="text-xs">
+                    {feature}
+                  </Badge>
+                ))}
+              </div>
+            </div>
+          </div>
+        )}
+      </CardContent>
+    </Card>
   );
 };
 

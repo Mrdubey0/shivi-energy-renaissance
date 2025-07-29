@@ -6,12 +6,64 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const navigationItems = [
-    { name: "Home", href: "/" },
-    { name: "Solutions", href: "#solutions" },
-    { name: "Partners", href: "#partners" },
-    { name: "About", href: "#about" },
-    { name: "Career", href: "#career" },
-    { name: "Contact", href: "#contact" },
+    { 
+      name: "Home", 
+      href: "/" 
+    },
+    { 
+      name: "About", 
+      href: "#about" 
+    },
+    { 
+      name: "Solutions", 
+      href: "#solutions",
+      dropdown: [
+        { name: "Corrosion Management", href: "#corrosion" },
+        { name: "Well Interventions", href: "#interventions" },
+        { name: "Plug & Abandonment", href: "#abandonment" },
+        { name: "Well Construction", href: "#construction" },
+        { name: "Drilling Fluids", href: "#fluids" },
+        { name: "AI & Computer Vision", href: "#ai-solutions" }
+      ]
+    },
+    { 
+      name: "Products", 
+      href: "#products",
+      dropdown: [
+        { name: "Downhole Tools", href: "#downhole-tools" },
+        { name: "Drilling Chemicals", href: "#chemicals" },
+        { name: "Monitoring Equipment", href: "#monitoring" },
+        { name: "AI Devices", href: "#ai-devices" }
+      ]
+    },
+    { 
+      name: "Sustainability", 
+      href: "#sustainability" 
+    },
+    { 
+      name: "Industries", 
+      href: "#industries" 
+    },
+    { 
+      name: "Projects", 
+      href: "#projects" 
+    },
+    { 
+      name: "Blog", 
+      href: "#blog" 
+    },
+    { 
+      name: "Careers", 
+      href: "#careers" 
+    },
+    { 
+      name: "Resources", 
+      href: "#resources" 
+    },
+    { 
+      name: "Contact", 
+      href: "#contact" 
+    }
   ];
 
   return (
@@ -27,20 +79,36 @@ const Header = () => {
           </div>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-8">
+          <nav className="hidden lg:flex items-center space-x-1">
             {navigationItems.map((item) => (
-              <a
-                key={item.name}
-                href={item.href}
-                className="text-foreground hover:text-primary transition-colors duration-200 font-medium"
-              >
-                {item.name}
-              </a>
+              <div key={item.name} className="relative group">
+                <a
+                  href={item.href}
+                  className="px-4 py-2 text-foreground hover:text-primary transition-colors duration-200 font-medium rounded-lg hover:bg-muted/50"
+                >
+                  {item.name}
+                </a>
+                {item.dropdown && (
+                  <div className="absolute top-full left-0 mt-1 w-64 bg-background/95 backdrop-blur-sm border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
+                    <div className="py-2">
+                      {item.dropdown.map((subItem) => (
+                        <a
+                          key={subItem.name}
+                          href={subItem.href}
+                          className="block px-4 py-2 text-sm text-muted-foreground hover:text-primary hover:bg-muted/50 transition-colors"
+                        >
+                          {subItem.name}
+                        </a>
+                      ))}
+                    </div>
+                  </div>
+                )}
+              </div>
             ))}
           </nav>
 
           {/* CTA Button */}
-          <div className="hidden md:block">
+          <div className="hidden lg:block">
             <Button variant="energy" size="sm">
               Get Quote
             </Button>
@@ -49,7 +117,7 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="md:hidden p-2"
+            className="lg:hidden p-2"
           >
             {isMobileMenuOpen ? (
               <X className="h-6 w-6" />
@@ -61,7 +129,7 @@ const Header = () => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="md:hidden py-4 border-t border-border">
+          <div className="lg:hidden py-4 border-t border-border">
             <nav className="flex flex-col space-y-4">
               {navigationItems.map((item) => (
                 <a

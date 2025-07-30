@@ -55,11 +55,11 @@ const Header = () => {
     },
     { 
       name: "Blog", 
-      href: "#blog" 
+      href: "/blog" 
     },
     { 
       name: "Careers", 
-      href: "#careers" 
+      href: "/careers" 
     },
     { 
       name: "Resources", 

@@ -2,9 +2,11 @@ import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import QuoteRequestForm from "./QuoteRequestForm";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isQuoteFormOpen, setIsQuoteFormOpen] = useState(false);
 
   const navigationItems = [
     { 
@@ -12,46 +14,12 @@ const Header = () => {
       href: "/" 
     },
     { 
-      name: "About", 
-      href: "#about" 
-    },
-    { 
-      name: "Solutions", 
-      href: "#solutions",
-      dropdown: [
-        { name: "Corrosion Management", href: "#corrosion" },
-        { name: "Well Interventions", href: "#interventions" },
-        { name: "Plug & Abandonment", href: "#abandonment" },
-        { name: "Well Construction", href: "#construction" },
-        { name: "Drilling Fluids", href: "#fluids" },
-        { name: "AI & Computer Vision", href: "#ai-solutions" }
-      ]
-    },
-    { 
       name: "Products", 
-      href: "/products",
-      dropdown: [
-        { name: "Downhole Tools", href: "/products#downhole-tools" },
-        { name: "Drilling Chemicals", href: "/products#drilling-chemicals" },
-        { name: "Monitoring Equipment", href: "/products#monitoring-equipment" },
-        { name: "AI Devices", href: "/products#ai-devices" }
-      ]
-    },
-    { 
-      name: "Sustainability", 
-      href: "#sustainability" 
-    },
-    { 
-      name: "Industries", 
-      href: "#industries" 
+      href: "/products"
     },
     { 
       name: "Projects", 
       href: "/projects" 
-    },
-    { 
-      name: "Clients", 
-      href: "#clients" 
     },
     { 
       name: "Blog", 
@@ -60,14 +28,6 @@ const Header = () => {
     { 
       name: "Careers", 
       href: "/careers" 
-    },
-    { 
-      name: "Resources", 
-      href: "#resources" 
-    },
-    { 
-      name: "Contact", 
-      href: "#contact" 
     }
   ];
 
@@ -102,38 +62,13 @@ const Header = () => {
                     {item.name}
                   </a>
                 )}
-                {item.dropdown && (
-                  <div className="absolute top-full left-0 mt-1 w-64 bg-background/95 backdrop-blur-sm border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-                    <div className="py-2">
-                      {item.dropdown.map((subItem) => 
-                        subItem.href.startsWith('/') ? (
-                          <Link
-                            key={subItem.name}
-                            to={subItem.href}
-                            className="block px-4 py-2 text-sm text-muted-foreground hover:text-primary hover:bg-muted/50 transition-colors"
-                          >
-                            {subItem.name}
-                          </Link>
-                        ) : (
-                          <a
-                            key={subItem.name}
-                            href={subItem.href}
-                            className="block px-4 py-2 text-sm text-muted-foreground hover:text-primary hover:bg-muted/50 transition-colors"
-                          >
-                            {subItem.name}
-                          </a>
-                        )
-                      )}
-                    </div>
-                  </div>
-                )}
               </div>
             ))}
           </nav>
 
           {/* CTA Button */}
           <div className="hidden lg:block">
-            <Button variant="energy" size="sm">
+            <Button variant="energy" size="sm" onClick={() => setIsQuoteFormOpen(true)}>
               Get Quote
             </Button>
           </div>
@@ -176,13 +111,20 @@ const Header = () => {
                   </a>
                 )
               ))}
-              <Button variant="energy" size="sm" className="w-fit">
+              <Button variant="energy" size="sm" className="w-fit" onClick={() => setIsQuoteFormOpen(true)}>
                 Get Quote
               </Button>
             </nav>
           </div>
         )}
       </div>
+
+      <QuoteRequestForm 
+        isOpen={isQuoteFormOpen}
+        onClose={() => setIsQuoteFormOpen(false)}
+        cartItems={[]}
+        onClearCart={() => {}}
+      />
     </header>
   );
 };

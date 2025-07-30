@@ -1,8 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play } from "lucide-react";
+import { useState } from "react";
 import heroBg from "@/assets/hero-bg.jpg";
+import TypewriterText from "./TypewriterText";
+import QuoteRequestForm from "./QuoteRequestForm";
 
 const Hero = () => {
+  const [isQuoteFormOpen, setIsQuoteFormOpen] = useState(false);
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
@@ -41,17 +45,24 @@ const Hero = () => {
             </span>
           </h1>
 
-          {/* Subheading */}
-          <p className="text-xl md:text-2xl text-primary-foreground/90 mb-8 max-w-3xl mx-auto leading-relaxed">
-            Premium solutions provider for Energy Industry with expertise ranging from 
-            <span className="text-secondary font-semibold"> Drilling, Thru Tubing, Well Services, Capillary Technology, Rigless Intervention, Plug & Abandonment</span> and 
-            <span className="text-accent font-semibold"> Corrosion Management</span>
-          </p>
+          {/* Subheading with Typewriter Effect */}
+          <div className="text-xl md:text-2xl text-primary-foreground/90 mb-8 max-w-3xl mx-auto leading-relaxed min-h-[120px] flex items-center justify-center">
+            <TypewriterText 
+              text="Transform your energy operations with our premium solutions. From drilling to corrosion management, we deliver excellence at every step."
+              delay={500}
+              speed={30}
+            />
+          </div>
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
-            <Button variant="hero" size="xl" className="group">
-              Explore Solutions
+            <Button 
+              variant="hero" 
+              size="xl" 
+              className="group"
+              onClick={() => setIsQuoteFormOpen(true)}
+            >
+              Get Quote Now
               <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
             </Button>
             
@@ -89,6 +100,13 @@ const Hero = () => {
           <div className="w-1 h-3 bg-primary-foreground/50 rounded-full mt-2 animate-pulse" />
         </div>
       </div>
+
+      <QuoteRequestForm 
+        isOpen={isQuoteFormOpen}
+        onClose={() => setIsQuoteFormOpen(false)}
+        cartItems={[]}
+        onClearCart={() => {}}
+      />
     </section>
   );
 };

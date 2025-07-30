@@ -23,12 +23,30 @@ import {
   X
 } from "lucide-react";
 import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
+import QuoteRequestForm from "./QuoteRequestForm";
+
+interface Product {
+  id: string;
+  name: string;
+  description: string;
+  price: string;
+  rating: number;
+  features: string[];
+  specs: string;
+  image: string;
+  sustainable: boolean;
+  inStock: boolean;
+  category?: string;
+  categoryName?: string;
+}
 
 const ProductCatalog = () => {
-  const [inquiryCart, setInquiryCart] = useState<string[]>([]);
+  const [inquiryCart, setInquiryCart] = useState<Product[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [activeCategory, setActiveCategory] = useState("all");
-  const [showCartDetails, setShowCartDetails] = useState(false);
+  const [showQuoteForm, setShowQuoteForm] = useState(false);
+  const { toast } = useToast();
 
   const categories = [
     {
@@ -204,25 +222,41 @@ const ProductCatalog = () => {
     return matchesSearch && matchesCategory;
   });
 
-  const addToInquiry = (productId: string) => {
-    if (!inquiryCart.includes(productId)) {
-      setInquiryCart([...inquiryCart, productId]);
+  const addToInquiry = (product: Product) => {
+    if (!inquiryCart.find(item => item.id === product.id)) {
+      setInquiryCart([...inquiryCart, product]);
+      toast({
+        title: "Product Added",
+        description: `${product.name} added to inquiry cart.`,
+      });
     }
   };
 
   const removeFromInquiry = (productId: string) => {
-    setInquiryCart(inquiryCart.filter(id => id !== productId));
+    setInquiryCart(inquiryCart.filter(item => item.id !== productId));
+    toast({
+      title: "Product Removed",
+      description: "Product removed from inquiry cart.",
+    });
   };
 
   const clearCart = () => {
     setInquiryCart([]);
   };
 
-  const isInCart = (productId: string) => inquiryCart.includes(productId);
+  const isInCart = (productId: string) => inquiryCart.find(item => item.id === productId) !== undefined;
 
-  const getProductById = (id: string) => allProducts.find(p => p.id === id);
-
-  const cartProducts = inquiryCart.map(id => getProductById(id)).filter(Boolean);
+  const handleGetQuote = () => {
+    if (inquiryCart.length === 0) {
+      toast({
+        title: "Cart Empty",
+        description: "Please add products to your cart first.",
+        variant: "destructive"
+      });
+      return;
+    }
+    setShowQuoteForm(true);
+  };
 
   return (
     <section id="products" className="py-24 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-blue-950">
@@ -281,7 +315,7 @@ const ProductCatalog = () => {
               <Button 
                 variant="energy" 
                 className="h-12 relative"
-                onClick={() => setShowCartDetails(!showCartDetails)}
+                onClick={handleGetQuote}
               >
                 <ShoppingCart className="h-5 w-5 mr-2" />
                 Cart ({inquiryCart.length})
@@ -293,52 +327,48 @@ const ProductCatalog = () => {
           </div>
         </div>
 
-        {/* Inquiry Cart Details */}
-        {showCartDetails && inquiryCart.length > 0 && (
-          <Card className="mb-12 border-primary/20 shadow-xl">
-            <CardHeader className="bg-gradient-to-r from-primary/5 to-primary/10">
-              <div className="flex items-center justify-between">
-                <div className="flex items-center">
-                  <ShoppingCart className="h-6 w-6 text-primary mr-3" />
-                  <CardTitle className="text-2xl">Inquiry Cart</CardTitle>
-                </div>
-                <div className="flex gap-2">
-                  <Button variant="outline" size="sm" onClick={clearCart}>
-                    <Trash2 className="h-4 w-4 mr-2" />
-                    Clear All
-                  </Button>
-                  <Button variant="default" size="sm">
-                    <Send className="h-4 w-4 mr-2" />
-                    Submit Inquiry
-                  </Button>
-                  <Button variant="ghost" size="sm" onClick={() => setShowCartDetails(false)}>
-                    <X className="h-4 w-4" />
-                  </Button>
-                </div>
-              </div>
+        {/* Inquiry Cart Display */}
+        {inquiryCart.length > 0 && (
+          <Card className="mb-8 border-primary/20 bg-gradient-to-r from-primary/5 to-accent/5">
+            <CardHeader>
+              <CardTitle className="flex items-center justify-between">
+                <span className="flex items-center gap-2">
+                  <ShoppingCart className="h-5 w-5 text-primary" />
+                  Inquiry Cart ({inquiryCart.length})
+                </span>
+                <Button variant="outline" size="sm" onClick={clearCart}>
+                  Clear All
+                </Button>
+              </CardTitle>
             </CardHeader>
-            <CardContent className="p-6">
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {cartProducts.map((product) => (
-                  <Card key={product.id} className="border border-border/50">
-                    <CardContent className="p-4">
-                      <div className="flex justify-between items-start mb-2">
-                        <h4 className="font-semibold text-sm">{product.name}</h4>
-                        <Button 
-                          variant="ghost" 
-                          size="icon" 
-                          className="h-6 w-6"
-                          onClick={() => removeFromInquiry(product.id)}
-                        >
-                          <X className="h-3 w-3" />
-                        </Button>
-                      </div>
-                      <p className="text-xs text-muted-foreground mb-2">{product.categoryName}</p>
-                      <Badge variant="outline" className="text-xs">{product.price}</Badge>
-                    </CardContent>
-                  </Card>
+            <CardContent>
+              <div className="space-y-3 mb-4 max-h-40 overflow-y-auto">
+                {inquiryCart.map((item) => (
+                  <div key={item.id} className="flex items-center gap-3 p-3 bg-background/50 rounded-lg border">
+                    <img
+                      src={item.image}
+                      alt={item.name}
+                      className="w-12 h-12 object-cover rounded"
+                    />
+                    <div className="flex-1">
+                      <p className="font-medium text-sm">{item.name}</p>
+                      <p className="text-sm text-muted-foreground">{item.price}</p>
+                    </div>
+                    <Button
+                      variant="ghost"
+                      size="sm"
+                      className="h-8 w-8 p-0 hover:bg-destructive hover:text-destructive-foreground"
+                      onClick={() => removeFromInquiry(item.id)}
+                    >
+                      <X className="h-4 w-4" />
+                    </Button>
+                  </div>
                 ))}
               </div>
+              <Button className="w-full" size="lg" onClick={handleGetQuote}>
+                <ShoppingCart className="mr-2 h-4 w-4" />
+                Request Quote for Selected Products
+              </Button>
             </CardContent>
           </Card>
         )}
@@ -361,7 +391,7 @@ const ProductCatalog = () => {
                   key={product.id} 
                   product={product} 
                   isInCart={isInCart(product.id)}
-                  onAddToCart={() => addToInquiry(product.id)}
+                  onAddToCart={() => addToInquiry(product)}
                   onRemoveFromCart={() => removeFromInquiry(product.id)}
                 />
               ))}
@@ -389,7 +419,7 @@ const ProductCatalog = () => {
                     key={product.id} 
                     product={{...product, categoryName: category.name}} 
                     isInCart={isInCart(product.id)}
-                    onAddToCart={() => addToInquiry(product.id)}
+                    onAddToCart={() => addToInquiry({...product, categoryName: category.name})}
                     onRemoveFromCart={() => removeFromInquiry(product.id)}
                   />
                 ))}
@@ -432,12 +462,27 @@ const ProductCatalog = () => {
           </div>
         </div>
       </div>
+
+      {/* Quote Request Form */}
+      <QuoteRequestForm
+        isOpen={showQuoteForm}
+        onClose={() => setShowQuoteForm(false)}
+        cartItems={inquiryCart}
+        onClearCart={clearCart}
+      />
     </section>
   );
 };
 
 // Product Card Component
-const ProductCard = ({ product, isInCart, onAddToCart, onRemoveFromCart }) => {
+interface ProductCardProps {
+  product: Product;
+  isInCart: boolean;
+  onAddToCart: () => void;
+  onRemoveFromCart: () => void;
+}
+
+const ProductCard = ({ product, isInCart, onAddToCart, onRemoveFromCart }: ProductCardProps) => {
   const [showDetails, setShowDetails] = useState(false);
 
   return (

@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -28,12 +29,12 @@ const Header = () => {
     },
     { 
       name: "Products", 
-      href: "#products",
+      href: "/products",
       dropdown: [
-        { name: "Downhole Tools", href: "#products?category=downhole-tools" },
-        { name: "Drilling Chemicals", href: "#products?category=drilling-chemicals" },
-        { name: "Monitoring Equipment", href: "#products?category=monitoring-equipment" },
-        { name: "AI Devices", href: "#products?category=ai-devices" }
+        { name: "Downhole Tools", href: "/products#downhole-tools" },
+        { name: "Drilling Chemicals", href: "/products#drilling-chemicals" },
+        { name: "Monitoring Equipment", href: "/products#monitoring-equipment" },
+        { name: "AI Devices", href: "/products#ai-devices" }
       ]
     },
     { 
@@ -46,7 +47,7 @@ const Header = () => {
     },
     { 
       name: "Projects", 
-      href: "#projects" 
+      href: "/projects" 
     },
     { 
       name: "Clients", 
@@ -86,24 +87,43 @@ const Header = () => {
           <nav className="hidden lg:flex items-center space-x-1">
             {navigationItems.map((item) => (
               <div key={item.name} className="relative group">
-                <a
-                  href={item.href}
-                  className="px-4 py-2 text-foreground hover:text-primary transition-colors duration-200 font-medium rounded-lg hover:bg-muted/50"
-                >
-                  {item.name}
-                </a>
+                {item.href.startsWith('/') ? (
+                  <Link
+                    to={item.href}
+                    className="px-4 py-2 text-foreground hover:text-primary transition-colors duration-200 font-medium rounded-lg hover:bg-muted/50"
+                  >
+                    {item.name}
+                  </Link>
+                ) : (
+                  <a
+                    href={item.href}
+                    className="px-4 py-2 text-foreground hover:text-primary transition-colors duration-200 font-medium rounded-lg hover:bg-muted/50"
+                  >
+                    {item.name}
+                  </a>
+                )}
                 {item.dropdown && (
                   <div className="absolute top-full left-0 mt-1 w-64 bg-background/95 backdrop-blur-sm border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
                     <div className="py-2">
-                      {item.dropdown.map((subItem) => (
-                        <a
-                          key={subItem.name}
-                          href={subItem.href}
-                          className="block px-4 py-2 text-sm text-muted-foreground hover:text-primary hover:bg-muted/50 transition-colors"
-                        >
-                          {subItem.name}
-                        </a>
-                      ))}
+                      {item.dropdown.map((subItem) => 
+                        subItem.href.startsWith('/') ? (
+                          <Link
+                            key={subItem.name}
+                            to={subItem.href}
+                            className="block px-4 py-2 text-sm text-muted-foreground hover:text-primary hover:bg-muted/50 transition-colors"
+                          >
+                            {subItem.name}
+                          </Link>
+                        ) : (
+                          <a
+                            key={subItem.name}
+                            href={subItem.href}
+                            className="block px-4 py-2 text-sm text-muted-foreground hover:text-primary hover:bg-muted/50 transition-colors"
+                          >
+                            {subItem.name}
+                          </a>
+                        )
+                      )}
                     </div>
                   </div>
                 )}
@@ -136,14 +156,25 @@ const Header = () => {
           <div className="lg:hidden py-4 border-t border-border">
             <nav className="flex flex-col space-y-4">
               {navigationItems.map((item) => (
-                <a
-                  key={item.name}
-                  href={item.href}
-                  className="text-foreground hover:text-primary transition-colors duration-200 font-medium"
-                  onClick={() => setIsMobileMenuOpen(false)}
-                >
-                  {item.name}
-                </a>
+                item.href.startsWith('/') ? (
+                  <Link
+                    key={item.name}
+                    to={item.href}
+                    className="text-foreground hover:text-primary transition-colors duration-200 font-medium"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.name}
+                  </Link>
+                ) : (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className="text-foreground hover:text-primary transition-colors duration-200 font-medium"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                  >
+                    {item.name}
+                  </a>
+                )
               ))}
               <Button variant="energy" size="sm" className="w-fit">
                 Get Quote

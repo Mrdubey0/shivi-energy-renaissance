@@ -27,9 +27,7 @@ const App = () => (
           <Route path="/about" element={
             <div className="min-h-screen bg-background">
               <Header />
-              <div className="pt-16">
-                <About />
-              </div>
+              <About />
               <Footer />
             </div>
           } />

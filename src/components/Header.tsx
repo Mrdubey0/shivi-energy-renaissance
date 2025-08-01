@@ -14,12 +14,20 @@ const Header = () => {
       href: "/" 
     },
     { 
+      name: "About Us", 
+      href: "/about" 
+    },
+    { 
       name: "Products", 
       href: "/products"
     },
     { 
       name: "Projects", 
       href: "/projects" 
+    },
+    { 
+      name: "CO-MBS", 
+      href: "/sustainability" 
     },
     { 
       name: "Blog", 

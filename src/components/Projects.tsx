@@ -144,85 +144,91 @@ const Projects = () => {
           </div>
         </div>
 
-        {/* Projects Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Projects List */}
+        <div className="space-y-6">
           {projects.map((project) => (
-            <Card key={project.id} className="group hover:shadow-card transition-all duration-300 hover:-translate-y-2 overflow-hidden">
-              <div className="relative">
-                <img 
-                  src={project.image} 
-                  alt={project.title}
-                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
-                />
-                <div className="absolute top-4 left-4">
-                  <Badge 
-                    variant={project.status === "Active" ? "default" : "secondary"}
-                    className="bg-background/90 backdrop-blur-sm"
-                  >
-                    {project.status}
-                  </Badge>
-                </div>
-                <div className="absolute top-4 right-4">
-                  <Badge variant="outline" className="bg-background/90 backdrop-blur-sm">
-                    {project.category}
-                  </Badge>
-                </div>
-              </div>
-
-              <CardHeader>
-                <CardTitle className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
-                  {project.title}
-                </CardTitle>
-                <div className="space-y-2 text-sm text-muted-foreground">
-                  <div className="flex items-center">
-                    <Users className="h-4 w-4 mr-2" />
-                    {project.client}
-                  </div>
-                  <div className="flex items-center">
-                    <MapPin className="h-4 w-4 mr-2" />
-                    {project.location}
-                  </div>
-                  <div className="flex items-center">
-                    <Calendar className="h-4 w-4 mr-2" />
-                    {project.duration}
-                  </div>
-                </div>
-              </CardHeader>
-
-              <CardContent>
-                <p className="text-muted-foreground mb-4 line-clamp-3">
-                  {project.description}
-                </p>
-
-                {/* CO-MBS Features */}
-                <div className="mb-4">
-                  <h4 className="text-sm font-semibold text-primary mb-2">CO-MBS Features:</h4>
-                  <div className="flex flex-wrap gap-1">
-                    {project.coMbsFeatures.map((feature, index) => (
-                      <Badge key={index} variant="secondary" className="text-xs">
-                        {feature}
+            <Card key={project.id} className="overflow-hidden hover:shadow-lg transition-all duration-300">
+              <CardContent className="p-6">
+                <div className="flex flex-col md:flex-row gap-6">
+                  {/* Project Image */}
+                  <div className="w-full md:w-48 h-32 flex-shrink-0 relative rounded-lg overflow-hidden">
+                    <img 
+                      src={project.image} 
+                      alt={project.title}
+                      className="w-full h-full object-cover"
+                    />
+                    <div className="absolute top-2 left-2">
+                      <Badge 
+                        variant={project.status === "Active" ? "default" : "secondary"}
+                        className="bg-background/90 backdrop-blur-sm text-xs"
+                      >
+                        {project.status}
                       </Badge>
-                    ))}
+                    </div>
+                  </div>
+                  
+                  {/* Project Details */}
+                  <div className="flex-1">
+                    <div className="flex flex-col md:flex-row md:justify-between md:items-start mb-3">
+                      <h3 className="text-xl font-bold text-foreground mb-2 md:mb-0">
+                        {project.title}
+                      </h3>
+                      <Badge variant="outline" className="bg-background/80 w-fit">
+                        {project.category}
+                      </Badge>
+                    </div>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-4 text-sm text-muted-foreground">
+                      <div className="flex items-center gap-2">
+                        <Users className="w-4 h-4" />
+                        <span>{project.client}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <MapPin className="w-4 h-4" />
+                        <span>{project.location}</span>
+                      </div>
+                      <div className="flex items-center gap-2">
+                        <Calendar className="w-4 h-4" />
+                        <span>{project.duration}</span>
+                      </div>
+                    </div>
+                    
+                    <p className="text-muted-foreground mb-4 line-clamp-2">
+                      {project.description}
+                    </p>
+                    
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
+                      {/* CO-MBS Features */}
+                      <div>
+                        <h4 className="text-sm font-semibold text-primary mb-2">CO-MBS Features:</h4>
+                        <div className="flex flex-wrap gap-1">
+                          {project.coMbsFeatures.slice(0, 3).map((feature, index) => (
+                            <Badge key={index} variant="secondary" className="text-xs">
+                              {feature}
+                            </Badge>
+                          ))}
+                        </div>
+                      </div>
+                      
+                      {/* Key Results */}
+                      <div>
+                        <h4 className="text-sm font-semibold text-foreground mb-2">Key Results:</h4>
+                        <ul className="text-sm text-muted-foreground space-y-1">
+                          {project.results.slice(0, 2).map((result, index) => (
+                            <li key={index} className="flex items-center">
+                              <Target className="h-3 w-3 mr-2 text-primary flex-shrink-0" />
+                              {result}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </div>
+                    
+                    <Button variant="outline" className="w-fit hover:bg-primary hover:text-primary-foreground transition-colors">
+                      View Project Details
+                    </Button>
                   </div>
                 </div>
-
-                {/* Key Results */}
-                <div className="mb-6">
-                  <h4 className="text-sm font-semibold text-foreground mb-2">Key Results:</h4>
-                  <ul className="text-sm text-muted-foreground space-y-1">
-                    {project.results.slice(0, 2).map((result, index) => (
-                      <li key={index} className="flex items-center">
-                        <Target className="h-3 w-3 mr-2 text-primary flex-shrink-0" />
-                        {result}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <Button variant="outline" className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-colors">
-                  View Project Details
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
               </CardContent>
             </Card>
           ))}

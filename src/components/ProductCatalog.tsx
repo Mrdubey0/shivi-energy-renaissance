@@ -263,18 +263,28 @@ const ProductCatalog = () => {
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-16">
-          <div className="inline-flex items-center px-6 py-3 rounded-full bg-primary/10 border border-primary/20 mb-6 shadow-sm">
-            <Package className="h-5 w-5 text-primary mr-2" />
-            <span className="text-sm font-medium text-primary">Advanced Product Solutions</span>
-          </div>
-          <h2 className="text-5xl md:text-6xl font-bold text-foreground mb-6">
-            Smart Product
-            <span className="text-primary"> Catalog</span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed">
-            Discover our comprehensive range of cutting-edge energy industry products. 
-            Built with CO-MBS principles and designed for sustainable operations.
+          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+            Our Products
+          </h1>
+          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
+            Discover our comprehensive range of energy solutions designed for efficiency, sustainability, and reliability.
           </p>
+          
+          {/* Trust Indicators */}
+          <div className="flex justify-center items-center gap-8 mb-8">
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+              <span className="text-sm text-muted-foreground">ISO Certified</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+              <span className="text-sm text-muted-foreground">5 Year Warranty</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+              <span className="text-sm text-muted-foreground">24/7 Support</span>
+            </div>
+          </div>
         </div>
 
         {/* Search and Filter Bar */}

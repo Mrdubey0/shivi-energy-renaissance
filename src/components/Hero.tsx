@@ -1,24 +1,24 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Play } from "lucide-react";
 import { useState } from "react";
-import heroBg from "@/assets/hero-bg.jpg";
+import energyBg from "@/assets/energy-solutions-bg.jpg";
 import TypewriterText from "./TypewriterText";
 import QuoteRequestForm from "./QuoteRequestForm";
 
 const Hero = () => {
   const [isQuoteFormOpen, setIsQuoteFormOpen] = useState(false);
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+    <section id="hero" className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background Image */}
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `linear-gradient(rgba(34, 48, 117, 0.8), rgba(34, 48, 117, 0.6)), url(${heroBg})`
+          backgroundImage: `url(${energyBg})`
         }}
       />
       
-      {/* Background Overlay */}
-      <div className="absolute inset-0 bg-gradient-hero opacity-80" />
+      {/* Energy-themed Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-blue-900/80 via-green-900/70 to-blue-800/90" />
       
       {/* Animated Background Elements */}
       <div className="absolute inset-0">

@@ -66,9 +66,21 @@ const Hero = () => {
               <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
             </Button>
             
-            <Button variant="outline" size="xl" className="bg-background/10 border-primary-foreground/30 text-primary-foreground hover:bg-background/20">
+            <Button 
+              variant="outline" 
+              size="xl" 
+              className="bg-background/10 border-primary-foreground/30 text-primary-foreground hover:bg-background/20"
+              onClick={() => {
+                const link = document.createElement('a');
+                link.href = '/brochure.pdf';
+                link.download = 'Shivi-Energy-Solutions-Brochure.pdf';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+              }}
+            >
               <Play className="mr-2 h-5 w-5" />
-              Watch Demo
+              Download Brochure
             </Button>
           </div>
 

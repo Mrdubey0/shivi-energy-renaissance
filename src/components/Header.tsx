@@ -55,7 +55,22 @@ const Header = () => {
           <nav className="hidden lg:flex items-center space-x-1">
             {navigationItems.map((item) => (
               <div key={item.name} className="relative group">
-                {item.href.startsWith('/') ? (
+                {item.href.startsWith('/#') ? (
+                  <a
+                    href={item.href}
+                    className="px-4 py-2 text-foreground hover:text-primary transition-colors duration-200 font-medium rounded-lg hover:bg-muted/50"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const sectionId = item.href.substring(2);
+                      const section = document.getElementById(sectionId);
+                      if (section) {
+                        section.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }}
+                  >
+                    {item.name}
+                  </a>
+                ) : item.href.startsWith('/') ? (
                   <Link
                     to={item.href}
                     className="px-4 py-2 text-foreground hover:text-primary transition-colors duration-200 font-medium rounded-lg hover:bg-muted/50"
@@ -99,7 +114,24 @@ const Header = () => {
           <div className="lg:hidden py-4 border-t border-border">
             <nav className="flex flex-col space-y-4">
               {navigationItems.map((item) => (
-                item.href.startsWith('/') ? (
+                item.href.startsWith('/#') ? (
+                  <a
+                    key={item.name}
+                    href={item.href}
+                    className="text-foreground hover:text-primary transition-colors duration-200 font-medium"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      setIsMobileMenuOpen(false);
+                      const sectionId = item.href.substring(2);
+                      const section = document.getElementById(sectionId);
+                      if (section) {
+                        section.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }}
+                  >
+                    {item.name}
+                  </a>
+                ) : item.href.startsWith('/') ? (
                   <Link
                     key={item.name}
                     to={item.href}

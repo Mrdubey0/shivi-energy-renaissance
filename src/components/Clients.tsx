@@ -218,25 +218,6 @@ const Clients = () => {
           </div>
         </div>
 
-        {/* CTA Section */}
-        <div className="text-center bg-gradient-hero rounded-2xl p-12">
-          <h3 className="text-3xl font-bold text-primary-foreground mb-4">
-            Ready to Join Our Success Stories?
-          </h3>
-          <p className="text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
-            Partner with us to achieve your sustainability goals while maintaining operational excellence. 
-            Let's build the future of energy together.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <Button variant="secondary" size="lg">
-              Become a Partner
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-            <Button variant="outline" size="lg" className="border-primary-foreground text-primary-foreground hover:bg-primary-foreground hover:text-primary">
-              View Case Studies
-            </Button>
-          </div>
-        </div>
       </div>
     </section>
   );

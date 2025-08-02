@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Play } from "lucide-react";
+import { ArrowRight, Download } from "lucide-react";
 import { useState } from "react";
 import heroBg from "@/assets/hero-bg.jpg";
 import TypewriterText from "./TypewriterText";
@@ -79,7 +79,7 @@ const Hero = () => {
                 document.body.removeChild(link);
               }}
             >
-              <Play className="mr-2 h-5 w-5" />
+              <Download className="mr-2 h-5 w-5" />
               Download Brochure
             </Button>
           </div>
@@ -107,7 +107,7 @@ const Hero = () => {
       </div>
 
       {/* Scroll Indicator */}
-      <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-bounce">
+      <div className="absolute bottom-8 right-8 animate-bounce">
         <div className="w-6 h-10 border-2 border-primary-foreground/50 rounded-full flex justify-center">
           <div className="w-1 h-3 bg-primary-foreground/50 rounded-full mt-2 animate-pulse" />
         </div>

@@ -122,10 +122,10 @@ const Services = () => {
               Our expert team is ready to tackle your most complex challenges.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="secondary" size="lg" className="bg-white text-primary hover:bg-white/90">
+              <Button variant="secondary" size="lg">
                 Request Consultation
               </Button>
-              <Button variant="outline" size="lg" className="border-white text-white hover:bg-white hover:text-primary">
+              <Button variant="outline" size="lg" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
                 View Portfolio
               </Button>
             </div>

@@ -1,13 +1,14 @@
 import { useState } from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
+import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { X } from "lucide-react";
+import { FileText, AlertCircle } from "lucide-react";
 
 interface Product {
   id: string;
@@ -28,7 +29,11 @@ const QuoteRequestForm = ({ isOpen, onClose, cartItems, onClearCart }: QuoteRequ
     email: "",
     phone: "",
     companyName: "",
-    message: ""
+    message: "",
+    wellPhase: "",
+    formationType: "",
+    mechanicalObjective: "",
+    urgencyProtocol: ""
   });
   
   const [selectedProducts, setSelectedProducts] = useState<string[]>([]);
@@ -36,34 +41,85 @@ const QuoteRequestForm = ({ isOpen, onClose, cartItems, onClearCart }: QuoteRequ
   
   const availableProducts = [
     "Downhole Tools",
-    "Drilling Chemicals", 
+    "Mills & Bits",
     "Monitoring Equipment",
-    "AI Devices",
+    "Digital Oversight Systems",
     "Corrosion Management Systems",
     "Well Intervention Tools",
     "Plug & Abandonment Solutions",
     "Well Construction Equipment",
-    "Drilling Fluids",
     "Capillary Technology"
+  ];
+
+  const wellPhases = [
+    "Drilling",
+    "Completion",
+    "Production",
+    "Workover",
+    "Abandonment"
+  ];
+
+  const formationTypes = [
+    "Sandstone",
+    "Carbonate",
+    "Shale",
+    "Mixed/Complex",
+    "Unknown - Requires Assessment"
+  ];
+
+  const mechanicalObjectives = [
+    "Obstruction Removal",
+    "Section Milling",
+    "Zonal Isolation",
+    "Production Enhancement",
+    "Integrity Restoration",
+    "Monitoring Installation",
+    "Other - Specify in Message"
+  ];
+
+  const urgencyProtocols = [
+    "Standard - 2-4 Weeks",
+    "Expedited - 1-2 Weeks",
+    "Urgent - Within 1 Week",
+    "Emergency - Immediate"
   ];
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     
+    // Validate operational context
+    if (!formData.wellPhase || !formData.formationType || !formData.mechanicalObjective || !formData.urgencyProtocol) {
+      toast({
+        title: "Operational Context Required",
+        description: "Please complete all operational context fields for engineering validation.",
+        variant: "destructive"
+      });
+      return;
+    }
+
     // Here you would typically send the data to your backend
-    console.log("Quote request:", {
+    console.log("Requirement Query:", {
       ...formData,
-      cartProducts: cartItems,
-      selectedProducts: selectedProducts
+      manifestProducts: cartItems,
+      additionalProducts: selectedProducts
     });
 
     toast({
-      title: "Quote Request Sent!",
-      description: "We'll get back to you within 24 hours.",
+      title: "Requirement Query Submitted",
+      description: "Our engineering team will validate compatibility and respond within 24-48 hours.",
     });
 
     // Clear form and cart
-    setFormData({ email: "", phone: "", companyName: "", message: "" });
+    setFormData({ 
+      email: "", 
+      phone: "", 
+      companyName: "", 
+      message: "",
+      wellPhase: "",
+      formationType: "",
+      mechanicalObjective: "",
+      urgencyProtocol: ""
+    });
     setSelectedProducts([]);
     onClearCart();
     onClose();
@@ -73,6 +129,13 @@ const QuoteRequestForm = ({ isOpen, onClose, cartItems, onClearCart }: QuoteRequ
     setFormData(prev => ({
       ...prev,
       [e.target.name]: e.target.value
+    }));
+  };
+
+  const handleSelectChange = (field: string, value: string) => {
+    setFormData(prev => ({
+      ...prev,
+      [field]: value
     }));
   };
 
@@ -88,15 +151,22 @@ const QuoteRequestForm = ({ isOpen, onClose, cartItems, onClearCart }: QuoteRequ
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
         <DialogHeader>
-          <DialogTitle className="text-2xl font-bold text-primary">Request Quote</DialogTitle>
+          <DialogTitle className="text-2xl font-bold text-primary flex items-center gap-2">
+            <FileText className="h-6 w-6" />
+            Requirement Query
+          </DialogTitle>
+          <DialogDescription>
+            Submit your operational requirements for engineering validation and technical evaluation.
+          </DialogDescription>
         </DialogHeader>
 
         <div className="space-y-6">
-          {/* Cart Items Display */}
+          {/* Manifest Items Display */}
           {cartItems.length > 0 && (
             <Card>
-              <CardHeader>
-                <CardTitle className="text-lg">Products from Cart ({cartItems.length})</CardTitle>
+              <CardHeader className="pb-3">
+                <CardTitle className="text-lg">Procurement Manifest ({cartItems.length})</CardTitle>
+                <CardDescription>Products selected for technical evaluation</CardDescription>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3 max-h-40 overflow-y-auto">
@@ -109,7 +179,6 @@ const QuoteRequestForm = ({ isOpen, onClose, cartItems, onClearCart }: QuoteRequ
                       />
                       <div className="flex-1">
                         <p className="font-medium text-sm">{item.name}</p>
-                        <p className="text-sm text-muted-foreground">{item.price}</p>
                       </div>
                     </div>
                   ))}
@@ -118,10 +187,83 @@ const QuoteRequestForm = ({ isOpen, onClose, cartItems, onClearCart }: QuoteRequ
             </Card>
           )}
 
-          {/* Product Selection */}
+          {/* Operational Context - MANDATORY */}
+          <Card className="border-primary/30 bg-primary/5">
+            <CardHeader className="pb-3">
+              <CardTitle className="text-lg flex items-center gap-2">
+                <AlertCircle className="h-5 w-5 text-primary" />
+                Operational Context (Required)
+              </CardTitle>
+              <CardDescription>
+                This information enables engineering validation of product compatibility
+              </CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                  <Label htmlFor="wellPhase">Well Phase *</Label>
+                  <Select value={formData.wellPhase} onValueChange={(value) => handleSelectChange("wellPhase", value)}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select well phase" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {wellPhases.map((phase) => (
+                        <SelectItem key={phase} value={phase}>{phase}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="formationType">Formation Type *</Label>
+                  <Select value={formData.formationType} onValueChange={(value) => handleSelectChange("formationType", value)}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select formation type" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {formationTypes.map((formation) => (
+                        <SelectItem key={formation} value={formation}>{formation}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="mechanicalObjective">Primary Mechanical Objective *</Label>
+                  <Select value={formData.mechanicalObjective} onValueChange={(value) => handleSelectChange("mechanicalObjective", value)}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select objective" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {mechanicalObjectives.map((objective) => (
+                        <SelectItem key={objective} value={objective}>{objective}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+
+                <div className="space-y-2">
+                  <Label htmlFor="urgencyProtocol">Urgency Protocol *</Label>
+                  <Select value={formData.urgencyProtocol} onValueChange={(value) => handleSelectChange("urgencyProtocol", value)}>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Select urgency" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {urgencyProtocols.map((urgency) => (
+                        <SelectItem key={urgency} value={urgency}>{urgency}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Additional Product Selection */}
           <Card>
-            <CardHeader>
-              <CardTitle className="text-lg">Select Products/Services</CardTitle>
+            <CardHeader className="pb-3">
+              <CardTitle className="text-lg">Additional Products/Services</CardTitle>
+              <CardDescription>Select any additional items for evaluation</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -144,7 +286,7 @@ const QuoteRequestForm = ({ isOpen, onClose, cartItems, onClearCart }: QuoteRequ
             </CardContent>
           </Card>
 
-          {/* Quote Request Form */}
+          {/* Contact Information Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
@@ -185,25 +327,29 @@ const QuoteRequestForm = ({ isOpen, onClose, cartItems, onClearCart }: QuoteRequ
             </div>
 
             <div className="space-y-2">
-              <Label htmlFor="message">Additional Message</Label>
+              <Label htmlFor="message">Technical Requirements / Additional Information</Label>
               <Textarea
                 id="message"
                 name="message"
                 value={formData.message}
                 onChange={handleChange}
-                placeholder="Any specific requirements or questions..."
-                rows={3}
+                placeholder="Specify any additional technical requirements, well conditions, or operational constraints..."
+                rows={4}
               />
             </div>
 
             <div className="flex gap-3 pt-4">
               <Button type="submit" className="flex-1">
-                Send Quote Request
+                Submit Requirement Query
               </Button>
               <Button type="button" variant="outline" onClick={onClose}>
                 Cancel
               </Button>
             </div>
+
+            <p className="text-xs text-muted-foreground text-center">
+              Engineering validation will be completed before any quote or commitment is provided.
+            </p>
           </form>
         </div>
       </DialogContent>

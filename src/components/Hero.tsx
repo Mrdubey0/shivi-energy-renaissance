@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Download } from "lucide-react";
+import { ArrowRight, Download, Activity, Shield, Clock } from "lucide-react";
 import { useState } from "react";
 import heroBg from "@/assets/hero-bg.jpg";
 import TypewriterText from "./TypewriterText";
@@ -13,18 +13,19 @@ const Hero = () => {
       <div 
         className="absolute inset-0 bg-cover bg-center bg-no-repeat"
         style={{
-          backgroundImage: `linear-gradient(rgba(34, 48, 117, 0.8), rgba(34, 48, 117, 0.6)), url(${heroBg})`
+          backgroundImage: `linear-gradient(rgba(34, 48, 117, 0.85), rgba(34, 48, 117, 0.7)), url(${heroBg})`
         }}
       />
       
       {/* Background Overlay */}
       <div className="absolute inset-0 bg-gradient-hero opacity-80" />
       
-      {/* Animated Background Elements */}
-      <div className="absolute inset-0">
-        <div className="absolute top-20 left-20 w-32 h-32 bg-primary-glow/20 rounded-full animate-float" />
-        <div className="absolute bottom-20 right-20 w-24 h-24 bg-secondary/20 rounded-full animate-float" style={{ animationDelay: "1s" }} />
-        <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-accent/20 rounded-full animate-float" style={{ animationDelay: "2s" }} />
+      {/* Subtle Grid Pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="h-full w-full" style={{
+          backgroundImage: 'linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px)',
+          backgroundSize: '50px 50px'
+        }} />
       </div>
 
       {/* Content */}
@@ -32,8 +33,9 @@ const Hero = () => {
         <div className="max-w-4xl mx-auto">
           {/* Badge */}
           <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary-glow/20 border border-primary-glow/30 backdrop-blur-sm mb-6">
+            <Shield className="h-4 w-4 mr-2 text-secondary" />
             <span className="text-sm font-medium text-primary-foreground">
-              Premium Energy Solutions Provider
+              Operational Assurance Systems
             </span>
           </div>
 
@@ -48,7 +50,7 @@ const Hero = () => {
           {/* Subheading with Typewriter Effect */}
           <div className="text-xl md:text-2xl text-primary-foreground/90 mb-8 max-w-3xl mx-auto leading-relaxed min-h-[120px] flex items-center justify-center">
             <TypewriterText 
-              text="Transform your energy operations with our premium solutions. From drilling to corrosion management, we deliver excellence at every step."
+              text="Engineering-led execution systems designed to reduce operational risk. From integrity management to well intervention, we deliver audit-ready field execution."
               delay={500}
               speed={30}
             />
@@ -62,7 +64,7 @@ const Hero = () => {
               className="group"
               onClick={() => setIsQuoteFormOpen(true)}
             >
-              Get Quote Now
+              Technical Inquiry
               <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
             </Button>
             
@@ -73,34 +75,45 @@ const Hero = () => {
               onClick={() => {
                 const link = document.createElement('a');
                 link.href = '/brochure.pdf';
-                link.download = 'Shivi-Energy-Solutions-Brochure.pdf';
+                link.download = 'Shivi-Energy-Solutions-Technical-Overview.pdf';
                 document.body.appendChild(link);
                 link.click();
                 document.body.removeChild(link);
               }}
             >
               <Download className="mr-2 h-5 w-5" />
-              Download Brochure
+              Access Technical Overview
             </Button>
           </div>
 
-          {/* Trust Indicators */}
+          {/* Operational Metrics */}
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-primary-foreground/80">
-            <div>
-              <div className="text-3xl font-bold text-secondary mb-2">15+</div>
-              <div className="text-sm">Years Experience</div>
+            <div className="group">
+              <div className="flex items-center justify-center mb-2">
+                <Activity className="h-5 w-5 mr-2 text-secondary" />
+                <span className="text-3xl font-bold text-secondary">127</span>
+              </div>
+              <div className="text-sm">Active Executions</div>
             </div>
-            <div>
-              <div className="text-3xl font-bold text-accent mb-2">500+</div>
-              <div className="text-sm">Projects Completed</div>
+            <div className="group">
+              <div className="flex items-center justify-center mb-2">
+                <Shield className="h-5 w-5 mr-2 text-accent" />
+                <span className="text-3xl font-bold text-accent">2.4M+</span>
+              </div>
+              <div className="text-sm">Incident-Free Hours</div>
             </div>
-            <div>
-              <div className="text-3xl font-bold text-primary-glow mb-2">50+</div>
-              <div className="text-sm">Global Partners</div>
+            <div className="group">
+              <div className="flex items-center justify-center mb-2">
+                <Clock className="h-5 w-5 mr-2 text-primary-glow" />
+                <span className="text-3xl font-bold text-primary-glow">98.7%</span>
+              </div>
+              <div className="text-sm">On-Time Delivery</div>
             </div>
-            <div>
-              <div className="text-3xl font-bold text-secondary mb-2">24/7</div>
-              <div className="text-sm">Support Available</div>
+            <div className="group">
+              <div className="flex items-center justify-center mb-2">
+                <span className="text-3xl font-bold text-secondary">ISO</span>
+              </div>
+              <div className="text-sm">Audit-Ready Systems</div>
             </div>
           </div>
         </div>

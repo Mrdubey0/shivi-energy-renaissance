@@ -10,24 +10,26 @@ import {
   CheckCircle,
   ArrowRight,
   Linkedin,
-  Mail
+  Mail,
+  Shield,
+  FileCheck
 } from "lucide-react";
 
 const About = () => {
   const stats = [
-    { icon: Award, label: "Years of Excellence", value: "15+" },
+    { icon: Shield, label: "Incident-Free Hours", value: "2.4M+" },
     { icon: Globe, label: "Countries Served", value: "25+" },
-    { icon: Users, label: "Expert Professionals", value: "200+" },
-    { icon: Target, label: "Success Rate", value: "99%" }
+    { icon: Users, label: "Technical Professionals", value: "200+" },
+    { icon: Target, label: "On-Time Execution", value: "98.7%" }
   ];
 
-  const achievements = [
-    "ISO 9001:2015 Certified Quality Management",
+  const certifications = [
+    "ISO 9001:2015 Quality Management",
     "OHSAS 18001 Health & Safety Standards",
     "API Certified Equipment & Services",
     "DNV GL Approved Procedures",
     "NACE Certified Corrosion Specialists",
-    "24/7 Global Technical Support"
+    "24/7 Technical Support Operations"
   ];
 
   const leadership = [
@@ -36,7 +38,7 @@ const About = () => {
       position: "CEO & Founder",
       company: "Shivi Energy Solutions",
       image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
-      bio: "20+ years experience in energy sector innovation and sustainable solutions development.",
+      bio: "20+ years experience in energy sector operations with focus on execution discipline and operational governance.",
       linkedin: "#",
       email: "rajesh@shivienergy.com"
     },
@@ -45,7 +47,7 @@ const About = () => {
       position: "CTO",
       company: "Shivi Energy Solutions",
       image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
-      bio: "Expert in AI & Computer Vision applications for industrial automation and safety systems.",
+      bio: "Expert in digital oversight systems and AI applications for safety verification and operational monitoring.",
       linkedin: "#",
       email: "priya@shivienergy.com"
     },
@@ -54,7 +56,7 @@ const About = () => {
       position: "VP Operations",
       company: "Shivi Energy Solutions",
       image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
-      bio: "15+ years leading complex offshore operations and corrosion management projects.",
+      bio: "15+ years leading complex field operations with accountability for safety and execution outcomes.",
       linkedin: "#",
       email: "vikram@shivienergy.com"
     }
@@ -67,37 +69,36 @@ const About = () => {
           {/* Content Side */}
           <div>
             <div className="inline-flex items-center px-4 py-2 rounded-full bg-secondary/10 border border-secondary/20 mb-6">
-              <span className="text-sm font-medium text-secondary">About Shivi Energy</span>
+              <span className="text-sm font-medium text-secondary">Company & Governance</span>
             </div>
             
             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              Leading the Future of
-              <span className="text-primary"> Energy Solutions</span>
+              Engineering-Led
+              <span className="text-primary"> Operational Services</span>
             </h2>
             
             <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
-              Since our establishment, Shivi Energy Solutions has been at the forefront of 
-              innovation in the energy industry. We specialize in providing comprehensive 
-              solutions that combine cutting-edge technology with deep industry expertise 
-              to deliver exceptional results for our clients worldwide.
+              Shivi Energy Solutions delivers audit-ready field execution across the energy sector. 
+              Our governance approach combines technical expertise with structured accountability 
+              to ensure measurable outcomes for every operation.
             </p>
 
             <div className="space-y-4 mb-8">
-              {achievements.map((achievement, index) => (
+              {certifications.map((certification, index) => (
                 <div key={index} className="flex items-center">
                   <CheckCircle className="h-5 w-5 text-primary mr-3 flex-shrink-0" />
-                  <span className="text-foreground">{achievement}</span>
+                  <span className="text-foreground">{certification}</span>
                 </div>
               ))}
             </div>
 
             <div className="flex flex-col sm:flex-row gap-4">
               <Button variant="default" size="lg">
-                Learn More About Us
+                View Governance Documentation
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
               <Button variant="outline" size="lg">
-                Download Brochure
+                Access Technical Overview
               </Button>
             </div>
           </div>
@@ -121,14 +122,17 @@ const About = () => {
               })}
             </div>
 
-            {/* Mission Statement Card */}
+            {/* Governance Statement Card */}
             <Card className="p-8 bg-gradient-hero text-primary-foreground">
               <CardContent className="p-0">
-                <h3 className="text-2xl font-bold mb-4">Our Mission</h3>
+                <div className="flex items-center mb-4">
+                  <FileCheck className="h-6 w-6 mr-2" />
+                  <h3 className="text-2xl font-bold">Governance Commitment</h3>
+                </div>
                 <p className="text-primary-foreground/90 leading-relaxed">
-                  To provide innovative, reliable, and sustainable energy solutions that 
-                  exceed client expectations while maintaining the highest standards of 
-                  safety, quality, and environmental responsibility.
+                  Every operation is executed within documented protocols with traceable 
+                  decision-making, clear accountability, and audit-ready records. 
+                  Our LOCA–LOCUS framework ensures measurable outcomes.
                 </p>
               </CardContent>
             </Card>
@@ -148,11 +152,11 @@ const About = () => {
         <div className="mt-24">
           <div className="text-center mb-12">
             <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Meet Our <span className="text-primary">Leadership Team</span>
+              Leadership & <span className="text-primary">Technical Council</span>
             </h3>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              Our experienced leaders drive innovation and excellence, bringing decades of 
-              combined expertise in energy solutions and sustainable technologies.
+              Experienced leaders with accountability for execution outcomes 
+              and operational governance across all service areas.
             </p>
           </div>
 

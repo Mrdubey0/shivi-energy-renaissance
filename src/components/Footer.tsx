@@ -15,27 +15,27 @@ const Footer = () => {
     "Engineering Consultation",
     "Corrosion Management", 
     "Rigless Intervention",
-    "Downhole Tools",
+    "Mills & Bits",
     "Rig Support",
     "Plug & Abandonment"
   ];
 
   const company = [
     "About Us",
-    "Our Team", 
+    "Leadership Team", 
     "Careers",
-    "News & Updates",
-    "Case Studies",
-    "Certifications"
+    "Execution Outcomes",
+    "Certifications",
+    "Governance"
   ];
 
   const support = [
-    "Contact Support",
     "Technical Documentation",
-    "Training Programs",
     "Safety Guidelines",
     "Quality Assurance",
-    "Emergency Services"
+    "Training Programs",
+    "Emergency Services",
+    "Contact Support"
   ];
 
   return (
@@ -50,9 +50,9 @@ const Footer = () => {
               <span className="text-secondary">ENERGY</span>
             </div>
             <p className="text-primary-foreground/80 mb-6 leading-relaxed">
-              Premium solutions provider for Energy Industry with expertise ranging from 
-              Drilling, Thru Tubing, Well Services, Capillary Technology, Rigless Intervention, 
-              Plug & Abandonment and Corrosion Management.
+              Engineering-led operational services company delivering audit-ready field 
+              execution across Drilling, Well Services, Capillary Technology, Rigless 
+              Intervention, Plug & Abandonment, and Corrosion Management.
             </p>
             
             {/* Contact Info */}
@@ -121,7 +121,7 @@ const Footer = () => {
 
           {/* Support */}
           <div>
-            <h3 className="text-lg font-semibold mb-6">Support</h3>
+            <h3 className="text-lg font-semibold mb-6">Technical Support</h3>
             <ul className="space-y-3">
               {support.map((item) => (
                 <li key={item}>
@@ -141,10 +141,10 @@ const Footer = () => {
         <Separator className="my-12 bg-primary-foreground/20" />
         
         <div className="text-center">
-          <h3 className="text-2xl font-bold mb-4">Stay Updated</h3>
+          <h3 className="text-2xl font-bold mb-4">Technical Updates</h3>
           <p className="text-primary-foreground/80 mb-6 max-w-2xl mx-auto">
-            Subscribe to our newsletter for the latest industry insights, project updates, 
-            and technological innovations in the energy sector.
+            Subscribe for operational insights, execution outcomes, 
+            and technical documentation updates.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
             <input 
@@ -175,7 +175,7 @@ const Footer = () => {
                 Terms of Service
               </a>
               <a href="#" className="text-primary-foreground/60 hover:text-secondary text-sm transition-colors">
-                Cookie Policy
+                Quality Policy
               </a>
             </div>
           </div>

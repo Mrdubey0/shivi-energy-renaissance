@@ -2,7 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MapPin, Clock, Users, Mail } from "lucide-react";
+import { MapPin, Clock, Users, Mail, Shield, Target } from "lucide-react";
 
 const Careers = () => {
   const openPositions = [
@@ -12,23 +12,23 @@ const Careers = () => {
       location: "Houston, TX",
       type: "Full-time",
       experience: "5+ years",
-      description: "Lead drilling operations and optimize wellbore construction processes using advanced CO-MBS methodologies."
+      description: "Lead drilling operations and optimize wellbore construction processes with focus on execution discipline and risk mitigation."
     },
     {
-      title: "AI/ML Solutions Architect",
+      title: "AI/ML Solutions Engineer",
       department: "Technology",
       location: "Remote",
       type: "Full-time",
       experience: "3+ years",
-      description: "Develop cutting-edge AI solutions for downhole monitoring and predictive maintenance systems."
+      description: "Develop digital oversight systems for safety verification and operational anomaly detection."
     },
     {
-      title: "Corrosion Management Specialist",
+      title: "Corrosion Management Engineer",
       department: "Engineering",
       location: "Dubai, UAE",
       type: "Full-time",
       experience: "4+ years",
-      description: "Design and implement corrosion prevention strategies for oil & gas infrastructure."
+      description: "Design and implement integrity management systems for oil & gas infrastructure."
     },
     {
       title: "Well Intervention Technician",
@@ -36,23 +36,23 @@ const Careers = () => {
       location: "Aberdeen, UK",
       type: "Full-time",
       experience: "2+ years",
-      description: "Execute well intervention operations and maintain downhole equipment using CO-MBS protocols."
+      description: "Execute well intervention operations with accountability for safety and execution quality."
     },
     {
-      title: "Sustainability Consultant",
-      department: "ESG",
+      title: "HSE & Compliance Specialist",
+      department: "Operations",
       location: "Calgary, Canada",
       type: "Full-time",
       experience: "3+ years",
-      description: "Develop sustainable practices and environmental compliance strategies for energy operations."
+      description: "Maintain regulatory compliance and operational governance across field activities."
     },
     {
-      title: "Field Operations Manager",
+      title: "Field Operations Supervisor",
       department: "Operations",
       location: "Midland, TX",
       type: "Full-time",
       experience: "6+ years",
-      description: "Oversee field operations and ensure safety compliance across multiple drilling sites."
+      description: "Oversee field execution with accountability for safety, quality, and on-time delivery."
     }
   ];
 
@@ -65,51 +65,52 @@ const Careers = () => {
           <div className="container mx-auto px-4">
             <div className="text-center max-w-3xl mx-auto">
               <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                Join Our Team
+                Join Our Execution Teams
               </h1>
               <p className="text-xl text-muted-foreground mb-8">
-                Be part of the energy revolution. Build the future of sustainable oil & gas operations with CO-MBS technology.
+                Build your career with disciplined execution teams. We value accountability, 
+                technical expertise, and operational excellence.
               </p>
             </div>
           </div>
         </section>
 
-        {/* Company Culture */}
+        {/* Company Values */}
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="grid md:grid-cols-3 gap-8 mb-16">
               <Card className="text-center">
                 <CardHeader>
-                  <Users className="h-12 w-12 text-primary mx-auto mb-4" />
-                  <CardTitle>Innovation First</CardTitle>
+                  <Shield className="h-12 w-12 text-primary mx-auto mb-4" />
+                  <CardTitle>Execution Discipline</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">
-                    Work with cutting-edge CO-MBS technology and shape the future of energy operations.
+                    Work within structured protocols that prioritize safety, quality, and measurable outcomes.
                   </p>
                 </CardContent>
               </Card>
               
               <Card className="text-center">
                 <CardHeader>
-                  <MapPin className="h-12 w-12 text-secondary mx-auto mb-4" />
-                  <CardTitle>Global Impact</CardTitle>
+                  <Target className="h-12 w-12 text-secondary mx-auto mb-4" />
+                  <CardTitle>Accountability</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">
-                    Make a difference worldwide with sustainable solutions for the energy industry.
+                    Take ownership of execution outcomes with clear responsibility and governance.
                   </p>
                 </CardContent>
               </Card>
               
               <Card className="text-center">
                 <CardHeader>
-                  <Clock className="h-12 w-12 text-accent mx-auto mb-4" />
-                  <CardTitle>Work-Life Balance</CardTitle>
+                  <Users className="h-12 w-12 text-accent mx-auto mb-4" />
+                  <CardTitle>Technical Excellence</CardTitle>
                 </CardHeader>
                 <CardContent>
                   <p className="text-muted-foreground">
-                    Enjoy flexible work arrangements and comprehensive benefits package.
+                    Develop expertise with field-validated systems and continuous learning opportunities.
                   </p>
                 </CardContent>
               </Card>
@@ -123,7 +124,7 @@ const Careers = () => {
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4">Open Positions</h2>
               <p className="text-xl text-muted-foreground">
-                Explore opportunities to grow your career with us
+                Explore opportunities to contribute to operational excellence
               </p>
             </div>
 
@@ -182,19 +183,19 @@ const Careers = () => {
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">Why Work With Us?</h2>
+              <h2 className="text-3xl font-bold mb-4">What We Offer</h2>
             </div>
             
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
               {[
-                "Competitive Salary",
-                "Health Insurance",
-                "Flexible Hours",
-                "Remote Options",
-                "Training Programs",
-                "Career Growth",
-                "Innovation Time",
-                "Global Projects"
+                "Competitive Compensation",
+                "Health & Safety Programs",
+                "Technical Training",
+                "Career Development",
+                "Field Experience",
+                "Global Projects",
+                "Performance Recognition",
+                "Work-Life Integration"
               ].map((benefit, index) => (
                 <Card key={index} className="text-center p-6">
                   <h3 className="font-semibold text-primary">{benefit}</h3>

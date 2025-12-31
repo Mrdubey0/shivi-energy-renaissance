@@ -7,46 +7,65 @@ import {
   Drill, 
   Settings, 
   Lock,
-  ArrowRight
+  ArrowRight,
+  AlertTriangle,
+  Activity,
+  TrendingUp
 } from "lucide-react";
+import { useState } from "react";
+import QuoteRequestForm from "./QuoteRequestForm";
 
 const Services = () => {
+  const [isQuoteFormOpen, setIsQuoteFormOpen] = useState(false);
+
   const services = [
     {
       icon: Cog,
       title: "Engineering & Field Consultation",
-      description: "Expert consultation services for complex engineering challenges in the energy sector with comprehensive field support.",
-      features: ["Technical Analysis", "Field Assessment", "Project Planning", "Risk Management"]
+      riskAddressed: "Unmitigated design flaws leading to operational failures and unplanned interventions.",
+      mitigationProtocol: "Field-validated engineering assessments with lifecycle risk modeling.",
+      digitalOversight: "Real-time monitoring dashboards with early anomaly detection.",
+      lifecycleImpact: "Reduced repeat interventions and extended asset operational life."
     },
     {
       icon: Shield,
       title: "Corrosion Management",
-      description: "Advanced corrosion prevention and management solutions to protect your critical industrial equipment and installations.",
-      features: ["Corrosion Assessment", "Prevention Strategies", "Monitoring Systems", "Material Selection"]
+      riskAddressed: "Integrity degradation causing equipment failure, leaks, and environmental exposure.",
+      mitigationProtocol: "Cathodic protection systems with continuous condition monitoring.",
+      digitalOversight: "AI-powered corrosion rate prediction and automated alert systems.",
+      lifecycleImpact: "40% reduction in unplanned maintenance and extended equipment lifespan."
     },
     {
       icon: Wrench,
       title: "Rigless Intervention",
-      description: "Comprehensive rigless intervention services with cutting-edge technology and expert project management capabilities.",
-      features: ["Well Intervention", "Equipment Supply", "Project Management", "Technical Support"]
+      riskAddressed: "Well production decline and mechanical obstructions requiring costly rig mobilization.",
+      mitigationProtocol: "Thru-tubing solutions with precision fishing and milling operations.",
+      digitalOversight: "Downhole sensor integration for real-time intervention verification.",
+      lifecycleImpact: "Reduced rig dependency and minimized well downtime exposure."
     },
     {
       icon: Drill,
-      title: "Downhole Tools",
-      description: "Complete range of downhole tools and equipment with exclusive partnerships for rapid deployment and support.",
-      features: ["Tool Selection", "Equipment Supply", "Technical Training", "Maintenance Support"]
+      title: "Mills & Bits Solutions",
+      riskAddressed: "Wellbore obstructions, cement, and debris preventing operational access.",
+      mitigationProtocol: "Application-specific milling geometry for defined operational envelopes.",
+      digitalOversight: "Torque and weight-on-bit monitoring for optimized cutting performance.",
+      lifecycleImpact: "Improved first-run success rates and reduced intervention cycles."
     },
     {
       icon: Settings,
       title: "Rig Support",
-      description: "Comprehensive rig support services ensuring optimal performance and safety in all drilling operations.",
-      features: ["Operational Support", "Equipment Maintenance", "Safety Systems", "Performance Optimization"]
+      riskAddressed: "Equipment failures and operational inefficiencies causing drilling delays.",
+      mitigationProtocol: "Preventive maintenance protocols with rapid equipment deployment.",
+      digitalOversight: "Equipment health monitoring with predictive failure analytics.",
+      lifecycleImpact: "Optimized rig performance with reduced non-productive time."
     },
     {
       icon: Lock,
-      title: "Plug and Abandonment Solution",
-      description: "Professional plug and abandonment services ensuring environmental compliance and regulatory adherence.",
-      features: ["Well Abandonment", "Environmental Compliance", "Regulatory Support", "Safe Disposal"]
+      title: "Plug & Abandonment",
+      riskAddressed: "Environmental liability from improper well decommissioning and zonal isolation failure.",
+      mitigationProtocol: "Bridge plug systems with verified cement integrity and regulatory compliance.",
+      digitalOversight: "Pressure monitoring and seal verification throughout abandonment process.",
+      lifecycleImpact: "Zero-leakage assurance with complete regulatory documentation."
     }
   ];
 
@@ -56,15 +75,15 @@ const Services = () => {
         {/* Section Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-4">
-            <span className="text-sm font-medium text-primary">Our Expertise</span>
+            <span className="text-sm font-medium text-primary">Operational Execution</span>
           </div>
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Comprehensive Energy
-            <span className="text-primary"> Solutions</span>
+            Execution Systems for
+            <span className="text-primary"> Risk Reduction</span>
           </h2>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            We deliver premium solutions across the energy industry with unmatched expertise 
-            and cutting-edge technology to meet your most demanding challenges.
+            Field-validated protocols designed to prevent failure, reduce exposure, 
+            and deliver measurable lifecycle impact across your operations.
           </p>
         </div>
 
@@ -78,33 +97,58 @@ const Services = () => {
                 className="group hover:shadow-card transition-all duration-300 hover:-translate-y-2 border-border/50 hover:border-primary/30"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <CardHeader>
+                <CardHeader className="pb-4">
                   <div className="w-16 h-16 bg-gradient-accent rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                     <IconComponent className="h-8 w-8 text-accent-foreground" />
                   </div>
                   <CardTitle className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
                     {service.title}
                   </CardTitle>
-                  <CardDescription className="text-muted-foreground">
-                    {service.description}
-                  </CardDescription>
                 </CardHeader>
-                <CardContent>
-                  <ul className="space-y-2 mb-6">
-                    {service.features.map((feature) => (
-                      <li key={feature} className="flex items-center text-sm text-muted-foreground">
-                        <div className="w-2 h-2 bg-primary rounded-full mr-3" />
-                        {feature}
-                      </li>
-                    ))}
-                  </ul>
-                  <Button 
-                    variant="ghost" 
-                    className="w-full group-hover:bg-primary group-hover:text-primary-foreground transition-all duration-300"
-                  >
-                    Learn More
-                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </Button>
+                <CardContent className="space-y-4">
+                  {/* Risk Addressed */}
+                  <div className="space-y-1">
+                    <div className="flex items-center text-sm font-semibold text-destructive">
+                      <AlertTriangle className="h-4 w-4 mr-2" />
+                      Risk Addressed
+                    </div>
+                    <p className="text-sm text-muted-foreground pl-6">
+                      {service.riskAddressed}
+                    </p>
+                  </div>
+
+                  {/* Mitigation Protocol */}
+                  <div className="space-y-1">
+                    <div className="flex items-center text-sm font-semibold text-primary">
+                      <Shield className="h-4 w-4 mr-2" />
+                      Mitigation Protocol
+                    </div>
+                    <p className="text-sm text-muted-foreground pl-6">
+                      {service.mitigationProtocol}
+                    </p>
+                  </div>
+
+                  {/* Digital Oversight */}
+                  <div className="space-y-1">
+                    <div className="flex items-center text-sm font-semibold text-secondary">
+                      <Activity className="h-4 w-4 mr-2" />
+                      Digital Oversight
+                    </div>
+                    <p className="text-sm text-muted-foreground pl-6">
+                      {service.digitalOversight}
+                    </p>
+                  </div>
+
+                  {/* Lifecycle Impact */}
+                  <div className="space-y-1">
+                    <div className="flex items-center text-sm font-semibold text-accent">
+                      <TrendingUp className="h-4 w-4 mr-2" />
+                      Lifecycle Impact
+                    </div>
+                    <p className="text-sm text-muted-foreground pl-6">
+                      {service.lifecycleImpact}
+                    </p>
+                  </div>
                 </CardContent>
               </Card>
             );
@@ -115,23 +159,39 @@ const Services = () => {
         <div className="text-center">
           <div className="bg-gradient-hero rounded-2xl p-8 md:p-12 text-primary-foreground">
             <h3 className="text-3xl md:text-4xl font-bold mb-4">
-              Ready to Transform Your Energy Operations?
+              Ready for Operational Review?
             </h3>
             <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
-              Partner with us for comprehensive energy solutions that deliver results. 
-              Our expert team is ready to tackle your most complex challenges.
+              Engage with our technical team to evaluate your operational requirements 
+              and identify execution pathways that reduce risk and improve asset integrity.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="secondary" size="lg">
-                Request Consultation
+              <Button 
+                variant="secondary" 
+                size="lg"
+                onClick={() => setIsQuoteFormOpen(true)}
+              >
+                Technical Inquiry
+                <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
-              <Button variant="outline" size="lg" className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10">
-                View Portfolio
+              <Button 
+                variant="outline" 
+                size="lg" 
+                className="border-primary-foreground/30 text-primary-foreground hover:bg-primary-foreground/10"
+              >
+                View Execution History
               </Button>
             </div>
           </div>
         </div>
       </div>
+
+      <QuoteRequestForm 
+        isOpen={isQuoteFormOpen}
+        onClose={() => setIsQuoteFormOpen(false)}
+        cartItems={[]}
+        onClearCart={() => {}}
+      />
     </section>
   );
 };

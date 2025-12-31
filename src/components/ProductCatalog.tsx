@@ -4,23 +4,19 @@ import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
-  ShoppingCart, 
   Package, 
   Wrench, 
-  Beaker, 
   Monitor,
   Cpu,
   Plus,
   FileText,
   ArrowRight,
   Search,
-  Filter,
-  Download,
-  Star,
   Eye,
-  Trash2,
-  Send,
-  X
+  X,
+  Gauge,
+  Thermometer,
+  Activity
 } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
@@ -31,11 +27,14 @@ interface Product {
   name: string;
   description: string;
   price: string;
-  rating: number;
   features: string[];
-  specs: string;
+  operationalEnvelope: {
+    pressure?: string;
+    temperature?: string;
+    application?: string;
+    limits?: string;
+  };
   image: string;
-  sustainable: boolean;
   inStock: boolean;
   category?: string;
   categoryName?: string;
@@ -54,89 +53,122 @@ const ProductCatalog = () => {
       name: "Downhole Tools",
       icon: Wrench,
       color: "from-blue-500 to-blue-600",
-      description: "Complete range of completion tools, liner hangers, and casing accessories",
+      description: "Completion tools, liner hangers, and casing accessories for wellbore operations",
       count: 24,
       products: [
         { 
           id: "completion-tools", 
-          name: "Advanced Completion Tools", 
-          description: "High-performance completion solutions with real-time monitoring capabilities",
-          price: "Request Quote",
-          rating: 4.8,
-          features: ["Real-time monitoring", "Corrosion resistant", "High temperature rated", "Modular design"],
-          specs: "API 5CT Grade, Pressure Rating: 15,000 PSI",
+          name: "Completion Tool Systems", 
+          description: "Completion solutions with integrated monitoring for defined wellbore conditions",
+          price: "Request Technical Evaluation",
+          features: ["Condition monitoring", "Corrosion resistant alloys", "Modular configuration"],
+          operationalEnvelope: {
+            pressure: "15,000 PSI max",
+            temperature: "-40°F to 350°F",
+            application: "Production zone completion",
+            limits: "API 5CT Grade compliance"
+          },
           image: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=300&h=200&fit=crop",
-          sustainable: true,
           inStock: true
         },
         { 
           id: "liner-hangers", 
           name: "Liner Hanger Systems", 
-          description: "Reliable liner hanger systems engineered for the most complex wells",
-          price: "Request Quote",
-          rating: 4.9,
-          features: ["Superior sealing", "Easy installation", "Debris tolerance", "Field proven"],
-          specs: "Size Range: 4.5\" - 13.375\", Working Pressure: 10,000 PSI",
+          description: "Mechanical and hydraulic liner hangers for complex well architectures",
+          price: "Request Technical Evaluation",
+          features: ["Superior sealing", "Debris tolerance", "Field-validated design"],
+          operationalEnvelope: {
+            pressure: "10,000 PSI working",
+            temperature: "Up to 400°F",
+            application: "Liner installation and isolation",
+            limits: "Size range: 4.5\" - 13.375\""
+          },
           image: "https://images.unsplash.com/photo-1590735213920-68192a487bc3?w=300&h=200&fit=crop",
-          sustainable: true,
           inStock: true
         },
         { 
           id: "casing-accessories", 
-          name: "Casing Accessories Suite", 
-          description: "Comprehensive accessories for optimal casing installation and integrity",
-          price: "Request Quote",
-          rating: 4.7,
-          features: ["Multiple configurations", "Enhanced durability", "Quick deployment", "Cost effective"],
-          specs: "Various sizes available, Temperature Rating: -40°F to 350°F",
+          name: "Casing Accessories", 
+          description: "Centralizers, float equipment, and accessories for casing installation integrity",
+          price: "Request Technical Evaluation",
+          features: ["Multiple configurations", "Enhanced durability", "Quick deployment"],
+          operationalEnvelope: {
+            pressure: "Variable by component",
+            temperature: "-40°F to 350°F",
+            application: "Casing running and cementing",
+            limits: "Formation-specific selection required"
+          },
           image: "https://images.unsplash.com/photo-1565087838865-ad5eb48b30d9?w=300&h=200&fit=crop",
-          sustainable: false,
           inStock: true
         },
         { 
           id: "swellable-systems", 
-          name: "Swellable Packer Technology", 
-          description: "Innovative swellable packer systems for zonal isolation",
-          price: "Request Quote",
-          rating: 4.6,
-          features: ["Water activated", "Oil activated", "Long-term reliability", "No setting tool required"],
-          specs: "Activation Time: 6-24 hours, Element Length: 1-20 ft",
+          name: "Swellable Packer Systems", 
+          description: "Swellable element packers for zonal isolation without setting tools",
+          price: "Request Technical Evaluation",
+          features: ["Water/oil activated", "No setting tool required", "Long-term reliability"],
+          operationalEnvelope: {
+            pressure: "5,000 PSI differential",
+            temperature: "Up to 300°F",
+            application: "Zonal isolation, annular sealing",
+            limits: "Activation time: 6-24 hours"
+          },
           image: "https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=300&h=200&fit=crop",
-          sustainable: true,
           inStock: false
         }
       ]
     },
     {
-      id: "drilling-chemicals",
-      name: "Drilling Fluids & Chemicals", 
-      icon: Beaker,
-      color: "from-green-500 to-green-600",
-      description: "Environmentally friendly drilling fluids and advanced chemical solutions",
-      count: 18,
+      id: "mills-bits",
+      name: "Mills & Bits",
+      icon: Wrench,
+      color: "from-red-500 to-red-600",
+      description: "Milling tools and bits for section cutting, obstruction removal, and wellbore access",
+      count: 16,
       products: [
         { 
-          id: "eco-drilling-fluids", 
-          name: "Eco-Friendly Drilling Fluids", 
-          description: "Biodegradable drilling mud systems with superior performance",
-          price: "Request Quote",
-          rating: 4.9,
-          features: ["100% biodegradable", "Low toxicity", "High performance", "Cost effective"],
-          specs: "Density Range: 8.5-19 ppg, Viscosity: Customizable",
-          image: "https://images.unsplash.com/photo-1532187863486-abf9dbad1b69?w=300&h=200&fit=crop",
-          sustainable: true,
+          id: "section-mills", 
+          name: "Section Milling Systems", 
+          description: "Full-bore section mills for casing removal and window cutting operations",
+          price: "Request Technical Evaluation",
+          features: ["Optimized cutter geometry", "Debris management", "Consistent cutting rate"],
+          operationalEnvelope: {
+            pressure: "N/A - mechanical operation",
+            temperature: "Up to 400°F",
+            application: "Casing section removal, window cutting",
+            limits: "RPM: 40-80, WOB: 2,000-6,000 lbs"
+          },
+          image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=300&h=200&fit=crop",
           inStock: true
         },
         { 
-          id: "circulation-materials", 
-          name: "Lost Circulation Materials", 
-          description: "Advanced LCM for severe loss zones and wellbore stability",
-          price: "Request Quote",
-          rating: 4.8,
-          features: ["Multiple particle sizes", "Rapid mixing", "Temperature stable", "Non-damaging"],
-          specs: "Particle Size: 50-2000 microns, Temperature Rating: 500°F",
-          image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&h=200&fit=crop",
-          sustainable: true,
+          id: "junk-mills", 
+          name: "Junk Mills", 
+          description: "Concave and flat-bottom mills for debris and obstruction removal",
+          price: "Request Technical Evaluation",
+          features: ["Tungsten carbide inserts", "Multiple profiles available", "High impact resistance"],
+          operationalEnvelope: {
+            pressure: "N/A - mechanical operation",
+            temperature: "Up to 400°F",
+            application: "Obstruction milling, debris cleanup",
+            limits: "Formation-dependent parameters"
+          },
+          image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=300&h=200&fit=crop",
+          inStock: true
+        },
+        { 
+          id: "pilot-mills", 
+          name: "Pilot Mills", 
+          description: "Pilot and taper mills for controlled wellbore access and re-entry",
+          price: "Request Technical Evaluation",
+          features: ["Precision guidance", "Gradual taper design", "Controlled material removal"],
+          operationalEnvelope: {
+            pressure: "N/A - mechanical operation",
+            temperature: "Up to 400°F",
+            application: "Well re-entry, controlled milling",
+            limits: "Controlled RPM for accuracy"
+          },
+          image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=300&h=200&fit=crop",
           inStock: true
         }
       ]
@@ -146,65 +178,77 @@ const ProductCatalog = () => {
       name: "Monitoring Equipment",
       icon: Monitor,
       color: "from-purple-500 to-purple-600",
-      description: "Advanced monitoring and surveillance equipment for safety and efficiency",
+      description: "Condition monitoring and surveillance systems for operational verification",
       count: 16,
       products: [
         { 
           id: "corrosion-monitors", 
-          name: "Real-Time Corrosion Monitoring", 
-          description: "Continuous corrosion monitoring with AI-powered analytics",
-          price: "Request Quote",
-          rating: 4.9,
-          features: ["Real-time data", "AI analytics", "Remote monitoring", "Predictive alerts"],
-          specs: "Accuracy: ±0.1 mpy, Data logging: 1 year, Wireless range: 5km",
+          name: "Corrosion Monitoring Systems", 
+          description: "Continuous corrosion rate monitoring with predictive analytics integration",
+          price: "Request Technical Evaluation",
+          features: ["Real-time data", "AI analytics integration", "Remote monitoring"],
+          operationalEnvelope: {
+            pressure: "Sensor rated to 5,000 PSI",
+            temperature: "Up to 250°F",
+            application: "Pipeline and vessel integrity monitoring",
+            limits: "Wireless range: 5km, Data logging: 1 year"
+          },
           image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=300&h=200&fit=crop",
-          sustainable: true,
           inStock: true
         },
         { 
           id: "leak-detection", 
-          name: "Advanced Leak Detection", 
+          name: "Leak Detection Systems", 
           description: "Multi-sensor leak detection with precise location identification",
-          price: "Request Quote",
-          rating: 4.8,
-          features: ["Multi-sensor array", "Precise location", "Fast response", "Weather resistant"],
-          specs: "Detection Range: 1-1000 ppm, Response Time: <30 seconds",
+          price: "Request Technical Evaluation",
+          features: ["Multi-sensor array", "Precise location", "Fast response"],
+          operationalEnvelope: {
+            pressure: "Ambient to process conditions",
+            temperature: "-20°F to 150°F",
+            application: "Facility and pipeline leak monitoring",
+            limits: "Detection range: 1-1000 ppm"
+          },
           image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=300&h=200&fit=crop",
-          sustainable: true,
           inStock: true
         }
       ]
     },
     {
       id: "ai-devices",
-      name: "AI & Digital Solutions",
+      name: "Digital Oversight Systems",
       icon: Cpu,
       color: "from-orange-500 to-orange-600",
-      description: "Cutting-edge AI devices and computer vision applications",
+      description: "AI and computer vision systems for safety verification and operational oversight",
       count: 12,
       products: [
         { 
           id: "ppe-monitoring", 
-          name: "AI PPE Compliance Monitor", 
-          description: "Computer vision system for automated safety equipment monitoring",
-          price: "Request Quote",
-          rating: 4.9,
-          features: ["Real-time detection", "99% accuracy", "Multi-zone coverage", "Cloud integration"],
-          specs: "Coverage: 50m radius, Accuracy: 99.2%, Processing: Edge + Cloud",
+          name: "PPE Compliance Verification", 
+          description: "Computer vision system for automated safety equipment detection and logging",
+          price: "Request Technical Evaluation",
+          features: ["Real-time detection", "99%+ accuracy", "Cloud integration"],
+          operationalEnvelope: {
+            pressure: "N/A - surface system",
+            temperature: "-20°F to 120°F operating",
+            application: "Facility safety compliance monitoring",
+            limits: "Coverage: 50m radius per unit"
+          },
           image: "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=300&h=200&fit=crop",
-          sustainable: true,
           inStock: true
         },
         { 
           id: "anomaly-detection", 
-          name: "AI Anomaly Detection", 
-          description: "Machine learning system for operational anomaly identification",
-          price: "Request Quote",
-          rating: 4.7,
-          features: ["Machine learning", "Pattern recognition", "Predictive alerts", "Customizable"],
-          specs: "Processing: Real-time, Accuracy: 95%+, Integration: API/SDK",
+          name: "Operational Anomaly Detection", 
+          description: "Machine learning system for early detection of operational deviations",
+          price: "Request Technical Evaluation",
+          features: ["Pattern recognition", "Predictive alerts", "Customizable thresholds"],
+          operationalEnvelope: {
+            pressure: "N/A - analytics system",
+            temperature: "N/A - analytics system",
+            application: "Process optimization and safety",
+            limits: "Integration via API/SDK"
+          },
           image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&h=200&fit=crop",
-          sustainable: true,
           inStock: true
         }
       ]
@@ -226,8 +270,8 @@ const ProductCatalog = () => {
     if (!inquiryCart.find(item => item.id === product.id)) {
       setInquiryCart([...inquiryCart, product]);
       toast({
-        title: "Product Added",
-        description: `${product.name} added to inquiry cart.`,
+        title: "Added to Procurement Manifest",
+        description: `${product.name} added for technical evaluation.`,
       });
     }
   };
@@ -235,8 +279,8 @@ const ProductCatalog = () => {
   const removeFromInquiry = (productId: string) => {
     setInquiryCart(inquiryCart.filter(item => item.id !== productId));
     toast({
-      title: "Product Removed",
-      description: "Product removed from inquiry cart.",
+      title: "Removed from Manifest",
+      description: "Product removed from procurement manifest.",
     });
   };
 
@@ -249,8 +293,8 @@ const ProductCatalog = () => {
   const handleGetQuote = () => {
     if (inquiryCart.length === 0) {
       toast({
-        title: "Cart Empty",
-        description: "Please add products to your cart first.",
+        title: "Manifest Empty",
+        description: "Please add products to your procurement manifest first.",
         variant: "destructive"
       });
       return;
@@ -264,10 +308,11 @@ const ProductCatalog = () => {
         {/* Header */}
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Our Products
+            Product Catalog
           </h1>
           <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-            Discover our comprehensive range of energy solutions designed for efficiency, sustainability, and reliability.
+            Field-validated equipment and systems with defined operational envelopes. 
+            All products require technical evaluation for application compatibility.
           </p>
           
           {/* Trust Indicators */}
@@ -278,11 +323,11 @@ const ProductCatalog = () => {
             </div>
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-              <span className="text-sm text-muted-foreground">5 Year Warranty</span>
+              <span className="text-sm text-muted-foreground">API Compliant</span>
             </div>
             <div className="flex items-center gap-2">
               <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-              <span className="text-sm text-muted-foreground">24/7 Support</span>
+              <span className="text-sm text-muted-foreground">Technical Support</span>
             </div>
           </div>
         </div>
@@ -293,7 +338,7 @@ const ProductCatalog = () => {
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
               <Input
-                placeholder="Search products, features, or specifications..."
+                placeholder="Search products, specifications, or applications..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
                 className="pl-10 h-12 text-base"
@@ -320,15 +365,15 @@ const ProductCatalog = () => {
               ))}
             </div>
 
-            {/* Inquiry Cart Button */}
+            {/* Procurement Manifest Button */}
             {inquiryCart.length > 0 && (
               <Button 
                 variant="energy" 
                 className="h-12 relative"
                 onClick={handleGetQuote}
               >
-                <ShoppingCart className="h-5 w-5 mr-2" />
-                Cart ({inquiryCart.length})
+                <FileText className="h-5 w-5 mr-2" />
+                Manifest ({inquiryCart.length})
                 <Badge className="absolute -top-2 -right-2 bg-secondary text-secondary-foreground min-w-[1.5rem] h-6">
                   {inquiryCart.length}
                 </Badge>
@@ -337,19 +382,22 @@ const ProductCatalog = () => {
           </div>
         </div>
 
-        {/* Inquiry Cart Display */}
+        {/* Procurement Manifest Display */}
         {inquiryCart.length > 0 && (
           <Card className="mb-8 border-primary/20 bg-gradient-to-r from-primary/5 to-accent/5">
             <CardHeader>
               <CardTitle className="flex items-center justify-between">
                 <span className="flex items-center gap-2">
-                  <ShoppingCart className="h-5 w-5 text-primary" />
-                  Inquiry Cart ({inquiryCart.length})
+                  <FileText className="h-5 w-5 text-primary" />
+                  Procurement Manifest ({inquiryCart.length})
                 </span>
                 <Button variant="outline" size="sm" onClick={clearCart}>
                   Clear All
                 </Button>
               </CardTitle>
+              <CardDescription>
+                Products selected for technical evaluation and requirement query
+              </CardDescription>
             </CardHeader>
             <CardContent>
               <div className="space-y-3 mb-4 max-h-40 overflow-y-auto">
@@ -362,7 +410,7 @@ const ProductCatalog = () => {
                     />
                     <div className="flex-1">
                       <p className="font-medium text-sm">{item.name}</p>
-                      <p className="text-sm text-muted-foreground">{item.price}</p>
+                      <p className="text-sm text-muted-foreground">{item.categoryName}</p>
                     </div>
                     <Button
                       variant="ghost"
@@ -376,8 +424,8 @@ const ProductCatalog = () => {
                 ))}
               </div>
               <Button className="w-full" size="lg" onClick={handleGetQuote}>
-                <ShoppingCart className="mr-2 h-4 w-4" />
-                Request Quote for Selected Products
+                <FileText className="mr-2 h-4 w-4" />
+                Submit Requirement Query
               </Button>
             </CardContent>
           </Card>
@@ -454,19 +502,19 @@ const ProductCatalog = () => {
         <div className="mt-20 text-center">
           <div className="bg-gradient-to-br from-primary/10 to-secondary/10 rounded-3xl p-12 border border-primary/20 shadow-xl backdrop-blur-sm">
             <h3 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              Can't Find What You Need?
+              Custom Technical Requirements?
             </h3>
             <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-              Our engineering team specializes in developing custom solutions tailored to your 
-              specific operational requirements. Every solution is designed with CO-MBS principles.
+              Our engineering team evaluates custom requirements for specific operational 
+              envelopes and application conditions not covered by standard products.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button variant="hero" size="xl">
-                Request Custom Solution
+                Submit Technical Inquiry
                 <ArrowRight className="ml-2 h-5 w-5" />
               </Button>
               <Button variant="outline" size="xl">
-                Schedule Technical Consultation
+                Schedule Engineering Consultation
               </Button>
             </div>
           </div>
@@ -506,14 +554,9 @@ const ProductCard = ({ product, isInCart, onAddToCart, onRemoveFromCart }: Produ
         
         {/* Overlay Badges */}
         <div className="absolute top-3 left-3 flex flex-col gap-2">
-          {product.sustainable && (
-            <Badge className="bg-green-500/90 text-white border-0 shadow-md">
-              CO-MBS ✓
-            </Badge>
-          )}
           {!product.inStock && (
-            <Badge variant="secondary" className="bg-red-500/90 text-white border-0">
-              Out of Stock
+            <Badge variant="secondary" className="bg-amber-500/90 text-white border-0">
+              Lead Time Required
             </Badge>
           )}
         </div>
@@ -523,9 +566,6 @@ const ProductCard = ({ product, isInCart, onAddToCart, onRemoveFromCart }: Produ
           <Button variant="secondary" size="icon" className="h-8 w-8 shadow-md">
             <Eye className="h-4 w-4" />
           </Button>
-          <Button variant="secondary" size="icon" className="h-8 w-8 shadow-md">
-            <Download className="h-4 w-4" />
-          </Button>
         </div>
       </div>
 
@@ -534,10 +574,6 @@ const ProductCard = ({ product, isInCart, onAddToCart, onRemoveFromCart }: Produ
           <CardTitle className="text-lg font-bold text-foreground group-hover:text-primary transition-colors line-clamp-2">
             {product.name}
           </CardTitle>
-          <div className="flex items-center text-yellow-500 ml-2">
-            <Star className="h-4 w-4 fill-current" />
-            <span className="text-xs ml-1 text-muted-foreground">{product.rating}</span>
-          </div>
         </div>
         
         <CardDescription className="text-sm text-muted-foreground line-clamp-2 mb-3">
@@ -546,27 +582,30 @@ const ProductCard = ({ product, isInCart, onAddToCart, onRemoveFromCart }: Produ
 
         <div className="flex items-center justify-between">
           <Badge variant="outline" className="text-xs">
-            {product.price}
-          </Badge>
-          <Badge variant="secondary" className="text-xs">
             {product.categoryName}
           </Badge>
         </div>
       </CardHeader>
 
       <CardContent className="pt-0">
-        {/* Key Features */}
-        <div className="mb-4">
-          <div className="flex flex-wrap gap-1 mb-3">
-            {product.features.slice(0, 2).map((feature, idx) => (
-              <Badge key={idx} variant="outline" className="text-xs px-2 py-0.5">
-                {feature}
-              </Badge>
-            ))}
-            {product.features.length > 2 && (
-              <Badge variant="outline" className="text-xs px-2 py-0.5">
-                +{product.features.length - 2} more
-              </Badge>
+        {/* Operational Envelope Preview */}
+        <div className="mb-4 p-3 bg-muted/50 rounded-lg">
+          <div className="text-xs font-semibold text-foreground mb-2 flex items-center">
+            <Activity className="h-3 w-3 mr-1" />
+            Operational Envelope
+          </div>
+          <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground">
+            {product.operationalEnvelope.pressure && (
+              <div className="flex items-center">
+                <Gauge className="h-3 w-3 mr-1" />
+                {product.operationalEnvelope.pressure}
+              </div>
+            )}
+            {product.operationalEnvelope.temperature && (
+              <div className="flex items-center">
+                <Thermometer className="h-3 w-3 mr-1" />
+                {product.operationalEnvelope.temperature}
+              </div>
             )}
           </div>
         </div>
@@ -578,17 +617,16 @@ const ProductCard = ({ product, isInCart, onAddToCart, onRemoveFromCart }: Produ
             size="sm"
             className="flex-1"
             onClick={isInCart ? onRemoveFromCart : onAddToCart}
-            disabled={!product.inStock}
           >
             {isInCart ? (
               <>
-                <ShoppingCart className="h-4 w-4 mr-2" />
-                Added
+                <FileText className="h-4 w-4 mr-2" />
+                In Manifest
               </>
             ) : (
               <>
                 <Plus className="h-4 w-4 mr-2" />
-                Add to Cart
+                Add to Manifest
               </>
             )}
           </Button>
@@ -606,11 +644,24 @@ const ProductCard = ({ product, isInCart, onAddToCart, onRemoveFromCart }: Produ
         {showDetails && (
           <div className="mt-4 pt-4 border-t border-border space-y-3">
             <div>
-              <h5 className="text-sm font-medium mb-1">Specifications</h5>
-              <p className="text-xs text-muted-foreground">{product.specs}</p>
+              <h5 className="text-sm font-medium mb-2">Full Operational Envelope</h5>
+              <div className="space-y-1 text-xs text-muted-foreground">
+                {product.operationalEnvelope.pressure && (
+                  <p><span className="font-medium">Pressure:</span> {product.operationalEnvelope.pressure}</p>
+                )}
+                {product.operationalEnvelope.temperature && (
+                  <p><span className="font-medium">Temperature:</span> {product.operationalEnvelope.temperature}</p>
+                )}
+                {product.operationalEnvelope.application && (
+                  <p><span className="font-medium">Application:</span> {product.operationalEnvelope.application}</p>
+                )}
+                {product.operationalEnvelope.limits && (
+                  <p><span className="font-medium">Limits:</span> {product.operationalEnvelope.limits}</p>
+                )}
+              </div>
             </div>
             <div>
-              <h5 className="text-sm font-medium mb-2">All Features</h5>
+              <h5 className="text-sm font-medium mb-2">Features</h5>
               <div className="flex flex-wrap gap-1">
                 {product.features.map((feature, idx) => (
                   <Badge key={idx} variant="secondary" className="text-xs">

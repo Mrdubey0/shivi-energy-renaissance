@@ -13,6 +13,7 @@ import {
   Shield,
   TrendingUp
 } from "lucide-react";
+import ScrollReveal from "./ScrollReveal";
 
 const Projects = () => {
   const projects = [
@@ -119,42 +120,45 @@ const Projects = () => {
     <section id="projects" className="py-24 bg-muted/30">
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
-            <span className="text-sm font-medium text-primary">Execution History</span>
-          </div>
-          
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Measured Execution
-            <span className="text-primary"> Outcomes</span>
-          </h2>
-          
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-12">
-            Documented interventions demonstrating risk reduction, lifecycle extension, 
-            and operational assurance across diverse field conditions.
-          </p>
+        <ScrollReveal>
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+              <span className="text-sm font-medium text-primary">Execution History</span>
+            </div>
+            
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+              Measured Execution
+              <span className="text-primary"> Outcomes</span>
+            </h2>
+            
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-12">
+              Documented interventions demonstrating risk reduction, lifecycle extension, 
+              and operational assurance across diverse field conditions.
+            </p>
 
-          {/* Project Stats */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
-            {projectStats.map((stat, index) => {
-              const IconComponent = stat.icon;
-              return (
-                <div key={index} className="text-center">
-                  <div className="w-16 h-16 bg-gradient-accent rounded-xl flex items-center justify-center mx-auto mb-4">
-                    <IconComponent className="h-8 w-8 text-accent-foreground" />
+            {/* Project Stats */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+              {projectStats.map((stat, index) => {
+                const IconComponent = stat.icon;
+                return (
+                  <div key={index} className="text-center">
+                    <div className="w-16 h-16 bg-gradient-accent rounded-xl flex items-center justify-center mx-auto mb-4">
+                      <IconComponent className="h-8 w-8 text-accent-foreground" />
+                    </div>
+                    <div className="text-3xl font-bold text-primary mb-2">{stat.value}</div>
+                    <div className="text-sm text-muted-foreground">{stat.label}</div>
                   </div>
-                  <div className="text-3xl font-bold text-primary mb-2">{stat.value}</div>
-                  <div className="text-sm text-muted-foreground">{stat.label}</div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* Projects List */}
         <div className="space-y-6">
-          {projects.map((project) => (
-            <Card key={project.id} className="overflow-hidden hover:shadow-lg transition-all duration-300">
+          {projects.map((project, index) => (
+            <ScrollReveal key={project.id} delay={index * 100}>
+              <Card className="overflow-hidden hover:shadow-lg transition-all duration-300">
               <CardContent className="p-6">
                 <div className="flex flex-col md:flex-row gap-6">
                   {/* Project Image */}
@@ -257,16 +261,19 @@ const Projects = () => {
                 </div>
               </CardContent>
             </Card>
+            </ScrollReveal>
           ))}
         </div>
 
         {/* View All Projects CTA */}
-        <div className="text-center mt-16">
-          <Button variant="energy" size="lg">
-            View All Execution Outcomes
-            <ArrowRight className="ml-2 h-4 w-4" />
-          </Button>
-        </div>
+        <ScrollReveal>
+          <div className="text-center mt-16">
+            <Button variant="energy" size="lg">
+              View All Execution Outcomes
+              <ArrowRight className="ml-2 h-4 w-4" />
+            </Button>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );

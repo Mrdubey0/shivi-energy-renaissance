@@ -11,6 +11,7 @@ import {
   Send,
   MessageSquare
 } from "lucide-react";
+import ScrollReveal from "./ScrollReveal";
 
 const Contact = () => {
   const contactInfo = [
@@ -39,24 +40,27 @@ const Contact = () => {
   return (
     <section id="contact" className="py-24 bg-muted/30">
       <div className="container mx-auto px-4">
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
-            <span className="text-sm font-medium text-primary">Get In Touch</span>
+        <ScrollReveal>
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+              <span className="text-sm font-medium text-primary">Get In Touch</span>
+            </div>
+            
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+              Contact <span className="text-primary">Our Experts</span>
+            </h2>
+            
+            <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
+              Ready to transform your energy operations? Our team of experts is here to help you 
+              find the perfect solution for your specific needs.
+            </p>
           </div>
-          
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Contact <span className="text-primary">Our Experts</span>
-          </h2>
-          
-          <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-            Ready to transform your energy operations? Our team of experts is here to help you 
-            find the perfect solution for your specific needs.
-          </p>
-        </div>
+        </ScrollReveal>
 
         <div className="grid lg:grid-cols-2 gap-16">
           {/* Contact Form */}
-          <Card className="p-8">
+          <ScrollReveal>
+            <Card className="p-8">
             <CardHeader className="p-0 pb-6">
               <div className="flex items-center mb-4">
                 <MessageSquare className="h-6 w-6 text-primary mr-3" />
@@ -117,9 +121,11 @@ const Contact = () => {
               </form>
             </CardContent>
           </Card>
+          </ScrollReveal>
 
           {/* Contact Information */}
-          <div className="space-y-8">
+          <ScrollReveal delay={200}>
+            <div className="space-y-8">
             {contactInfo.map((info, index) => {
               const IconComponent = info.icon;
               return (
@@ -143,20 +149,23 @@ const Contact = () => {
               );
             })}
           </div>
+          </ScrollReveal>
         </div>
 
         {/* Map Section */}
-        <div className="mt-16">
-          <Card className="overflow-hidden">
-            <div className="bg-muted h-64 flex items-center justify-center">
-              <div className="text-center">
-                <MapPin className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
-                <h3 className="text-xl font-semibold text-foreground mb-2">Our Office Location</h3>
-                <p className="text-muted-foreground">Interactive map will be integrated here</p>
+        <ScrollReveal>
+          <div className="mt-16">
+            <Card className="overflow-hidden">
+              <div className="bg-muted h-64 flex items-center justify-center">
+                <div className="text-center">
+                  <MapPin className="h-12 w-12 text-muted-foreground mx-auto mb-4" />
+                  <h3 className="text-xl font-semibold text-foreground mb-2">Our Office Location</h3>
+                  <p className="text-muted-foreground">Interactive map will be integrated here</p>
+                </div>
               </div>
-            </div>
-          </Card>
-        </div>
+            </Card>
+          </div>
+        </ScrollReveal>
       </div>
     </section>
   );

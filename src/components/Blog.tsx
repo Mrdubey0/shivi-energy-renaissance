@@ -11,82 +11,191 @@ import {
   Lightbulb,
   Globe
 } from "lucide-react";
+import { Link } from "react-router-dom";
+import ScrollReveal from "./ScrollReveal";
 
-const Blog = () => {
-  const featuredPost = {
+export const blogPosts = [
+  {
     id: 1,
+    slug: "digitalization-reduces-field-emissions",
     title: "How Digitalization Reduces Field Emissions in Energy Operations",
-    excerpt: "Exploring the transformative power of digital technologies in achieving CO-MBS principles and reducing carbon footprint in energy operations.",
+    excerpt: "Exploring the transformative power of digital technologies in achieving operational assurance and reducing carbon footprint in energy operations.",
+    content: `
+      <p>The energy industry is undergoing a significant transformation as digital technologies reshape how we monitor, manage, and optimize field operations. This shift toward digitalization is not merely about efficiency—it's fundamentally changing our ability to reduce emissions and improve operational safety.</p>
+      
+      <h2>The Role of Real-Time Monitoring</h2>
+      <p>Modern sensor networks provide continuous visibility into equipment performance, enabling operators to detect anomalies before they become critical failures. This proactive approach reduces the need for reactive interventions, which often carry higher environmental costs.</p>
+      
+      <h2>AI-Powered Predictive Analytics</h2>
+      <p>Machine learning algorithms analyze vast amounts of operational data to predict equipment failures and optimize maintenance schedules. By preventing unplanned shutdowns and reducing flaring events, these systems directly contribute to emission reduction targets.</p>
+      
+      <h2>Digital Twin Technology</h2>
+      <p>Virtual replicas of physical assets allow engineers to simulate scenarios and optimize operations without real-world risks. This capability is particularly valuable for testing emission reduction strategies before implementation.</p>
+      
+      <h2>Measured Outcomes</h2>
+      <p>Organizations implementing comprehensive digital solutions have reported 15-30% reductions in operational emissions, alongside improved safety metrics and reduced intervention frequency. The key is integrating these technologies within a structured operational framework that prioritizes measurable outcomes over aspirational goals.</p>
+    `,
     author: "Dr. Sarah Chen",
+    authorRole: "Digital Systems Director",
     date: "2024-01-15",
     readTime: "8 min read",
     category: "Digital Innovation",
     image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=400&fit=crop",
     featured: true
-  };
+  },
+  {
+    id: 2,
+    slug: "rigless-operations-environmental-footprint",
+    title: "Minimizing Environmental Footprint in Rigless Operations",
+    excerpt: "A comprehensive guide to implementing sustainable practices in rigless well intervention operations.",
+    content: `
+      <p>Rigless intervention represents a significant advancement in well servicing, offering reduced environmental impact compared to traditional rig-based operations. Understanding how to maximize these benefits requires a systematic approach to operational execution.</p>
+      
+      <h2>Reduced Surface Footprint</h2>
+      <p>Coiled tubing and wireline operations require significantly smaller surface footprints than conventional drilling rigs. This reduction directly translates to less habitat disturbance and lower mobilization emissions.</p>
+      
+      <h2>Operational Efficiency Gains</h2>
+      <p>Rigless interventions typically complete 40-60% faster than rig-based alternatives. This time reduction means less fuel consumption, fewer personnel rotations, and reduced exposure hours for field crews.</p>
+      
+      <h2>Technology Integration</h2>
+      <p>Modern rigless units incorporate advanced monitoring systems that optimize operational parameters in real-time. These systems reduce fluid losses, minimize formation damage, and ensure precise tool placement.</p>
+      
+      <h2>Case Study: Offshore Platform Intervention</h2>
+      <p>A recent offshore intervention program demonstrated 35% reduction in operational time and 45% reduction in associated emissions compared to conventional approaches. The key success factor was integrated digital oversight throughout the operation.</p>
+    `,
+    author: "Michael Rodriguez",
+    authorRole: "Field Operations Manager",
+    date: "2024-01-12",
+    readTime: "6 min read",
+    category: "Sustainability",
+    image: "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=400&h=250&fit=crop"
+  },
+  {
+    id: 3,
+    slug: "loca-locus-framework-energy-industry",
+    title: "The LOCA-LOCUS Framework: A New Standard for Energy Industry",
+    excerpt: "Understanding how Lifecycle Operational Carbon Assessment principles are reshaping energy operations globally.",
+    content: `
+      <p>The LOCA-LOCUS framework represents a paradigm shift in how the energy industry approaches operational decision-making. Rather than treating environmental considerations as compliance checkboxes, this framework integrates lifecycle assessment into every operational decision.</p>
+      
+      <h2>Understanding LOCA</h2>
+      <p>Lifecycle Operational Carbon Assessment (LOCA) provides a structured methodology for evaluating the total carbon impact of operational decisions. This includes not just direct emissions, but also embedded carbon in materials, transportation, and end-of-life considerations.</p>
+      
+      <h2>The LOCUS Integration</h2>
+      <p>Lifecycle Operational Carbon Unified Scoring (LOCUS) translates LOCA assessments into actionable metrics that operators can use for decision-making. This scoring system enables comparison across different operational approaches and technologies.</p>
+      
+      <h2>Implementation Considerations</h2>
+      <p>Successful implementation requires organizational commitment to data collection and analysis. Companies adopting this framework report that initial setup costs are offset by improved operational efficiency within 12-18 months.</p>
+      
+      <h2>Industry Adoption</h2>
+      <p>Major operators are increasingly incorporating LOCA-LOCUS principles into their operational standards. This industry-wide movement signals a fundamental shift toward accountability-driven execution.</p>
+    `,
+    author: "Dr. James Liu",
+    authorRole: "Sustainability Research Lead",
+    date: "2024-01-10",
+    readTime: "10 min read",
+    category: "LOCA-LOCUS",
+    image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=400&h=250&fit=crop"
+  },
+  {
+    id: 4,
+    slug: "ai-powered-leak-detection",
+    title: "AI-Powered Leak Detection: Safety Verification Systems",
+    excerpt: "How artificial intelligence and computer vision are transforming leak detection and safety monitoring in energy facilities.",
+    content: `
+      <p>Artificial intelligence is revolutionizing how energy facilities approach safety monitoring. Modern AI-powered leak detection systems combine multiple sensor modalities with machine learning to achieve detection rates previously impossible with traditional methods.</p>
+      
+      <h2>Computer Vision Applications</h2>
+      <p>Advanced camera systems equipped with thermal and optical sensors can detect gas leaks invisible to human observers. These systems operate continuously, providing 24/7 surveillance without the fatigue factors that affect human inspectors.</p>
+      
+      <h2>Machine Learning for Pattern Recognition</h2>
+      <p>AI algorithms learn from historical data to distinguish between normal operational variations and genuine leak signatures. This learning capability reduces false positives while maintaining high detection sensitivity.</p>
+      
+      <h2>Integration with Response Systems</h2>
+      <p>Modern detection systems connect directly to emergency response protocols, enabling rapid isolation of affected areas. This integration reduces response times from hours to minutes in many cases.</p>
+      
+      <h2>Measured Safety Improvements</h2>
+      <p>Facilities implementing AI-powered leak detection report 50-70% improvements in detection speed and 40% reductions in leak-related incidents. The human exposure reduction from automated monitoring represents an additional safety benefit.</p>
+    `,
+    author: "Emma Thompson",
+    authorRole: "AI Systems Engineer",
+    date: "2024-01-08",
+    readTime: "7 min read",
+    category: "AI & Technology",
+    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=250&fit=crop"
+  },
+  {
+    id: 5,
+    slug: "corrosion-management-sustainability",
+    title: "Corrosion Management in the Age of Operational Assurance",
+    excerpt: "Balancing asset integrity with lifecycle impact through innovative corrosion management strategies.",
+    content: `
+      <p>Corrosion management represents one of the most significant opportunities for reducing operational lifecycle impact in the energy industry. Effective corrosion prevention extends asset life, reduces intervention frequency, and minimizes material consumption over time.</p>
+      
+      <h2>Predictive Corrosion Monitoring</h2>
+      <p>Modern monitoring systems combine electrochemical sensors with AI analytics to predict corrosion progression before visual damage appears. This predictive capability enables proactive intervention rather than reactive replacement.</p>
+      
+      <h2>Advanced Coating Technologies</h2>
+      <p>New coating formulations offer extended protection periods while using less material. Some advanced coatings include self-healing properties that address minor damage before it propagates.</p>
+      
+      <h2>Cathodic Protection Optimization</h2>
+      <p>Intelligent cathodic protection systems adjust output based on real-time environmental conditions. This optimization reduces energy consumption while maintaining effective protection levels.</p>
+      
+      <h2>Lifecycle Impact Reduction</h2>
+      <p>Comprehensive corrosion management programs demonstrate 40-50% reductions in material replacement requirements over asset lifecycle. This reduction directly translates to lower embedded carbon and reduced intervention frequency.</p>
+    `,
+    author: "Robert Kumar",
+    authorRole: "Integrity Management Specialist",
+    date: "2024-01-05",
+    readTime: "9 min read",
+    category: "Technical",
+    image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&h=250&fit=crop"
+  },
+  {
+    id: 6,
+    slug: "case-study-offshore-emission-reduction",
+    title: "Case Study: 50% Emission Reduction in Offshore Operations",
+    excerpt: "Real-world implementation of operational assurance principles in offshore drilling resulting in significant emission reductions.",
+    content: `
+      <p>This case study documents the systematic implementation of operational assurance principles across an offshore drilling campaign, resulting in measurable emission reductions and improved operational efficiency.</p>
+      
+      <h2>Initial Assessment</h2>
+      <p>The baseline assessment identified key emission sources including flaring, diesel consumption, and methane slip. Digital monitoring systems were deployed to establish accurate baseline measurements before intervention.</p>
+      
+      <h2>Intervention Strategy</h2>
+      <p>The implementation focused on three primary areas: optimized well design to reduce drilling days, enhanced flare recovery systems, and fuel optimization through dynamic power management.</p>
+      
+      <h2>Digital Oversight Implementation</h2>
+      <p>Real-time monitoring dashboards provided visibility into emission metrics throughout the campaign. This transparency enabled rapid response to anomalies and continuous optimization of operations.</p>
+      
+      <h2>Measured Outcomes</h2>
+      <p>The campaign achieved 52% reduction in CO2-equivalent emissions per well compared to historical averages. Additional benefits included 35% reduction in non-productive time and improved safety performance across all metrics.</p>
+      
+      <h2>Lessons Learned</h2>
+      <p>Key success factors included leadership commitment to measurement-based decision making, integrated digital systems, and structured accountability throughout the operational team.</p>
+    `,
+    author: "Dr. Sarah Chen",
+    authorRole: "Digital Systems Director",
+    date: "2024-01-03",
+    readTime: "12 min read",
+    category: "Case Study",
+    image: "https://images.unsplash.com/photo-1520637836862-4d197d17c94a?w=400&h=250&fit=crop"
+  }
+];
 
-  const blogPosts = [
-    {
-      id: 2,
-      title: "Greening Rigless Operations: Minimizing Environmental Footprint",
-      excerpt: "A comprehensive guide to implementing sustainable practices in rigless well intervention operations.",
-      author: "Michael Rodriguez",
-      date: "2024-01-12",
-      readTime: "6 min read",
-      category: "Sustainability",
-      image: "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=400&h=250&fit=crop"
-    },
-    {
-      id: 3,
-      title: "The CO-MBS Framework: A New Standard for Energy Industry",
-      excerpt: "Understanding how Carbon and Oxide Must Be Sustainable principles are reshaping energy operations globally.",
-      author: "Dr. James Liu",
-      date: "2024-01-10",
-      readTime: "10 min read",
-      category: "CO-MBS",
-      image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=400&h=250&fit=crop"
-    },
-    {
-      id: 4,
-      title: "AI-Powered Leak Detection: Revolutionary Safety Solutions",
-      excerpt: "How artificial intelligence and computer vision are transforming leak detection and safety monitoring in energy facilities.",
-      author: "Emma Thompson",
-      date: "2024-01-08",
-      readTime: "7 min read",
-      category: "AI & Technology",
-      image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=250&fit=crop"
-    },
-    {
-      id: 5,
-      title: "Corrosion Management in the Age of Sustainability",
-      excerpt: "Balancing asset integrity with environmental responsibility through innovative corrosion management strategies.",
-      author: "Robert Kumar",
-      date: "2024-01-05",
-      readTime: "9 min read",
-      category: "Technical",
-      image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&h=250&fit=crop"
-    },
-    {
-      id: 6,
-      title: "Case Study: 50% Emission Reduction in Offshore Operations",
-      excerpt: "Real-world implementation of CO-MBS principles in offshore drilling operations resulting in significant emission reductions.",
-      author: "Dr. Sarah Chen",
-      date: "2024-01-03",
-      readTime: "12 min read",
-      category: "Case Study",
-      image: "https://images.unsplash.com/photo-1520637836862-4d197d17c94a?w=400&h=250&fit=crop"
-    }
-  ];
+const categories = [
+  { name: "All Posts", count: 24, active: true },
+  { name: "LOCA-LOCUS", count: 8 },
+  { name: "Sustainability", count: 12 },
+  { name: "Digital Innovation", count: 6 },
+  { name: "Technical", count: 10 },
+  { name: "Case Studies", count: 5 },
+  { name: "AI & Technology", count: 7 }
+];
 
-  const categories = [
-    { name: "All Posts", count: 24, active: true },
-    { name: "CO-MBS", count: 8 },
-    { name: "Sustainability", count: 12 },
-    { name: "Digital Innovation", count: 6 },
-    { name: "Technical", count: 10 },
-    { name: "Case Studies", count: 5 },
-    { name: "AI & Technology", count: 7 }
-  ];
+const Blog = () => {
+  const featuredPost = blogPosts[0];
+  const regularPosts = blogPosts.slice(1);
 
   const getCategoryIcon = (category: string) => {
     switch (category) {
@@ -94,7 +203,7 @@ const Blog = () => {
       case "AI & Technology":
         return <Lightbulb className="h-4 w-4" />;
       case "Sustainability":
-      case "CO-MBS":
+      case "LOCA-LOCUS":
         return <Globe className="h-4 w-4" />;
       case "Technical":
         return <BookOpen className="h-4 w-4" />;
@@ -107,7 +216,7 @@ const Blog = () => {
 
   const getCategoryColor = (category: string) => {
     switch (category) {
-      case "CO-MBS":
+      case "LOCA-LOCUS":
         return "bg-green-500/10 text-green-700 border-green-500/20";
       case "Sustainability":
         return "bg-blue-500/10 text-blue-700 border-blue-500/20";
@@ -127,147 +236,139 @@ const Blog = () => {
     <section id="blog" className="py-24 bg-background">
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-16">
-          <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-4">
-            <BookOpen className="h-4 w-4 text-primary mr-2" />
-            <span className="text-sm font-medium text-primary">Knowledge Hub</span>
+        <ScrollReveal>
+          <div className="text-center mb-16">
+            <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-4">
+              <BookOpen className="h-4 w-4 text-primary mr-2" />
+              <span className="text-sm font-medium text-primary">Knowledge Hub</span>
+            </div>
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+              Latest Insights &
+              <span className="text-primary"> Industry Trends</span>
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+              Stay updated with the latest developments in operational assurance, 
+              LOCA-LOCUS principles, and innovative technologies shaping the industry.
+            </p>
           </div>
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Latest Insights &
-            <span className="text-primary"> Industry Trends</span>
-          </h2>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
-            Stay updated with the latest developments in sustainable energy solutions, 
-            CO-MBS principles, and innovative technologies shaping the industry.
-          </p>
-        </div>
+        </ScrollReveal>
 
         {/* Categories Filter */}
-        <div className="flex flex-wrap gap-2 justify-center mb-12">
-          {categories.map((category) => (
-            <Badge 
-              key={category.name}
-              variant={category.active ? "default" : "outline"}
-              className="px-4 py-2 cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors"
-            >
-              {category.name} ({category.count})
-            </Badge>
-          ))}
-        </div>
+        <ScrollReveal delay={100}>
+          <div className="flex flex-wrap gap-2 justify-center mb-12">
+            {categories.map((category) => (
+              <Badge 
+                key={category.name}
+                variant={category.active ? "default" : "outline"}
+                className="px-4 py-2 cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors"
+              >
+                {category.name} ({category.count})
+              </Badge>
+            ))}
+          </div>
+        </ScrollReveal>
 
         {/* Featured Post */}
-        <div className="mb-16">
-          <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 border-primary/20">
-            <div className="grid lg:grid-cols-2 gap-0">
-              <div 
-                className="h-64 lg:h-auto bg-cover bg-center"
-                style={{ backgroundImage: `url(${featuredPost.image})` }}
-              />
-              <div className="p-8">
-                <div className="flex items-center mb-4">
-                  <Badge className={`mr-3 ${getCategoryColor(featuredPost.category)}`}>
-                    {getCategoryIcon(featuredPost.category)}
-                    <span className="ml-1">{featuredPost.category}</span>
-                  </Badge>
-                  <Badge variant="secondary">Featured</Badge>
-                </div>
-                
-                <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4 leading-tight">
-                  {featuredPost.title}
-                </h3>
-                
-                <p className="text-muted-foreground mb-6 text-lg leading-relaxed">
-                  {featuredPost.excerpt}
-                </p>
-                
-                <div className="flex items-center justify-between">
-                  <div className="flex items-center text-sm text-muted-foreground">
-                    <User className="h-4 w-4 mr-2" />
-                    <span className="mr-4">{featuredPost.author}</span>
-                    <Calendar className="h-4 w-4 mr-2" />
-                    <span className="mr-4">{featuredPost.date}</span>
-                    <Clock className="h-4 w-4 mr-2" />
-                    <span>{featuredPost.readTime}</span>
+        <ScrollReveal delay={200}>
+          <div className="mb-16">
+            <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 border-primary/20">
+              <div className="grid lg:grid-cols-2 gap-0">
+                <div 
+                  className="h-64 lg:h-auto bg-cover bg-center"
+                  style={{ backgroundImage: `url(${featuredPost.image})` }}
+                />
+                <div className="p-8">
+                  <div className="flex items-center mb-4">
+                    <Badge className={`mr-3 ${getCategoryColor(featuredPost.category)}`}>
+                      {getCategoryIcon(featuredPost.category)}
+                      <span className="ml-1">{featuredPost.category}</span>
+                    </Badge>
+                    <Badge variant="secondary">Featured</Badge>
                   </div>
-                  <Button variant="default">
-                    Read More
-                    <ArrowRight className="ml-2 h-4 w-4" />
-                  </Button>
+                  
+                  <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4 leading-tight">
+                    {featuredPost.title}
+                  </h3>
+                  
+                  <p className="text-muted-foreground mb-6 text-lg leading-relaxed">
+                    {featuredPost.excerpt}
+                  </p>
+                  
+                  <div className="flex items-center justify-between">
+                    <div className="flex items-center text-sm text-muted-foreground">
+                      <User className="h-4 w-4 mr-2" />
+                      <span className="mr-4">{featuredPost.author}</span>
+                      <Calendar className="h-4 w-4 mr-2" />
+                      <span className="mr-4">{featuredPost.date}</span>
+                      <Clock className="h-4 w-4 mr-2" />
+                      <span>{featuredPost.readTime}</span>
+                    </div>
+                    <Button variant="default" asChild>
+                      <Link to={`/blog/${featuredPost.slug}`}>
+                        Read More
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </Button>
+                  </div>
                 </div>
               </div>
-            </div>
-          </Card>
-        </div>
+            </Card>
+          </div>
+        </ScrollReveal>
 
         {/* Blog Posts Grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
-          {blogPosts.map((post) => (
-            <Card key={post.id} className="overflow-hidden group hover:shadow-lg transition-all duration-300 hover:-translate-y-1">
-              <div 
-                className="h-48 bg-cover bg-center group-hover:scale-105 transition-transform duration-300"
-                style={{ backgroundImage: `url(${post.image})` }}
-              />
-              <CardHeader>
-                <div className="flex items-center mb-3">
-                  <Badge className={getCategoryColor(post.category)}>
-                    {getCategoryIcon(post.category)}
-                    <span className="ml-1">{post.category}</span>
-                  </Badge>
-                </div>
-                <CardTitle className="text-xl font-bold text-foreground group-hover:text-primary transition-colors line-clamp-2">
-                  {post.title}
-                </CardTitle>
-                <CardDescription className="text-muted-foreground line-clamp-3">
-                  {post.excerpt}
-                </CardDescription>
-              </CardHeader>
-              <CardContent>
-                <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
-                  <span>{post.author}</span>
-                  <span>{post.date}</span>
-                </div>
-                <div className="flex items-center justify-between">
-                  <span className="text-sm text-muted-foreground flex items-center">
-                    <Clock className="h-4 w-4 mr-1" />
-                    {post.readTime}
-                  </span>
-                  <Button variant="ghost" size="sm" className="group-hover:bg-primary group-hover:text-primary-foreground">
-                    Read More
-                  </Button>
-                </div>
-              </CardContent>
-            </Card>
+          {regularPosts.map((post, index) => (
+            <ScrollReveal key={post.id} delay={index * 100}>
+              <Card className="overflow-hidden group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 h-full">
+                <div 
+                  className="h-48 bg-cover bg-center group-hover:scale-105 transition-transform duration-300"
+                  style={{ backgroundImage: `url(${post.image})` }}
+                />
+                <CardHeader>
+                  <div className="flex items-center mb-3">
+                    <Badge className={getCategoryColor(post.category)}>
+                      {getCategoryIcon(post.category)}
+                      <span className="ml-1">{post.category}</span>
+                    </Badge>
+                  </div>
+                  <CardTitle className="text-xl font-bold text-foreground group-hover:text-primary transition-colors line-clamp-2">
+                    {post.title}
+                  </CardTitle>
+                  <CardDescription className="text-muted-foreground line-clamp-3">
+                    {post.excerpt}
+                  </CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <div className="flex items-center justify-between text-sm text-muted-foreground mb-4">
+                    <span>{post.author}</span>
+                    <span>{post.date}</span>
+                  </div>
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm text-muted-foreground flex items-center">
+                      <Clock className="h-4 w-4 mr-1" />
+                      {post.readTime}
+                    </span>
+                    <Button variant="ghost" size="sm" className="group-hover:bg-primary group-hover:text-primary-foreground" asChild>
+                      <Link to={`/blog/${post.slug}`}>
+                        Read More
+                      </Link>
+                    </Button>
+                  </div>
+                </CardContent>
+              </Card>
+            </ScrollReveal>
           ))}
         </div>
 
-        {/* Load More & Newsletter */}
-        <div className="text-center">
-          <Button variant="outline" size="lg" className="mb-12">
-            Load More Articles
-          </Button>
-          
-          {/* Newsletter Signup */}
-          <div className="bg-muted/50 rounded-2xl p-8 md:p-12">
-            <h3 className="text-3xl font-bold text-foreground mb-4">
-              Stay Updated with Energy Insights
-            </h3>
-            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Subscribe to our newsletter for weekly updates on sustainable energy trends, 
-              CO-MBS principles, and industry innovations.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-              <input 
-                type="email" 
-                placeholder="Enter your email" 
-                className="flex-1 px-4 py-3 rounded-lg border border-input bg-background focus:outline-none focus:ring-2 focus:ring-primary"
-              />
-              <Button variant="default">
-                Subscribe
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </div>
+        {/* Load More */}
+        <ScrollReveal>
+          <div className="text-center">
+            <Button variant="outline" size="lg" className="mb-12">
+              Load More Articles
+            </Button>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

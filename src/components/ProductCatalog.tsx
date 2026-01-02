@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { 
   Package, 
   Wrench, 
@@ -16,11 +17,13 @@ import {
   X,
   Gauge,
   Thermometer,
-  Activity
+  Activity,
+  ShoppingCart
 } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import QuoteRequestForm from "./QuoteRequestForm";
+import ScrollReveal from "./ScrollReveal";
 
 interface Product {
   id: string;
@@ -45,6 +48,7 @@ const ProductCatalog = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [activeCategory, setActiveCategory] = useState("all");
   const [showQuoteForm, setShowQuoteForm] = useState(false);
+  const [isCartOpen, setIsCartOpen] = useState(false);
   const { toast } = useToast();
 
   const categories = [
@@ -300,136 +304,169 @@ const ProductCatalog = () => {
       return;
     }
     setShowQuoteForm(true);
+    setIsCartOpen(false);
   };
 
   return (
     <section id="products" className="py-24 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-blue-950">
       <div className="container mx-auto px-4">
         {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-            Product Catalog
-          </h1>
-          <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
-            Field-validated equipment and systems with defined operational envelopes. 
-            All products require technical evaluation for application compatibility.
-          </p>
-          
-          {/* Trust Indicators */}
-          <div className="flex justify-center items-center gap-8 mb-8">
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-              <span className="text-sm text-muted-foreground">ISO Certified</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-              <span className="text-sm text-muted-foreground">API Compliant</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-              <span className="text-sm text-muted-foreground">Technical Support</span>
+        <ScrollReveal>
+          <div className="text-center mb-16">
+            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+              Product Catalog
+            </h1>
+            <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
+              Field-validated equipment and systems with defined operational envelopes. 
+              All products require technical evaluation for application compatibility.
+            </p>
+            
+            {/* Trust Indicators */}
+            <div className="flex justify-center items-center gap-8 mb-8">
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                <span className="text-sm text-muted-foreground">ISO Certified</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                <span className="text-sm text-muted-foreground">API Compliant</span>
+              </div>
+              <div className="flex items-center gap-2">
+                <div className="w-3 h-3 bg-green-500 rounded-full"></div>
+                <span className="text-sm text-muted-foreground">Technical Support</span>
+              </div>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
 
         {/* Search and Filter Bar */}
-        <div className="bg-background/80 backdrop-blur-sm rounded-2xl p-6 mb-12 border border-border shadow-lg">
-          <div className="flex flex-col lg:flex-row gap-4 items-center">
-            <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-              <Input
-                placeholder="Search products, specifications, or applications..."
-                value={searchTerm}
-                onChange={(e) => setSearchTerm(e.target.value)}
-                className="pl-10 h-12 text-base"
-              />
-            </div>
-            
-            <div className="flex gap-2">
-              <Button
-                variant={activeCategory === "all" ? "default" : "outline"}
-                onClick={() => setActiveCategory("all")}
-                className="h-12"
-              >
-                All Products
-              </Button>
-              {categories.map((category) => (
+        <ScrollReveal delay={100}>
+          <div className="bg-background/80 backdrop-blur-sm rounded-2xl p-6 mb-12 border border-border shadow-lg">
+            <div className="flex flex-col lg:flex-row gap-4 items-center">
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                <Input
+                  placeholder="Search products, specifications, or applications..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="pl-10 h-12 text-base"
+                />
+              </div>
+              
+              <div className="flex gap-2">
                 <Button
-                  key={category.id}
-                  variant={activeCategory === category.id ? "default" : "outline"}
-                  onClick={() => setActiveCategory(category.id)}
-                  className="h-12 hidden md:flex"
+                  variant={activeCategory === "all" ? "default" : "outline"}
+                  onClick={() => setActiveCategory("all")}
+                  className="h-12"
                 >
-                  {category.name}
+                  All Products
                 </Button>
-              ))}
-            </div>
-
-            {/* Procurement Manifest Button */}
-            {inquiryCart.length > 0 && (
-              <Button 
-                variant="energy" 
-                className="h-12 relative"
-                onClick={handleGetQuote}
-              >
-                <FileText className="h-5 w-5 mr-2" />
-                Manifest ({inquiryCart.length})
-                <Badge className="absolute -top-2 -right-2 bg-secondary text-secondary-foreground min-w-[1.5rem] h-6">
-                  {inquiryCart.length}
-                </Badge>
-              </Button>
-            )}
-          </div>
-        </div>
-
-        {/* Procurement Manifest Display */}
-        {inquiryCart.length > 0 && (
-          <Card className="mb-8 border-primary/20 bg-gradient-to-r from-primary/5 to-accent/5">
-            <CardHeader>
-              <CardTitle className="flex items-center justify-between">
-                <span className="flex items-center gap-2">
-                  <FileText className="h-5 w-5 text-primary" />
-                  Procurement Manifest ({inquiryCart.length})
-                </span>
-                <Button variant="outline" size="sm" onClick={clearCart}>
-                  Clear All
-                </Button>
-              </CardTitle>
-              <CardDescription>
-                Products selected for technical evaluation and requirement query
-              </CardDescription>
-            </CardHeader>
-            <CardContent>
-              <div className="space-y-3 mb-4 max-h-40 overflow-y-auto">
-                {inquiryCart.map((item) => (
-                  <div key={item.id} className="flex items-center gap-3 p-3 bg-background/50 rounded-lg border">
-                    <img
-                      src={item.image}
-                      alt={item.name}
-                      className="w-12 h-12 object-cover rounded"
-                    />
-                    <div className="flex-1">
-                      <p className="font-medium text-sm">{item.name}</p>
-                      <p className="text-sm text-muted-foreground">{item.categoryName}</p>
-                    </div>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="h-8 w-8 p-0 hover:bg-destructive hover:text-destructive-foreground"
-                      onClick={() => removeFromInquiry(item.id)}
-                    >
-                      <X className="h-4 w-4" />
-                    </Button>
-                  </div>
+                {categories.map((category) => (
+                  <Button
+                    key={category.id}
+                    variant={activeCategory === category.id ? "default" : "outline"}
+                    onClick={() => setActiveCategory(category.id)}
+                    className="h-12 hidden md:flex"
+                  >
+                    {category.name}
+                  </Button>
                 ))}
               </div>
-              <Button className="w-full" size="lg" onClick={handleGetQuote}>
-                <FileText className="mr-2 h-4 w-4" />
-                Submit Requirement Query
-              </Button>
-            </CardContent>
-          </Card>
-        )}
+
+              {/* Cart Sidebar Trigger */}
+              <Sheet open={isCartOpen} onOpenChange={setIsCartOpen}>
+                <SheetTrigger asChild>
+                  <Button 
+                    variant="energy" 
+                    className="h-12 relative"
+                  >
+                    <ShoppingCart className="h-5 w-5 mr-2" />
+                    Manifest
+                    {inquiryCart.length > 0 && (
+                      <Badge className="absolute -top-2 -right-2 bg-secondary text-secondary-foreground min-w-[1.5rem] h-6">
+                        {inquiryCart.length}
+                      </Badge>
+                    )}
+                  </Button>
+                </SheetTrigger>
+                <SheetContent side="right" className="w-full sm:w-[400px] overflow-y-auto">
+                  <SheetHeader>
+                    <SheetTitle className="flex items-center gap-2">
+                      <FileText className="h-5 w-5 text-primary" />
+                      Procurement Manifest
+                    </SheetTitle>
+                    <SheetDescription>
+                      Products selected for technical evaluation
+                    </SheetDescription>
+                  </SheetHeader>
+                  
+                  <div className="mt-6">
+                    {inquiryCart.length === 0 ? (
+                      <div className="text-center py-12">
+                        <ShoppingCart className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
+                        <p className="text-muted-foreground">Your manifest is empty</p>
+                        <p className="text-sm text-muted-foreground mt-2">
+                          Add products to begin your requirement query
+                        </p>
+                      </div>
+                    ) : (
+                      <>
+                        <div className="flex items-center justify-between mb-4">
+                          <span className="text-sm text-muted-foreground">
+                            {inquiryCart.length} item{inquiryCart.length > 1 ? 's' : ''}
+                          </span>
+                          <Button variant="ghost" size="sm" onClick={clearCart}>
+                            Clear All
+                          </Button>
+                        </div>
+                        
+                        <div className="space-y-3 mb-6">
+                          {inquiryCart.map((item) => (
+                            <div key={item.id} className="flex items-center gap-3 p-3 bg-muted/50 rounded-lg border">
+                              <img
+                                src={item.image}
+                                alt={item.name}
+                                className="w-16 h-16 object-cover rounded"
+                              />
+                              <div className="flex-1 min-w-0">
+                                <p className="font-medium text-sm truncate">{item.name}</p>
+                                <p className="text-xs text-muted-foreground">{item.categoryName}</p>
+                                {item.operationalEnvelope.pressure && (
+                                  <p className="text-xs text-muted-foreground mt-1">
+                                    <Gauge className="h-3 w-3 inline mr-1" />
+                                    {item.operationalEnvelope.pressure}
+                                  </p>
+                                )}
+                              </div>
+                              <Button
+                                variant="ghost"
+                                size="sm"
+                                className="h-8 w-8 p-0 hover:bg-destructive hover:text-destructive-foreground flex-shrink-0"
+                                onClick={() => removeFromInquiry(item.id)}
+                              >
+                                <X className="h-4 w-4" />
+                              </Button>
+                            </div>
+                          ))}
+                        </div>
+                        
+                        <div className="border-t pt-4 space-y-3">
+                          <Button className="w-full" size="lg" onClick={handleGetQuote}>
+                            <FileText className="mr-2 h-4 w-4" />
+                            Submit Requirement Query
+                          </Button>
+                          <p className="text-xs text-center text-muted-foreground">
+                            Our engineering team will evaluate your requirements
+                          </p>
+                        </div>
+                      </>
+                    )}
+                  </div>
+                </SheetContent>
+              </Sheet>
+            </div>
+          </div>
+        </ScrollReveal>
 
         {/* Category Tabs */}
         <Tabs value={activeCategory} onValueChange={setActiveCategory} className="mb-12">
@@ -444,42 +481,46 @@ const ProductCatalog = () => {
 
           <TabsContent value="all" className="mt-8">
             <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {filteredProducts.map((product) => (
-                <ProductCard 
-                  key={product.id} 
-                  product={product} 
-                  isInCart={isInCart(product.id)}
-                  onAddToCart={() => addToInquiry(product)}
-                  onRemoveFromCart={() => removeFromInquiry(product.id)}
-                />
+              {filteredProducts.map((product, index) => (
+                <ScrollReveal key={product.id} delay={index * 50}>
+                  <ProductCard 
+                    product={product} 
+                    isInCart={isInCart(product.id)}
+                    onAddToCart={() => addToInquiry(product)}
+                    onRemoveFromCart={() => removeFromInquiry(product.id)}
+                  />
+                </ScrollReveal>
               ))}
             </div>
           </TabsContent>
 
           {categories.map((category) => (
             <TabsContent key={category.id} value={category.id} className="mt-8">
-              <div className="mb-8">
-                <div className="flex items-center mb-4">
-                  <div className={`w-16 h-16 bg-gradient-to-br ${category.color} rounded-xl flex items-center justify-center mr-6 shadow-lg`}>
-                    <category.icon className="h-8 w-8 text-white" />
-                  </div>
-                  <div>
-                    <h3 className="text-3xl font-bold text-foreground mb-2">{category.name}</h3>
-                    <p className="text-lg text-muted-foreground">{category.description}</p>
-                    <Badge variant="secondary" className="mt-2">{category.count} Products Available</Badge>
+              <ScrollReveal>
+                <div className="mb-8">
+                  <div className="flex items-center mb-4">
+                    <div className={`w-16 h-16 bg-gradient-to-br ${category.color} rounded-xl flex items-center justify-center mr-6 shadow-lg`}>
+                      <category.icon className="h-8 w-8 text-white" />
+                    </div>
+                    <div>
+                      <h3 className="text-3xl font-bold text-foreground mb-2">{category.name}</h3>
+                      <p className="text-lg text-muted-foreground">{category.description}</p>
+                      <Badge variant="secondary" className="mt-2">{category.count} Products Available</Badge>
+                    </div>
                   </div>
                 </div>
-              </div>
+              </ScrollReveal>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {category.products.map((product) => (
-                  <ProductCard 
-                    key={product.id} 
-                    product={{...product, categoryName: category.name}} 
-                    isInCart={isInCart(product.id)}
-                    onAddToCart={() => addToInquiry({...product, categoryName: category.name})}
-                    onRemoveFromCart={() => removeFromInquiry(product.id)}
-                  />
+                {category.products.map((product, index) => (
+                  <ScrollReveal key={product.id} delay={index * 50}>
+                    <ProductCard 
+                      product={{...product, categoryName: category.name}} 
+                      isInCart={isInCart(product.id)}
+                      onAddToCart={() => addToInquiry({...product, categoryName: category.name})}
+                      onRemoveFromCart={() => removeFromInquiry(product.id)}
+                    />
+                  </ScrollReveal>
                 ))}
               </div>
             </TabsContent>
@@ -499,26 +540,28 @@ const ProductCatalog = () => {
         )}
 
         {/* CTA Section */}
-        <div className="mt-20 text-center">
-          <div className="bg-gradient-to-br from-primary/10 to-secondary/10 rounded-3xl p-12 border border-primary/20 shadow-xl backdrop-blur-sm">
-            <h3 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              Custom Technical Requirements?
-            </h3>
-            <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
-              Our engineering team evaluates custom requirements for specific operational 
-              envelopes and application conditions not covered by standard products.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="hero" size="xl">
-                Submit Technical Inquiry
-                <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-              <Button variant="outline" size="xl">
-                Schedule Engineering Consultation
-              </Button>
+        <ScrollReveal>
+          <div className="mt-20 text-center">
+            <div className="bg-gradient-to-br from-primary/10 to-secondary/10 rounded-3xl p-12 border border-primary/20 shadow-xl backdrop-blur-sm">
+              <h3 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+                Custom Technical Requirements?
+              </h3>
+              <p className="text-xl text-muted-foreground mb-8 max-w-3xl mx-auto leading-relaxed">
+                Our engineering team evaluates custom requirements for specific operational 
+                envelopes and application conditions not covered by standard products.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                <Button variant="hero" size="xl">
+                  Submit Technical Inquiry
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </Button>
+                <Button variant="outline" size="xl">
+                  Schedule Engineering Consultation
+                </Button>
+              </div>
             </div>
           </div>
-        </div>
+        </ScrollReveal>
       </div>
 
       {/* Quote Request Form */}
@@ -544,7 +587,7 @@ const ProductCard = ({ product, isInCart, onAddToCart, onRemoveFromCart }: Produ
   const [showDetails, setShowDetails] = useState(false);
 
   return (
-    <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-border/50 overflow-hidden">
+    <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-border/50 overflow-hidden h-full">
       {/* Product Image */}
       <div className="relative overflow-hidden">
         <div 

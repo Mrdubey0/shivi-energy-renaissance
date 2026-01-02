@@ -10,7 +10,6 @@ import {
   CheckCircle,
   ArrowRight,
   Linkedin,
-  Mail,
   Shield,
   FileCheck
 } from "lucide-react";
@@ -184,14 +183,10 @@ const About = () => {
                     {leader.bio}
                   </p>
                   
-                  <div className="flex justify-center space-x-4">
+                  <div className="flex justify-center">
                     <Button variant="outline" size="sm" className="hover:bg-primary hover:text-primary-foreground">
                       <Linkedin className="h-4 w-4 mr-2" />
                       LinkedIn
-                    </Button>
-                    <Button variant="outline" size="sm" className="hover:bg-secondary hover:text-secondary-foreground">
-                      <Mail className="h-4 w-4 mr-2" />
-                      Email
                     </Button>
                   </div>
                 </CardContent>

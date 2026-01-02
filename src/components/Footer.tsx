@@ -1,13 +1,11 @@
 import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
 import { 
   Mail, 
   Phone, 
   MapPin, 
   Linkedin, 
   Twitter, 
-  Facebook,
-  ArrowRight
+  Facebook
 } from "lucide-react";
 
 const Footer = () => {
@@ -73,14 +71,14 @@ const Footer = () => {
 
             {/* Social Links */}
             <div className="flex space-x-4">
-              <Button variant="ghost" size="icon" className="hover:bg-primary-foreground/10">
-                <Linkedin className="h-5 w-5" />
+              <Button variant="ghost" size="icon" className="hover:bg-primary-foreground/10 h-12 w-12">
+                <Linkedin className="h-7 w-7" />
               </Button>
-              <Button variant="ghost" size="icon" className="hover:bg-primary-foreground/10">
-                <Twitter className="h-5 w-5" />
+              <Button variant="ghost" size="icon" className="hover:bg-primary-foreground/10 h-12 w-12">
+                <Twitter className="h-7 w-7" />
               </Button>
-              <Button variant="ghost" size="icon" className="hover:bg-primary-foreground/10">
-                <Facebook className="h-5 w-5" />
+              <Button variant="ghost" size="icon" className="hover:bg-primary-foreground/10 h-12 w-12">
+                <Facebook className="h-7 w-7" />
               </Button>
             </div>
           </div>
@@ -134,28 +132,6 @@ const Footer = () => {
                 </li>
               ))}
             </ul>
-          </div>
-        </div>
-
-        {/* Newsletter */}
-        <Separator className="my-12 bg-primary-foreground/20" />
-        
-        <div className="text-center">
-          <h3 className="text-2xl font-bold mb-4">Technical Updates</h3>
-          <p className="text-primary-foreground/80 mb-6 max-w-2xl mx-auto">
-            Subscribe for operational insights, execution outcomes, 
-            and technical documentation updates.
-          </p>
-          <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-md mx-auto">
-            <input 
-              type="email" 
-              placeholder="Enter your email" 
-              className="flex-1 px-4 py-3 rounded-lg bg-primary-foreground/10 border border-primary-foreground/20 text-primary-foreground placeholder:text-primary-foreground/60 focus:outline-none focus:ring-2 focus:ring-secondary"
-            />
-            <Button variant="secondary" className="px-6">
-              Subscribe
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
           </div>
         </div>
       </div>

@@ -57,7 +57,7 @@ const Careers = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background animate-zoom-in">
       <Header />
       <main className="pt-16">
         {/* Hero Section */}

@@ -1,24 +1,90 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Download, Activity, Shield, Clock } from "lucide-react";
-import { useState } from "react";
+import { ArrowRight, Activity, Shield, Clock } from "lucide-react";
+import { useState, useEffect } from "react";
 import heroBg from "@/assets/hero-bg.jpg";
 import TypewriterText from "./TypewriterText";
-import QuoteRequestForm from "./QuoteRequestForm";
+
+// Sample slideshow images for mobile
+const slideshowImages = [
+  heroBg,
+  "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=1920&h=1080&fit=crop",
+  "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1920&h=1080&fit=crop",
+];
 
 const Hero = () => {
-  const [isQuoteFormOpen, setIsQuoteFormOpen] = useState(false);
+  const [currentSlide, setCurrentSlide] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Check if mobile on mount and resize
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  // Slideshow auto-advance for mobile
+  useEffect(() => {
+    if (isMobile) {
+      const interval = setInterval(() => {
+        setCurrentSlide((prev) => (prev + 1) % slideshowImages.length);
+      }, 5000);
+      return () => clearInterval(interval);
+    }
+  }, [isMobile]);
+
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Background Image */}
-      <div 
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `linear-gradient(rgba(34, 48, 117, 0.85), rgba(34, 48, 117, 0.7)), url(${heroBg})`
-        }}
-      />
-      
-      {/* Background Overlay */}
-      <div className="absolute inset-0 bg-gradient-hero opacity-80" />
+      {/* Video Background for Desktop/Tablet */}
+      <div className="absolute inset-0 hidden md:block">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source 
+            src="https://assets.mixkit.co/videos/preview/mixkit-oil-pump-at-sunset-44398-large.mp4" 
+            type="video/mp4" 
+          />
+        </video>
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/90 via-primary/80 to-primary/90" />
+      </div>
+
+      {/* Slideshow Background for Mobile */}
+      <div className="absolute inset-0 md:hidden">
+        {slideshowImages.map((image, index) => (
+          <div
+            key={index}
+            className={`absolute inset-0 bg-cover bg-center bg-no-repeat transition-opacity duration-1000 ${
+              currentSlide === index ? 'opacity-100' : 'opacity-0'
+            }`}
+            style={{
+              backgroundImage: `url(${image})`
+            }}
+          />
+        ))}
+        <div className="absolute inset-0 bg-gradient-to-b from-primary/90 via-primary/80 to-primary/90" />
+        
+        {/* Slideshow Indicators */}
+        <div className="absolute bottom-24 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
+          {slideshowImages.map((_, index) => (
+            <button
+              key={index}
+              onClick={() => setCurrentSlide(index)}
+              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                currentSlide === index 
+                  ? 'bg-secondary w-6' 
+                  : 'bg-primary-foreground/50 hover:bg-primary-foreground/70'
+              }`}
+            />
+          ))}
+        </div>
+      </div>
       
       {/* Subtle Grid Pattern */}
       <div className="absolute inset-0 opacity-5">
@@ -56,33 +122,21 @@ const Hero = () => {
             />
           </div>
 
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
+          {/* CTA Button */}
+          <div className="flex justify-center items-center mb-12">
             <Button 
               variant="hero" 
               size="xl" 
               className="group"
-              onClick={() => setIsQuoteFormOpen(true)}
-            >
-              Technical Inquiry
-              <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
-            </Button>
-            
-            <Button 
-              variant="outline" 
-              size="xl" 
-              className="bg-background/10 border-primary-foreground/30 text-primary-foreground hover:bg-background/20"
               onClick={() => {
-                const link = document.createElement('a');
-                link.href = '/brochure.pdf';
-                link.download = 'Shivi-Energy-Solutions-Technical-Overview.pdf';
-                document.body.appendChild(link);
-                link.click();
-                document.body.removeChild(link);
+                const section = document.getElementById('about');
+                if (section) {
+                  section.scrollIntoView({ behavior: 'smooth' });
+                }
               }}
             >
-              <Download className="mr-2 h-5 w-5" />
-              Access Technical Overview
+              Learn About Us
+              <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
             </Button>
           </div>
 
@@ -125,13 +179,6 @@ const Hero = () => {
           <div className="w-1 h-3 bg-primary-foreground/50 rounded-full mt-2 animate-pulse" />
         </div>
       </div>
-
-      <QuoteRequestForm 
-        isOpen={isQuoteFormOpen}
-        onClose={() => setIsQuoteFormOpen(false)}
-        cartItems={[]}
-        onClearCart={() => {}}
-      />
     </section>
   );
 };

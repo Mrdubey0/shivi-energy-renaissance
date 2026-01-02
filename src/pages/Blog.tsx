@@ -4,7 +4,7 @@ import Blog from "@/components/Blog";
 
 const BlogPage = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background animate-zoom-in">
       <Header />
       <main className="pt-16">
         <Blog />

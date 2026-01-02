@@ -1,42 +1,19 @@
-import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import QuoteRequestForm from "./QuoteRequestForm";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isQuoteFormOpen, setIsQuoteFormOpen] = useState(false);
 
   const navigationItems = [
-    { 
-      name: "Home", 
-      href: "/" 
-    },
-    { 
-      name: "About Us", 
-      href: "/#about" 
-    },
-    { 
-      name: "Products", 
-      href: "/products"
-    },
-    { 
-      name: "Projects", 
-      href: "/projects" 
-    },
-    { 
-      name: "CO-MBS", 
-      href: "/sustainability" 
-    },
-    { 
-      name: "Blog", 
-      href: "/blog" 
-    },
-    { 
-      name: "Careers", 
-      href: "/careers" 
-    }
+    { name: "Home", href: "/" },
+    { name: "About Us", href: "/#about" },
+    { name: "Services", href: "/services" },
+    { name: "Products", href: "/products" },
+    { name: "Projects", href: "/projects" },
+    { name: "CO-MBS", href: "/sustainability" },
+    { name: "Blog", href: "/blog" },
+    { name: "Careers", href: "/careers" }
   ];
 
   return (
@@ -89,12 +66,8 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* CTA Button */}
-          <div className="hidden lg:block">
-            <Button variant="energy" size="sm" onClick={() => setIsQuoteFormOpen(true)}>
-              Get Quote
-            </Button>
-          </div>
+          {/* Empty space for balanced layout */}
+          <div className="hidden lg:block w-24" />
 
           {/* Mobile Menu Button */}
           <button
@@ -151,20 +124,10 @@ const Header = () => {
                   </a>
                 )
               ))}
-              <Button variant="energy" size="sm" className="w-fit" onClick={() => setIsQuoteFormOpen(true)}>
-                Get Quote
-              </Button>
             </nav>
           </div>
         )}
       </div>
-
-      <QuoteRequestForm 
-        isOpen={isQuoteFormOpen}
-        onClose={() => setIsQuoteFormOpen(false)}
-        cartItems={[]}
-        onClearCart={() => {}}
-      />
     </header>
   );
 };

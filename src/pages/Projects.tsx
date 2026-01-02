@@ -4,7 +4,7 @@ import Footer from "@/components/Footer";
 
 const ProjectsPage = () => {
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background animate-zoom-in">
       <Header />
       <Projects />
       <Footer />

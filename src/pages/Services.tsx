@@ -16,6 +16,7 @@ import {
   TrendingUp,
   CheckCircle
 } from "lucide-react";
+import ScrollReveal from "@/components/ScrollReveal";
 
 const services = [
   {
@@ -124,19 +125,21 @@ const ServicesPage = () => {
         {/* Hero Section */}
         <section className="py-20 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">
           <div className="container mx-auto px-4">
-            <div className="text-center max-w-3xl mx-auto">
-              <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-4">
-                <span className="text-sm font-medium text-primary">Operational Execution</span>
+            <ScrollReveal>
+              <div className="text-center max-w-3xl mx-auto">
+                <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-4">
+                  <span className="text-sm font-medium text-primary">Operational Execution</span>
+                </div>
+                <h1 className="text-4xl md:text-5xl font-bold mb-6">
+                  Execution Systems for
+                  <span className="text-primary"> Risk Reduction</span>
+                </h1>
+                <p className="text-xl text-muted-foreground">
+                  Field-validated protocols designed to prevent failure, reduce exposure, 
+                  and deliver measurable lifecycle impact across your operations.
+                </p>
               </div>
-              <h1 className="text-4xl md:text-5xl font-bold mb-6">
-                Execution Systems for
-                <span className="text-primary"> Risk Reduction</span>
-              </h1>
-              <p className="text-xl text-muted-foreground">
-                Field-validated protocols designed to prevent failure, reduce exposure, 
-                and deliver measurable lifecycle impact across your operations.
-              </p>
-            </div>
+            </ScrollReveal>
           </div>
         </section>
 
@@ -147,12 +150,12 @@ const ServicesPage = () => {
               {services.map((service, index) => {
                 const IconComponent = service.icon;
                 return (
-                  <Dialog key={service.title}>
-                    <DialogTrigger asChild>
-                      <Card 
-                        className="group hover:shadow-card transition-all duration-300 hover:-translate-y-2 border-border/50 hover:border-primary/30 cursor-pointer"
-                        style={{ animationDelay: `${index * 100}ms` }}
-                      >
+                  <ScrollReveal key={service.title} delay={index * 100}>
+                    <Dialog>
+                      <DialogTrigger asChild>
+                        <Card 
+                          className="group hover:shadow-card transition-all duration-300 hover:-translate-y-2 border-border/50 hover:border-primary/30 cursor-pointer h-full"
+                        >
                         <CardHeader className="pb-4">
                           <div className="w-16 h-16 bg-gradient-accent rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
                             <IconComponent className="h-8 w-8 text-accent-foreground" />
@@ -243,6 +246,7 @@ const ServicesPage = () => {
                       </div>
                     </DialogContent>
                   </Dialog>
+                  </ScrollReveal>
                 );
               })}
             </div>
@@ -252,19 +256,21 @@ const ServicesPage = () => {
         {/* CTA Section */}
         <section className="py-16 bg-muted/30">
           <div className="container mx-auto px-4">
-            <div className="bg-gradient-hero rounded-2xl p-8 md:p-12 text-primary-foreground text-center">
-              <h2 className="text-3xl md:text-4xl font-bold mb-4">
-                Ready for Operational Review?
-              </h2>
-              <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
-                Engage with our technical team to evaluate your operational requirements 
-                and identify execution pathways that reduce risk and improve asset integrity.
-              </p>
-              <Button variant="secondary" size="lg">
-                Technical Inquiry
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-            </div>
+            <ScrollReveal>
+              <div className="bg-gradient-hero rounded-2xl p-8 md:p-12 text-primary-foreground text-center">
+                <h2 className="text-3xl md:text-4xl font-bold mb-4">
+                  Ready for Operational Review?
+                </h2>
+                <p className="text-xl text-primary-foreground/90 mb-8 max-w-2xl mx-auto">
+                  Engage with our technical team to evaluate your operational requirements 
+                  and identify execution pathways that reduce risk and improve asset integrity.
+                </p>
+                <Button variant="secondary" size="lg">
+                  Technical Inquiry
+                  <ArrowRight className="ml-2 h-4 w-4" />
+                </Button>
+              </div>
+            </ScrollReveal>
           </div>
         </section>
       </main>

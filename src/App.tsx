@@ -8,6 +8,7 @@ import Index from "./pages/Index";
 import Products from "./pages/Products";
 import ServicesPage from "./pages/Services";
 import ProjectsPage from "./pages/Projects";
+import ProjectDetail from "./pages/ProjectDetail";
 import SustainabilityPage from "./pages/Sustainability";
 import BlogPage from "./pages/Blog";
 import BlogArticle from "./pages/BlogArticle";
@@ -27,6 +28,7 @@ const App = () => (
           <Route path="/products" element={<Products />} />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/projects" element={<ProjectsPage />} />
+          <Route path="/projects/:slug" element={<ProjectDetail />} />
           <Route path="/sustainability" element={<SustainabilityPage />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/blog/:slug" element={<BlogArticle />} />

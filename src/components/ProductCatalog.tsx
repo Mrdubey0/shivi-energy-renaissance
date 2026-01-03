@@ -3,53 +3,34 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { 
   Package, 
   Wrench, 
   Monitor,
   Cpu,
   Plus,
-  FileText,
   ArrowRight,
   Search,
   Eye,
-  X,
   Gauge,
   Thermometer,
   Activity,
-  ShoppingCart
+  ShoppingCart,
+  Check
 } from "lucide-react";
 import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
-import QuoteRequestForm from "./QuoteRequestForm";
 import ScrollReveal from "./ScrollReveal";
-
-interface Product {
-  id: string;
-  name: string;
-  description: string;
-  price: string;
-  features: string[];
-  operationalEnvelope: {
-    pressure?: string;
-    temperature?: string;
-    application?: string;
-    limits?: string;
-  };
-  image: string;
-  inStock: boolean;
-  category?: string;
-  categoryName?: string;
-}
+import { CartProduct, useCart } from "@/context/CartContext";
+import ProductDetailPopup from "./ProductDetailPopup";
 
 const ProductCatalog = () => {
-  const [inquiryCart, setInquiryCart] = useState<Product[]>([]);
   const [searchTerm, setSearchTerm] = useState("");
   const [activeCategory, setActiveCategory] = useState("all");
-  const [showQuoteForm, setShowQuoteForm] = useState(false);
-  const [isCartOpen, setIsCartOpen] = useState(false);
+  const [selectedProduct, setSelectedProduct] = useState<CartProduct | null>(null);
+  const [isDetailOpen, setIsDetailOpen] = useState(false);
   const { toast } = useToast();
+  const { addToCart, removeFromCart, isInCart } = useCart();
 
   const categories = [
     {
@@ -63,7 +44,7 @@ const ProductCatalog = () => {
         { 
           id: "completion-tools", 
           name: "Completion Tool Systems", 
-          description: "Completion solutions with integrated monitoring for defined wellbore conditions",
+          description: "Completion solutions with integrated monitoring for defined wellbore conditions. These advanced systems provide reliable performance in challenging environments, featuring modular designs that can be customized for specific well requirements.",
           price: "Request Technical Evaluation",
           features: ["Condition monitoring", "Corrosion resistant alloys", "Modular configuration"],
           operationalEnvelope: {
@@ -73,12 +54,17 @@ const ProductCatalog = () => {
             limits: "API 5CT Grade compliance"
           },
           image: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=300&h=200&fit=crop",
+          images: [
+            "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=600&h=600&fit=crop",
+            "https://images.unsplash.com/photo-1590735213920-68192a487bc3?w=600&h=600&fit=crop",
+            "https://images.unsplash.com/photo-1565087838865-ad5eb48b30d9?w=600&h=600&fit=crop"
+          ],
           inStock: true
         },
         { 
           id: "liner-hangers", 
           name: "Liner Hanger Systems", 
-          description: "Mechanical and hydraulic liner hangers for complex well architectures",
+          description: "Mechanical and hydraulic liner hangers for complex well architectures. Designed for superior sealing performance and debris tolerance in demanding downhole conditions.",
           price: "Request Technical Evaluation",
           features: ["Superior sealing", "Debris tolerance", "Field-validated design"],
           operationalEnvelope: {
@@ -88,12 +74,17 @@ const ProductCatalog = () => {
             limits: "Size range: 4.5\" - 13.375\""
           },
           image: "https://images.unsplash.com/photo-1590735213920-68192a487bc3?w=300&h=200&fit=crop",
+          images: [
+            "https://images.unsplash.com/photo-1590735213920-68192a487bc3?w=600&h=600&fit=crop",
+            "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=600&h=600&fit=crop",
+            "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=600&fit=crop"
+          ],
           inStock: true
         },
         { 
           id: "casing-accessories", 
           name: "Casing Accessories", 
-          description: "Centralizers, float equipment, and accessories for casing installation integrity",
+          description: "Centralizers, float equipment, and accessories for casing installation integrity. Multiple configurations available for various well conditions and requirements.",
           price: "Request Technical Evaluation",
           features: ["Multiple configurations", "Enhanced durability", "Quick deployment"],
           operationalEnvelope: {
@@ -103,12 +94,17 @@ const ProductCatalog = () => {
             limits: "Formation-specific selection required"
           },
           image: "https://images.unsplash.com/photo-1565087838865-ad5eb48b30d9?w=300&h=200&fit=crop",
+          images: [
+            "https://images.unsplash.com/photo-1565087838865-ad5eb48b30d9?w=600&h=600&fit=crop",
+            "https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=600&h=600&fit=crop",
+            "https://images.unsplash.com/photo-1590735213920-68192a487bc3?w=600&h=600&fit=crop"
+          ],
           inStock: true
         },
         { 
           id: "swellable-systems", 
           name: "Swellable Packer Systems", 
-          description: "Swellable element packers for zonal isolation without setting tools",
+          description: "Swellable element packers for zonal isolation without setting tools. Water or oil activated for reliable long-term performance.",
           price: "Request Technical Evaluation",
           features: ["Water/oil activated", "No setting tool required", "Long-term reliability"],
           operationalEnvelope: {
@@ -118,6 +114,11 @@ const ProductCatalog = () => {
             limits: "Activation time: 6-24 hours"
           },
           image: "https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=300&h=200&fit=crop",
+          images: [
+            "https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=600&h=600&fit=crop",
+            "https://images.unsplash.com/photo-1565087838865-ad5eb48b30d9?w=600&h=600&fit=crop",
+            "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=600&h=600&fit=crop"
+          ],
           inStock: false
         }
       ]
@@ -133,7 +134,7 @@ const ProductCatalog = () => {
         { 
           id: "section-mills", 
           name: "Section Milling Systems", 
-          description: "Full-bore section mills for casing removal and window cutting operations",
+          description: "Full-bore section mills for casing removal and window cutting operations. Optimized cutter geometry ensures consistent cutting rates and efficient debris management.",
           price: "Request Technical Evaluation",
           features: ["Optimized cutter geometry", "Debris management", "Consistent cutting rate"],
           operationalEnvelope: {
@@ -143,12 +144,17 @@ const ProductCatalog = () => {
             limits: "RPM: 40-80, WOB: 2,000-6,000 lbs"
           },
           image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=300&h=200&fit=crop",
+          images: [
+            "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=600&fit=crop",
+            "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=600&h=600&fit=crop",
+            "https://images.unsplash.com/photo-1590735213920-68192a487bc3?w=600&h=600&fit=crop"
+          ],
           inStock: true
         },
         { 
           id: "junk-mills", 
           name: "Junk Mills", 
-          description: "Concave and flat-bottom mills for debris and obstruction removal",
+          description: "Concave and flat-bottom mills for debris and obstruction removal. Tungsten carbide inserts provide high impact resistance.",
           price: "Request Technical Evaluation",
           features: ["Tungsten carbide inserts", "Multiple profiles available", "High impact resistance"],
           operationalEnvelope: {
@@ -158,12 +164,17 @@ const ProductCatalog = () => {
             limits: "Formation-dependent parameters"
           },
           image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=300&h=200&fit=crop",
+          images: [
+            "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=600&fit=crop",
+            "https://images.unsplash.com/photo-1565087838865-ad5eb48b30d9?w=600&h=600&fit=crop",
+            "https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=600&h=600&fit=crop"
+          ],
           inStock: true
         },
         { 
           id: "pilot-mills", 
           name: "Pilot Mills", 
-          description: "Pilot and taper mills for controlled wellbore access and re-entry",
+          description: "Pilot and taper mills for controlled wellbore access and re-entry. Precision guidance with gradual taper design.",
           price: "Request Technical Evaluation",
           features: ["Precision guidance", "Gradual taper design", "Controlled material removal"],
           operationalEnvelope: {
@@ -173,6 +184,11 @@ const ProductCatalog = () => {
             limits: "Controlled RPM for accuracy"
           },
           image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=300&h=200&fit=crop",
+          images: [
+            "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=600&fit=crop",
+            "https://images.unsplash.com/photo-1590735213920-68192a487bc3?w=600&h=600&fit=crop",
+            "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=600&h=600&fit=crop"
+          ],
           inStock: true
         }
       ]
@@ -188,7 +204,7 @@ const ProductCatalog = () => {
         { 
           id: "corrosion-monitors", 
           name: "Corrosion Monitoring Systems", 
-          description: "Continuous corrosion rate monitoring with predictive analytics integration",
+          description: "Continuous corrosion rate monitoring with predictive analytics integration. Real-time data transmission enables proactive maintenance planning.",
           price: "Request Technical Evaluation",
           features: ["Real-time data", "AI analytics integration", "Remote monitoring"],
           operationalEnvelope: {
@@ -198,12 +214,17 @@ const ProductCatalog = () => {
             limits: "Wireless range: 5km, Data logging: 1 year"
           },
           image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=300&h=200&fit=crop",
+          images: [
+            "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&h=600&fit=crop",
+            "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=600&fit=crop",
+            "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=600&h=600&fit=crop"
+          ],
           inStock: true
         },
         { 
           id: "leak-detection", 
           name: "Leak Detection Systems", 
-          description: "Multi-sensor leak detection with precise location identification",
+          description: "Multi-sensor leak detection with precise location identification. Fast response times for critical safety applications.",
           price: "Request Technical Evaluation",
           features: ["Multi-sensor array", "Precise location", "Fast response"],
           operationalEnvelope: {
@@ -213,6 +234,11 @@ const ProductCatalog = () => {
             limits: "Detection range: 1-1000 ppm"
           },
           image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=300&h=200&fit=crop",
+          images: [
+            "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=600&fit=crop",
+            "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&h=600&fit=crop",
+            "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=600&fit=crop"
+          ],
           inStock: true
         }
       ]
@@ -228,7 +254,7 @@ const ProductCatalog = () => {
         { 
           id: "ppe-monitoring", 
           name: "PPE Compliance Verification", 
-          description: "Computer vision system for automated safety equipment detection and logging",
+          description: "Computer vision system for automated safety equipment detection and logging. 99%+ accuracy with cloud integration capabilities.",
           price: "Request Technical Evaluation",
           features: ["Real-time detection", "99%+ accuracy", "Cloud integration"],
           operationalEnvelope: {
@@ -238,12 +264,17 @@ const ProductCatalog = () => {
             limits: "Coverage: 50m radius per unit"
           },
           image: "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=300&h=200&fit=crop",
+          images: [
+            "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=600&h=600&fit=crop",
+            "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=600&fit=crop",
+            "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=600&fit=crop"
+          ],
           inStock: true
         },
         { 
           id: "anomaly-detection", 
           name: "Operational Anomaly Detection", 
-          description: "Machine learning system for early detection of operational deviations",
+          description: "Machine learning system for early detection of operational deviations. Customizable thresholds with predictive alerts.",
           price: "Request Technical Evaluation",
           features: ["Pattern recognition", "Predictive alerts", "Customizable thresholds"],
           operationalEnvelope: {
@@ -253,13 +284,18 @@ const ProductCatalog = () => {
             limits: "Integration via API/SDK"
           },
           image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&h=200&fit=crop",
+          images: [
+            "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=600&fit=crop",
+            "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=600&h=600&fit=crop",
+            "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&h=600&fit=crop"
+          ],
           inStock: true
         }
       ]
     }
   ];
 
-  const allProducts = categories.flatMap(cat => 
+  const allProducts: CartProduct[] = categories.flatMap(cat => 
     cat.products.map(product => ({ ...product, category: cat.id, categoryName: cat.name }))
   );
 
@@ -270,41 +306,25 @@ const ProductCatalog = () => {
     return matchesSearch && matchesCategory;
   });
 
-  const addToInquiry = (product: Product) => {
-    if (!inquiryCart.find(item => item.id === product.id)) {
-      setInquiryCart([...inquiryCart, product]);
+  const handleAddToCart = (product: CartProduct) => {
+    if (isInCart(product.id)) {
+      removeFromCart(product.id);
       toast({
-        title: "Added to Procurement Manifest",
-        description: `${product.name} added for technical evaluation.`,
+        title: "Removed from Cart",
+        description: `${product.name} removed from cart.`,
+      });
+    } else {
+      addToCart(product);
+      toast({
+        title: "Added to Cart",
+        description: `${product.name} added to cart.`,
       });
     }
   };
 
-  const removeFromInquiry = (productId: string) => {
-    setInquiryCart(inquiryCart.filter(item => item.id !== productId));
-    toast({
-      title: "Removed from Manifest",
-      description: "Product removed from procurement manifest.",
-    });
-  };
-
-  const clearCart = () => {
-    setInquiryCart([]);
-  };
-
-  const isInCart = (productId: string) => inquiryCart.find(item => item.id === productId) !== undefined;
-
-  const handleGetQuote = () => {
-    if (inquiryCart.length === 0) {
-      toast({
-        title: "Manifest Empty",
-        description: "Please add products to your procurement manifest first.",
-        variant: "destructive"
-      });
-      return;
-    }
-    setShowQuoteForm(true);
-    setIsCartOpen(false);
+  const openProductDetail = (product: CartProduct) => {
+    setSelectedProduct(product);
+    setIsDetailOpen(true);
   };
 
   return (
@@ -353,7 +373,7 @@ const ProductCatalog = () => {
                 />
               </div>
               
-              <div className="flex gap-2">
+              <div className="flex gap-2 flex-wrap justify-center">
                 <Button
                   variant={activeCategory === "all" ? "default" : "outline"}
                   onClick={() => setActiveCategory("all")}
@@ -372,98 +392,6 @@ const ProductCatalog = () => {
                   </Button>
                 ))}
               </div>
-
-              {/* Cart Sidebar Trigger */}
-              <Sheet open={isCartOpen} onOpenChange={setIsCartOpen}>
-                <SheetTrigger asChild>
-                  <Button 
-                    variant="energy" 
-                    className="h-12 relative"
-                  >
-                    <ShoppingCart className="h-5 w-5 mr-2" />
-                    Manifest
-                    {inquiryCart.length > 0 && (
-                      <Badge className="absolute -top-2 -right-2 bg-secondary text-secondary-foreground min-w-[1.5rem] h-6">
-                        {inquiryCart.length}
-                      </Badge>
-                    )}
-                  </Button>
-                </SheetTrigger>
-                <SheetContent side="right" className="w-full sm:w-[400px] overflow-y-auto">
-                  <SheetHeader>
-                    <SheetTitle className="flex items-center gap-2">
-                      <FileText className="h-5 w-5 text-primary" />
-                      Procurement Manifest
-                    </SheetTitle>
-                    <SheetDescription>
-                      Products selected for technical evaluation
-                    </SheetDescription>
-                  </SheetHeader>
-                  
-                  <div className="mt-6">
-                    {inquiryCart.length === 0 ? (
-                      <div className="text-center py-12">
-                        <ShoppingCart className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
-                        <p className="text-muted-foreground">Your manifest is empty</p>
-                        <p className="text-sm text-muted-foreground mt-2">
-                          Add products to begin your requirement query
-                        </p>
-                      </div>
-                    ) : (
-                      <>
-                        <div className="flex items-center justify-between mb-4">
-                          <span className="text-sm text-muted-foreground">
-                            {inquiryCart.length} item{inquiryCart.length > 1 ? 's' : ''}
-                          </span>
-                          <Button variant="ghost" size="sm" onClick={clearCart}>
-                            Clear All
-                          </Button>
-                        </div>
-                        
-                        <div className="space-y-3 mb-6">
-                          {inquiryCart.map((item) => (
-                            <div key={item.id} className="flex items-center gap-3 p-3 bg-muted/50 rounded-lg border">
-                              <img
-                                src={item.image}
-                                alt={item.name}
-                                className="w-16 h-16 object-cover rounded"
-                              />
-                              <div className="flex-1 min-w-0">
-                                <p className="font-medium text-sm truncate">{item.name}</p>
-                                <p className="text-xs text-muted-foreground">{item.categoryName}</p>
-                                {item.operationalEnvelope.pressure && (
-                                  <p className="text-xs text-muted-foreground mt-1">
-                                    <Gauge className="h-3 w-3 inline mr-1" />
-                                    {item.operationalEnvelope.pressure}
-                                  </p>
-                                )}
-                              </div>
-                              <Button
-                                variant="ghost"
-                                size="sm"
-                                className="h-8 w-8 p-0 hover:bg-destructive hover:text-destructive-foreground flex-shrink-0"
-                                onClick={() => removeFromInquiry(item.id)}
-                              >
-                                <X className="h-4 w-4" />
-                              </Button>
-                            </div>
-                          ))}
-                        </div>
-                        
-                        <div className="border-t pt-4 space-y-3">
-                          <Button className="w-full" size="lg" onClick={handleGetQuote}>
-                            <FileText className="mr-2 h-4 w-4" />
-                            Submit Requirement Query
-                          </Button>
-                          <p className="text-xs text-center text-muted-foreground">
-                            Our engineering team will evaluate your requirements
-                          </p>
-                        </div>
-                      </>
-                    )}
-                  </div>
-                </SheetContent>
-              </Sheet>
             </div>
           </div>
         </ScrollReveal>
@@ -486,8 +414,8 @@ const ProductCatalog = () => {
                   <ProductCard 
                     product={product} 
                     isInCart={isInCart(product.id)}
-                    onAddToCart={() => addToInquiry(product)}
-                    onRemoveFromCart={() => removeFromInquiry(product.id)}
+                    onAddToCart={() => handleAddToCart(product)}
+                    onViewDetails={() => openProductDetail(product)}
                   />
                 </ScrollReveal>
               ))}
@@ -512,16 +440,19 @@ const ProductCatalog = () => {
               </ScrollReveal>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                {category.products.map((product, index) => (
-                  <ScrollReveal key={product.id} delay={index * 50}>
-                    <ProductCard 
-                      product={{...product, categoryName: category.name}} 
-                      isInCart={isInCart(product.id)}
-                      onAddToCart={() => addToInquiry({...product, categoryName: category.name})}
-                      onRemoveFromCart={() => removeFromInquiry(product.id)}
-                    />
-                  </ScrollReveal>
-                ))}
+                {category.products.map((product, index) => {
+                  const fullProduct: CartProduct = {...product, categoryName: category.name, category: category.id};
+                  return (
+                    <ScrollReveal key={product.id} delay={index * 50}>
+                      <ProductCard 
+                        product={fullProduct} 
+                        isInCart={isInCart(product.id)}
+                        onAddToCart={() => handleAddToCart(fullProduct)}
+                        onViewDetails={() => openProductDetail(fullProduct)}
+                      />
+                    </ScrollReveal>
+                  );
+                })}
               </div>
             </TabsContent>
           ))}
@@ -564,12 +495,11 @@ const ProductCatalog = () => {
         </ScrollReveal>
       </div>
 
-      {/* Quote Request Form */}
-      <QuoteRequestForm
-        isOpen={showQuoteForm}
-        onClose={() => setShowQuoteForm(false)}
-        cartItems={inquiryCart}
-        onClearCart={clearCart}
+      {/* Product Detail Popup */}
+      <ProductDetailPopup
+        product={selectedProduct}
+        isOpen={isDetailOpen}
+        onClose={() => setIsDetailOpen(false)}
       />
     </section>
   );
@@ -577,17 +507,15 @@ const ProductCatalog = () => {
 
 // Product Card Component
 interface ProductCardProps {
-  product: Product;
+  product: CartProduct;
   isInCart: boolean;
   onAddToCart: () => void;
-  onRemoveFromCart: () => void;
+  onViewDetails: () => void;
 }
 
-const ProductCard = ({ product, isInCart, onAddToCart, onRemoveFromCart }: ProductCardProps) => {
-  const [showDetails, setShowDetails] = useState(false);
-
+const ProductCard = ({ product, isInCart, onAddToCart, onViewDetails }: ProductCardProps) => {
   return (
-    <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-border/50 overflow-hidden h-full">
+    <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-border/50 overflow-hidden h-full cursor-pointer" onClick={onViewDetails}>
       {/* Product Image */}
       <div className="relative overflow-hidden">
         <div 
@@ -606,7 +534,15 @@ const ProductCard = ({ product, isInCart, onAddToCart, onRemoveFromCart }: Produ
 
         {/* Quick Actions */}
         <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
-          <Button variant="secondary" size="icon" className="h-8 w-8 shadow-md">
+          <Button 
+            variant="secondary" 
+            size="icon" 
+            className="h-8 w-8 shadow-md"
+            onClick={(e) => {
+              e.stopPropagation();
+              onViewDetails();
+            }}
+          >
             <Eye className="h-4 w-4" />
           </Button>
         </div>
@@ -659,17 +595,20 @@ const ProductCard = ({ product, isInCart, onAddToCart, onRemoveFromCart }: Produ
             variant={isInCart ? "default" : "outline"}
             size="sm"
             className="flex-1"
-            onClick={isInCart ? onRemoveFromCart : onAddToCart}
+            onClick={(e) => {
+              e.stopPropagation();
+              onAddToCart();
+            }}
           >
             {isInCart ? (
               <>
-                <FileText className="h-4 w-4 mr-2" />
-                In Manifest
+                <Check className="h-4 w-4 mr-2" />
+                In Cart
               </>
             ) : (
               <>
                 <Plus className="h-4 w-4 mr-2" />
-                Add to Manifest
+                Add to Cart
               </>
             )}
           </Button>
@@ -677,44 +616,14 @@ const ProductCard = ({ product, isInCart, onAddToCart, onRemoveFromCart }: Produ
           <Button 
             variant="ghost" 
             size="sm"
-            onClick={() => setShowDetails(!showDetails)}
+            onClick={(e) => {
+              e.stopPropagation();
+              onViewDetails();
+            }}
           >
-            <FileText className="h-4 w-4" />
+            <Eye className="h-4 w-4" />
           </Button>
         </div>
-
-        {/* Expandable Details */}
-        {showDetails && (
-          <div className="mt-4 pt-4 border-t border-border space-y-3">
-            <div>
-              <h5 className="text-sm font-medium mb-2">Full Operational Envelope</h5>
-              <div className="space-y-1 text-xs text-muted-foreground">
-                {product.operationalEnvelope.pressure && (
-                  <p><span className="font-medium">Pressure:</span> {product.operationalEnvelope.pressure}</p>
-                )}
-                {product.operationalEnvelope.temperature && (
-                  <p><span className="font-medium">Temperature:</span> {product.operationalEnvelope.temperature}</p>
-                )}
-                {product.operationalEnvelope.application && (
-                  <p><span className="font-medium">Application:</span> {product.operationalEnvelope.application}</p>
-                )}
-                {product.operationalEnvelope.limits && (
-                  <p><span className="font-medium">Limits:</span> {product.operationalEnvelope.limits}</p>
-                )}
-              </div>
-            </div>
-            <div>
-              <h5 className="text-sm font-medium mb-2">Features</h5>
-              <div className="flex flex-wrap gap-1">
-                {product.features.map((feature, idx) => (
-                  <Badge key={idx} variant="secondary" className="text-xs">
-                    {feature}
-                  </Badge>
-                ))}
-              </div>
-            </div>
-          </div>
-        )}
       </CardContent>
     </Card>
   );

@@ -1,9 +1,13 @@
-import { Menu, X } from "lucide-react";
+import { Menu, X, ShoppingCart } from "lucide-react";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
+import { useCart } from "@/context/CartContext";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { cartCount, setIsCartOpen } = useCart();
 
   const navigationItems = [
     { name: "Home", href: "/" },
@@ -66,20 +70,49 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* Empty space for balanced layout */}
-          <div className="hidden lg:block w-24" />
+          {/* Cart Button - Desktop */}
+          <div className="hidden lg:flex items-center">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="relative"
+              onClick={() => setIsCartOpen(true)}
+            >
+              <ShoppingCart className="h-5 w-5" />
+              {cartCount > 0 && (
+                <Badge className="absolute -top-2 -right-2 bg-primary text-primary-foreground min-w-[1.25rem] h-5 text-xs px-1">
+                  {cartCount}
+                </Badge>
+              )}
+            </Button>
+          </div>
 
-          {/* Mobile Menu Button */}
-          <button
-            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-            className="lg:hidden p-2"
-          >
-            {isMobileMenuOpen ? (
-              <X className="h-6 w-6" />
-            ) : (
-              <Menu className="h-6 w-6" />
-            )}
-          </button>
+          {/* Mobile Menu Button and Cart */}
+          <div className="lg:hidden flex items-center gap-2">
+            <Button
+              variant="ghost"
+              size="icon"
+              className="relative"
+              onClick={() => setIsCartOpen(true)}
+            >
+              <ShoppingCart className="h-5 w-5" />
+              {cartCount > 0 && (
+                <Badge className="absolute -top-2 -right-2 bg-primary text-primary-foreground min-w-[1.25rem] h-5 text-xs px-1">
+                  {cartCount}
+                </Badge>
+              )}
+            </Button>
+            <button
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              className="p-2"
+            >
+              {isMobileMenuOpen ? (
+                <X className="h-6 w-6" />
+              ) : (
+                <Menu className="h-6 w-6" />
+              )}
+            </button>
+          </div>
         </div>
 
         {/* Mobile Menu */}

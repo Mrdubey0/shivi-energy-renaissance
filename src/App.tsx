@@ -7,8 +7,7 @@ import { CartProvider } from "./context/CartContext";
 import CartSidebar from "./components/CartSidebar";
 import Index from "./pages/Index";
 
-import Products from "./pages/Products";
-import ServicesPage from "./pages/Services";
+import Solutions from "./pages/Solutions";
 import ProjectsPage from "./pages/Projects";
 import ProjectDetail from "./pages/ProjectDetail";
 import SustainabilityPage from "./pages/Sustainability";
@@ -29,8 +28,7 @@ const App = () => (
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Index />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/services" element={<ServicesPage />} />
+            <Route path="/solutions" element={<Solutions />} />
             <Route path="/projects" element={<ProjectsPage />} />
             <Route path="/projects/:slug" element={<ProjectDetail />} />
             <Route path="/sustainability" element={<SustainabilityPage />} />

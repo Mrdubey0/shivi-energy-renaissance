@@ -2,7 +2,6 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/com
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { 
   Package, 
@@ -552,9 +551,10 @@ const SolutionsCatalog = () => {
           </div>
         </ScrollReveal>
 
-        {/* Toggle Button */}
+        {/* Toggle Button and Search */}
         <ScrollReveal delay={50}>
-          <div className="flex justify-center mb-8">
+          <div className="flex flex-col items-center gap-6 mb-12">
+            {/* Toggle */}
             <div className="bg-background/80 backdrop-blur-sm rounded-full p-1.5 border border-border shadow-lg inline-flex">
               <Button
                 variant={solutionMode === "products" ? "default" : "ghost"}
@@ -577,154 +577,150 @@ const SolutionsCatalog = () => {
                 Services
               </Button>
             </div>
-          </div>
-        </ScrollReveal>
 
-        {/* Search and Filter Bar */}
-        <ScrollReveal delay={100}>
-          <div className="bg-background/80 backdrop-blur-sm rounded-2xl p-6 mb-12 border border-border shadow-lg">
-            <div className="flex flex-col lg:flex-row gap-4 items-center">
-              <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                <Input
-                  placeholder={`Search ${solutionMode}, specifications, or applications...`}
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 h-12 text-base"
-                />
-              </div>
-              
-              <div className="flex gap-2 flex-wrap justify-center">
-                <Button
-                  variant={activeCategory === "all" ? "default" : "outline"}
-                  onClick={() => setActiveCategory("all")}
-                  className="h-12"
-                >
-                  All {solutionMode === "products" ? "Products" : "Services"}
-                </Button>
-                {categories.map((category) => (
+            {/* Search and Categories */}
+            <div className="w-full max-w-4xl bg-background/80 backdrop-blur-sm rounded-2xl p-6 border border-border shadow-lg">
+              <div className="flex flex-col gap-4">
+                <div className="relative">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                  <Input
+                    placeholder={`Search ${solutionMode}, specifications, or applications...`}
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="pl-10 h-12 text-base"
+                  />
+                </div>
+                
+                <div className="flex gap-2 flex-wrap justify-center">
                   <Button
-                    key={category.id}
-                    variant={activeCategory === category.id ? "default" : "outline"}
-                    onClick={() => setActiveCategory(category.id)}
-                    className="h-12 hidden md:flex"
+                    variant={activeCategory === "all" ? "default" : "outline"}
+                    onClick={() => setActiveCategory("all")}
+                    size="sm"
                   >
-                    {category.name}
+                    All {solutionMode === "products" ? "Products" : "Services"}
                   </Button>
-                ))}
+                  {categories.map((category) => (
+                    <Button
+                      key={category.id}
+                      variant={activeCategory === category.id ? "default" : "outline"}
+                      onClick={() => setActiveCategory(category.id)}
+                      size="sm"
+                    >
+                      {category.name}
+                    </Button>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </ScrollReveal>
 
-        {/* Category Tabs */}
-        <Tabs value={activeCategory} onValueChange={setActiveCategory} className="mb-12">
-          <TabsList className="grid w-full h-14 bg-background/50 backdrop-blur-sm" style={{ gridTemplateColumns: `repeat(${categories.length + 1}, 1fr)` }}>
-            <TabsTrigger value="all" className="text-sm font-medium">All</TabsTrigger>
-            {categories.map((category) => (
-              <TabsTrigger key={category.id} value={category.id} className="text-sm font-medium">
-                {category.name.split(' ')[0]}
-              </TabsTrigger>
-            ))}
-          </TabsList>
-
-          {/* Products Content */}
-          {solutionMode === "products" && (
-            <>
-              <TabsContent value="all" className="mt-8">
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                  {filteredProducts.map((product, index) => (
-                    <ScrollReveal key={product.id} delay={index * 50}>
-                      <ProductCard 
-                        product={product} 
-                        isInCart={isInCart(product.id)}
-                        onAddToCart={() => handleAddToCart(product)}
-                        onViewDetails={() => openProductDetail(product)}
-                      />
-                    </ScrollReveal>
-                  ))}
-                </div>
-              </TabsContent>
-
-              {productCategories.map((category) => (
-                <TabsContent key={category.id} value={category.id} className="mt-8">
-                  <ScrollReveal>
-                    <div className="mb-8">
-                      <div className="flex items-center mb-4">
-                        <div className={`w-16 h-16 bg-gradient-to-br ${category.color} rounded-xl flex items-center justify-center mr-6 shadow-lg`}>
-                          <category.icon className="h-8 w-8 text-white" />
-                        </div>
-                        <div>
-                          <h3 className="text-3xl font-bold text-foreground mb-2">{category.name}</h3>
-                          <p className="text-lg text-muted-foreground">{category.description}</p>
-                          <Badge variant="secondary" className="mt-2">{category.count} Products Available</Badge>
+        {/* Products Content */}
+        {solutionMode === "products" && (
+          <div className="mb-12">
+            {activeCategory === "all" ? (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {filteredProducts.map((product, index) => (
+                  <ScrollReveal key={product.id} delay={index * 50}>
+                    <ProductCard 
+                      product={product} 
+                      isInCart={isInCart(product.id)}
+                      onAddToCart={() => handleAddToCart(product)}
+                      onViewDetails={() => openProductDetail(product)}
+                    />
+                  </ScrollReveal>
+                ))}
+              </div>
+            ) : (
+              <>
+                {productCategories.filter(cat => cat.id === activeCategory).map((category) => (
+                  <div key={category.id}>
+                    <ScrollReveal>
+                      <div className="mb-8">
+                        <div className="flex items-center mb-4">
+                          <div className={`w-16 h-16 bg-gradient-to-br ${category.color} rounded-xl flex items-center justify-center mr-6 shadow-lg`}>
+                            <category.icon className="h-8 w-8 text-white" />
+                          </div>
+                          <div>
+                            <h3 className="text-3xl font-bold text-foreground mb-2">{category.name}</h3>
+                            <p className="text-lg text-muted-foreground">{category.description}</p>
+                            <Badge variant="secondary" className="mt-2">{category.count} Products Available</Badge>
+                          </div>
                         </div>
                       </div>
-                    </div>
-                  </ScrollReveal>
+                    </ScrollReveal>
 
-                  <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                    {category.products.map((product, index) => {
-                      const fullProduct: CartProduct = {...product, categoryName: category.name, category: category.id};
-                      return (
-                        <ScrollReveal key={product.id} delay={index * 50}>
-                          <ProductCard 
-                            product={fullProduct} 
-                            isInCart={isInCart(product.id)}
-                            onAddToCart={() => handleAddToCart(fullProduct)}
-                            onViewDetails={() => openProductDetail(fullProduct)}
-                          />
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                      {category.products.filter(product => 
+                        product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                        product.description.toLowerCase().includes(searchTerm.toLowerCase())
+                      ).map((product, index) => {
+                        const fullProduct: CartProduct = {...product, categoryName: category.name, category: category.id};
+                        return (
+                          <ScrollReveal key={product.id} delay={index * 50}>
+                            <ProductCard 
+                              product={fullProduct} 
+                              isInCart={isInCart(product.id)}
+                              onAddToCart={() => handleAddToCart(fullProduct)}
+                              onViewDetails={() => openProductDetail(fullProduct)}
+                            />
+                          </ScrollReveal>
+                        );
+                      })}
+                    </div>
+                  </div>
+                ))}
+              </>
+            )}
+          </div>
+        )}
+
+        {/* Services Content */}
+        {solutionMode === "services" && (
+          <div className="mb-12">
+            {activeCategory === "all" ? (
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {filteredServices.map((service, index) => (
+                  <ScrollReveal key={service.id} delay={index * 50}>
+                    <ServiceCard service={service} />
+                  </ScrollReveal>
+                ))}
+              </div>
+            ) : (
+              <>
+                {serviceCategories.filter(cat => cat.id === activeCategory).map((category) => (
+                  <div key={category.id}>
+                    <ScrollReveal>
+                      <div className="mb-8">
+                        <div className="flex items-center mb-4">
+                          <div className={`w-16 h-16 bg-gradient-to-br ${category.color} rounded-xl flex items-center justify-center mr-6 shadow-lg`}>
+                            <category.icon className="h-8 w-8 text-white" />
+                          </div>
+                          <div>
+                            <h3 className="text-3xl font-bold text-foreground mb-2">{category.name}</h3>
+                            <p className="text-lg text-muted-foreground">{category.description}</p>
+                            <Badge variant="secondary" className="mt-2">{category.count} Services Available</Badge>
+                          </div>
+                        </div>
+                      </div>
+                    </ScrollReveal>
+
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                      {category.services.filter(service => 
+                        service.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+                        service.shortDescription.toLowerCase().includes(searchTerm.toLowerCase())
+                      ).map((service, index) => (
+                        <ScrollReveal key={service.id} delay={index * 50}>
+                          <ServiceCard service={{...service, category: category.id, categoryName: category.name, categoryIcon: category.icon, categoryColor: category.color}} />
                         </ScrollReveal>
-                      );
-                    })}
-                  </div>
-                </TabsContent>
-              ))}
-            </>
-          )}
-
-          {/* Services Content */}
-          {solutionMode === "services" && (
-            <>
-              <TabsContent value="all" className="mt-8">
-                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {filteredServices.map((service, index) => (
-                    <ScrollReveal key={service.id} delay={index * 50}>
-                      <ServiceCard service={service} />
-                    </ScrollReveal>
-                  ))}
-                </div>
-              </TabsContent>
-
-              {serviceCategories.map((category) => (
-                <TabsContent key={category.id} value={category.id} className="mt-8">
-                  <ScrollReveal>
-                    <div className="mb-8">
-                      <div className="flex items-center mb-4">
-                        <div className={`w-16 h-16 bg-gradient-to-br ${category.color} rounded-xl flex items-center justify-center mr-6 shadow-lg`}>
-                          <category.icon className="h-8 w-8 text-white" />
-                        </div>
-                        <div>
-                          <h3 className="text-3xl font-bold text-foreground mb-2">{category.name}</h3>
-                          <p className="text-lg text-muted-foreground">{category.description}</p>
-                          <Badge variant="secondary" className="mt-2">{category.count} Services Available</Badge>
-                        </div>
-                      </div>
+                      ))}
                     </div>
-                  </ScrollReveal>
-
-                  <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                    {category.services.map((service, index) => (
-                      <ScrollReveal key={service.id} delay={index * 50}>
-                        <ServiceCard service={{...service, category: category.id, categoryName: category.name, categoryIcon: category.icon, categoryColor: category.color}} />
-                      </ScrollReveal>
-                    ))}
                   </div>
-                </TabsContent>
-              ))}
-            </>
-          )}
-        </Tabs>
+                ))}
+              </>
+            )}
+          </div>
+        )}
 
         {/* No Results */}
         {((solutionMode === "products" && filteredProducts.length === 0) || 

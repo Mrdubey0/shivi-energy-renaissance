@@ -81,8 +81,8 @@ const Header = () => {
           {/* Inquiries Button - Desktop */}
           <div className="hidden lg:flex items-center">
             <Button
-              variant="ghost"
-              className="relative flex items-center gap-2"
+              variant="outline"
+              className="relative flex items-center gap-2 border-blue-500"
               onClick={() => setIsCartOpen(true)}
             >
               <ClipboardList className="h-5 w-5" />

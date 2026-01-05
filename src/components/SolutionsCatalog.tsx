@@ -30,6 +30,7 @@ import { useToast } from "@/hooks/use-toast";
 import ScrollReveal from "./ScrollReveal";
 import { CartProduct, useCart } from "@/context/CartContext";
 import ProductDetailPopup from "./ProductDetailPopup";
+import ServiceDetailPopup from "./ServiceDetailPopup";
 
 // Product categories data
 const productCategories = [
@@ -466,6 +467,14 @@ const SolutionsCatalog = () => {
   const [activeCategory, setActiveCategory] = useState("all");
   const [selectedProduct, setSelectedProduct] = useState<CartProduct | null>(null);
   const [isDetailOpen, setIsDetailOpen] = useState(false);
+  const [selectedService, setSelectedService] = useState<CartProduct | null>(null);
+  const [selectedServiceDetails, setSelectedServiceDetails] = useState<{
+    riskAddressed?: string;
+    mitigationProtocol?: string;
+    digitalOversight?: string;
+    lifecycleImpact?: string;
+  } | null>(null);
+  const [isServiceDetailOpen, setIsServiceDetailOpen] = useState(false);
   const { toast } = useToast();
   const { addToCart, removeFromCart, isInCart } = useCart();
 
@@ -510,6 +519,33 @@ const SolutionsCatalog = () => {
   const openProductDetail = (product: CartProduct) => {
     setSelectedProduct(product);
     setIsDetailOpen(true);
+  };
+
+  const openServiceDetail = (service: CartProduct, details: {
+    riskAddressed?: string;
+    mitigationProtocol?: string;
+    digitalOversight?: string;
+    lifecycleImpact?: string;
+  }) => {
+    setSelectedService(service);
+    setSelectedServiceDetails(details);
+    setIsServiceDetailOpen(true);
+  };
+
+  const handleAddToInquiry = (service: CartProduct) => {
+    if (isInCart(service.id)) {
+      removeFromCart(service.id);
+      toast({
+        title: "Removed from Inquiry",
+        description: `${service.name} removed from inquiry.`,
+      });
+    } else {
+      addToCart(service);
+      toast({
+        title: "Added to Inquiry",
+        description: `${service.name} added to inquiry.`,
+      });
+    }
   };
 
   // Reset category when switching modes
@@ -679,12 +715,36 @@ const SolutionsCatalog = () => {
         {solutionMode === "services" && (
           <div className="mb-12">
             {activeCategory === "all" ? (
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filteredServices.map((service, index) => (
-                  <ScrollReveal key={service.id} delay={index * 50}>
-                    <ServiceCard service={service} />
-                  </ScrollReveal>
-                ))}
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                {filteredServices.map((service, index) => {
+                  const cartService: CartProduct = {
+                    id: service.id,
+                    name: service.name,
+                    description: service.shortDescription,
+                    price: "Request Technical Evaluation",
+                    features: service.features,
+                    operationalEnvelope: {},
+                    image: service.image,
+                    inStock: true,
+                    category: service.category,
+                    categoryName: service.categoryName,
+                  };
+                  return (
+                    <ScrollReveal key={service.id} delay={index * 50}>
+                      <ServiceCard 
+                        service={service} 
+                        isInCart={isInCart(service.id)}
+                        onAddToInquiry={() => handleAddToInquiry(cartService)}
+                        onViewDetails={() => openServiceDetail(cartService, {
+                          riskAddressed: service.riskAddressed,
+                          mitigationProtocol: service.mitigationProtocol,
+                          digitalOversight: service.digitalOversight,
+                          lifecycleImpact: service.lifecycleImpact,
+                        })}
+                      />
+                    </ScrollReveal>
+                  );
+                })}
               </div>
             ) : (
               <>
@@ -705,15 +765,40 @@ const SolutionsCatalog = () => {
                       </div>
                     </ScrollReveal>
 
-                    <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                       {category.services.filter(service => 
                         service.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
                         service.shortDescription.toLowerCase().includes(searchTerm.toLowerCase())
-                      ).map((service, index) => (
-                        <ScrollReveal key={service.id} delay={index * 50}>
-                          <ServiceCard service={{...service, category: category.id, categoryName: category.name, categoryIcon: category.icon, categoryColor: category.color}} />
-                        </ScrollReveal>
-                      ))}
+                      ).map((service, index) => {
+                        const fullService = {...service, category: category.id, categoryName: category.name, categoryIcon: category.icon, categoryColor: category.color};
+                        const cartService: CartProduct = {
+                          id: service.id,
+                          name: service.name,
+                          description: service.shortDescription,
+                          price: "Request Technical Evaluation",
+                          features: service.features,
+                          operationalEnvelope: {},
+                          image: service.image,
+                          inStock: true,
+                          category: category.id,
+                          categoryName: category.name,
+                        };
+                        return (
+                          <ScrollReveal key={service.id} delay={index * 50}>
+                            <ServiceCard 
+                              service={fullService}
+                              isInCart={isInCart(service.id)}
+                              onAddToInquiry={() => handleAddToInquiry(cartService)}
+                              onViewDetails={() => openServiceDetail(cartService, {
+                                riskAddressed: service.riskAddressed,
+                                mitigationProtocol: service.mitigationProtocol,
+                                digitalOversight: service.digitalOversight,
+                                lifecycleImpact: service.lifecycleImpact,
+                              })}
+                            />
+                          </ScrollReveal>
+                        );
+                      })}
                     </div>
                   </div>
                 ))}
@@ -765,6 +850,14 @@ const SolutionsCatalog = () => {
         product={selectedProduct}
         isOpen={isDetailOpen}
         onClose={() => setIsDetailOpen(false)}
+      />
+
+      {/* Service Detail Popup */}
+      <ServiceDetailPopup
+        service={selectedService}
+        isOpen={isServiceDetailOpen}
+        onClose={() => setIsServiceDetailOpen(false)}
+        serviceDetails={selectedServiceDetails || undefined}
       />
     </section>
   );
@@ -911,124 +1004,98 @@ interface ServiceCardProps {
     categoryIcon: React.ComponentType<{ className?: string }>;
     categoryColor: string;
   };
+  isInCart: boolean;
+  onAddToInquiry: () => void;
+  onViewDetails: () => void;
 }
 
-const ServiceCard = ({ service }: ServiceCardProps) => {
+const ServiceCard = ({ service, isInCart, onAddToInquiry, onViewDetails }: ServiceCardProps) => {
   const IconComponent = service.categoryIcon;
   
   return (
-    <Dialog>
-      <DialogTrigger asChild>
-        <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-border/50 overflow-hidden h-full cursor-pointer">
-          {/* Service Image */}
-          <div className="relative overflow-hidden">
-            <div 
-              className="h-48 bg-cover bg-center group-hover:scale-110 transition-transform duration-500"
-              style={{ backgroundImage: `url(${service.image})` }}
-            />
-            
-            {/* Category Badge */}
-            <div className="absolute top-3 left-3">
-              <div className={`w-10 h-10 bg-gradient-to-br ${service.categoryColor} rounded-lg flex items-center justify-center shadow-md`}>
-                <IconComponent className="h-5 w-5 text-white" />
-              </div>
-            </div>
-          </div>
-
-          <CardHeader className="pb-3">
-            <CardTitle className="text-lg font-bold text-foreground group-hover:text-primary transition-colors line-clamp-2">
-              {service.name}
-            </CardTitle>
-            
-            <CardDescription className="text-sm text-muted-foreground line-clamp-3">
-              {service.shortDescription}
-            </CardDescription>
-
-            <Badge variant="outline" className="text-xs w-fit mt-2">
-              {service.categoryName}
-            </Badge>
-          </CardHeader>
-
-          <CardContent className="pt-0">
-            <Button variant="ghost" className="group-hover:bg-primary group-hover:text-primary-foreground p-0 h-auto">
-              View Details
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-          </CardContent>
-        </Card>
-      </DialogTrigger>
-      
-      <DialogContent className="max-w-2xl max-h-[90vh] overflow-y-auto">
-        <DialogHeader>
-          <div className={`w-16 h-16 bg-gradient-to-br ${service.categoryColor} rounded-xl flex items-center justify-center mb-4`}>
-            <IconComponent className="h-8 w-8 text-white" />
-          </div>
-          <DialogTitle className="text-2xl">{service.name}</DialogTitle>
-          <DialogDescription className="text-base">
-            {service.shortDescription}
-          </DialogDescription>
-        </DialogHeader>
+    <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-border/50 overflow-hidden h-full cursor-pointer" onClick={onViewDetails}>
+      {/* Service Image */}
+      <div className="relative overflow-hidden">
+        <div 
+          className="h-48 bg-cover bg-center group-hover:scale-110 transition-transform duration-500"
+          style={{ backgroundImage: `url(${service.image})` }}
+        />
         
-        <div className="space-y-6 mt-4">
-          {/* Risk Addressed */}
-          <div className="p-4 bg-destructive/10 rounded-lg">
-            <div className="flex items-center text-sm font-semibold text-destructive mb-2">
-              <AlertTriangle className="h-4 w-4 mr-2" />
-              Risk Addressed
-            </div>
-            <p className="text-sm text-muted-foreground">
-              {service.riskAddressed}
-            </p>
-          </div>
-
-          {/* Mitigation Protocol */}
-          <div className="p-4 bg-primary/10 rounded-lg">
-            <div className="flex items-center text-sm font-semibold text-primary mb-2">
-              <Shield className="h-4 w-4 mr-2" />
-              Mitigation Protocol
-            </div>
-            <p className="text-sm text-muted-foreground">
-              {service.mitigationProtocol}
-            </p>
-          </div>
-
-          {/* Digital Oversight */}
-          <div className="p-4 bg-secondary/10 rounded-lg">
-            <div className="flex items-center text-sm font-semibold text-secondary mb-2">
-              <Activity className="h-4 w-4 mr-2" />
-              Digital Oversight
-            </div>
-            <p className="text-sm text-muted-foreground">
-              {service.digitalOversight}
-            </p>
-          </div>
-
-          {/* Lifecycle Impact */}
-          <div className="p-4 bg-accent/10 rounded-lg">
-            <div className="flex items-center text-sm font-semibold text-accent mb-2">
-              <TrendingUp className="h-4 w-4 mr-2" />
-              Lifecycle Impact
-            </div>
-            <p className="text-sm text-muted-foreground">
-              {service.lifecycleImpact}
-            </p>
-          </div>
-
-          {/* Features */}
-          <div>
-            <h4 className="font-semibold mb-3">Key Capabilities</h4>
-            <ul className="space-y-2">
-              {service.features.map((feature, idx) => (
-                <li key={idx} className="flex items-center text-sm">
-                  <CheckCircle className="h-4 w-4 text-primary mr-2 flex-shrink-0" />
-                  {feature}
-                </li>
-              ))}
-            </ul>
+        {/* Category Badge */}
+        <div className="absolute top-3 left-3">
+          <div className={`w-10 h-10 bg-gradient-to-br ${service.categoryColor} rounded-lg flex items-center justify-center shadow-md`}>
+            <IconComponent className="h-5 w-5 text-white" />
           </div>
         </div>
-      </DialogContent>
-    </Dialog>
+
+        {/* Quick Actions */}
+        <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+          <Button 
+            variant="secondary" 
+            size="icon" 
+            className="h-8 w-8 shadow-md"
+            onClick={(e) => {
+              e.stopPropagation();
+              onViewDetails();
+            }}
+          >
+            <Eye className="h-4 w-4" />
+          </Button>
+        </div>
+      </div>
+
+      <CardHeader className="pb-3">
+        <CardTitle className="text-lg font-bold text-foreground group-hover:text-primary transition-colors line-clamp-2">
+          {service.name}
+        </CardTitle>
+        
+        <CardDescription className="text-sm text-muted-foreground line-clamp-2 mb-3">
+          {service.shortDescription}
+        </CardDescription>
+
+        <Badge variant="outline" className="text-xs w-fit">
+          {service.categoryName}
+        </Badge>
+      </CardHeader>
+
+      <CardContent className="pt-0">
+        {/* Action Buttons */}
+        <div className="flex gap-2">
+          <Button
+            variant={isInCart ? "default" : "outline"}
+            size="sm"
+            className="flex-1"
+            onClick={(e) => {
+              e.stopPropagation();
+              onAddToInquiry();
+            }}
+          >
+            {isInCart ? (
+              <>
+                <Check className="h-4 w-4 mr-2" />
+                In Inquiry
+              </>
+            ) : (
+              <>
+                <Plus className="h-4 w-4 mr-2" />
+                Add to Inquiry
+              </>
+            )}
+          </Button>
+          
+          <Button 
+            variant="ghost" 
+            size="sm"
+            onClick={(e) => {
+              e.stopPropagation();
+              onViewDetails();
+            }}
+          >
+            <Eye className="h-4 w-4" />
+          </Button>
+        </div>
+      </CardContent>
+    </Card>
   );
 };
 

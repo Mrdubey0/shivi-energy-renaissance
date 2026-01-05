@@ -1,4 +1,4 @@
-import { Menu, X, ShoppingCart } from "lucide-react";
+import { Menu, X, ClipboardList } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
@@ -29,7 +29,7 @@ const Header = () => {
   ];
 
   return (
-    <header className={`fixed top-0 left-0 right-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border transition-shadow duration-300 ${isScrolled ? 'shadow-lg shadow-foreground/5' : ''}`}>
+    <header className={`sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border transition-shadow duration-300 ${isScrolled ? 'shadow-lg shadow-foreground/5' : ''}`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -78,24 +78,24 @@ const Header = () => {
             ))}
           </nav>
 
-          {/* Cart Button - Desktop */}
+          {/* Inquiries Button - Desktop */}
           <div className="hidden lg:flex items-center">
             <Button
               variant="ghost"
-              size="icon"
-              className="relative"
+              className="relative flex items-center gap-2"
               onClick={() => setIsCartOpen(true)}
             >
-              <ShoppingCart className="h-5 w-5" />
+              <ClipboardList className="h-5 w-5" />
+              <span className="font-medium">Inquiries</span>
               {cartCount > 0 && (
-                <Badge className="absolute -top-2 -right-2 bg-primary text-primary-foreground min-w-[1.25rem] h-5 text-xs px-1">
+                <Badge className="absolute -top-2 -right-2 bg-blue-500 text-white min-w-[1.25rem] h-5 text-xs px-1">
                   {cartCount}
                 </Badge>
               )}
             </Button>
           </div>
 
-          {/* Mobile Menu Button and Cart */}
+          {/* Mobile Menu Button and Inquiries */}
           <div className="lg:hidden flex items-center gap-2">
             <Button
               variant="ghost"
@@ -103,9 +103,9 @@ const Header = () => {
               className="relative"
               onClick={() => setIsCartOpen(true)}
             >
-              <ShoppingCart className="h-5 w-5" />
+              <ClipboardList className="h-5 w-5" />
               {cartCount > 0 && (
-                <Badge className="absolute -top-2 -right-2 bg-primary text-primary-foreground min-w-[1.25rem] h-5 text-xs px-1">
+                <Badge className="absolute -top-2 -right-2 bg-blue-500 text-white min-w-[1.25rem] h-5 text-xs px-1">
                   {cartCount}
                 </Badge>
               )}

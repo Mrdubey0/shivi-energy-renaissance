@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
 import { 
   MapPin, 
   Calendar, 
@@ -11,11 +12,16 @@ import {
   Award,
   AlertTriangle,
   Shield,
-  TrendingUp
+  TrendingUp,
+  Search
 } from "lucide-react";
+import { useState } from "react";
 import ScrollReveal from "./ScrollReveal";
 
 const Projects = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [activeYear, setActiveYear] = useState("all");
+
   const projects = [
     {
       id: 1,
@@ -116,6 +122,23 @@ const Projects = () => {
     { icon: TrendingUp, label: "Avg. Lifecycle Extension", value: "6+ Years" }
   ];
 
+  // Extract unique years from projects
+  const years = ["all", ...new Set(projects.map(p => {
+    const yearMatch = p.duration.match(/\d{4}/);
+    return yearMatch ? yearMatch[0] : "";
+  }).filter(Boolean).sort((a, b) => Number(b) - Number(a)))];
+
+  // Filter projects based on search and year
+  const filteredProjects = projects.filter(project => {
+    const matchesSearch = 
+      project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      project.client.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      project.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      project.category.toLowerCase().includes(searchTerm.toLowerCase());
+    const matchesYear = activeYear === "all" || project.duration.includes(activeYear);
+    return matchesSearch && matchesYear;
+  });
+
   return (
     <section id="projects" className="py-24 bg-muted/30">
       <div className="container mx-auto px-4">
@@ -154,9 +177,45 @@ const Projects = () => {
           </div>
         </ScrollReveal>
 
+        {/* Search and Filter Bar */}
+        <ScrollReveal delay={100}>
+          <div className="bg-background/80 backdrop-blur-sm rounded-2xl p-6 mb-12 border border-border shadow-lg">
+            <div className="flex flex-col lg:flex-row gap-4 items-center">
+              <div className="relative flex-1">
+                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
+                <Input
+                  placeholder="Search projects, clients, locations..."
+                  value={searchTerm}
+                  onChange={(e) => setSearchTerm(e.target.value)}
+                  className="pl-10 h-12 text-base"
+                />
+              </div>
+              
+              <div className="flex gap-2 flex-wrap justify-center">
+                {years.map((year) => (
+                  <Button
+                    key={year}
+                    variant={activeYear === year ? "default" : "outline"}
+                    size="sm"
+                    onClick={() => setActiveYear(year)}
+                    className="capitalize"
+                  >
+                    {year === "all" ? "All Years" : year}
+                  </Button>
+                ))}
+              </div>
+            </div>
+          </div>
+        </ScrollReveal>
+
         {/* Projects List */}
         <div className="space-y-6">
-          {projects.map((project, index) => (
+          {filteredProjects.length === 0 ? (
+            <div className="text-center py-16">
+              <p className="text-lg text-muted-foreground">No projects found matching your criteria.</p>
+            </div>
+          ) : (
+            filteredProjects.map((project, index) => (
             <ScrollReveal key={project.id} delay={index * 100}>
               <Card className="overflow-hidden hover:shadow-lg transition-all duration-300">
               <CardContent className="p-6">
@@ -262,7 +321,8 @@ const Projects = () => {
               </CardContent>
             </Card>
             </ScrollReveal>
-          ))}
+          ))
+          )}
         </div>
 
         {/* View All Projects CTA */}

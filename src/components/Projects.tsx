@@ -21,6 +21,7 @@ import ScrollReveal from "./ScrollReveal";
 const Projects = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [activeYear, setActiveYear] = useState("all");
+  const [activeCategory, setActiveCategory] = useState("all");
 
   const projects = [
     {
@@ -128,7 +129,10 @@ const Projects = () => {
     return yearMatch ? yearMatch[0] : "";
   }).filter(Boolean).sort((a, b) => Number(b) - Number(a)))];
 
-  // Filter projects based on search and year
+  // Extract unique categories from projects
+  const categories = ["all", ...new Set(projects.map(p => p.category))];
+
+  // Filter projects based on search, year, and category
   const filteredProjects = projects.filter(project => {
     const matchesSearch = 
       project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -136,7 +140,8 @@ const Projects = () => {
       project.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
       project.category.toLowerCase().includes(searchTerm.toLowerCase());
     const matchesYear = activeYear === "all" || project.duration.includes(activeYear);
-    return matchesSearch && matchesYear;
+    const matchesCategory = activeCategory === "all" || project.category === activeCategory;
+    return matchesSearch && matchesYear && matchesCategory;
   });
 
   return (
@@ -179,29 +184,50 @@ const Projects = () => {
 
         {/* Search and Filter Bar */}
         <ScrollReveal delay={100}>
-          <div className="bg-background/80 backdrop-blur-sm rounded-2xl p-6 mb-12 border border-border shadow-lg">
-            <div className="flex flex-col lg:flex-row gap-4 items-center">
-              <div className="relative flex-1">
-                <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-5 w-5 text-muted-foreground" />
-                <Input
-                  placeholder="Search projects, clients, locations..."
-                  value={searchTerm}
-                  onChange={(e) => setSearchTerm(e.target.value)}
-                  className="pl-10 h-12 text-base"
-                />
+          <div className="bg-background/80 backdrop-blur-sm rounded-2xl p-4 mb-8 border border-border shadow-lg">
+            <div className="flex flex-col gap-4">
+              {/* Search and Year Filter Row */}
+              <div className="flex flex-col md:flex-row gap-3 items-center">
+                <div className="relative w-full md:w-64">
+                  <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                  <Input
+                    placeholder="Search projects..."
+                    value={searchTerm}
+                    onChange={(e) => setSearchTerm(e.target.value)}
+                    className="pl-9 h-10 text-sm"
+                  />
+                </div>
+                
+                <div className="flex gap-2 flex-wrap justify-center">
+                  {years.map((year) => (
+                    <Button
+                      key={year}
+                      variant={activeYear === year ? "default" : "outline"}
+                      size="sm"
+                      onClick={() => setActiveYear(year)}
+                      className="capitalize text-xs"
+                    >
+                      {year === "all" ? "All Years" : year}
+                    </Button>
+                  ))}
+                </div>
               </div>
-              
-              <div className="flex gap-2 flex-wrap justify-center">
-                {years.map((year) => (
-                  <Button
-                    key={year}
-                    variant={activeYear === year ? "default" : "outline"}
-                    size="sm"
-                    onClick={() => setActiveYear(year)}
-                    className="capitalize"
+
+              {/* Category Filter Row */}
+              <div className="flex gap-2 flex-wrap justify-center border-t border-border pt-3">
+                {categories.map((category) => (
+                  <Badge
+                    key={category}
+                    variant={activeCategory === category ? "default" : "outline"}
+                    className={`cursor-pointer px-3 py-1.5 text-xs transition-colors ${
+                      activeCategory === category 
+                        ? "bg-primary text-primary-foreground" 
+                        : "hover:bg-primary/10"
+                    }`}
+                    onClick={() => setActiveCategory(category)}
                   >
-                    {year === "all" ? "All Years" : year}
-                  </Button>
+                    {category === "all" ? "All Categories" : category}
+                  </Badge>
                 ))}
               </div>
             </div>

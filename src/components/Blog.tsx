@@ -11,8 +11,9 @@ import {
   Lightbulb,
   Globe
 } from "lucide-react";
-import { Link } from "react-router-dom";
 import ScrollReveal from "./ScrollReveal";
+import BlogDetailPopup from "./BlogDetailPopup";
+import { useState } from "react";
 
 export const blogPosts = [
   {
@@ -194,8 +195,16 @@ const categories = [
 ];
 
 const Blog = () => {
+  const [selectedPost, setSelectedPost] = useState<typeof blogPosts[0] | null>(null);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  
   const featuredPost = blogPosts[0];
   const regularPosts = blogPosts.slice(1);
+
+  const handleReadMore = (post: typeof blogPosts[0]) => {
+    setSelectedPost(post);
+    setIsPopupOpen(true);
+  };
 
   const getCategoryIcon = (category: string) => {
     switch (category) {
@@ -303,11 +312,9 @@ const Blog = () => {
                       <Clock className="h-4 w-4 mr-2" />
                       <span>{featuredPost.readTime}</span>
                     </div>
-                    <Button variant="default" asChild>
-                      <Link to={`/blog/${featuredPost.slug}`}>
-                        Read More
-                        <ArrowRight className="ml-2 h-4 w-4" />
-                      </Link>
+                    <Button variant="default" onClick={() => handleReadMore(featuredPost)}>
+                      Read More
+                      <ArrowRight className="ml-2 h-4 w-4" />
                     </Button>
                   </div>
                 </div>
@@ -349,10 +356,13 @@ const Blog = () => {
                       <Clock className="h-4 w-4 mr-1" />
                       {post.readTime}
                     </span>
-                    <Button variant="ghost" size="sm" className="group-hover:bg-primary group-hover:text-primary-foreground" asChild>
-                      <Link to={`/blog/${post.slug}`}>
-                        Read More
-                      </Link>
+                    <Button 
+                      variant="ghost" 
+                      size="sm" 
+                      className="group-hover:bg-primary group-hover:text-primary-foreground"
+                      onClick={() => handleReadMore(post)}
+                    >
+                      Read More
                     </Button>
                   </div>
                 </CardContent>
@@ -369,6 +379,13 @@ const Blog = () => {
             </Button>
           </div>
         </ScrollReveal>
+
+        {/* Blog Detail Popup */}
+        <BlogDetailPopup
+          post={selectedPost}
+          isOpen={isPopupOpen}
+          onClose={() => setIsPopupOpen(false)}
+        />
       </div>
     </section>
   );

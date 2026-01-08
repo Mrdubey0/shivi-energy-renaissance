@@ -91,13 +91,31 @@ const Services = () => {
         </ScrollReveal>
 
         {/* Services Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+        <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-8 mb-8 md:mb-12">
           {services.map((service, index) => {
             const IconComponent = service.icon;
             return (
               <ScrollReveal key={service.title} delay={index * 100}>
+                {/* Mobile: Compact card */}
+                <Card className="md:hidden border-border/50 h-full">
+                  <CardHeader className="p-3 pb-2">
+                    <div className="w-10 h-10 bg-gradient-accent rounded-lg flex items-center justify-center mb-2">
+                      <IconComponent className="h-5 w-5 text-accent-foreground" />
+                    </div>
+                    <CardTitle className="text-sm font-semibold text-foreground leading-tight">
+                      {service.title}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="p-3 pt-0">
+                    <p className="text-xs text-muted-foreground line-clamp-2">
+                      {service.lifecycleImpact}
+                    </p>
+                  </CardContent>
+                </Card>
+                
+                {/* Desktop: Full card */}
                 <Card 
-                  className="group hover:shadow-card transition-all duration-300 hover:-translate-y-2 border-border/50 hover:border-primary/30 h-full"
+                  className="hidden md:block group hover:shadow-card transition-all duration-300 hover:-translate-y-2 border-border/50 hover:border-primary/30 h-full"
                 >
                 <CardHeader className="pb-4">
                   <div className="w-16 h-16 bg-gradient-accent rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">

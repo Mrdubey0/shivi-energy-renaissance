@@ -98,27 +98,26 @@ const Clients = () => {
   ];
 
   return (
-    <section id="clients" className="py-24 bg-background">
+    <section id="clients" className="py-12 md:py-24 bg-background">
       <div className="container mx-auto px-4">
         {/* Header */}
         <ScrollReveal>
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-secondary/10 border border-secondary/20 mb-6">
-              <span className="text-sm font-medium text-secondary">Our Valued Clients</span>
+          <div className="text-center mb-8 md:mb-16">
+            <div className="inline-flex items-center px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-secondary/10 border border-secondary/20 mb-4 md:mb-6">
+              <span className="text-xs md:text-sm font-medium text-secondary">Our Clients</span>
             </div>
             
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              Trusted by Industry
-              <span className="text-primary"> Leaders</span>
+            <h2 className="text-2xl md:text-5xl font-bold text-foreground mb-3 md:mb-6">
+              Trusted <span className="text-primary">Partners</span>
             </h2>
             
-            <p className="text-lg text-muted-foreground max-w-3xl mx-auto mb-12">
+            <p className="text-sm md:text-lg text-muted-foreground max-w-3xl mx-auto mb-6 md:mb-12 hidden md:block">
               We're proud to partner with leading organizations across the energy sector, 
               delivering sustainable solutions that drive their success and environmental goals.
             </p>
 
-            {/* Client Stats */}
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16">
+            {/* Client Stats - Desktop */}
+            <div className="hidden md:grid grid-cols-4 gap-6 mb-16">
               {clientStats.map((stat, index) => {
                 const IconComponent = stat.icon;
                 return (
@@ -132,10 +131,62 @@ const Clients = () => {
                 );
               })}
             </div>
+            
+            {/* Client Stats - Mobile: Compact */}
+            <div className="flex justify-center gap-8 mb-6 md:hidden">
+              <div className="text-center">
+                <div className="text-xl font-bold text-primary">50+</div>
+                <div className="text-xs text-muted-foreground">Partners</div>
+              </div>
+              <div className="text-center">
+                <div className="text-xl font-bold text-primary">97%</div>
+                <div className="text-xs text-muted-foreground">Satisfaction</div>
+              </div>
+            </div>
           </div>
         </ScrollReveal>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        {/* Mobile: Horizontal scroll compact cards */}
+        <div className="flex gap-3 overflow-x-auto pb-4 md:hidden snap-x snap-mandatory -mx-4 px-4 mb-8">
+          {majorClients.map((client, index) => (
+            <Card key={index} className="flex-shrink-0 w-40 snap-center">
+              <CardHeader className="p-3 pb-2">
+                <div className="flex items-center gap-2 mb-2">
+                  <div className="w-10 h-10 rounded-full overflow-hidden bg-muted">
+                    <img 
+                      src={client.logo} 
+                      alt={client.abbreviation}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div>
+                    <CardTitle className="text-sm font-bold">{client.abbreviation}</CardTitle>
+                    <p className="text-[10px] text-muted-foreground">{client.industry}</p>
+                  </div>
+                </div>
+              </CardHeader>
+              <CardContent className="p-3 pt-0">
+                <div className="flex justify-between text-center">
+                  <div>
+                    <div className="text-sm font-bold text-primary">{client.projects}</div>
+                    <div className="text-[10px] text-muted-foreground">Projects</div>
+                  </div>
+                  <div>
+                    <div className="flex">
+                      <Star className="h-3 w-3 text-yellow-500 fill-current" />
+                      <Star className="h-3 w-3 text-yellow-500 fill-current" />
+                      <Star className="h-3 w-3 text-yellow-500 fill-current" />
+                    </div>
+                    <div className="text-[10px] text-muted-foreground">Rating</div>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+        
+        {/* Desktop: Grid layout */}
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {majorClients.map((client, index) => (
             <ScrollReveal key={index} delay={index * 100}>
               <Card className="group hover:shadow-card transition-all duration-300 hover:-translate-y-2 h-full">

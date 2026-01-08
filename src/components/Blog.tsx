@@ -242,29 +242,28 @@ const Blog = () => {
   };
 
   return (
-    <section id="blog" className="py-24 bg-background">
+    <section id="blog" className="py-12 md:py-24 bg-background">
       <div className="container mx-auto px-4">
         {/* Header */}
         <ScrollReveal>
-          <div className="text-center mb-16">
-            <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-4">
-              <BookOpen className="h-4 w-4 text-primary mr-2" />
-              <span className="text-sm font-medium text-primary">Knowledge Hub</span>
+          <div className="text-center mb-8 md:mb-16">
+            <div className="inline-flex items-center px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-primary/10 border border-primary/20 mb-3 md:mb-4">
+              <BookOpen className="h-3 w-3 md:h-4 md:w-4 text-primary mr-1.5 md:mr-2" />
+              <span className="text-xs md:text-sm font-medium text-primary">Knowledge Hub</span>
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              Latest Insights &
-              <span className="text-primary"> Industry Trends</span>
+            <h2 className="text-2xl md:text-5xl font-bold text-foreground mb-3 md:mb-6">
+              Latest <span className="text-primary">Insights</span>
             </h2>
-            <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
+            <p className="text-sm md:text-xl text-muted-foreground max-w-3xl mx-auto hidden md:block">
               Stay updated with the latest developments in operational assurance, 
               LOCA-LOCUS principles, and innovative technologies shaping the industry.
             </p>
           </div>
         </ScrollReveal>
 
-        {/* Categories Filter */}
+        {/* Categories Filter - Hidden on mobile */}
         <ScrollReveal delay={100}>
-          <div className="flex flex-wrap gap-2 justify-center mb-12">
+          <div className="hidden md:flex flex-wrap gap-2 justify-center mb-12">
             {categories.map((category) => (
               <Badge 
                 key={category.name}

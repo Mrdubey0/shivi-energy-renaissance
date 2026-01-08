@@ -84,21 +84,28 @@ const About = () => {
                 to ensure measurable outcomes for every operation.
               </p>
 
-              <div className="space-y-4 mb-8">
+              {/* Certifications - Show only 3 on mobile */}
+              <div className="space-y-3 md:space-y-4 mb-6 md:mb-8">
+                {certifications.slice(0, 3).map((certification, index) => (
+                  <div key={index} className="flex items-center md:hidden">
+                    <CheckCircle className="h-4 w-4 text-primary mr-2 flex-shrink-0" />
+                    <span className="text-foreground text-sm">{certification}</span>
+                  </div>
+                ))}
                 {certifications.map((certification, index) => (
-                  <div key={index} className="flex items-center">
+                  <div key={index} className="hidden md:flex items-center">
                     <CheckCircle className="h-5 w-5 text-primary mr-3 flex-shrink-0" />
                     <span className="text-foreground">{certification}</span>
                   </div>
                 ))}
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <Button variant="default" size="lg">
-                  View Governance Documentation
+              <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
+                <Button variant="default" size="default" className="md:size-lg text-sm md:text-base">
+                  View Documentation
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
-                <Button variant="outline" size="lg">
+                <Button variant="outline" size="default" className="hidden md:flex md:size-lg">
                   Access Technical Overview
                 </Button>
               </div>
@@ -125,48 +132,80 @@ const About = () => {
                 })}
               </div>
 
-              {/* Governance Statement Card */}
-              <Card className="p-8 bg-gradient-hero text-primary-foreground">
+              {/* Governance Statement Card - Compact on mobile */}
+              <Card className="p-4 md:p-8 bg-gradient-hero text-primary-foreground">
                 <CardContent className="p-0">
-                  <div className="flex items-center mb-4">
-                    <FileCheck className="h-6 w-6 mr-2" />
-                    <h3 className="text-2xl font-bold">Governance Commitment</h3>
+                  <div className="flex items-center mb-2 md:mb-4">
+                    <FileCheck className="h-5 w-5 md:h-6 md:w-6 mr-2" />
+                    <h3 className="text-lg md:text-2xl font-bold">Governance Commitment</h3>
                   </div>
-                  <p className="text-primary-foreground/90 leading-relaxed">
+                  <p className="text-primary-foreground/90 leading-relaxed text-sm md:text-base hidden md:block">
                     Every operation is executed within documented protocols with traceable 
                     decision-making, clear accountability, and audit-ready records. 
                     Our LOCA–LOCUS framework ensures measurable outcomes.
                   </p>
+                  <p className="text-primary-foreground/90 text-sm md:hidden">
+                    Audit-ready execution with traceable accountability.
+                  </p>
                 </CardContent>
               </Card>
 
-              {/* Certifications */}
+              {/* Certifications - Fewer on mobile */}
               <div className="flex flex-wrap gap-2">
-                <Badge variant="secondary" className="px-3 py-1">ISO 9001:2015</Badge>
-                <Badge variant="secondary" className="px-3 py-1">OHSAS 18001</Badge>
-                <Badge variant="secondary" className="px-3 py-1">API Certified</Badge>
-                <Badge variant="secondary" className="px-3 py-1">DNV GL</Badge>
-                <Badge variant="secondary" className="px-3 py-1">NACE Certified</Badge>
+                <Badge variant="secondary" className="px-2 py-1 text-xs md:px-3 md:text-sm">ISO 9001</Badge>
+                <Badge variant="secondary" className="px-2 py-1 text-xs md:px-3 md:text-sm">API Certified</Badge>
+                <Badge variant="secondary" className="px-2 py-1 text-xs md:px-3 md:text-sm hidden md:inline-flex">OHSAS 18001</Badge>
+                <Badge variant="secondary" className="px-2 py-1 text-xs md:px-3 md:text-sm hidden md:inline-flex">DNV GL</Badge>
+                <Badge variant="secondary" className="px-2 py-1 text-xs md:px-3 md:text-sm">NACE</Badge>
               </div>
             </div>
           </ScrollReveal>
         </div>
 
         {/* Leadership Team Section */}
-        <div className="mt-24">
+        <div className="mt-12 md:mt-24">
           <ScrollReveal>
-            <div className="text-center mb-12">
-              <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-                Leadership & <span className="text-primary">Technical Council</span>
+            <div className="text-center mb-8 md:mb-12">
+              <h3 className="text-2xl md:text-4xl font-bold text-foreground mb-3 md:mb-4">
+                Leadership <span className="text-primary">Team</span>
               </h3>
-              <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+              <p className="text-sm md:text-lg text-muted-foreground max-w-2xl mx-auto hidden md:block">
                 Experienced leaders with accountability for execution outcomes 
                 and operational governance across all service areas.
               </p>
             </div>
           </ScrollReveal>
 
-          <div className="grid md:grid-cols-3 gap-8">
+          {/* Mobile: Horizontal scroll cards */}
+          <div className="flex gap-4 overflow-x-auto pb-4 md:hidden snap-x snap-mandatory -mx-4 px-4">
+            {leadership.map((leader, index) => (
+              <Card key={index} className="flex-shrink-0 w-64 snap-center">
+                <CardHeader className="text-center pb-2 pt-4">
+                  <div className="flex justify-center mb-2">
+                    <Avatar className="w-16 h-16 border-2 border-primary/10">
+                      <AvatarImage src={leader.image} alt={leader.name} />
+                      <AvatarFallback className="text-lg font-bold bg-gradient-accent text-accent-foreground">
+                        {leader.name.split(' ').map(n => n[0]).join('')}
+                      </AvatarFallback>
+                    </Avatar>
+                  </div>
+                  <CardTitle className="text-base font-bold text-foreground">
+                    {leader.name}
+                  </CardTitle>
+                  <p className="text-primary font-medium text-sm">{leader.position}</p>
+                </CardHeader>
+                <CardContent className="text-center pt-0 pb-4">
+                  <Button variant="outline" size="sm" className="text-xs">
+                    <Linkedin className="h-3 w-3 mr-1" />
+                    Connect
+                  </Button>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+          
+          {/* Desktop: Grid layout */}
+          <div className="hidden md:grid md:grid-cols-3 gap-8">
             {leadership.map((leader, index) => (
               <ScrollReveal key={index} delay={index * 100}>
                 <Card className="group hover:shadow-card transition-all duration-300 hover:-translate-y-2 h-full">

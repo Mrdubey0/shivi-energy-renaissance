@@ -149,9 +149,9 @@ const Hero = () => {
             </div>
           </ScrollReveal>
 
-          {/* Operational Metrics */}
+          {/* Operational Metrics - Hidden on mobile for lite version */}
           <ScrollReveal delay={400}>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center text-primary-foreground/80">
+            <div className="hidden md:grid grid-cols-4 gap-8 text-center text-primary-foreground/80">
               <div className="group">
                 <div className="flex items-center justify-center mb-2">
                   <Activity className="h-5 w-5 mr-2 text-secondary" />
@@ -178,6 +178,17 @@ const Hero = () => {
                   <span className="text-3xl font-bold text-secondary">ISO</span>
                 </div>
                 <div className="text-sm">Audit-Ready Systems</div>
+              </div>
+            </div>
+            {/* Mobile: Only show 2 key stats */}
+            <div className="grid grid-cols-2 gap-4 md:hidden text-center text-primary-foreground/80">
+              <div>
+                <span className="text-2xl font-bold text-secondary">2.4M+</span>
+                <div className="text-xs">Incident-Free Hours</div>
+              </div>
+              <div>
+                <span className="text-2xl font-bold text-accent">98.7%</span>
+                <div className="text-xs">On-Time Delivery</div>
               </div>
             </div>
           </ScrollReveal>

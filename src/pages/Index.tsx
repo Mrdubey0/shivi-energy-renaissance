@@ -5,10 +5,11 @@ import Services from "@/components/Services";
 import Clients from "@/components/Clients";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
+import BottomNav from "@/components/BottomNav";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background animate-zoom-in">
+    <div className="min-h-screen bg-background animate-zoom-in pb-16 md:pb-0">
       <Header />
       <Hero />
       <Services />
@@ -16,6 +17,7 @@ const Index = () => {
       <Clients />
       <Contact />
       <Footer />
+      <BottomNav />
     </div>
   );
 };

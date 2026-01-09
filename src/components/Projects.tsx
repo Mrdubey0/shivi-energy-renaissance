@@ -17,11 +17,34 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import ScrollReveal from "./ScrollReveal";
+import ProjectDetailPopup from "./ProjectDetailPopup";
+
+interface Project {
+  id: number;
+  title: string;
+  client: string;
+  location: string;
+  duration: string;
+  category: string;
+  status: string;
+  image: string;
+  riskContext: string;
+  intervention: string;
+  outcomes: string[];
+  locaInterpretation: string;
+}
 
 const Projects = () => {
   const [searchTerm, setSearchTerm] = useState("");
   const [activeYear, setActiveYear] = useState("all");
   const [activeCategory, setActiveCategory] = useState("all");
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const handleViewDetails = (project: Project) => {
+    setSelectedProject(project);
+    setIsPopupOpen(true);
+  };
 
   const projects = [
     {
@@ -255,7 +278,10 @@ const Projects = () => {
             filteredProjects.map((project, index) => (
             <ScrollReveal key={project.id} delay={index * 100}>
               {/* Mobile: Compact card */}
-              <Card className="md:hidden overflow-hidden">
+              <Card 
+                className="md:hidden overflow-hidden cursor-pointer hover:shadow-md transition-shadow"
+                onClick={() => handleViewDetails(project)}
+              >
                 <CardContent className="p-3">
                   <div className="flex gap-3">
                     <div className="w-20 h-20 flex-shrink-0 relative rounded-lg overflow-hidden">
@@ -383,7 +409,11 @@ const Projects = () => {
                       </p>
                     </div>
                     
-                    <Button variant="outline" className="w-fit hover:bg-primary hover:text-primary-foreground transition-colors">
+                    <Button 
+                      variant="outline" 
+                      className="w-fit hover:bg-primary hover:text-primary-foreground transition-colors"
+                      onClick={() => handleViewDetails(project)}
+                    >
                       <Eye className="h-4 w-4 mr-2" />
                       View Execution Details
                     </Button>
@@ -405,6 +435,13 @@ const Projects = () => {
             </Button>
           </div>
         </ScrollReveal>
+
+        {/* Project Detail Popup */}
+        <ProjectDetailPopup
+          project={selectedProject}
+          isOpen={isPopupOpen}
+          onClose={() => setIsPopupOpen(false)}
+        />
       </div>
     </section>
   );

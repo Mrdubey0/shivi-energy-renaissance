@@ -278,11 +278,58 @@ const Blog = () => {
 
         {/* Featured Post */}
         <ScrollReveal delay={200}>
-          <div className="mb-16">
+          <div className="mb-8 md:mb-16">
             <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 border-primary/20">
-              <div className="grid lg:grid-cols-2 gap-0">
+              {/* Mobile Layout */}
+              <div className="md:hidden">
                 <div 
-                  className="h-64 lg:h-auto bg-cover bg-center"
+                  className="h-48 w-full bg-cover bg-center"
+                  style={{ backgroundImage: `url(${featuredPost.image})` }}
+                />
+                <div className="p-4">
+                  <div className="flex flex-wrap items-center gap-2 mb-3">
+                    <Badge className={`text-xs ${getCategoryColor(featuredPost.category)}`}>
+                      {getCategoryIcon(featuredPost.category)}
+                      <span className="ml-1">{featuredPost.category}</span>
+                    </Badge>
+                    <Badge variant="secondary" className="text-xs">Featured</Badge>
+                  </div>
+                  
+                  <h3 className="text-lg font-bold text-foreground mb-2 leading-tight">
+                    {featuredPost.title}
+                  </h3>
+                  
+                  <p className="text-sm text-muted-foreground mb-4 line-clamp-2">
+                    {featuredPost.excerpt}
+                  </p>
+                  
+                  <div className="flex flex-col gap-3">
+                    <div className="flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-muted-foreground">
+                      <div className="flex items-center">
+                        <User className="h-3 w-3 mr-1" />
+                        <span>{featuredPost.author}</span>
+                      </div>
+                      <div className="flex items-center">
+                        <Calendar className="h-3 w-3 mr-1" />
+                        <span>{featuredPost.date}</span>
+                      </div>
+                      <div className="flex items-center">
+                        <Clock className="h-3 w-3 mr-1" />
+                        <span>{featuredPost.readTime}</span>
+                      </div>
+                    </div>
+                    <Button variant="default" size="sm" className="w-full" onClick={() => handleReadMore(featuredPost)}>
+                      Read More
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </Button>
+                  </div>
+                </div>
+              </div>
+
+              {/* Desktop Layout */}
+              <div className="hidden md:grid lg:grid-cols-2 gap-0">
+                <div 
+                  className="h-64 lg:h-auto min-h-[300px] bg-cover bg-center"
                   style={{ backgroundImage: `url(${featuredPost.image})` }}
                 />
                 <div className="p-8">

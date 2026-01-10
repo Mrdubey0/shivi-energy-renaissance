@@ -1,11 +1,34 @@
+import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MapPin, Clock, Users, Mail, Shield, Target } from "lucide-react";
+import { MapPin, Clock, Users, Mail, Shield, Target, GraduationCap, Briefcase } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const Careers = () => {
-  const openPositions = [
+  const [activeTab, setActiveTab] = useState<"freshers" | "experience">("freshers");
+
+  const fresherPositions = [
+    {
+      title: "Graduate Trainee Engineer",
+      department: "Engineering",
+      location: "Houston, TX",
+      type: "Full-time",
+      experience: "0-1 years",
+      description: "Join our graduate program to learn drilling operations, safety protocols, and field execution under expert mentorship."
+    },
+    {
+      title: "Junior Data Analyst",
+      department: "Technology",
+      location: "Remote",
+      type: "Full-time",
+      experience: "0-1 years",
+      description: "Start your career analyzing operational data and supporting digital oversight systems with hands-on training."
+    }
+  ];
+
+  const experiencedPositions = [
     {
       title: "Senior Drilling Engineer",
       department: "Engineering",
@@ -31,14 +54,6 @@ const Careers = () => {
       description: "Design and implement integrity management systems for oil & gas infrastructure."
     },
     {
-      title: "Well Intervention Technician",
-      department: "Operations",
-      location: "Aberdeen, UK",
-      type: "Full-time",
-      experience: "2+ years",
-      description: "Execute well intervention operations with accountability for safety and execution quality."
-    },
-    {
       title: "HSE & Compliance Specialist",
       department: "Operations",
       location: "Calgary, Canada",
@@ -55,6 +70,8 @@ const Careers = () => {
       description: "Oversee field execution with accountability for safety, quality, and on-time delivery."
     }
   ];
+
+  const currentPositions = activeTab === "freshers" ? fresherPositions : experiencedPositions;
 
   return (
     <div className="min-h-screen bg-background animate-zoom-in">
@@ -123,13 +140,41 @@ const Careers = () => {
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="text-3xl font-bold mb-4">Open Positions</h2>
-              <p className="text-xl text-muted-foreground">
+              <p className="text-xl text-muted-foreground mb-8">
                 Explore opportunities to contribute to operational excellence
               </p>
+              
+              {/* Toggle Button */}
+              <div className="inline-flex items-center bg-muted rounded-full p-1 gap-1">
+                <Button
+                  variant={activeTab === "freshers" ? "default" : "ghost"}
+                  size="sm"
+                  className={`rounded-full px-6 gap-2 ${activeTab === "freshers" ? "" : "text-muted-foreground"}`}
+                  onClick={() => setActiveTab("freshers")}
+                >
+                  <GraduationCap className="h-4 w-4" />
+                  Freshers
+                  <Badge variant="secondary" className="ml-1 text-xs">
+                    {fresherPositions.length}
+                  </Badge>
+                </Button>
+                <Button
+                  variant={activeTab === "experience" ? "default" : "ghost"}
+                  size="sm"
+                  className={`rounded-full px-6 gap-2 ${activeTab === "experience" ? "" : "text-muted-foreground"}`}
+                  onClick={() => setActiveTab("experience")}
+                >
+                  <Briefcase className="h-4 w-4" />
+                  Experienced
+                  <Badge variant="secondary" className="ml-1 text-xs">
+                    {experiencedPositions.length}
+                  </Badge>
+                </Button>
+              </div>
             </div>
 
             <div className="grid gap-6 max-w-4xl mx-auto">
-              {openPositions.map((position, index) => (
+              {currentPositions.map((position, index) => (
                 <Card key={index} className="hover:shadow-lg transition-shadow">
                   <CardHeader>
                     <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">

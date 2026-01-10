@@ -78,13 +78,13 @@ const Careers = () => {
       <Header />
       <main className="pt-16">
         {/* Hero Section */}
-        <section className="py-6 md:py-10 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">
+        <section className="py-10 md:py-16 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">
           <div className="container mx-auto px-4">
             <div className="text-center max-w-3xl mx-auto">
-              <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold mb-2 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                 Join Our Execution Teams
               </h1>
-              <p className="text-sm md:text-base text-muted-foreground">
+              <p className="text-base md:text-lg text-muted-foreground">
                 Build your career with disciplined execution teams. We value accountability, 
                 technical expertise, and operational excellence.
               </p>
@@ -93,120 +93,141 @@ const Careers = () => {
         </section>
 
         {/* Company Values */}
-        <section className="py-4 md:py-6">
+        <section className="py-8 md:py-12">
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-3 gap-2 md:gap-4">
-              <Card className="text-center p-2 md:p-3">
-                <Shield className="h-6 w-6 md:h-8 md:w-8 text-primary mx-auto mb-1" />
-                <h3 className="text-xs md:text-sm font-semibold">Execution Discipline</h3>
-                <p className="text-[10px] md:text-xs text-muted-foreground mt-1 hidden md:block">
-                  Structured protocols for safety and quality.
-                </p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+              <Card className="text-center p-4">
+                <CardHeader className="pb-2 pt-2">
+                  <Shield className="h-8 w-8 md:h-10 md:w-10 text-primary mx-auto mb-2" />
+                  <CardTitle className="text-base md:text-lg">Execution Discipline</CardTitle>
+                </CardHeader>
+                <CardContent className="pt-0 pb-2">
+                  <p className="text-sm text-muted-foreground">
+                    Work within structured protocols that prioritize safety and quality.
+                  </p>
+                </CardContent>
               </Card>
               
-              <Card className="text-center p-2 md:p-3">
-                <Target className="h-6 w-6 md:h-8 md:w-8 text-secondary mx-auto mb-1" />
-                <h3 className="text-xs md:text-sm font-semibold">Accountability</h3>
-                <p className="text-[10px] md:text-xs text-muted-foreground mt-1 hidden md:block">
-                  Own execution outcomes with responsibility.
-                </p>
+              <Card className="text-center p-4">
+                <CardHeader className="pb-2 pt-2">
+                  <Target className="h-8 w-8 md:h-10 md:w-10 text-secondary mx-auto mb-2" />
+                  <CardTitle className="text-base md:text-lg">Accountability</CardTitle>
+                </CardHeader>
+                <CardContent className="pt-0 pb-2">
+                  <p className="text-sm text-muted-foreground">
+                    Take ownership of execution outcomes with clear responsibility.
+                  </p>
+                </CardContent>
               </Card>
               
-              <Card className="text-center p-2 md:p-3">
-                <Users className="h-6 w-6 md:h-8 md:w-8 text-accent mx-auto mb-1" />
-                <h3 className="text-xs md:text-sm font-semibold">Technical Excellence</h3>
-                <p className="text-[10px] md:text-xs text-muted-foreground mt-1 hidden md:block">
-                  Field-validated systems and learning.
-                </p>
+              <Card className="text-center p-4">
+                <CardHeader className="pb-2 pt-2">
+                  <Users className="h-8 w-8 md:h-10 md:w-10 text-accent mx-auto mb-2" />
+                  <CardTitle className="text-base md:text-lg">Technical Excellence</CardTitle>
+                </CardHeader>
+                <CardContent className="pt-0 pb-2">
+                  <p className="text-sm text-muted-foreground">
+                    Develop expertise with field-validated systems and learning.
+                  </p>
+                </CardContent>
               </Card>
             </div>
           </div>
         </section>
 
         {/* Open Positions */}
-        <section className="py-4 md:py-8 bg-muted/30">
+        <section className="py-8 md:py-12 bg-muted/30">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-4">
-              <h2 className="text-xl md:text-2xl font-bold mb-1">Open Positions</h2>
-              <p className="text-xs md:text-sm text-muted-foreground mb-3">
+            <div className="text-center mb-6 md:mb-8">
+              <h2 className="text-2xl md:text-3xl font-bold mb-2">Open Positions</h2>
+              <p className="text-sm md:text-base text-muted-foreground mb-4">
                 Explore opportunities to contribute to operational excellence
               </p>
               
               {/* Toggle Button */}
-              <div className="inline-flex items-center bg-muted rounded-full p-0.5 gap-0.5">
+              <div className="inline-flex items-center bg-muted rounded-full p-1 gap-1">
                 <Button
                   variant={activeTab === "freshers" ? "default" : "ghost"}
                   size="sm"
-                  className={`rounded-full px-3 md:px-4 gap-1 text-xs h-7 ${activeTab === "freshers" ? "" : "text-muted-foreground"}`}
+                  className={`rounded-full px-3 md:px-6 gap-1 md:gap-2 text-xs md:text-sm ${activeTab === "freshers" ? "" : "text-muted-foreground"}`}
                   onClick={() => setActiveTab("freshers")}
                 >
-                  <GraduationCap className="h-3 w-3" />
+                  <GraduationCap className="h-3 w-3 md:h-4 md:w-4" />
                   Freshers
-                  <Badge variant="secondary" className="ml-1 text-[10px] px-1.5 py-0">
+                  <Badge variant="secondary" className="ml-1 text-xs">
                     {fresherPositions.length}
                   </Badge>
                 </Button>
                 <Button
                   variant={activeTab === "experience" ? "default" : "ghost"}
                   size="sm"
-                  className={`rounded-full px-3 md:px-4 gap-1 text-xs h-7 ${activeTab === "experience" ? "" : "text-muted-foreground"}`}
+                  className={`rounded-full px-3 md:px-6 gap-1 md:gap-2 text-xs md:text-sm ${activeTab === "experience" ? "" : "text-muted-foreground"}`}
                   onClick={() => setActiveTab("experience")}
                 >
-                  <Briefcase className="h-3 w-3" />
+                  <Briefcase className="h-3 w-3 md:h-4 md:w-4" />
                   Experienced
-                  <Badge variant="secondary" className="ml-1 text-[10px] px-1.5 py-0">
+                  <Badge variant="secondary" className="ml-1 text-xs">
                     {experiencedPositions.length}
                   </Badge>
                 </Button>
               </div>
             </div>
 
-            <div className="grid gap-3 max-w-4xl mx-auto">
+            <div className="grid gap-4 max-w-4xl mx-auto">
               {currentPositions.map((position, index) => (
-                <Card key={index} className="hover:shadow-lg transition-shadow p-3 md:p-4">
-                  <div className="flex flex-col md:flex-row md:items-start md:justify-between gap-2">
-                    <div className="flex-1">
-                      <div className="flex items-start justify-between gap-2">
-                        <h3 className="text-sm md:text-base font-semibold">{position.title}</h3>
-                        <div className="flex flex-wrap gap-1 shrink-0">
-                          <Badge variant="secondary" className="text-[10px] px-1.5">{position.department}</Badge>
-                          <Badge variant="outline" className="text-[10px] px-1.5">{position.type}</Badge>
-                        </div>
+                <Card key={index} className="hover:shadow-lg transition-shadow">
+                  <CardHeader className="pb-2 md:pb-4">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4">
+                      <div>
+                        <CardTitle className="text-base md:text-lg">{position.title}</CardTitle>
+                        <CardDescription className="text-sm mt-1">
+                          {position.description}
+                        </CardDescription>
                       </div>
-                      <p className="text-xs text-muted-foreground mt-1 line-clamp-2">
-                        {position.description}
-                      </p>
-                      <div className="flex flex-wrap gap-3 text-[10px] md:text-xs text-muted-foreground mt-2">
-                        <div className="flex items-center gap-1">
-                          <MapPin className="h-3 w-3" />
-                          {position.location}
-                        </div>
-                        <div className="flex items-center gap-1">
-                          <Clock className="h-3 w-3" />
-                          {position.experience}
-                        </div>
+                      <div className="flex flex-wrap gap-1.5">
+                        <Badge variant="secondary" className="text-xs">{position.department}</Badge>
+                        <Badge variant="outline" className="text-xs">{position.type}</Badge>
                       </div>
                     </div>
-                  </div>
-                  
-                  <div className="mt-3 p-2 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-md">
-                    <div className="flex items-center justify-between gap-2">
-                      <div className="flex items-center gap-2">
-                        <Mail className="h-3 w-3 text-primary" />
-                        <span className="text-xs">
-                          <a href="mailto:hr@shiviEnergy.com" className="text-primary hover:underline font-medium">
-                            hr@shiviEnergy.com
+                  </CardHeader>
+                  <CardContent className="pt-0">
+                    <div className="flex flex-wrap gap-3 text-xs md:text-sm text-muted-foreground mb-3">
+                      <div className="flex items-center gap-1">
+                        <MapPin className="h-3 w-3 md:h-4 md:w-4" />
+                        {position.location}
+                      </div>
+                      <div className="flex items-center gap-1">
+                        <Clock className="h-3 w-3 md:h-4 md:w-4" />
+                        {position.experience}
+                      </div>
+                    </div>
+                    
+                    <div className="p-3 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-lg">
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                        <div>
+                          <div className="flex items-center gap-2 text-primary">
+                            <Mail className="h-3 w-3 md:h-4 md:w-4" />
+                            <span className="font-medium text-sm">Ready to Apply?</span>
+                          </div>
+                          <p className="text-xs text-muted-foreground mt-1">
+                            Send resume to{" "}
+                            <a 
+                              href="mailto:hr@shiviEnergy.com" 
+                              className="text-primary hover:underline font-medium"
+                            >
+                              hr@shiviEnergy.com
+                            </a>
+                          </p>
+                        </div>
+                        <Button size="sm" asChild className="w-full sm:w-auto">
+                          <a href="#" target="_blank" rel="noopener noreferrer">
+                            Apply Now
+                            <ExternalLink className="ml-2 h-3 w-3" />
                           </a>
-                        </span>
+                        </Button>
                       </div>
-                      <Button size="sm" asChild className="h-7 text-xs px-3">
-                        <a href="#" target="_blank" rel="noopener noreferrer">
-                          Apply Now
-                          <ExternalLink className="ml-1 h-3 w-3" />
-                        </a>
-                      </Button>
                     </div>
-                  </div>
+                  </CardContent>
                 </Card>
               ))}
             </div>
@@ -214,25 +235,25 @@ const Careers = () => {
         </section>
 
         {/* Benefits */}
-        <section className="py-4 md:py-6">
+        <section className="py-8 md:py-12">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-3">
-              <h2 className="text-lg md:text-xl font-bold">What We Offer</h2>
+            <div className="text-center mb-6">
+              <h2 className="text-2xl md:text-3xl font-bold mb-2">What We Offer</h2>
             </div>
             
-            <div className="grid grid-cols-4 gap-2">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
               {[
-                "Competitive Pay",
-                "Health & Safety",
-                "Training",
-                "Career Growth",
+                "Competitive Compensation",
+                "Health & Safety Programs",
+                "Technical Training",
+                "Career Development",
                 "Field Experience",
                 "Global Projects",
-                "Recognition",
-                "Work-Life Balance"
+                "Performance Recognition",
+                "Work-Life Integration"
               ].map((benefit, index) => (
-                <Card key={index} className="text-center p-2">
-                  <h3 className="font-medium text-primary text-[10px] md:text-xs">{benefit}</h3>
+                <Card key={index} className="text-center p-3 md:p-4">
+                  <h3 className="font-semibold text-primary text-xs md:text-sm">{benefit}</h3>
                 </Card>
               ))}
             </div>

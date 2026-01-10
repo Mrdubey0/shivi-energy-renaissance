@@ -3,7 +3,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MapPin, Clock, Users, Mail, Shield, Target, GraduationCap, Briefcase } from "lucide-react";
+import { MapPin, Clock, Users, Mail, Shield, Target, GraduationCap, Briefcase, ExternalLink } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Careers = () => {
@@ -78,13 +78,13 @@ const Careers = () => {
       <Header />
       <main className="pt-16">
         {/* Hero Section */}
-        <section className="py-20 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">
+        <section className="py-10 md:py-16 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">
           <div className="container mx-auto px-4">
             <div className="text-center max-w-3xl mx-auto">
-              <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                 Join Our Execution Teams
               </h1>
-              <p className="text-xl text-muted-foreground mb-8">
+              <p className="text-base md:text-lg text-muted-foreground">
                 Build your career with disciplined execution teams. We value accountability, 
                 technical expertise, and operational excellence.
               </p>
@@ -93,41 +93,41 @@ const Careers = () => {
         </section>
 
         {/* Company Values */}
-        <section className="py-16">
+        <section className="py-8 md:py-12">
           <div className="container mx-auto px-4">
-            <div className="grid md:grid-cols-3 gap-8 mb-16">
-              <Card className="text-center">
-                <CardHeader>
-                  <Shield className="h-12 w-12 text-primary mx-auto mb-4" />
-                  <CardTitle>Execution Discipline</CardTitle>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
+              <Card className="text-center p-4">
+                <CardHeader className="pb-2 pt-2">
+                  <Shield className="h-8 w-8 md:h-10 md:w-10 text-primary mx-auto mb-2" />
+                  <CardTitle className="text-base md:text-lg">Execution Discipline</CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">
-                    Work within structured protocols that prioritize safety, quality, and measurable outcomes.
+                <CardContent className="pt-0 pb-2">
+                  <p className="text-sm text-muted-foreground">
+                    Work within structured protocols that prioritize safety and quality.
                   </p>
                 </CardContent>
               </Card>
               
-              <Card className="text-center">
-                <CardHeader>
-                  <Target className="h-12 w-12 text-secondary mx-auto mb-4" />
-                  <CardTitle>Accountability</CardTitle>
+              <Card className="text-center p-4">
+                <CardHeader className="pb-2 pt-2">
+                  <Target className="h-8 w-8 md:h-10 md:w-10 text-secondary mx-auto mb-2" />
+                  <CardTitle className="text-base md:text-lg">Accountability</CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">
-                    Take ownership of execution outcomes with clear responsibility and governance.
+                <CardContent className="pt-0 pb-2">
+                  <p className="text-sm text-muted-foreground">
+                    Take ownership of execution outcomes with clear responsibility.
                   </p>
                 </CardContent>
               </Card>
               
-              <Card className="text-center">
-                <CardHeader>
-                  <Users className="h-12 w-12 text-accent mx-auto mb-4" />
-                  <CardTitle>Technical Excellence</CardTitle>
+              <Card className="text-center p-4">
+                <CardHeader className="pb-2 pt-2">
+                  <Users className="h-8 w-8 md:h-10 md:w-10 text-accent mx-auto mb-2" />
+                  <CardTitle className="text-base md:text-lg">Technical Excellence</CardTitle>
                 </CardHeader>
-                <CardContent>
-                  <p className="text-muted-foreground">
-                    Develop expertise with field-validated systems and continuous learning opportunities.
+                <CardContent className="pt-0 pb-2">
+                  <p className="text-sm text-muted-foreground">
+                    Develop expertise with field-validated systems and learning.
                   </p>
                 </CardContent>
               </Card>
@@ -136,11 +136,11 @@ const Careers = () => {
         </section>
 
         {/* Open Positions */}
-        <section className="py-16 bg-muted/30">
+        <section className="py-8 md:py-12 bg-muted/30">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">Open Positions</h2>
-              <p className="text-xl text-muted-foreground mb-8">
+            <div className="text-center mb-6 md:mb-8">
+              <h2 className="text-2xl md:text-3xl font-bold mb-2">Open Positions</h2>
+              <p className="text-sm md:text-base text-muted-foreground mb-4">
                 Explore opportunities to contribute to operational excellence
               </p>
               
@@ -149,10 +149,10 @@ const Careers = () => {
                 <Button
                   variant={activeTab === "freshers" ? "default" : "ghost"}
                   size="sm"
-                  className={`rounded-full px-6 gap-2 ${activeTab === "freshers" ? "" : "text-muted-foreground"}`}
+                  className={`rounded-full px-3 md:px-6 gap-1 md:gap-2 text-xs md:text-sm ${activeTab === "freshers" ? "" : "text-muted-foreground"}`}
                   onClick={() => setActiveTab("freshers")}
                 >
-                  <GraduationCap className="h-4 w-4" />
+                  <GraduationCap className="h-3 w-3 md:h-4 md:w-4" />
                   Freshers
                   <Badge variant="secondary" className="ml-1 text-xs">
                     {fresherPositions.length}
@@ -161,10 +161,10 @@ const Careers = () => {
                 <Button
                   variant={activeTab === "experience" ? "default" : "ghost"}
                   size="sm"
-                  className={`rounded-full px-6 gap-2 ${activeTab === "experience" ? "" : "text-muted-foreground"}`}
+                  className={`rounded-full px-3 md:px-6 gap-1 md:gap-2 text-xs md:text-sm ${activeTab === "experience" ? "" : "text-muted-foreground"}`}
                   onClick={() => setActiveTab("experience")}
                 >
-                  <Briefcase className="h-4 w-4" />
+                  <Briefcase className="h-3 w-3 md:h-4 md:w-4" />
                   Experienced
                   <Badge variant="secondary" className="ml-1 text-xs">
                     {experiencedPositions.length}
@@ -173,49 +173,59 @@ const Careers = () => {
               </div>
             </div>
 
-            <div className="grid gap-6 max-w-4xl mx-auto">
+            <div className="grid gap-4 max-w-4xl mx-auto">
               {currentPositions.map((position, index) => (
                 <Card key={index} className="hover:shadow-lg transition-shadow">
-                  <CardHeader>
-                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+                  <CardHeader className="pb-2 md:pb-4">
+                    <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-2 md:gap-4">
                       <div>
-                        <CardTitle className="text-xl">{position.title}</CardTitle>
-                        <CardDescription className="text-base mt-2">
+                        <CardTitle className="text-base md:text-lg">{position.title}</CardTitle>
+                        <CardDescription className="text-sm mt-1">
                           {position.description}
                         </CardDescription>
                       </div>
-                      <div className="flex flex-wrap gap-2">
-                        <Badge variant="secondary">{position.department}</Badge>
-                        <Badge variant="outline">{position.type}</Badge>
+                      <div className="flex flex-wrap gap-1.5">
+                        <Badge variant="secondary" className="text-xs">{position.department}</Badge>
+                        <Badge variant="outline" className="text-xs">{position.type}</Badge>
                       </div>
                     </div>
                   </CardHeader>
-                  <CardContent>
-                    <div className="flex flex-wrap gap-4 text-sm text-muted-foreground">
+                  <CardContent className="pt-0">
+                    <div className="flex flex-wrap gap-3 text-xs md:text-sm text-muted-foreground mb-3">
                       <div className="flex items-center gap-1">
-                        <MapPin className="h-4 w-4" />
+                        <MapPin className="h-3 w-3 md:h-4 md:w-4" />
                         {position.location}
                       </div>
                       <div className="flex items-center gap-1">
-                        <Clock className="h-4 w-4" />
+                        <Clock className="h-3 w-3 md:h-4 md:w-4" />
                         {position.experience}
                       </div>
                     </div>
                     
-                    <div className="mt-4 p-4 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-lg">
-                      <div className="flex items-center gap-2 text-primary">
-                        <Mail className="h-4 w-4" />
-                        <span className="font-medium">Ready to Apply?</span>
+                    <div className="p-3 bg-gradient-to-r from-primary/10 to-secondary/10 rounded-lg">
+                      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3">
+                        <div>
+                          <div className="flex items-center gap-2 text-primary">
+                            <Mail className="h-3 w-3 md:h-4 md:w-4" />
+                            <span className="font-medium text-sm">Ready to Apply?</span>
+                          </div>
+                          <p className="text-xs text-muted-foreground mt-1">
+                            Send resume to{" "}
+                            <a 
+                              href="mailto:hr@shiviEnergy.com" 
+                              className="text-primary hover:underline font-medium"
+                            >
+                              hr@shiviEnergy.com
+                            </a>
+                          </p>
+                        </div>
+                        <Button size="sm" asChild className="w-full sm:w-auto">
+                          <a href="#" target="_blank" rel="noopener noreferrer">
+                            Apply Now
+                            <ExternalLink className="ml-2 h-3 w-3" />
+                          </a>
+                        </Button>
                       </div>
-                      <p className="text-sm text-muted-foreground mt-1">
-                        Send your resume to{" "}
-                        <a 
-                          href="mailto:hr@shiviEnergy.com" 
-                          className="text-primary hover:underline font-medium"
-                        >
-                          hr@shiviEnergy.com
-                        </a>
-                      </p>
                     </div>
                   </CardContent>
                 </Card>
@@ -225,13 +235,13 @@ const Careers = () => {
         </section>
 
         {/* Benefits */}
-        <section className="py-16">
+        <section className="py-8 md:py-12">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold mb-4">What We Offer</h2>
+            <div className="text-center mb-6">
+              <h2 className="text-2xl md:text-3xl font-bold mb-2">What We Offer</h2>
             </div>
             
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4">
               {[
                 "Competitive Compensation",
                 "Health & Safety Programs",
@@ -242,8 +252,8 @@ const Careers = () => {
                 "Performance Recognition",
                 "Work-Life Integration"
               ].map((benefit, index) => (
-                <Card key={index} className="text-center p-6">
-                  <h3 className="font-semibold text-primary">{benefit}</h3>
+                <Card key={index} className="text-center p-3 md:p-4">
+                  <h3 className="font-semibold text-primary text-xs md:text-sm">{benefit}</h3>
                 </Card>
               ))}
             </div>

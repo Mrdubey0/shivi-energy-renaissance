@@ -53,7 +53,7 @@ const CartSidebar = () => {
                 <ShoppingCart className="h-16 w-16 text-muted-foreground mx-auto mb-4" />
                 <p className="text-muted-foreground">Your cart is empty</p>
                 <p className="text-sm text-muted-foreground mt-2">
-                  Add products to get started
+                  Add products or services to get started
                 </p>
               </div>
             ) : (
@@ -68,35 +68,85 @@ const CartSidebar = () => {
                   </Button>
                 </div>
                 
-                <div className="space-y-3 mb-6">
-                  {cartItems.map((item) => (
-                    <div key={item.id} className="flex items-center gap-3 p-3 bg-muted/50 rounded-lg border">
-                      <img
-                        src={item.image}
-                        alt={item.name}
-                        className="w-16 h-16 object-cover rounded"
-                      />
-                      <div className="flex-1 min-w-0">
-                        <p className="font-medium text-sm truncate">{item.name}</p>
-                        <p className="text-xs text-muted-foreground">{item.categoryName}</p>
-                        {item.operationalEnvelope.pressure && (
-                          <p className="text-xs text-muted-foreground mt-1">
-                            <Gauge className="h-3 w-3 inline mr-1" />
-                            {item.operationalEnvelope.pressure}
-                          </p>
-                        )}
-                      </div>
-                      <Button
-                        variant="ghost"
-                        size="sm"
-                        className="h-8 w-8 p-0 hover:bg-destructive hover:text-destructive-foreground flex-shrink-0"
-                        onClick={() => handleRemove(item.id, item.name)}
-                      >
-                        <X className="h-4 w-4" />
-                      </Button>
+                {/* Products Section */}
+                {cartItems.filter(item => item.category !== 'service').length > 0 && (
+                  <div className="mb-4">
+                    <div className="flex items-center gap-2 mb-3">
+                      <Badge variant="secondary" className="bg-primary/10 text-primary">
+                        Products
+                      </Badge>
+                      <span className="text-xs text-muted-foreground">
+                        ({cartItems.filter(item => item.category !== 'service').length})
+                      </span>
                     </div>
-                  ))}
-                </div>
+                    <div className="space-y-3">
+                      {cartItems.filter(item => item.category !== 'service').map((item) => (
+                        <div key={item.id} className="flex items-center gap-3 p-3 bg-muted/50 rounded-lg border">
+                          <img
+                            src={item.image}
+                            alt={item.name}
+                            className="w-16 h-16 object-cover rounded"
+                          />
+                          <div className="flex-1 min-w-0">
+                            <p className="font-medium text-sm truncate">{item.name}</p>
+                            <p className="text-xs text-muted-foreground">{item.categoryName}</p>
+                            {item.operationalEnvelope.pressure && (
+                              <p className="text-xs text-muted-foreground mt-1">
+                                <Gauge className="h-3 w-3 inline mr-1" />
+                                {item.operationalEnvelope.pressure}
+                              </p>
+                            )}
+                          </div>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-8 w-8 p-0 hover:bg-destructive hover:text-destructive-foreground flex-shrink-0"
+                            onClick={() => handleRemove(item.id, item.name)}
+                          >
+                            <X className="h-4 w-4" />
+                          </Button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
+
+                {/* Services Section */}
+                {cartItems.filter(item => item.category === 'service').length > 0 && (
+                  <div className="mb-4">
+                    <div className="flex items-center gap-2 mb-3">
+                      <Badge variant="secondary" className="bg-accent/10 text-accent-foreground">
+                        Services
+                      </Badge>
+                      <span className="text-xs text-muted-foreground">
+                        ({cartItems.filter(item => item.category === 'service').length})
+                      </span>
+                    </div>
+                    <div className="space-y-3">
+                      {cartItems.filter(item => item.category === 'service').map((item) => (
+                        <div key={item.id} className="flex items-center gap-3 p-3 bg-accent/5 rounded-lg border border-accent/20">
+                          <img
+                            src={item.image}
+                            alt={item.name}
+                            className="w-16 h-16 object-cover rounded"
+                          />
+                          <div className="flex-1 min-w-0">
+                            <p className="font-medium text-sm truncate">{item.name}</p>
+                            <p className="text-xs text-muted-foreground">{item.categoryName}</p>
+                          </div>
+                          <Button
+                            variant="ghost"
+                            size="sm"
+                            className="h-8 w-8 p-0 hover:bg-destructive hover:text-destructive-foreground flex-shrink-0"
+                            onClick={() => handleRemove(item.id, item.name)}
+                          >
+                            <X className="h-4 w-4" />
+                          </Button>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
                 
                 <div className="border-t pt-4 space-y-3">
                   <Button className="w-full" size="lg" onClick={handleCheckout}>

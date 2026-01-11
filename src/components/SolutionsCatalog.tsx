@@ -540,7 +540,8 @@ const SolutionsCatalog = () => {
         description: `${service.name} removed from inquiry.`,
       });
     } else {
-      addToCart(service);
+      // Mark as service for cart separation
+      addToCart({ ...service, category: 'service' });
       toast({
         title: "Added to Inquiry",
         description: `${service.name} added to inquiry.`,

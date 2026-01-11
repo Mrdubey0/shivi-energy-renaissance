@@ -1,5 +1,5 @@
+// Cart Context - provides cart state and actions across the app
 import React, { createContext, useContext, useState, ReactNode } from 'react';
-
 export interface CartProduct {
   id: string;
   name: string;

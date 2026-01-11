@@ -144,7 +144,7 @@ const CartSidebar = () => {
                 {cartItems.filter(item => item.category === 'service').length > 0 && (
                   <div className="mb-4">
                     <div className="flex items-center gap-2 mb-3">
-                      <Badge variant="secondary" className="bg-accent/10 text-accent-foreground">
+                      <Badge variant="secondary" className="bg-secondary text-secondary-foreground">
                         Services
                       </Badge>
                       <span className="text-xs text-muted-foreground">
@@ -153,7 +153,7 @@ const CartSidebar = () => {
                     </div>
                     <div className="space-y-3">
                       {cartItems.filter(item => item.category === 'service').map((item) => (
-                        <div key={item.id} className="flex items-center gap-3 p-3 bg-accent/5 rounded-lg border border-accent/20">
+                        <div key={item.id} className="flex items-center gap-3 p-3 bg-secondary/50 rounded-lg border border-border">
                           <img
                             src={item.image}
                             alt={item.name}

@@ -1,14 +1,14 @@
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ShoppingCart, X, Gauge, Trash2 } from "lucide-react";
+import { ShoppingCart, X, Gauge, Trash2, Plus, Minus } from "lucide-react";
 import { useCart } from "@/context/CartContext";
 import { useState } from "react";
 import QuoteRequestForm from "./QuoteRequestForm";
 import { useToast } from "@/hooks/use-toast";
 
 const CartSidebar = () => {
-  const { cartItems, removeFromCart, clearCart, isCartOpen, setIsCartOpen, cartCount } = useCart();
+  const { cartItems, removeFromCart, updateQuantity, clearCart, isCartOpen, setIsCartOpen, cartCount } = useCart();
   const [showQuoteForm, setShowQuoteForm] = useState(false);
   const { toast } = useToast();
 
@@ -31,6 +31,12 @@ const CartSidebar = () => {
       title: "Removed from Cart",
       description: `${productName} removed from cart.`,
     });
+  };
+
+  const handleQuantityChange = (productId: string, newQuantity: number) => {
+    if (newQuantity >= 1) {
+      updateQuantity(productId, newQuantity);
+    }
   };
 
   return (
@@ -81,30 +87,53 @@ const CartSidebar = () => {
                     </div>
                     <div className="space-y-3">
                       {cartItems.filter(item => item.category !== 'service').map((item) => (
-                        <div key={item.id} className="flex items-center gap-3 p-3 bg-muted/50 rounded-lg border">
-                          <img
-                            src={item.image}
-                            alt={item.name}
-                            className="w-16 h-16 object-cover rounded"
-                          />
-                          <div className="flex-1 min-w-0">
-                            <p className="font-medium text-sm truncate">{item.name}</p>
-                            <p className="text-xs text-muted-foreground">{item.categoryName}</p>
-                            {item.operationalEnvelope.pressure && (
-                              <p className="text-xs text-muted-foreground mt-1">
-                                <Gauge className="h-3 w-3 inline mr-1" />
-                                {item.operationalEnvelope.pressure}
-                              </p>
-                            )}
+                        <div key={item.id} className="flex flex-col gap-2 p-3 bg-muted/50 rounded-lg border">
+                          <div className="flex items-center gap-3">
+                            <img
+                              src={item.image}
+                              alt={item.name}
+                              className="w-14 h-14 object-cover rounded"
+                            />
+                            <div className="flex-1 min-w-0">
+                              <p className="font-medium text-sm truncate">{item.name}</p>
+                              <p className="text-xs text-muted-foreground">{item.categoryName}</p>
+                              {item.operationalEnvelope.pressure && (
+                                <p className="text-xs text-muted-foreground mt-1">
+                                  <Gauge className="h-3 w-3 inline mr-1" />
+                                  {item.operationalEnvelope.pressure}
+                                </p>
+                              )}
+                            </div>
+                            <Button
+                              variant="ghost"
+                              size="sm"
+                              className="h-8 w-8 p-0 hover:bg-destructive hover:text-destructive-foreground flex-shrink-0"
+                              onClick={() => handleRemove(item.id, item.name)}
+                            >
+                              <X className="h-4 w-4" />
+                            </Button>
                           </div>
-                          <Button
-                            variant="ghost"
-                            size="sm"
-                            className="h-8 w-8 p-0 hover:bg-destructive hover:text-destructive-foreground flex-shrink-0"
-                            onClick={() => handleRemove(item.id, item.name)}
-                          >
-                            <X className="h-4 w-4" />
-                          </Button>
+                          <div className="flex items-center justify-end gap-2">
+                            <span className="text-xs text-muted-foreground mr-2">Qty:</span>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="h-7 w-7 p-0"
+                              onClick={() => handleQuantityChange(item.id, item.quantity - 1)}
+                              disabled={item.quantity <= 1}
+                            >
+                              <Minus className="h-3 w-3" />
+                            </Button>
+                            <span className="w-8 text-center text-sm font-medium">{item.quantity}</span>
+                            <Button
+                              variant="outline"
+                              size="sm"
+                              className="h-7 w-7 p-0"
+                              onClick={() => handleQuantityChange(item.id, item.quantity + 1)}
+                            >
+                              <Plus className="h-3 w-3" />
+                            </Button>
+                          </div>
                         </div>
                       ))}
                     </div>

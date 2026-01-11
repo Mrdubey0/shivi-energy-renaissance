@@ -592,36 +592,26 @@ const SolutionsCatalog = () => {
         <ScrollReveal delay={50}>
           <div className="flex flex-col items-center gap-6 mb-12">
             {/* Toggle */}
-            <div className="bg-background rounded-full p-2 border-2 border-primary/20 shadow-xl inline-flex gap-2">
+            <div className="bg-background/80 backdrop-blur-sm rounded-full p-1.5 border border-border shadow-lg inline-flex">
               <Button
-                variant={solutionMode === "products" ? "default" : "outline"}
-                className={`rounded-full px-8 py-4 text-base font-semibold transition-all ${
-                  solutionMode === "products" 
-                    ? "shadow-lg scale-105" 
-                    : "hover:bg-primary/10"
+                variant={solutionMode === "products" ? "default" : "ghost"}
+                className={`rounded-full px-8 py-3 text-base font-medium transition-all ${
+                  solutionMode === "products" ? "shadow-md" : ""
                 }`}
                 onClick={() => handleModeChange("products")}
               >
                 <Package className="h-5 w-5 mr-2" />
                 Products
-                <Badge variant="secondary" className="ml-2 bg-primary/20 text-primary-foreground">
-                  {productCategories.reduce((acc, cat) => acc + cat.products.length, 0)}
-                </Badge>
               </Button>
               <Button
-                variant={solutionMode === "services" ? "default" : "outline"}
-                className={`rounded-full px-8 py-4 text-base font-semibold transition-all ${
-                  solutionMode === "services" 
-                    ? "shadow-lg scale-105" 
-                    : "hover:bg-primary/10"
+                variant={solutionMode === "services" ? "default" : "ghost"}
+                className={`rounded-full px-8 py-3 text-base font-medium transition-all ${
+                  solutionMode === "services" ? "shadow-md" : ""
                 }`}
                 onClick={() => handleModeChange("services")}
               >
                 <Cog className="h-5 w-5 mr-2" />
                 Services
-                <Badge variant="secondary" className="ml-2 bg-primary/20 text-primary-foreground">
-                  {serviceCategories.reduce((acc, cat) => acc + cat.services.length, 0)}
-                </Badge>
               </Button>
             </div>
 

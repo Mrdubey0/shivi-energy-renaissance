@@ -5,7 +5,32 @@ import * as React from "react"
 
 import { cn } from "@/lib/utils"
 
-const Sheet = SheetPrimitive.Root
+// Custom Sheet Root with mobile back button support
+interface SheetProps extends React.ComponentProps<typeof SheetPrimitive.Root> {
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+}
+
+const Sheet = ({ open, onOpenChange, ...props }: SheetProps) => {
+  React.useEffect(() => {
+    if (open) {
+      // Push state when sheet opens
+      window.history.pushState({ sheetOpen: true }, '');
+      
+      const handlePopState = () => {
+        // Close sheet on back button
+        onOpenChange?.(false);
+      };
+      
+      window.addEventListener('popstate', handlePopState);
+      return () => {
+        window.removeEventListener('popstate', handlePopState);
+      };
+    }
+  }, [open, onOpenChange]);
+
+  return <SheetPrimitive.Root open={open} onOpenChange={onOpenChange} {...props} />;
+};
 
 const SheetTrigger = SheetPrimitive.Trigger
 

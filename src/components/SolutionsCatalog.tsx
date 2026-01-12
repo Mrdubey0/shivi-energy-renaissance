@@ -953,7 +953,11 @@ const ProductCard = ({ product, isInCart, onAddToCart, onViewDetails }: ProductC
           <Button
             variant={isInCart ? "default" : "outline"}
             size="sm"
-            className="flex-1"
+            className={`flex-1 transition-all duration-300 ${
+              isInCart 
+                ? "animate-scale-in bg-primary text-primary-foreground scale-[1.02] shadow-md" 
+                : "hover:scale-[1.02]"
+            }`}
             onClick={(e) => {
               e.stopPropagation();
               onAddToCart();
@@ -961,7 +965,7 @@ const ProductCard = ({ product, isInCart, onAddToCart, onViewDetails }: ProductC
           >
             {isInCart ? (
               <>
-                <Check className="h-4 w-4 mr-2" />
+                <Check className="h-4 w-4 mr-2 animate-scale-in" />
                 In Cart
               </>
             ) : (
@@ -1065,7 +1069,11 @@ const ServiceCard = ({ service, isInCart, onAddToInquiry, onViewDetails }: Servi
           <Button
             variant={isInCart ? "default" : "outline"}
             size="sm"
-            className="flex-1"
+            className={`flex-1 transition-all duration-300 ${
+              isInCart 
+                ? "animate-scale-in bg-primary text-primary-foreground scale-[1.02] shadow-md" 
+                : "hover:scale-[1.02]"
+            }`}
             onClick={(e) => {
               e.stopPropagation();
               onAddToInquiry();
@@ -1073,7 +1081,7 @@ const ServiceCard = ({ service, isInCart, onAddToInquiry, onViewDetails }: Servi
           >
             {isInCart ? (
               <>
-                <Check className="h-4 w-4 mr-2" />
+                <Check className="h-4 w-4 mr-2 animate-scale-in" />
                 In Inquiry
               </>
             ) : (

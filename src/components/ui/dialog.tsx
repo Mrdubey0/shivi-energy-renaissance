@@ -4,7 +4,35 @@ import { X } from "lucide-react"
 
 import { cn } from "@/lib/utils"
 
-const Dialog = DialogPrimitive.Root
+// Custom Dialog Root that handles browser back button on mobile
+interface DialogProps extends React.ComponentPropsWithoutRef<typeof DialogPrimitive.Root> {
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
+}
+
+const Dialog = ({ open, onOpenChange, ...props }: DialogProps) => {
+  React.useEffect(() => {
+    if (open) {
+      // Push a state when dialog opens
+      window.history.pushState({ dialogOpen: true }, '');
+      
+      const handlePopState = (event: PopStateEvent) => {
+        // Close dialog on back button
+        if (onOpenChange) {
+          onOpenChange(false);
+        }
+      };
+      
+      window.addEventListener('popstate', handlePopState);
+      
+      return () => {
+        window.removeEventListener('popstate', handlePopState);
+      };
+    }
+  }, [open, onOpenChange]);
+
+  return <DialogPrimitive.Root open={open} onOpenChange={onOpenChange} {...props} />;
+};
 
 const DialogTrigger = DialogPrimitive.Trigger
 

@@ -183,16 +183,12 @@ const ServiceDetailPopup = ({ service, isOpen, onClose, serviceDetails }: Servic
             <Button
               variant={inCart ? "default" : "energy"}
               size="lg"
-              className={`w-full transition-all duration-300 ${
-                inCart 
-                  ? "animate-scale-in scale-[1.02] shadow-lg" 
-                  : "hover:scale-[1.02]"
-              }`}
+              className="w-full"
               onClick={handleAddToInquiry}
             >
               {inCart ? (
                 <>
-                  <Check className="h-5 w-5 mr-2 animate-scale-in" />
+                  <Check className="h-5 w-5 mr-2" />
                   Added to Inquiry
                 </>
               ) : (

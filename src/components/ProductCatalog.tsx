@@ -594,11 +594,7 @@ const ProductCard = ({ product, isInCart, onAddToCart, onViewDetails }: ProductC
           <Button
             variant={isInCart ? "default" : "outline"}
             size="sm"
-            className={`flex-1 transition-all duration-300 ${
-              isInCart 
-                ? "animate-scale-in bg-primary text-primary-foreground scale-[1.02] shadow-md" 
-                : "hover:scale-[1.02]"
-            }`}
+            className="flex-1"
             onClick={(e) => {
               e.stopPropagation();
               onAddToCart();
@@ -606,7 +602,7 @@ const ProductCard = ({ product, isInCart, onAddToCart, onViewDetails }: ProductC
           >
             {isInCart ? (
               <>
-                <Check className="h-4 w-4 mr-2 animate-scale-in" />
+                <Check className="h-4 w-4 mr-2" />
                 In Cart
               </>
             ) : (

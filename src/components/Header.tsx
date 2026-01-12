@@ -21,7 +21,7 @@ const Header = () => {
   const navigationItems = [
     { name: "Home", href: "/" },
     { name: "About Us", href: "/#about" },
-    { name: "Solutions", href: "/#solutions" },
+    { name: "Solutions", href: "/solutions" },
     { name: "Projects", href: "/projects" },
     { name: "CO-MBS", href: "/sustainability" },
     { name: "Blog", href: "/blog" },

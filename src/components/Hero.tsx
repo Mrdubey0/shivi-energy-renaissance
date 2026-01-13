@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Activity, Shield, Clock } from "lucide-react";
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import heroBg from "@/assets/hero-bg.jpg";
 import TypewriterText from "./TypewriterText";
 import ScrollReveal from "./ScrollReveal";
@@ -13,6 +14,7 @@ const slideshowImages = [
 ];
 
 const Hero = () => {
+  const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
   const [isMobile, setIsMobile] = useState(false);
 
@@ -136,14 +138,9 @@ const Hero = () => {
                 variant="hero" 
                 size="xl" 
                 className="group"
-                onClick={() => {
-                  const section = document.getElementById('about');
-                  if (section) {
-                    section.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }}
+                onClick={() => navigate('/products')}
               >
-                Learn About Us
+                Explore Our Products
                 <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Button>
             </div>

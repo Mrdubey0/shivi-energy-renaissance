@@ -606,19 +606,19 @@ const SolutionsCatalog = () => {
             </div>
             
             {/* Toggle */}
-            <div className="relative bg-gradient-to-r from-primary/10 via-background to-primary/10 rounded-2xl p-2 border-2 border-primary/30 shadow-xl inline-flex hover:border-primary/50 transition-all duration-300">
+            <div className="relative bg-card rounded-2xl p-2 border-2 border-border shadow-xl inline-flex hover:shadow-2xl transition-all duration-300">
               {/* Animated background indicator */}
               <div 
-                className={`absolute top-2 bottom-2 w-[calc(50%-4px)] bg-gradient-to-r from-primary to-primary/80 rounded-xl shadow-lg transition-all duration-300 ease-out ${
+                className={`absolute top-2 bottom-2 w-[calc(50%-4px)] bg-primary rounded-xl shadow-lg transition-all duration-300 ease-out ${
                   solutionMode === "products" ? "left-2" : "left-[calc(50%+2px)]"
                 }`}
               />
               <Button
                 variant="ghost"
-                className={`relative z-10 rounded-xl px-8 md:px-12 py-4 text-base md:text-lg font-semibold transition-all duration-300 ${
+                className={`relative z-10 rounded-xl px-8 md:px-12 py-4 text-base md:text-lg font-semibold transition-all duration-300 hover:bg-transparent ${
                   solutionMode === "products" 
-                    ? "text-primary-foreground" 
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "text-white" 
+                    : "text-foreground hover:text-primary"
                 }`}
                 onClick={() => handleModeChange("products")}
               >
@@ -626,7 +626,7 @@ const SolutionsCatalog = () => {
                 Products
                 <span className={`ml-2 text-xs px-2 py-0.5 rounded-full transition-all ${
                   solutionMode === "products" 
-                    ? "bg-white/20 text-primary-foreground" 
+                    ? "bg-white/25 text-white" 
                     : "bg-muted text-muted-foreground"
                 }`}>
                   {productCategories.reduce((acc, cat) => acc + cat.products.length, 0)}
@@ -634,10 +634,10 @@ const SolutionsCatalog = () => {
               </Button>
               <Button
                 variant="ghost"
-                className={`relative z-10 rounded-xl px-8 md:px-12 py-4 text-base md:text-lg font-semibold transition-all duration-300 ${
+                className={`relative z-10 rounded-xl px-8 md:px-12 py-4 text-base md:text-lg font-semibold transition-all duration-300 hover:bg-transparent ${
                   solutionMode === "services" 
-                    ? "text-primary-foreground" 
-                    : "text-muted-foreground hover:text-foreground"
+                    ? "text-white" 
+                    : "text-foreground hover:text-primary"
                 }`}
                 onClick={() => handleModeChange("services")}
               >
@@ -645,7 +645,7 @@ const SolutionsCatalog = () => {
                 Services
                 <span className={`ml-2 text-xs px-2 py-0.5 rounded-full transition-all ${
                   solutionMode === "services" 
-                    ? "bg-white/20 text-primary-foreground" 
+                    ? "bg-white/25 text-white" 
                     : "bg-muted text-muted-foreground"
                 }`}>
                   {serviceCategories.reduce((acc, cat) => acc + cat.services.length, 0)}

@@ -1,5 +1,5 @@
 // Cart Context - provides cart state and actions across the app
-import React, { createContext, useContext, useState, ReactNode } from 'react';
+import React, { createContext, useContext, useState, ReactNode, useCallback } from 'react';
 export interface CartProduct {
   id: string;
   name: string;
@@ -33,6 +33,7 @@ interface CartContextType {
   cartCount: number;
   isCartOpen: boolean;
   setIsCartOpen: (open: boolean) => void;
+  isAnimating: boolean;
 }
 
 const CartContext = createContext<CartContextType | undefined>(undefined);
@@ -40,12 +41,16 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 export const CartProvider = ({ children }: { children: ReactNode }) => {
   const [cartItems, setCartItems] = useState<CartItem[]>([]);
   const [isCartOpen, setIsCartOpen] = useState(false);
+  const [isAnimating, setIsAnimating] = useState(false);
 
-  const addToCart = (product: CartProduct) => {
+  const addToCart = useCallback((product: CartProduct) => {
     if (!cartItems.find(item => item.id === product.id)) {
       setCartItems(prev => [...prev, { ...product, quantity: 1 }]);
+      // Trigger animation
+      setIsAnimating(true);
+      setTimeout(() => setIsAnimating(false), 600);
     }
-  };
+  }, [cartItems]);
 
   const removeFromCart = (productId: string) => {
     setCartItems(prev => prev.filter(item => item.id !== productId));
@@ -82,6 +87,7 @@ export const CartProvider = ({ children }: { children: ReactNode }) => {
         cartCount,
         isCartOpen,
         setIsCartOpen,
+        isAnimating,
       }}
     >
       {children}

@@ -8,7 +8,7 @@ import { useCart } from "@/context/CartContext";
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const { cartCount, setIsCartOpen } = useCart();
+  const { cartCount, setIsCartOpen, isAnimating } = useCart();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -82,13 +82,13 @@ const Header = () => {
           <div className="hidden lg:flex items-center">
             <Button
               variant="outline"
-              className="relative flex items-center gap-2 border-blue-500"
+              className={`relative flex items-center gap-2 border-blue-500 transition-transform duration-300 ${isAnimating ? 'scale-110' : ''}`}
               onClick={() => setIsCartOpen(true)}
             >
-              <ClipboardList className="h-5 w-5" />
+              <ClipboardList className={`h-5 w-5 transition-transform duration-300 ${isAnimating ? 'rotate-12' : ''}`} />
               <span className="font-medium">Inquiries</span>
               {cartCount > 0 && (
-                <Badge className="absolute -top-2 -right-2 bg-blue-500 text-white min-w-[1.25rem] h-5 text-xs px-1">
+                <Badge className="absolute -top-2 -right-2 bg-blue-500 text-white min-w-[1.25rem] h-5 text-xs px-1 animate-scale-in">
                   {cartCount}
                 </Badge>
               )}
@@ -100,12 +100,12 @@ const Header = () => {
             <Button
               variant="ghost"
               size="icon"
-              className="relative"
+              className={`relative transition-transform duration-300 ${isAnimating ? 'scale-110' : ''}`}
               onClick={() => setIsCartOpen(true)}
             >
-              <ClipboardList className="h-5 w-5" />
+              <ClipboardList className={`h-5 w-5 transition-transform duration-300 ${isAnimating ? 'rotate-12' : ''}`} />
               {cartCount > 0 && (
-                <Badge className="absolute -top-2 -right-2 bg-blue-500 text-white min-w-[1.25rem] h-5 text-xs px-1">
+                <Badge className="absolute -top-2 -right-2 bg-blue-500 text-white min-w-[1.25rem] h-5 text-xs px-1 animate-scale-in">
                   {cartCount}
                 </Badge>
               )}

@@ -591,27 +591,65 @@ const SolutionsCatalog = () => {
         {/* Toggle Button and Search */}
         <ScrollReveal delay={50}>
           <div className="flex flex-col items-center gap-6 mb-12">
+            {/* Toggle Label */}
+            <div className="text-center">
+              <p className="text-sm font-medium text-muted-foreground mb-2 uppercase tracking-wider">
+                Browse by Category
+              </p>
+              <div className="flex items-center justify-center gap-2 mb-3">
+                <div className="h-px w-12 bg-gradient-to-r from-transparent to-primary/50"></div>
+                <span className="text-xs text-primary font-semibold bg-primary/10 px-3 py-1 rounded-full">
+                  Click to Switch
+                </span>
+                <div className="h-px w-12 bg-gradient-to-l from-transparent to-primary/50"></div>
+              </div>
+            </div>
+            
             {/* Toggle */}
-            <div className="bg-background/80 backdrop-blur-sm rounded-full p-1.5 border border-border shadow-lg inline-flex">
+            <div className="relative bg-gradient-to-r from-primary/10 via-background to-primary/10 rounded-2xl p-2 border-2 border-primary/30 shadow-xl inline-flex hover:border-primary/50 transition-all duration-300">
+              {/* Animated background indicator */}
+              <div 
+                className={`absolute top-2 bottom-2 w-[calc(50%-4px)] bg-gradient-to-r from-primary to-primary/80 rounded-xl shadow-lg transition-all duration-300 ease-out ${
+                  solutionMode === "products" ? "left-2" : "left-[calc(50%+2px)]"
+                }`}
+              />
               <Button
-                variant={solutionMode === "products" ? "default" : "ghost"}
-                className={`rounded-full px-8 py-3 text-base font-medium transition-all ${
-                  solutionMode === "products" ? "shadow-md" : ""
+                variant="ghost"
+                className={`relative z-10 rounded-xl px-8 md:px-12 py-4 text-base md:text-lg font-semibold transition-all duration-300 ${
+                  solutionMode === "products" 
+                    ? "text-primary-foreground" 
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
                 onClick={() => handleModeChange("products")}
               >
-                <Package className="h-5 w-5 mr-2" />
+                <Package className="h-5 w-5 md:h-6 md:w-6 mr-2" />
                 Products
+                <span className={`ml-2 text-xs px-2 py-0.5 rounded-full transition-all ${
+                  solutionMode === "products" 
+                    ? "bg-white/20 text-primary-foreground" 
+                    : "bg-muted text-muted-foreground"
+                }`}>
+                  {productCategories.reduce((acc, cat) => acc + cat.products.length, 0)}
+                </span>
               </Button>
               <Button
-                variant={solutionMode === "services" ? "default" : "ghost"}
-                className={`rounded-full px-8 py-3 text-base font-medium transition-all ${
-                  solutionMode === "services" ? "shadow-md" : ""
+                variant="ghost"
+                className={`relative z-10 rounded-xl px-8 md:px-12 py-4 text-base md:text-lg font-semibold transition-all duration-300 ${
+                  solutionMode === "services" 
+                    ? "text-primary-foreground" 
+                    : "text-muted-foreground hover:text-foreground"
                 }`}
                 onClick={() => handleModeChange("services")}
               >
-                <Cog className="h-5 w-5 mr-2" />
+                <Cog className="h-5 w-5 md:h-6 md:w-6 mr-2" />
                 Services
+                <span className={`ml-2 text-xs px-2 py-0.5 rounded-full transition-all ${
+                  solutionMode === "services" 
+                    ? "bg-white/20 text-primary-foreground" 
+                    : "bg-muted text-muted-foreground"
+                }`}>
+                  {serviceCategories.reduce((acc, cat) => acc + cat.services.length, 0)}
+                </span>
               </Button>
             </div>
 

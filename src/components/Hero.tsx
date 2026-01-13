@@ -138,9 +138,9 @@ const Hero = () => {
                 variant="hero" 
                 size="xl" 
                 className="group"
-                onClick={() => navigate('/products')}
+                onClick={() => navigate('/solutions')}
               >
-                Explore Our Products
+                Explore Our Solutions
                 <ArrowRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1" />
               </Button>
             </div>

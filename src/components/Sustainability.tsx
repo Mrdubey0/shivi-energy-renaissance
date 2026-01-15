@@ -104,7 +104,7 @@ const Sustainability = () => {
       </div>
       <div className="container mx-auto px-4 relative z-10">
         {/* Hero Section */}
-        <div className="text-center mb-16 pt-16">
+        <div className="text-center mb-16">
           <div className="inline-flex items-center px-6 py-3 rounded-full bg-primary/10 border border-primary/20 mb-6">
             <Shield className="h-5 w-5 text-primary mr-2" />
             <span className="text-sm font-medium text-primary">ESG & Operational Assurance</span>

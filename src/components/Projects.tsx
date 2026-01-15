@@ -178,7 +178,7 @@ const Projects = () => {
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <ScrollReveal>
-          <div className="text-center mb-8 md:mb-16 pt-16">
+          <div className="text-center mb-8 md:mb-16">
             <div className="inline-flex items-center px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-primary/10 border border-primary/20 mb-4 md:mb-6">
               <span className="text-xs md:text-sm font-medium text-primary">Execution History</span>
             </div>

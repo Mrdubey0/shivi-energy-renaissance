@@ -23,9 +23,10 @@ import {
   Lock,
   AlertTriangle,
   TrendingUp,
-  CheckCircle
+  CheckCircle,
+  ChevronUp
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useToast } from "@/hooks/use-toast";
 import ScrollReveal from "./ScrollReveal";
 import { CartProduct, useCart } from "@/context/CartContext";
@@ -556,8 +557,24 @@ const SolutionsCatalog = () => {
     setSearchTerm("");
   };
 
+  // Scroll to top functionality
+  const searchSectionRef = useRef<HTMLDivElement>(null);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 400);
+    };
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToSearch = () => {
+    searchSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
   return (
-    <section id="solutions" className="py-24 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-blue-950">
+    <section id="solutions" className="py-24 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-blue-950 relative">
       <div className="container mx-auto px-4">
         {/* Header */}
         <ScrollReveal>
@@ -588,43 +605,55 @@ const SolutionsCatalog = () => {
           </div>
         </ScrollReveal>
 
+        {/* Scroll to Top Arrow */}
+        {showScrollTop && (
+          <button
+            onClick={scrollToSearch}
+            className="fixed bottom-24 right-4 md:bottom-8 md:right-8 z-50 bg-primary/80 hover:bg-primary text-white p-3 rounded-full shadow-lg backdrop-blur-sm transition-all duration-300 hover:scale-110"
+            aria-label="Scroll to search"
+          >
+            <ChevronUp className="h-6 w-6" />
+          </button>
+        )}
+
         {/* Toggle Button and Search */}
         <ScrollReveal delay={50}>
-          <div className="flex flex-col items-center gap-6 mb-12">
+          <div ref={searchSectionRef} className="flex flex-col items-center gap-4 md:gap-6 mb-12">
             {/* Toggle Label */}
             <div className="text-center">
               <p className="text-sm font-medium text-muted-foreground mb-2 uppercase tracking-wider">
                 Browse by Category
               </p>
               <div className="flex items-center justify-center gap-2 mb-3">
-                <div className="h-px w-12 bg-gradient-to-r from-transparent to-primary/50"></div>
-                <span className="text-xs text-primary font-semibold bg-primary/10 px-3 py-1 rounded-full">
+                <div className="h-px w-8 md:w-12 bg-gradient-to-r from-transparent to-primary/50"></div>
+                <span className="text-xs text-primary font-semibold bg-primary/10 px-2 md:px-3 py-1 rounded-full">
                   Click to Switch
                 </span>
-                <div className="h-px w-12 bg-gradient-to-l from-transparent to-primary/50"></div>
+                <div className="h-px w-8 md:w-12 bg-gradient-to-l from-transparent to-primary/50"></div>
               </div>
             </div>
             
-            {/* Toggle */}
-            <div className="relative bg-card rounded-2xl p-2 border-2 border-border shadow-xl inline-flex hover:shadow-2xl transition-all duration-300">
+            {/* Toggle - Mobile Optimized */}
+            <div className="relative bg-card rounded-xl md:rounded-2xl p-1.5 md:p-2 border-2 border-border shadow-xl inline-flex hover:shadow-2xl transition-all duration-300 w-[calc(100%-2rem)] max-w-md md:w-auto">
               {/* Animated background indicator */}
               <div 
-                className={`absolute top-2 bottom-2 w-[calc(50%-4px)] bg-primary rounded-xl shadow-lg transition-all duration-300 ease-out ${
-                  solutionMode === "products" ? "left-2" : "left-[calc(50%+2px)]"
+                className={`absolute top-1.5 md:top-2 bottom-1.5 md:bottom-2 w-[calc(50%-6px)] md:w-[calc(50%-4px)] bg-primary rounded-lg md:rounded-xl shadow-lg transition-all duration-300 ease-out ${
+                  solutionMode === "products" ? "left-1.5 md:left-2" : "left-[calc(50%+3px)] md:left-[calc(50%+2px)]"
                 }`}
               />
               <Button
                 variant="ghost"
-                className={`relative z-10 rounded-xl px-8 md:px-12 py-4 text-base md:text-lg font-semibold transition-all duration-300 hover:bg-transparent ${
+                className={`relative z-10 rounded-lg md:rounded-xl px-3 md:px-12 py-3 md:py-4 text-sm md:text-lg font-semibold transition-all duration-300 hover:bg-transparent flex-1 md:flex-none ${
                   solutionMode === "products" 
                     ? "text-white" 
                     : "text-foreground hover:text-primary"
                 }`}
                 onClick={() => handleModeChange("products")}
               >
-                <Package className="h-5 w-5 md:h-6 md:w-6 mr-2" />
-                Products
-                <span className={`ml-2 text-xs px-2 py-0.5 rounded-full transition-all ${
+                <Package className="h-4 w-4 md:h-6 md:w-6 mr-1.5 md:mr-2" />
+                <span className="hidden sm:inline">Products</span>
+                <span className="sm:hidden">Products</span>
+                <span className={`ml-1.5 md:ml-2 text-[10px] md:text-xs px-1.5 md:px-2 py-0.5 rounded-full transition-all ${
                   solutionMode === "products" 
                     ? "bg-white/25 text-white" 
                     : "bg-muted text-muted-foreground"
@@ -634,16 +663,17 @@ const SolutionsCatalog = () => {
               </Button>
               <Button
                 variant="ghost"
-                className={`relative z-10 rounded-xl px-8 md:px-12 py-4 text-base md:text-lg font-semibold transition-all duration-300 hover:bg-transparent ${
+                className={`relative z-10 rounded-lg md:rounded-xl px-3 md:px-12 py-3 md:py-4 text-sm md:text-lg font-semibold transition-all duration-300 hover:bg-transparent flex-1 md:flex-none ${
                   solutionMode === "services" 
                     ? "text-white" 
                     : "text-foreground hover:text-primary"
                 }`}
                 onClick={() => handleModeChange("services")}
               >
-                <Cog className="h-5 w-5 md:h-6 md:w-6 mr-2" />
-                Services
-                <span className={`ml-2 text-xs px-2 py-0.5 rounded-full transition-all ${
+                <Cog className="h-4 w-4 md:h-6 md:w-6 mr-1.5 md:mr-2" />
+                <span className="hidden sm:inline">Services</span>
+                <span className="sm:hidden">Services</span>
+                <span className={`ml-1.5 md:ml-2 text-[10px] md:text-xs px-1.5 md:px-2 py-0.5 rounded-full transition-all ${
                   solutionMode === "services" 
                     ? "bg-white/25 text-white" 
                     : "bg-muted text-muted-foreground"

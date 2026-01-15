@@ -78,7 +78,7 @@ const Careers = () => {
       <Header />
       <main className="pt-16">
         {/* Hero Section */}
-        <section className="py-24 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-blue-950 relative">
+        <section className="py-16 md:py-20 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-blue-950 relative">
           {/* Background texture pattern */}
           <div className="absolute inset-0 opacity-5">
             <div className="absolute inset-0" style={{
@@ -99,7 +99,7 @@ const Careers = () => {
         </section>
 
         {/* Company Values */}
-        <section className="py-8 md:py-12">
+        <section className="py-10 md:py-14">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
               <Card className="text-center p-4">
@@ -142,7 +142,7 @@ const Careers = () => {
         </section>
 
         {/* Open Positions */}
-        <section className="py-8 md:py-12 bg-muted/30">
+        <section className="py-10 md:py-14 bg-muted/30">
           <div className="container mx-auto px-4">
             <div className="text-center mb-6 md:mb-8">
               <h2 className="text-2xl md:text-3xl font-bold mb-2">Open Positions</h2>
@@ -243,7 +243,7 @@ const Careers = () => {
         {/* Benefits */}
         <section className="py-8 md:py-12">
           <div className="container mx-auto px-4">
-            <div className="text-center mb-6">
+            <div className="text-center mb-10 md:mb-14">
               <h2 className="text-2xl md:text-3xl font-bold mb-2">What We Offer</h2>
             </div>
             

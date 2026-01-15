@@ -168,7 +168,7 @@ const Projects = () => {
   });
 
   return (
-    <section id="projects" className="py-24 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-blue-950 relative">
+    <section id="projects" className="py-16 md:py-20 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-blue-950 relative">
       {/* Background texture pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -178,7 +178,7 @@ const Projects = () => {
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <ScrollReveal>
-          <div className="text-center mb-8 md:mb-16">
+          <div className="text-center mb-10 md:mb-14">
             <div className="inline-flex items-center px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-primary/10 border border-primary/20 mb-4 md:mb-6">
               <span className="text-xs md:text-sm font-medium text-primary">Execution History</span>
             </div>

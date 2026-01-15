@@ -584,7 +584,7 @@ const SolutionsCatalog = () => {
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <ScrollReveal>
-          <div className="text-center mb-16 pt-16">
+          <div className="text-center mb-16">
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
               Solutions Catalog
             </h1>

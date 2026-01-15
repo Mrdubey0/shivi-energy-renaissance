@@ -574,7 +574,7 @@ const SolutionsCatalog = () => {
   };
 
   return (
-    <section id="solutions" className="py-24 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-blue-950 relative">
+    <section id="solutions" className="py-16 md:py-20 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-blue-950 relative">
       {/* Background texture pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -584,7 +584,7 @@ const SolutionsCatalog = () => {
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <ScrollReveal>
-          <div className="text-center mb-16">
+          <div className="text-center mb-10 md:mb-14">
             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
               Solutions Catalog
             </h1>

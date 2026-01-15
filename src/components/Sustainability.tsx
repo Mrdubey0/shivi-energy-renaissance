@@ -95,7 +95,7 @@ const Sustainability = () => {
   ];
 
   return (
-    <section id="assurance" className="py-24 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-blue-950 relative">
+    <section id="assurance" className="py-16 md:py-20 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-blue-950 relative">
       {/* Background texture pattern */}
       <div className="absolute inset-0 opacity-5">
         <div className="absolute inset-0" style={{
@@ -104,7 +104,7 @@ const Sustainability = () => {
       </div>
       <div className="container mx-auto px-4 relative z-10">
         {/* Hero Section */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-10 md:mb-14">
           <div className="inline-flex items-center px-6 py-3 rounded-full bg-primary/10 border border-primary/20 mb-6">
             <Shield className="h-5 w-5 text-primary mr-2" />
             <span className="text-sm font-medium text-primary">ESG & Operational Assurance</span>
@@ -125,7 +125,7 @@ const Sustainability = () => {
         </div>
 
         {/* LOCA Framework Dashboard */}
-        <div className="mb-20">
+        <div className="mb-12 md:mb-16">
           <div className="text-center mb-12">
             <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
               LOCA: Lifecycle Operational Assessment
@@ -177,7 +177,7 @@ const Sustainability = () => {
         </div>
 
         {/* Assurance Metrics Dashboard */}
-        <div className="mb-20">
+        <div className="mb-12 md:mb-16">
           <div className="text-center mb-12">
             <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
               Current Assurance Status

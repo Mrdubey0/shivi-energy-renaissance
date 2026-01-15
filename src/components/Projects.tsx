@@ -168,16 +168,22 @@ const Projects = () => {
   });
 
   return (
-    <section id="projects" className="py-12 md:py-24 bg-muted/30">
-      <div className="container mx-auto px-4">
+    <section id="projects" className="py-24 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-blue-950 relative">
+      {/* Background texture pattern */}
+      <div className="absolute inset-0 opacity-5">
+        <div className="absolute inset-0" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+        }} />
+      </div>
+      <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <ScrollReveal>
-          <div className="text-center mb-8 md:mb-16">
+          <div className="text-center mb-8 md:mb-16 pt-16">
             <div className="inline-flex items-center px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-primary/10 border border-primary/20 mb-4 md:mb-6">
               <span className="text-xs md:text-sm font-medium text-primary">Execution History</span>
             </div>
             
-            <h2 className="text-2xl md:text-5xl font-bold text-foreground mb-3 md:mb-6">
+            <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-3 md:mb-6">
               Execution <span className="text-primary">Outcomes</span>
             </h2>
             

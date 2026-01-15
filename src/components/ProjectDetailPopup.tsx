@@ -61,7 +61,7 @@ const ProjectDetailPopup = ({ project, isOpen, onClose }: ProjectDetailPopupProp
             </Badge>
           </div>
           <Button
-            variant="ghost"
+            variant="secondary"
             size="icon"
             className="absolute top-4 right-4 bg-background/90 hover:bg-background shadow-md"
             onClick={onClose}

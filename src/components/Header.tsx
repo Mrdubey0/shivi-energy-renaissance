@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useCart } from "@/context/CartContext";
 
+
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -23,7 +24,7 @@ const Header = () => {
     { name: "About Us", href: "/#about" },
     { name: "Solutions", href: "/solutions" },
     { name: "Projects", href: "/projects" },
-    { name: "CO-MBS", href: "/sustainability" },
+    { name: "LOCA-LUCAS", href: "/sustainability" },
     { name: "Blog", href: "/blog" },
     { name: "Careers", href: "/careers" }
   ];
@@ -32,13 +33,15 @@ const Header = () => {
     <header className={`sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border transition-shadow duration-300 ${isScrolled ? 'shadow-lg shadow-foreground/5' : ''}`}>
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
+          
+
           {/* Logo */}
-          <div className="flex items-center">
-            <div className="text-2xl font-bold text-primary">
+          <Link to="/" className="flex items-center cursor-pointer">
+            <div className="text-2xl font-bold">
               <span className="text-primary">SHIVI</span>{" "}
               <span className="text-secondary">ENERGY</span>
             </div>
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-1">

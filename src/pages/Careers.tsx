@@ -3,7 +3,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { MapPin, Clock, Users, Mail, Shield, Target, GraduationCap, Briefcase, ExternalLink } from "lucide-react";
+import { MapPin, Clock, Users, Mail, Shield, Target, GraduationCap, Briefcase, ExternalLink, ShipWheel, NotebookPen } from "lucide-react";
 import { Button } from "@/components/ui/button";
 
 const Careers = () => {
@@ -76,7 +76,7 @@ const Careers = () => {
   return (
     <div className="min-h-screen bg-background animate-zoom-in">
       <Header />
-      <main className="pt-16">
+      <main className="flex-grow">
         {/* Hero Section */}
         <section className="py-16 md:py-20 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-blue-950 relative">
           {/* Background texture pattern */}
@@ -85,8 +85,15 @@ const Careers = () => {
               backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
             }} />
           </div>
+          
           <div className="container mx-auto px-4 relative z-10">
             <div className="text-center max-w-3xl mx-auto">
+              <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary border border-primary-glow/30 backdrop-blur-sm mb-6">
+              <NotebookPen className="h-4 w-4 mr-2 text-secondary" />
+              <span className="text-sm font-medium text-primary-foreground">
+                Shape Your Future
+              </span>
+            </div>
               <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                 Join Our Execution Teams
               </h1>
@@ -97,9 +104,12 @@ const Careers = () => {
             </div>
           </div>
         </section>
+         <div className="text-center mb-10 md:mb-14">
+              <h2 className="text-2xl md:text-3xl font-bold mb-2 pt-12 md:pt-12 ">What We Are Looking For</h2>
+            </div>
 
         {/* Company Values */}
-        <section className="py-10 md:py-14">
+        <section className="py-2 md:py-2">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
               <Card className="text-center p-4">
@@ -227,7 +237,7 @@ const Careers = () => {
                         </div>
                         <Button size="sm" asChild className="w-full sm:w-auto">
                           <a href="#" target="_blank" rel="noopener noreferrer">
-                            Apply Now
+                            Easy Apply
                             <ExternalLink className="ml-2 h-3 w-3" />
                           </a>
                         </Button>

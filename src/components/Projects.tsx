@@ -417,7 +417,7 @@ const Projects = () => {
                     
                     <Button 
                       variant="outline" 
-                      className="w-fit hover:bg-primary hover:text-primary-foreground transition-colors"
+                      className="w-fit bg-secondary hover:bg-primary hover:text-primary-foreground transition-colors"
                       onClick={() => handleViewDetails(project)}
                     >
                       <Eye className="h-4 w-4 mr-2" />
@@ -432,7 +432,7 @@ const Projects = () => {
           )}
         </div>
 
-        {/* View All Projects CTA */}
+        {/* View All Projects CTA
         <ScrollReveal>
           <div className="text-center mt-16">
             <Button variant="energy" size="lg">
@@ -440,7 +440,7 @@ const Projects = () => {
               <ArrowRight className="ml-2 h-4 w-4" />
             </Button>
           </div>
-        </ScrollReveal>
+        </ScrollReveal> */}
 
         {/* Project Detail Popup */}
         <ProjectDetailPopup

@@ -1,5 +1,6 @@
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 import { 
   Cog, 
   Shield, 
@@ -18,6 +19,7 @@ import ScrollReveal from "./ScrollReveal";
 
 const Services = () => {
   const [isQuoteFormOpen, setIsQuoteFormOpen] = useState(false);
+   const navigate = useNavigate();
 
   const services = [
     {
@@ -200,8 +202,10 @@ const Services = () => {
                 variant="secondary" 
                 size="lg" 
                 className="bg-white text-primary hover:bg-white/90"
+                onClick={() => navigate('/projects')}
               >
                 View Execution History
+                
               </Button>
             </div>
           </div>

@@ -24,7 +24,10 @@ import {
   AlertTriangle,
   TrendingUp,
   CheckCircle,
-  ChevronUp
+  ChevronUp,
+  ShipWheel,
+  ShoppingBag,
+  ServerCog
 } from "lucide-react";
 import { useState, useEffect, useRef } from "react";
 import { useToast } from "@/hooks/use-toast";
@@ -584,10 +587,17 @@ const SolutionsCatalog = () => {
       <div className="container mx-auto px-4 relative z-10">
         {/* Header */}
         <ScrollReveal>
+          
           <div className="text-center mb-10 md:mb-14">
-            <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
-              Solutions Catalog
-            </h1>
+             <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary border border-primary-glow/30 backdrop-blur-sm mb-6">
+              <ServerCog className="h-4 w-4 mr-2 text-secondary" />
+              <span className="text-sm font-medium text-primary-foreground">
+                Operations Control Platform
+              </span>
+            </div>
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-[#020024] via-[#090979] to-[#00d4ff] bg-clip-text text-transparent pb-10">
+                Solutions Catalog
+              </h1>
             <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-8">
               Field-validated equipment, systems, and services with defined operational envelopes. 
               All solutions require technical evaluation for application compatibility.
@@ -896,7 +906,7 @@ const SolutionsCatalog = () => {
         )}
 
         {/* CTA Section */}
-        <ScrollReveal>
+        {/* <ScrollReveal>
           <div className="mt-20 text-center">
             <div className="bg-gradient-to-br from-primary/10 to-secondary/10 rounded-3xl p-12 border border-primary/20 shadow-xl backdrop-blur-sm">
               <h3 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
@@ -917,7 +927,7 @@ const SolutionsCatalog = () => {
               </div>
             </div>
           </div>
-        </ScrollReveal>
+        </ScrollReveal> */}
       </div>
 
       {/* Product Detail Popup */}

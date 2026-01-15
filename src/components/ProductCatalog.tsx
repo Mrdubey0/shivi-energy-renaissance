@@ -471,7 +471,7 @@ const ProductCatalog = () => {
         )}
 
         {/* CTA Section */}
-        <ScrollReveal>
+        {/* <ScrollReveal>
           <div className="mt-20 text-center">
             <div className="bg-gradient-to-br from-primary/10 to-secondary/10 rounded-3xl p-12 border border-primary/20 shadow-xl backdrop-blur-sm">
               <h3 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
@@ -492,7 +492,7 @@ const ProductCatalog = () => {
               </div>
             </div>
           </div>
-        </ScrollReveal>
+        </ScrollReveal> */}
       </div>
 
       {/* Product Detail Popup */}

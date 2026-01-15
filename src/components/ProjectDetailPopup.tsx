@@ -43,7 +43,7 @@ const ProjectDetailPopup = ({ project, isOpen, onClose }: ProjectDetailPopupProp
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto p-0">
+      <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto p-0 [&>button]:hidden">
         {/* Hero Image */}
         <div className="relative h-48 md:h-64 w-full">
           <img
@@ -60,6 +60,14 @@ const ProjectDetailPopup = ({ project, isOpen, onClose }: ProjectDetailPopupProp
               {project.status}
             </Badge>
           </div>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="absolute top-4 right-4 bg-background/90 hover:bg-background shadow-md"
+            onClick={onClose}
+          >
+            <X className="h-4 w-4" />
+          </Button>
         </div>
 
         <div className="p-6 pt-0 -mt-12 relative z-10">

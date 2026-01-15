@@ -78,13 +78,19 @@ const Careers = () => {
       <Header />
       <main className="pt-16">
         {/* Hero Section */}
-        <section className="py-10 md:py-16 bg-gradient-to-br from-primary/5 via-secondary/5 to-accent/5">
-          <div className="container mx-auto px-4">
+        <section className="py-24 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-blue-950 relative">
+          {/* Background texture pattern */}
+          <div className="absolute inset-0 opacity-5">
+            <div className="absolute inset-0" style={{
+              backgroundImage: `url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23000000' fill-opacity='0.4'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")`,
+            }} />
+          </div>
+          <div className="container mx-auto px-4 relative z-10">
             <div className="text-center max-w-3xl mx-auto">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
+              <h1 className="text-4xl md:text-5xl font-bold mb-6 bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
                 Join Our Execution Teams
               </h1>
-              <p className="text-base md:text-lg text-muted-foreground">
+              <p className="text-xl text-muted-foreground">
                 Build your career with disciplined execution teams. We value accountability, 
                 technical expertise, and operational excellence.
               </p>

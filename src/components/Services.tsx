@@ -14,11 +14,11 @@ import {
   TrendingUp
 } from "lucide-react";
 import { useState } from "react";
-import QuoteRequestForm from "./QuoteRequestForm";
+import GeneralInquiryForm from "./GeneralInquiryForm";
 import ScrollReveal from "./ScrollReveal";
 
 const Services = () => {
-  const [isQuoteFormOpen, setIsQuoteFormOpen] = useState(false);
+  const [isGeneralInquiryOpen, setIsGeneralInquiryOpen] = useState(false);
    const navigate = useNavigate();
 
   const services = [
@@ -193,9 +193,9 @@ const Services = () => {
               <Button 
                 variant="secondary" 
                 size="lg"
-                onClick={() => setIsQuoteFormOpen(true)}
+                onClick={() => setIsGeneralInquiryOpen(true)}
               >
-                Technical Inquiry
+                General Inquiry
                 <ArrowRight className="ml-2 h-4 w-4" />
               </Button>
               <Button 
@@ -213,11 +213,9 @@ const Services = () => {
         </ScrollReveal>
       </div>
 
-      <QuoteRequestForm
-        isOpen={isQuoteFormOpen}
-        onClose={() => setIsQuoteFormOpen(false)}
-        cartItems={[]}
-        onClearCart={() => {}}
+      <GeneralInquiryForm
+        isOpen={isGeneralInquiryOpen}
+        onClose={() => setIsGeneralInquiryOpen(false)}
       />
     </section>
   );

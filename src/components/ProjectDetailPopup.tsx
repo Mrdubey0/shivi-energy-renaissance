@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   Dialog,
   DialogContent,
@@ -16,6 +17,7 @@ import {
   ExternalLink,
   X
 } from "lucide-react";
+import CaseStudyRequestForm from "./CaseStudyRequestForm";
 
 interface Project {
   id: number;
@@ -39,6 +41,8 @@ interface ProjectDetailPopupProps {
 }
 
 const ProjectDetailPopup = ({ project, isOpen, onClose }: ProjectDetailPopupProps) => {
+  const [showCaseStudyForm, setShowCaseStudyForm] = useState(false);
+
   if (!project) return null;
 
   return (
@@ -152,13 +156,19 @@ const ProjectDetailPopup = ({ project, isOpen, onClose }: ProjectDetailPopupProp
             <Button variant="outline" className="flex-1" onClick={onClose}>
               Close
             </Button>
-            <Button variant="default" className="flex-1">
+            <Button variant="default" className="flex-1" onClick={() => setShowCaseStudyForm(true)}>
               <ExternalLink className="h-4 w-4 mr-2" />
               Request Case Study
             </Button>
           </div>
         </div>
       </DialogContent>
+
+      <CaseStudyRequestForm
+        isOpen={showCaseStudyForm}
+        onClose={() => setShowCaseStudyForm(false)}
+        projectName={project.title}
+      />
     </Dialog>
   );
 };

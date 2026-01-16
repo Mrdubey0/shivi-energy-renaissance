@@ -8,13 +8,14 @@ import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
-import { FileText, AlertCircle } from "lucide-react";
+import { FileText, AlertCircle, Plus, Minus, Trash2, X } from "lucide-react";
 
 interface Product {
   id: string;
   name: string;
   price: string;
   image: string;
+  quantity?: number;
 }
 
 interface QuoteRequestFormProps {
@@ -22,9 +23,11 @@ interface QuoteRequestFormProps {
   onClose: () => void;
   cartItems: Product[];
   onClearCart: () => void;
+  onUpdateQuantity?: (id: string, quantity: number) => void;
+  onRemoveItem?: (id: string) => void;
 }
 
-const QuoteRequestForm = ({ isOpen, onClose, cartItems, onClearCart }: QuoteRequestFormProps) => {
+const QuoteRequestForm = ({ isOpen, onClose, cartItems, onClearCart, onUpdateQuantity, onRemoveItem }: QuoteRequestFormProps) => {
   const [formData, setFormData] = useState({
     email: "",
     phone: "",
@@ -165,8 +168,21 @@ const QuoteRequestForm = ({ isOpen, onClose, cartItems, onClearCart }: QuoteRequ
           {cartItems.length > 0 && (
             <Card>
               <CardHeader className="pb-3">
-                <CardTitle className="text-lg">Procurement Manifest ({cartItems.length})</CardTitle>
-                <CardDescription>Products selected for technical evaluation</CardDescription>
+                <div className="flex items-center justify-between">
+                  <div>
+                    <CardTitle className="text-lg">Procurement Manifest ({cartItems.length})</CardTitle>
+                    <CardDescription>Products selected for technical evaluation</CardDescription>
+                  </div>
+                  <Button 
+                    variant="outline" 
+                    size="sm" 
+                    onClick={onClearCart}
+                    className="text-destructive hover:text-destructive hover:bg-destructive/10"
+                  >
+                    <Trash2 className="h-4 w-4 mr-1" />
+                    Clear All
+                  </Button>
+                </div>
               </CardHeader>
               <CardContent>
                 <div className="space-y-3 max-h-40 overflow-y-auto">
@@ -180,6 +196,40 @@ const QuoteRequestForm = ({ isOpen, onClose, cartItems, onClearCart }: QuoteRequ
                       <div className="flex-1">
                         <p className="font-medium text-sm">{item.name}</p>
                       </div>
+                      {/* Quantity Controls */}
+                      <div className="flex items-center gap-2">
+                        <Button
+                          type="button"
+                          variant="outline"
+                          size="icon"
+                          className="h-7 w-7"
+                          onClick={() => onUpdateQuantity?.(item.id, Math.max(1, (item.quantity || 1) - 1))}
+                        >
+                          <Minus className="h-3 w-3" />
+                        </Button>
+                        <span className="w-8 text-center text-sm font-medium">
+                          {item.quantity || 1}
+                        </span>
+                        <Button
+                          type="button"
+                          variant="outline"
+                          size="icon"
+                          className="h-7 w-7"
+                          onClick={() => onUpdateQuantity?.(item.id, (item.quantity || 1) + 1)}
+                        >
+                          <Plus className="h-3 w-3" />
+                        </Button>
+                      </div>
+                      {/* Remove Item Button */}
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="icon"
+                        className="h-7 w-7 text-muted-foreground hover:text-destructive"
+                        onClick={() => onRemoveItem?.(item.id)}
+                      >
+                        <X className="h-4 w-4" />
+                      </Button>
                     </div>
                   ))}
                 </div>
@@ -268,18 +318,38 @@ const QuoteRequestForm = ({ isOpen, onClose, cartItems, onClearCart }: QuoteRequ
             <CardContent>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {availableProducts.map((product) => (
-                  <div key={product} className="flex items-center space-x-2">
-                    <Checkbox
-                      id={product}
-                      checked={selectedProducts.includes(product)}
-                      onCheckedChange={() => toggleProduct(product)}
-                    />
-                    <Label 
-                      htmlFor={product}
-                      className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-                    >
-                      {product}
-                    </Label>
+                  <div 
+                    key={product} 
+                    className={`flex items-center justify-between p-2 rounded-lg border transition-colors ${
+                      selectedProducts.includes(product) 
+                        ? 'border-primary/50 bg-primary/5' 
+                        : 'border-border hover:border-primary/30'
+                    }`}
+                  >
+                    <div className="flex items-center space-x-2">
+                      <Checkbox
+                        id={product}
+                        checked={selectedProducts.includes(product)}
+                        onCheckedChange={() => toggleProduct(product)}
+                      />
+                      <Label 
+                        htmlFor={product}
+                        className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70 cursor-pointer"
+                      >
+                        {product}
+                      </Label>
+                    </div>
+                    {selectedProducts.includes(product) && (
+                      <Button
+                        type="button"
+                        variant="ghost"
+                        size="icon"
+                        className="h-6 w-6 text-muted-foreground hover:text-destructive"
+                        onClick={() => toggleProduct(product)}
+                      >
+                        <X className="h-3 w-3" />
+                      </Button>
+                    )}
                   </div>
                 ))}
               </div>

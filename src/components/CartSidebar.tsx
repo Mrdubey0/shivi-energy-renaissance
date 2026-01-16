@@ -197,6 +197,8 @@ const CartSidebar = () => {
         onClose={() => setShowQuoteForm(false)}
         cartItems={cartItems}
         onClearCart={clearCart}
+        onUpdateQuantity={updateQuantity}
+        onRemoveItem={removeFromCart}
       />
     </>
   );

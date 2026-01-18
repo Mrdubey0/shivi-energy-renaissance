@@ -314,7 +314,7 @@ const ProductCatalog = () => {
         description: `${product.name} removed from cart.`,
       });
     } else {
-      addToCart(product);
+      addToCart({ ...product, type: 'product' });
       toast({
         title: "Added to Cart",
         description: `${product.name} added to cart.`,

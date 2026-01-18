@@ -650,7 +650,7 @@ const SolutionsCatalog = () => {
             </div>
             
             {/* Toggle - Mobile Optimized */}
-            <div className="relative bg-card rounded-xl md:rounded-2xl p-1.5 md:p-2 border-2 border-border shadow-xl inline-flex hover:shadow-2xl transition-all duration-300 w-[calc(100%-2rem)] max-w-md md:w-auto">
+            <div className="relative bg-card rounded-xl md:rounded-2xl p-1.5 md:p-2 border-2 border-border shadow-xl inline-flex hover:shadow-2xl transition-all duration-300">
               {/* Animated background indicator */}
               <div 
                 className={`absolute top-1.5 md:top-2 bottom-1.5 md:bottom-2 w-[calc(50%-6px)] md:w-[calc(50%-4px)] bg-primary rounded-lg md:rounded-xl shadow-lg transition-all duration-300 ease-out ${
@@ -659,17 +659,16 @@ const SolutionsCatalog = () => {
               />
               <Button
                 variant="ghost"
-                className={`relative z-10 rounded-lg md:rounded-xl px-3 md:px-12 py-3 md:py-4 text-sm md:text-lg font-semibold transition-all duration-300 hover:bg-transparent flex-1 md:flex-none ${
+                className={`relative z-10 rounded-lg md:rounded-xl px-4 md:px-10 py-3 md:py-4 text-sm md:text-lg font-semibold transition-all duration-300 hover:bg-transparent min-w-[140px] md:min-w-[180px] ${
                   solutionMode === "products" 
                     ? "text-white" 
                     : "text-foreground hover:text-primary"
                 }`}
                 onClick={() => handleModeChange("products")}
               >
-                <Package className="h-4 w-4 md:h-6 md:w-6 mr-1.5 md:mr-2" />
-                <span className="hidden sm:inline">Products</span>
-                <span className="sm:hidden">Products</span>
-                <span className={`ml-1.5 md:ml-2 text-[10px] md:text-xs px-1.5 md:px-2 py-0.5 rounded-full transition-all ${
+                <Package className="h-4 w-4 md:h-5 md:w-5 mr-2" />
+                Products
+                <span className={`ml-2 text-xs px-2 py-0.5 rounded-full transition-all ${
                   solutionMode === "products" 
                     ? "bg-white/25 text-white" 
                     : "bg-muted text-muted-foreground"
@@ -679,17 +678,16 @@ const SolutionsCatalog = () => {
               </Button>
               <Button
                 variant="ghost"
-                className={`relative z-10 rounded-lg md:rounded-xl px-3 md:px-12 py-3 md:py-4 text-sm md:text-lg font-semibold transition-all duration-300 hover:bg-transparent flex-1 md:flex-none ${
+                className={`relative z-10 rounded-lg md:rounded-xl px-4 md:px-10 py-3 md:py-4 text-sm md:text-lg font-semibold transition-all duration-300 hover:bg-transparent min-w-[140px] md:min-w-[180px] ${
                   solutionMode === "services" 
                     ? "text-white" 
                     : "text-foreground hover:text-primary"
                 }`}
                 onClick={() => handleModeChange("services")}
               >
-                <Cog className="h-4 w-4 md:h-6 md:w-6 mr-1.5 md:mr-2" />
-                <span className="hidden sm:inline">Services</span>
-                <span className="sm:hidden">Services</span>
-                <span className={`ml-1.5 md:ml-2 text-[10px] md:text-xs px-1.5 md:px-2 py-0.5 rounded-full transition-all ${
+                <Cog className="h-4 w-4 md:h-5 md:w-5 mr-2" />
+                Services
+                <span className={`ml-2 text-xs px-2 py-0.5 rounded-full transition-all ${
                   solutionMode === "services" 
                     ? "bg-white/25 text-white" 
                     : "bg-muted text-muted-foreground"

@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -16,6 +17,7 @@ interface Product {
   price: string;
   image: string;
   quantity?: number;
+  type?: 'product' | 'service';
 }
 
 interface QuoteRequestFormProps {
@@ -186,54 +188,67 @@ const QuoteRequestForm = ({ isOpen, onClose, cartItems, onClearCart, onUpdateQua
               </CardHeader>
               <CardContent>
                 <div className="space-y-3 max-h-40 overflow-y-auto">
-                  {cartItems.map((item) => (
-                    <div key={item.id} className="flex flex-col sm:flex-row sm:items-center gap-3 p-2 border rounded-lg">
-                      <div className="flex items-center gap-3 flex-1 min-w-0">
-                        <img
-                          src={item.image}
-                          alt={item.name}
-                          className="w-12 h-12 object-cover rounded flex-shrink-0"
-                        />
-                        <p className="font-medium text-sm truncate">{item.name}</p>
-                      </div>
-                      <div className="flex items-center justify-between sm:justify-end gap-2 ml-0 sm:ml-auto">
-                        {/* Quantity Controls */}
-                        <div className="flex items-center gap-1">
+                  {cartItems.map((item) => {
+                    const isService = item.type === 'service';
+                    return (
+                      <div key={item.id} className="flex flex-col sm:flex-row sm:items-center gap-3 p-2 border rounded-lg">
+                        <div className="flex items-center gap-3 flex-1 min-w-0">
+                          <img
+                            src={item.image}
+                            alt={item.name}
+                            className="w-12 h-12 object-cover rounded flex-shrink-0"
+                          />
+                          <div className="flex flex-col gap-1 min-w-0">
+                            <p className="font-medium text-sm truncate">{item.name}</p>
+                            <Badge 
+                              variant={isService ? "secondary" : "default"} 
+                              className="w-fit text-xs"
+                            >
+                              {isService ? "Service" : "Product"}
+                            </Badge>
+                          </div>
+                        </div>
+                        <div className="flex items-center justify-between sm:justify-end gap-2 ml-0 sm:ml-auto">
+                          {/* Quantity Controls - Only for Products */}
+                          {!isService && (
+                            <div className="flex items-center gap-1">
+                              <Button
+                                type="button"
+                                variant="outline"
+                                size="icon"
+                                className="h-8 w-8"
+                                onClick={() => onUpdateQuantity?.(item.id, Math.max(1, (item.quantity || 1) - 1))}
+                              >
+                                <Minus className="h-3 w-3" />
+                              </Button>
+                              <span className="w-8 text-center text-sm font-medium">
+                                {item.quantity || 1}
+                              </span>
+                              <Button
+                                type="button"
+                                variant="outline"
+                                size="icon"
+                                className="h-8 w-8"
+                                onClick={() => onUpdateQuantity?.(item.id, (item.quantity || 1) + 1)}
+                              >
+                                <Plus className="h-3 w-3" />
+                              </Button>
+                            </div>
+                          )}
+                          {/* Remove Item Button */}
                           <Button
                             type="button"
-                            variant="outline"
+                            variant="ghost"
                             size="icon"
-                            className="h-8 w-8"
-                            onClick={() => onUpdateQuantity?.(item.id, Math.max(1, (item.quantity || 1) - 1))}
+                            className="h-8 w-8 text-muted-foreground hover:text-destructive"
+                            onClick={() => onRemoveItem?.(item.id)}
                           >
-                            <Minus className="h-3 w-3" />
-                          </Button>
-                          <span className="w-8 text-center text-sm font-medium">
-                            {item.quantity || 1}
-                          </span>
-                          <Button
-                            type="button"
-                            variant="outline"
-                            size="icon"
-                            className="h-8 w-8"
-                            onClick={() => onUpdateQuantity?.(item.id, (item.quantity || 1) + 1)}
-                          >
-                            <Plus className="h-3 w-3" />
+                            <X className="h-4 w-4" />
                           </Button>
                         </div>
-                        {/* Remove Item Button */}
-                        <Button
-                          type="button"
-                          variant="ghost"
-                          size="icon"
-                          className="h-8 w-8 text-muted-foreground hover:text-destructive"
-                          onClick={() => onRemoveItem?.(item.id)}
-                        >
-                          <X className="h-4 w-4" />
-                        </Button>
                       </div>
-                    </div>
-                  ))}
+                    );
+                  })}
                 </div>
               </CardContent>
             </Card>

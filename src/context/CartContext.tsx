@@ -17,6 +17,7 @@ export interface CartProduct {
   inStock: boolean;
   category?: string;
   categoryName?: string;
+  type?: 'product' | 'service';
 }
 
 export interface CartItem extends CartProduct {

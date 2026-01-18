@@ -36,7 +36,7 @@ const ServiceDetailPopup = ({ service, isOpen, onClose, serviceDetails }: Servic
         description: `${service.name} removed from inquiry.`,
       });
     } else {
-      addToCart(service);
+      addToCart({ ...service, type: 'service' });
       toast({
         title: "Added to Inquiry",
         description: `${service.name} added to inquiry.`,

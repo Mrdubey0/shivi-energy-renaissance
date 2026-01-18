@@ -512,7 +512,7 @@ const SolutionsCatalog = () => {
         description: `${product.name} removed from cart.`,
       });
     } else {
-      addToCart(product);
+      addToCart({ ...product, type: 'product' });
       toast({
         title: "Added to Cart",
         description: `${product.name} added to cart.`,
@@ -545,7 +545,7 @@ const SolutionsCatalog = () => {
       });
     } else {
       // Mark as service for cart separation
-      addToCart({ ...service, category: 'service' });
+      addToCart({ ...service, category: 'service', type: 'service' });
       toast({
         title: "Added to Inquiry",
         description: `${service.name} added to inquiry.`,

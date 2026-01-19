@@ -562,6 +562,7 @@ const SolutionsCatalog = () => {
 
   // Scroll to top functionality
   const searchSectionRef = useRef<HTMLDivElement>(null);
+  const contentSectionRef = useRef<HTMLDivElement>(null);
   const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
@@ -574,6 +575,23 @@ const SolutionsCatalog = () => {
 
   const scrollToSearch = () => {
     searchSectionRef.current?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  };
+
+  const scrollToContent = () => {
+    if (contentSectionRef.current) {
+      const yOffset = -100; // Offset to show content with some padding from top
+      const element = contentSectionRef.current;
+      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  };
+
+  const handleCategoryChange = (categoryId: string) => {
+    setActiveCategory(categoryId);
+    // Small delay to ensure content is rendered before scrolling
+    setTimeout(() => {
+      scrollToContent();
+    }, 100);
   };
 
   return (
@@ -713,7 +731,7 @@ const SolutionsCatalog = () => {
                 <div className="flex gap-2 flex-wrap justify-center">
                   <Button
                     variant={activeCategory === "all" ? "default" : "outline"}
-                    onClick={() => setActiveCategory("all")}
+                    onClick={() => handleCategoryChange("all")}
                     size="sm"
                   >
                     All {solutionMode === "products" ? "Products" : "Services"}
@@ -722,7 +740,7 @@ const SolutionsCatalog = () => {
                     <Button
                       key={category.id}
                       variant={activeCategory === category.id ? "default" : "outline"}
-                      onClick={() => setActiveCategory(category.id)}
+                      onClick={() => handleCategoryChange(category.id)}
                       size="sm"
                     >
                       {category.name}
@@ -736,7 +754,7 @@ const SolutionsCatalog = () => {
 
         {/* Products Content */}
         {solutionMode === "products" && (
-          <div className="mb-12">
+          <div className="mb-12" ref={contentSectionRef}>
             {activeCategory === "all" ? (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {filteredProducts.map((product, index) => (
@@ -796,7 +814,7 @@ const SolutionsCatalog = () => {
 
         {/* Services Content */}
         {solutionMode === "services" && (
-          <div className="mb-12">
+          <div className="mb-12" ref={contentSectionRef}>
             {activeCategory === "all" ? (
               <div className="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
                 {filteredServices.map((service, index) => {

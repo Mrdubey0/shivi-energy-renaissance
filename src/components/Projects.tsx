@@ -15,7 +15,7 @@ import {
   TrendingUp,
   Search
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import ScrollReveal from "./ScrollReveal";
 import ProjectDetailPopup from "./ProjectDetailPopup";
 
@@ -40,6 +40,26 @@ const Projects = () => {
   const [activeCategory, setActiveCategory] = useState("all");
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const contentSectionRef = useRef<HTMLDivElement>(null);
+
+  const scrollToContent = () => {
+    if (contentSectionRef.current) {
+      const yOffset = -100;
+      const element = contentSectionRef.current;
+      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  };
+
+  const handleYearChange = (year: string) => {
+    setActiveYear(year);
+    setTimeout(() => scrollToContent(), 100);
+  };
+
+  const handleCategoryChange = (category: string) => {
+    setActiveCategory(category);
+    setTimeout(() => scrollToContent(), 100);
+  };
 
   const handleViewDetails = (project: Project) => {
     setSelectedProject(project);
@@ -244,7 +264,7 @@ const Projects = () => {
                       key={year}
                       variant={activeYear === year ? "default" : "outline"}
                       size="sm"
-                      onClick={() => setActiveYear(year)}
+                      onClick={() => handleYearChange(year)}
                       className="capitalize text-xs"
                     >
                       {year === "all" ? "All Years" : year}
@@ -264,7 +284,7 @@ const Projects = () => {
                         ? "bg-primary text-primary-foreground" 
                         : "hover:bg-primary/10"
                     }`}
-                    onClick={() => setActiveCategory(category)}
+                    onClick={() => handleCategoryChange(category)}
                   >
                     {category === "all" ? "All Categories" : category}
                   </Badge>
@@ -275,7 +295,7 @@ const Projects = () => {
         </ScrollReveal>
 
         {/* Projects List */}
-        <div className="space-y-4 md:space-y-6">
+        <div className="space-y-4 md:space-y-6" ref={contentSectionRef}>
           {filteredProjects.length === 0 ? (
             <div className="text-center py-8 md:py-16">
               <p className="text-sm md:text-lg text-muted-foreground">No projects found matching your criteria.</p>

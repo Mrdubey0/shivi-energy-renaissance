@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
 import BlogDetailPopup from "./BlogDetailPopup";
-import { useState } from "react";
+import { useState, useRef } from "react";
 
 export const blogPosts = [
   {
@@ -197,9 +197,25 @@ const categories = [
 const Blog = () => {
   const [selectedPost, setSelectedPost] = useState<typeof blogPosts[0] | null>(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [activeCategory, setActiveCategory] = useState("All Posts");
+  const contentSectionRef = useRef<HTMLDivElement>(null);
   
   const featuredPost = blogPosts[0];
   const regularPosts = blogPosts.slice(1);
+
+  const scrollToContent = () => {
+    if (contentSectionRef.current) {
+      const yOffset = -100;
+      const element = contentSectionRef.current;
+      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  };
+
+  const handleCategoryChange = (categoryName: string) => {
+    setActiveCategory(categoryName);
+    setTimeout(() => scrollToContent(), 100);
+  };
 
   const handleReadMore = (post: typeof blogPosts[0]) => {
     setSelectedPost(post);
@@ -273,8 +289,9 @@ const Blog = () => {
             {categories.map((category) => (
               <Badge 
                 key={category.name}
-                variant={category.active ? "default" : "outline"}
+                variant={activeCategory === category.name ? "default" : "outline"}
                 className="px-4 py-2 cursor-pointer hover:bg-primary hover:text-primary-foreground transition-colors"
+                onClick={() => handleCategoryChange(category.name)}
               >
                 {category.name} ({category.count})
               </Badge>
@@ -284,7 +301,7 @@ const Blog = () => {
 
         {/* Featured Post */}
         <ScrollReveal delay={200}>
-          <div className="mb-8 md:mb-16">
+          <div className="mb-8 md:mb-16" ref={contentSectionRef}>
             <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 border-primary/20">
               {/* Mobile Layout */}
               <div className="md:hidden">

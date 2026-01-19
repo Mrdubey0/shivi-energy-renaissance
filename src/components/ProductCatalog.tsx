@@ -18,7 +18,7 @@ import {
   ShoppingCart,
   Check
 } from "lucide-react";
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { useToast } from "@/hooks/use-toast";
 import ScrollReveal from "./ScrollReveal";
 import { CartProduct, useCart } from "@/context/CartContext";
@@ -31,6 +31,21 @@ const ProductCatalog = () => {
   const [isDetailOpen, setIsDetailOpen] = useState(false);
   const { toast } = useToast();
   const { addToCart, removeFromCart, isInCart } = useCart();
+  const contentSectionRef = useRef<HTMLDivElement>(null);
+
+  const scrollToContent = () => {
+    if (contentSectionRef.current) {
+      const yOffset = -100;
+      const element = contentSectionRef.current;
+      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: 'smooth' });
+    }
+  };
+
+  const handleCategoryChange = (categoryId: string) => {
+    setActiveCategory(categoryId);
+    setTimeout(() => scrollToContent(), 100);
+  };
 
   const categories = [
     {
@@ -376,7 +391,7 @@ const ProductCatalog = () => {
               <div className="flex gap-2 flex-wrap justify-center">
                 <Button
                   variant={activeCategory === "all" ? "default" : "outline"}
-                  onClick={() => setActiveCategory("all")}
+                  onClick={() => handleCategoryChange("all")}
                   className="h-12"
                 >
                   All Products
@@ -385,7 +400,7 @@ const ProductCatalog = () => {
                   <Button
                     key={category.id}
                     variant={activeCategory === category.id ? "default" : "outline"}
-                    onClick={() => setActiveCategory(category.id)}
+                    onClick={() => handleCategoryChange(category.id)}
                     className="h-12 hidden md:flex"
                   >
                     {category.name}
@@ -397,7 +412,7 @@ const ProductCatalog = () => {
         </ScrollReveal>
 
         {/* Category Tabs */}
-        <Tabs value={activeCategory} onValueChange={setActiveCategory} className="mb-12">
+        <Tabs value={activeCategory} onValueChange={handleCategoryChange} className="mb-12" ref={contentSectionRef}>
           <TabsList className="grid w-full grid-cols-5 h-14 bg-background/50 backdrop-blur-sm">
             <TabsTrigger value="all" className="text-sm font-medium">All</TabsTrigger>
             {categories.map((category) => (

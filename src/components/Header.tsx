@@ -1,6 +1,6 @@
 import { Menu, X, ClipboardList } from "lucide-react";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useCart } from "@/context/CartContext";
@@ -10,6 +10,8 @@ const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const { cartCount, setIsCartOpen, isAnimating } = useCart();
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -18,6 +20,29 @@ const Header = () => {
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const handleHashNavigation = (e: React.MouseEvent, href: string) => {
+    e.preventDefault();
+    const sectionId = href.substring(2); // Remove "/#"
+    
+    // If we're on the home page, just scroll
+    if (location.pathname === "/") {
+      const section = document.getElementById(sectionId);
+      if (section) {
+        section.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      // Navigate to home page with the hash
+      navigate("/" + "#" + sectionId);
+      // After navigation, scroll to section
+      setTimeout(() => {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth' });
+        }
+      }, 100);
+    }
+  };
 
   const navigationItems = [
     { name: "Home", href: "/" },
@@ -51,14 +76,7 @@ const Header = () => {
                   <a
                     href={item.href}
                     className="px-4 py-2 text-foreground hover:text-primary transition-colors duration-200 font-medium rounded-lg hover:bg-muted/50"
-                    onClick={(e) => {
-                      e.preventDefault();
-                      const sectionId = item.href.substring(2);
-                      const section = document.getElementById(sectionId);
-                      if (section) {
-                        section.scrollIntoView({ behavior: 'smooth' });
-                      }
-                    }}
+                    onClick={(e) => handleHashNavigation(e, item.href)}
                   >
                     {item.name}
                   </a>
@@ -137,13 +155,8 @@ const Header = () => {
                     href={item.href}
                     className="text-foreground hover:text-primary transition-colors duration-200 font-medium"
                     onClick={(e) => {
-                      e.preventDefault();
                       setIsMobileMenuOpen(false);
-                      const sectionId = item.href.substring(2);
-                      const section = document.getElementById(sectionId);
-                      if (section) {
-                        section.scrollIntoView({ behavior: 'smooth' });
-                      }
+                      handleHashNavigation(e, item.href);
                     }}
                   >
                     {item.name}

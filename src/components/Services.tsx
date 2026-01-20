@@ -17,6 +17,14 @@ import { useState } from "react";
 import GeneralInquiryForm from "./GeneralInquiryForm";
 import ScrollReveal from "./ScrollReveal";
 
+// Import AI-generated service images
+import serviceEngineering from "@/assets/service-engineering.jpg";
+import serviceCorrosion from "@/assets/service-corrosion.jpg";
+import serviceIntervention from "@/assets/service-intervention.jpg";
+import serviceMills from "@/assets/service-mills.jpg";
+import serviceRig from "@/assets/service-rig.jpg";
+import serviceAbandonment from "@/assets/service-abandonment.jpg";
+
 const Services = () => {
   const [isGeneralInquiryOpen, setIsGeneralInquiryOpen] = useState(false);
    const navigate = useNavigate();
@@ -24,6 +32,7 @@ const Services = () => {
   const services = [
     {
       icon: Cog,
+      image: serviceEngineering,
       title: "Engineering & Field Consultation",
       riskAddressed: "Unmitigated design flaws leading to operational failures and unplanned interventions.",
       mitigationProtocol: "Field-validated engineering assessments with lifecycle risk modeling.",
@@ -32,6 +41,7 @@ const Services = () => {
     },
     {
       icon: Shield,
+      image: serviceCorrosion,
       title: "Corrosion Management",
       riskAddressed: "Integrity degradation causing equipment failure, leaks, and environmental exposure.",
       mitigationProtocol: "Cathodic protection systems with continuous condition monitoring.",
@@ -40,6 +50,7 @@ const Services = () => {
     },
     {
       icon: Wrench,
+      image: serviceIntervention,
       title: "Rigless Intervention",
       riskAddressed: "Well production decline and mechanical obstructions requiring costly rig mobilization.",
       mitigationProtocol: "Thru-tubing solutions with precision fishing and milling operations.",
@@ -48,6 +59,7 @@ const Services = () => {
     },
     {
       icon: Drill,
+      image: serviceMills,
       title: "Mills & Bits Solutions",
       riskAddressed: "Wellbore obstructions, cement, and debris preventing operational access.",
       mitigationProtocol: "Application-specific milling geometry for defined operational envelopes.",
@@ -56,6 +68,7 @@ const Services = () => {
     },
     {
       icon: Settings,
+      image: serviceRig,
       title: "Rig Support",
       riskAddressed: "Equipment failures and operational inefficiencies causing drilling delays.",
       mitigationProtocol: "Preventive maintenance protocols with rapid equipment deployment.",
@@ -64,6 +77,7 @@ const Services = () => {
     },
     {
       icon: Lock,
+      image: serviceAbandonment,
       title: "Plug & Abandonment",
       riskAddressed: "Environmental liability from improper well decommissioning and zonal isolation failure.",
       mitigationProtocol: "Bridge plug systems with verified cement integrity and regulatory compliance.",
@@ -98,11 +112,18 @@ const Services = () => {
             const IconComponent = service.icon;
             return (
               <ScrollReveal key={service.title} delay={index * 100}>
-                {/* Mobile: Compact card */}
-                <Card className="md:hidden border-border/50 h-full">
+                {/* Mobile: Compact card with image */}
+                <Card className="md:hidden border-border/50 h-full overflow-hidden">
+                  <div className="h-24 w-full overflow-hidden">
+                    <img 
+                      src={service.image} 
+                      alt={service.title}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
                   <CardHeader className="p-3 pb-2">
-                    <div className="w-10 h-10 bg-gradient-accent rounded-lg flex items-center justify-center mb-2">
-                      <IconComponent className="h-5 w-5 text-accent-foreground" />
+                    <div className="w-8 h-8 bg-gradient-accent rounded-lg flex items-center justify-center mb-2">
+                      <IconComponent className="h-4 w-4 text-accent-foreground" />
                     </div>
                     <CardTitle className="text-sm font-semibold text-foreground leading-tight">
                       {service.title}
@@ -115,14 +136,26 @@ const Services = () => {
                   </CardContent>
                 </Card>
                 
-                {/* Desktop: Full card */}
+                {/* Desktop: Full card with image */}
                 <Card 
-                  className="hidden md:block group hover:shadow-card transition-all duration-300 hover:-translate-y-2 border-border/50 hover:border-primary/30 h-full"
+                  className="hidden md:block group hover:shadow-card transition-all duration-300 hover:-translate-y-2 border-border/50 hover:border-primary/30 h-full overflow-hidden"
                 >
-                <CardHeader className="pb-4">
-                  <div className="w-16 h-16 bg-gradient-accent rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300">
-                    <IconComponent className="h-8 w-8 text-accent-foreground" />
+                  {/* Service Image */}
+                  <div className="h-48 w-full overflow-hidden relative">
+                    <img 
+                      src={service.image} 
+                      alt={service.title}
+                      className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
+                    <div className="absolute bottom-4 left-4">
+                      <div className="w-12 h-12 bg-gradient-accent rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
+                        <IconComponent className="h-6 w-6 text-accent-foreground" />
+                      </div>
+                    </div>
                   </div>
+                  
+                <CardHeader className="pb-4">
                   <CardTitle className="text-xl font-bold text-foreground group-hover:text-primary transition-colors">
                     {service.title}
                   </CardTitle>

@@ -1,4 +1,5 @@
 import Header from "@/components/Header";
+import PageBreadcrumb from "@/components/PageBreadcrumb";
 import Footer from "@/components/Footer";
 import Blog from "@/components/Blog";
 
@@ -6,6 +7,7 @@ const BlogPage = () => {
   return (
     <div className="min-h-screen bg-background animate-zoom-in">
       <Header />
+      <PageBreadcrumb />
       <main className="flex-grow">
         <Blog />
       </main>

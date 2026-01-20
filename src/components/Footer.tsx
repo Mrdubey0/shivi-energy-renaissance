@@ -7,34 +7,64 @@ import {
   Twitter, 
   Facebook
 } from "lucide-react";
+import { useNavigate, useLocation } from "react-router-dom";
 import logoMain from "@/assets/logo-main.png";
 
 const Footer = () => {
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const handleHashNavigation = (e: React.MouseEvent, href: string) => {
+    e.preventDefault();
+    
+    if (href.startsWith('/#')) {
+      const sectionId = href.substring(2);
+      
+      if (location.pathname === "/") {
+        const section = document.getElementById(sectionId);
+        if (section) {
+          section.scrollIntoView({ behavior: 'smooth' });
+        }
+      } else {
+        navigate("/" + "#" + sectionId);
+        setTimeout(() => {
+          const section = document.getElementById(sectionId);
+          if (section) {
+            section.scrollIntoView({ behavior: 'smooth' });
+          }
+        }, 100);
+      }
+    } else if (href.startsWith('/')) {
+      navigate(href);
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
   const services = [
-    "Engineering Consultation",
-    "Corrosion Management", 
-    "Rigless Intervention",
-    "Mills & Bits",
-    "Rig Support",
-    "Plug & Abandonment"
+    { name: "Engineering Consultation", href: "/solutions" },
+    { name: "Corrosion Management", href: "/solutions" },
+    { name: "Rigless Intervention", href: "/solutions" },
+    { name: "Mills & Bits", href: "/solutions" },
+    { name: "Rig Support", href: "/solutions" },
+    { name: "Plug & Abandonment", href: "/solutions" }
   ];
 
   const company = [
-    "About Us",
-    "Leadership Team", 
-    "Careers",
-    "Execution Outcomes",
-    "Certifications",
-    "Governance"
+    { name: "About Us", href: "/#about" },
+    { name: "Leadership Team", href: "/#about" },
+    { name: "Careers", href: "/careers" },
+    { name: "Execution Outcomes", href: "/projects" },
+    { name: "Certifications", href: "/#about" },
+    { name: "Governance", href: "/#about" }
   ];
 
   const support = [
-    "Technical Documentation",
-    "Safety Guidelines",
-    "Quality Assurance",
-    "Training Programs",
-    "Emergency Services",
-    "Contact Support"
+    { name: "Technical Documentation", href: "/solutions" },
+    { name: "Safety Guidelines", href: "/sustainability" },
+    { name: "Quality Assurance", href: "/#about" },
+    { name: "Training Programs", href: "/careers" },
+    { name: "Emergency Services", href: "/#contact" },
+    { name: "Contact Support", href: "/#contact" }
   ];
 
   return (
@@ -95,12 +125,13 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-6">Services</h3>
             <ul className="space-y-3">
               {services.map((service) => (
-                <li key={service}>
+                <li key={service.name}>
                   <a 
-                    href="#" 
-                    className="text-primary-foreground/80 hover:text-secondary transition-colors duration-200"
+                    href={service.href}
+                    onClick={(e) => handleHashNavigation(e, service.href)}
+                    className="text-primary-foreground/80 hover:text-secondary transition-colors duration-200 cursor-pointer"
                   >
-                    {service}
+                    {service.name}
                   </a>
                 </li>
               ))}
@@ -112,22 +143,24 @@ const Footer = () => {
             <h3 className="text-sm md:text-lg font-semibold mb-3 md:mb-6">Company</h3>
             <ul className="space-y-2 md:space-y-3">
               {company.slice(0, 4).map((item) => (
-                <li key={item} className="md:hidden">
+                <li key={`mobile-${item.name}`} className="md:hidden">
                   <a 
-                    href="#" 
-                    className="text-primary-foreground/80 hover:text-secondary transition-colors duration-200 text-xs"
+                    href={item.href}
+                    onClick={(e) => handleHashNavigation(e, item.href)}
+                    className="text-primary-foreground/80 hover:text-secondary transition-colors duration-200 text-xs cursor-pointer"
                   >
-                    {item}
+                    {item.name}
                   </a>
                 </li>
               ))}
               {company.map((item) => (
-                <li key={item} className="hidden md:block">
+                <li key={`desktop-${item.name}`} className="hidden md:block">
                   <a 
-                    href="#" 
-                    className="text-primary-foreground/80 hover:text-secondary transition-colors duration-200"
+                    href={item.href}
+                    onClick={(e) => handleHashNavigation(e, item.href)}
+                    className="text-primary-foreground/80 hover:text-secondary transition-colors duration-200 cursor-pointer"
                   >
-                    {item}
+                    {item.name}
                   </a>
                 </li>
               ))}
@@ -139,22 +172,24 @@ const Footer = () => {
             <h3 className="text-sm md:text-lg font-semibold mb-3 md:mb-6">Support</h3>
             <ul className="space-y-2 md:space-y-3">
               {support.slice(0, 4).map((item) => (
-                <li key={item} className="md:hidden">
+                <li key={`mobile-${item.name}`} className="md:hidden">
                   <a 
-                    href="#" 
-                    className="text-primary-foreground/80 hover:text-secondary transition-colors duration-200 text-xs"
+                    href={item.href}
+                    onClick={(e) => handleHashNavigation(e, item.href)}
+                    className="text-primary-foreground/80 hover:text-secondary transition-colors duration-200 text-xs cursor-pointer"
                   >
-                    {item}
+                    {item.name}
                   </a>
                 </li>
               ))}
               {support.map((item) => (
-                <li key={item} className="hidden md:block">
+                <li key={`desktop-${item.name}`} className="hidden md:block">
                   <a 
-                    href="#" 
-                    className="text-primary-foreground/80 hover:text-secondary transition-colors duration-200"
+                    href={item.href}
+                    onClick={(e) => handleHashNavigation(e, item.href)}
+                    className="text-primary-foreground/80 hover:text-secondary transition-colors duration-200 cursor-pointer"
                   >
-                    {item}
+                    {item.name}
                   </a>
                 </li>
               ))}

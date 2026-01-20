@@ -36,212 +36,260 @@ import { CartProduct, useCart } from "@/context/CartContext";
 import ProductDetailPopup from "./ProductDetailPopup";
 import ServiceDetailPopup from "./ServiceDetailPopup";
 
-// Product categories data
+// Product categories data - Updated from actual documents
 const productCategories = [
   {
-    id: "downhole-tools",
-    name: "Downhole Tools",
+    id: "thru-tubing-tools",
+    name: "Thru-Tubing Tools",
     icon: Wrench,
     color: "from-blue-500 to-blue-600",
-    description: "Completion tools, liner hangers, and casing accessories for wellbore operations",
-    count: 24,
+    description: "Efficient well intervention without pulling tubing, reducing downtime and operational costs",
+    count: 6,
     products: [
       { 
-        id: "completion-tools", 
-        name: "Completion Tool Systems", 
-        description: "Completion solutions with integrated monitoring for defined wellbore conditions. These advanced systems provide reliable performance in challenging environments, featuring modular designs that can be customized for specific well requirements.",
+        id: "retrievable-bridge-plugs", 
+        name: "Retrievable Bridge Plugs", 
+        description: "Retrievable bridge plugs provide temporary zonal isolation for testing, stimulation or well intervention, and can be retrieved after the operation to reduce drill-out time and cost.",
         price: "Request Technical Evaluation",
-        features: ["Condition monitoring", "Corrosion resistant alloys", "Modular configuration"],
+        features: ["Retrievable design helps minimize milling/drill-out time", "Reliable sealing element options for different well fluids", "Positive setting and release mechanism", "Suitable for rig or rigless deployment"],
         operationalEnvelope: {
-          pressure: "15,000 PSI max",
-          temperature: "-40°F to 350°F",
-          application: "Production zone completion",
-          limits: "API 5CT Grade compliance"
+          pressure: "Model- and size-dependent, standard and high differential configurations",
+          temperature: "Depends on elastomer and metallurgy selection",
+          application: "Temporary abandonment, pressure testing, stimulation, remedial cementing, zonal isolation",
+          limits: "Requires clean and gauged casing ID for reliable setting"
         },
         image: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=300&h=200&fit=crop",
         images: [
           "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=600&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1590735213920-68192a487bc3?w=600&h=600&fit=crop"
+        ],
+        inStock: true
+      },
+      { 
+        id: "drillable-bridge-plugs", 
+        name: "Drillable Bridge Plugs", 
+        description: "Drillable bridge plugs deliver dependable isolation and are designed for efficient drill-out after operations. Commonly used where rapid mill-out and minimal debris are required.",
+        price: "Request Technical Evaluation",
+        features: ["Fast drill-out / mill-out characteristics", "High differential sealing capability", "Designed to minimize debris and reduce NPT", "Field-proven setting and sealing architecture"],
+        operationalEnvelope: {
+          pressure: "Configuration-dependent, designed for testing and stimulation",
+          temperature: "Depends on material and sealing element selection",
+          application: "Multistage stimulation, temporary isolation, cementing support, integrity testing",
+          limits: "Not retrievable, requires appropriate milling/drilling assembly"
+        },
+        image: "https://images.unsplash.com/photo-1590735213920-68192a487bc3?w=300&h=200&fit=crop",
+        images: [
           "https://images.unsplash.com/photo-1590735213920-68192a487bc3?w=600&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=600&h=600&fit=crop"
+        ],
+        inStock: true
+      },
+      { 
+        id: "ct-millable-bridge-plugs", 
+        name: "CT Millable Bridge Plugs", 
+        description: "CT millable bridge plugs are engineered for efficient mill-out using coiled tubing. The design targets low milling torque and controlled debris generation to reduce intervention time.",
+        price: "Request Technical Evaluation",
+        features: ["Optimized for low-torque milling with coiled tubing", "Reduced mill-out time for faster stage transitions", "Controlled debris generation materials", "Compatible with rigless intervention workflows"],
+        operationalEnvelope: {
+          pressure: "Model- and size-dependent for intervention programs",
+          temperature: "Depends on material and elastomer selection",
+          application: "CT deployment and mill-out, temporary zonal isolation, stimulation support",
+          limits: "Requires suitable CT milling BHA and circulation"
+        },
+        image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=300&h=200&fit=crop",
+        images: [
+          "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=600&h=600&fit=crop"
+        ],
+        inStock: true
+      },
+      { 
+        id: "inflatable-bridge-plugs", 
+        name: "Inflatable Bridge Plugs", 
+        description: "Inflatable bridge plugs use an inflatable sealing element to conform to varying IDs and irregularities, providing reliable isolation in casing, liners and certain open-hole applications.",
+        price: "Request Technical Evaluation",
+        features: ["Large expansion ratio for variable or irregular IDs", "Conforms to surface imperfections for improved sealing", "Adaptable deployment options", "Effective for challenging wellbore geometries"],
+        operationalEnvelope: {
+          pressure: "Depends on inflation system and element selection",
+          temperature: "Depends on element material selection and fluid compatibility",
+          application: "Well testing, temporary isolation, cementing operations, remedial work",
+          limits: "Requires controlled inflation procedure and compatible fluids"
+        },
+        image: "https://images.unsplash.com/photo-1565087838865-ad5eb48b30d9?w=300&h=200&fit=crop",
+        images: [
+          "https://images.unsplash.com/photo-1565087838865-ad5eb48b30d9?w=600&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1590735213920-68192a487bc3?w=600&h=600&fit=crop"
+        ],
+        inStock: true
+      },
+      { 
+        id: "slickline-set-bridge-plugs", 
+        name: "Slickline Set Retrievable Bridge Plugs", 
+        description: "Slickline set retrievable bridge plugs enable rigless isolation operations. They are set and retrieved using slickline, supporting quick turnaround for testing and intervention activities.",
+        price: "Request Technical Evaluation",
+        features: ["Rigless deployment for reduced cost and faster execution", "Retrievable design reduces the need for milling", "Efficient setting and release mechanism", "Supports intervention programs with minimal equipment footprint"],
+        operationalEnvelope: {
+          pressure: "Model- and size-dependent for rigless intervention",
+          temperature: "Depends on elastomer selection",
+          application: "Temporary isolation, pressure testing, shut-off operations, workover support",
+          limits: "Depends on well deviation and conveyance limits"
+        },
+        image: "https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=300&h=200&fit=crop",
+        images: [
+          "https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=600&h=600&fit=crop",
           "https://images.unsplash.com/photo-1565087838865-ad5eb48b30d9?w=600&h=600&fit=crop"
+        ],
+        inStock: true
+      }
+    ]
+  },
+  {
+    id: "downhole-completion",
+    name: "Downhole Completion Tools",
+    icon: Cog,
+    color: "from-green-500 to-green-600",
+    description: "Safe, efficient completion and workover operations - engineered for well integrity",
+    count: 4,
+    products: [
+      { 
+        id: "toe-sleeves", 
+        name: "Toe Sleeves", 
+        description: "Toe sleeves provide a controllable flow path at the liner toe to enable circulation, cementing, stimulation, and wellbore cleanout. They can be pressure-activated or mechanically shifted to open and close ports.",
+        price: "Request Technical Evaluation",
+        features: ["Single-trip circulation and stimulation capability", "Full-bore or high-flow design options", "Reliable open/close mechanisms for multi-stage operations", "Compatible with common liner systems"],
+        operationalEnvelope: {
+          pressure: "Model- and size-dependent, standard and high-differential service",
+          temperature: "Depends on elastomer selection and metallurgy, sour service compatible",
+          application: "Toe circulation, post-cement cleanout, annulus-to-bore communication",
+          limits: "Activation method must match completion design"
+        },
+        image: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=300&h=200&fit=crop",
+        images: [
+          "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=600&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1590735213920-68192a487bc3?w=600&h=600&fit=crop"
         ],
         inStock: true
       },
       { 
         id: "liner-hangers", 
         name: "Liner Hanger Systems", 
-        description: "Mechanical and hydraulic liner hangers for complex well architectures. Designed for superior sealing performance and debris tolerance in demanding downhole conditions.",
+        description: "Liner hangers suspend and seal the liner inside the parent casing, providing mechanical support and zonal isolation for cemented or uncemented liner completions. Hydraulic or mechanical setting systems allow reliable placement in deviated and horizontal wells.",
         price: "Request Technical Evaluation",
-        features: ["Superior sealing", "Debris tolerance", "Field-validated design"],
+        features: ["High load capacity with reliable pack-off sealing", "Hydraulic or mechanical set options", "Rotating/reciprocating capability during cementing", "Tie-back and contingency options available"],
         operationalEnvelope: {
-          pressure: "10,000 PSI working",
-          temperature: "Up to 400°F",
-          application: "Liner installation and isolation",
-          limits: "Size range: 4.5\" - 13.375\""
+          pressure: "Model-dependent, high-pressure and HPHT-rated configurations",
+          temperature: "Options for high-temperature and corrosive environments, H2S/CO2 service",
+          application: "Running and setting liners, liner top support, cementing operations",
+          limits: "Depends on proper running practices and adequate set-down weight"
         },
         image: "https://images.unsplash.com/photo-1590735213920-68192a487bc3?w=300&h=200&fit=crop",
         images: [
           "https://images.unsplash.com/photo-1590735213920-68192a487bc3?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=600&fit=crop"
+          "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=600&h=600&fit=crop"
         ],
         inStock: true
       },
       { 
-        id: "casing-accessories", 
-        name: "Casing Accessories", 
-        description: "Centralizers, float equipment, and accessories for casing installation integrity. Multiple configurations available for various well conditions and requirements.",
+        id: "hydraulic-packers", 
+        name: "Hydraulic Packers", 
+        description: "Hydraulic packers provide controlled zonal isolation by setting the sealing element using applied tubing pressure. Used in production, testing, injection, and stimulation programs where reliable isolation and repeatable setting are required.",
         price: "Request Technical Evaluation",
-        features: ["Multiple configurations", "Enhanced durability", "Quick deployment"],
+        features: ["Controlled hydraulic setting for repeatable deployment", "High sealing reliability with optimized element systems", "Retrievable or permanent configurations", "Compatible with standard completion strings"],
         operationalEnvelope: {
-          pressure: "Variable by component",
-          temperature: "-40°F to 350°F",
-          application: "Casing running and cementing",
-          limits: "Formation-specific selection required"
+          pressure: "High-differential and high-pressure service configurations",
+          temperature: "Options for elevated temperature and HPHT wells",
+          application: "Zonal isolation, pressure testing, stimulation/acidizing, injection programs",
+          limits: "Requires stable hydraulic pressure and clean setting fluids"
+        },
+        image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=300&h=200&fit=crop",
+        images: [
+          "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=600&h=600&fit=crop"
+        ],
+        inStock: true
+      },
+      { 
+        id: "flow-control-devices", 
+        name: "Flow Control Devices", 
+        description: "Flow Control Devices (FCDs) regulate and balance fluid inflow or injection along the wellbore. They help manage production profiles, delay water or gas breakthrough, and improve overall reservoir drainage efficiency.",
+        price: "Request Technical Evaluation",
+        features: ["Controlled and predictable flow regulation", "Improves production and injection profile management", "Reduces early water and gas breakthrough", "Passive or autonomous designs available"],
+        operationalEnvelope: {
+          pressure: "Model- and size-dependent for production and injection",
+          temperature: "Depends on internal flow element design and seal system",
+          application: "Production inflow control, injection profile management, reservoir balancing",
+          limits: "Requires accurate reservoir characterization"
         },
         image: "https://images.unsplash.com/photo-1565087838865-ad5eb48b30d9?w=300&h=200&fit=crop",
         images: [
           "https://images.unsplash.com/photo-1565087838865-ad5eb48b30d9?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1590735213920-68192a487bc3?w=600&h=600&fit=crop"
-        ],
-        inStock: true
-      },
-      { 
-        id: "swellable-systems", 
-        name: "Swellable Packer Systems", 
-        description: "Swellable element packers for zonal isolation without setting tools. Water or oil activated for reliable long-term performance.",
-        price: "Request Technical Evaluation",
-        features: ["Water/oil activated", "No setting tool required", "Long-term reliability"],
-        operationalEnvelope: {
-          pressure: "5,000 PSI differential",
-          temperature: "Up to 300°F",
-          application: "Zonal isolation, annular sealing",
-          limits: "Activation time: 6-24 hours"
-        },
-        image: "https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1565087838865-ad5eb48b30d9?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=600&h=600&fit=crop"
-        ],
-        inStock: false
-      }
-    ]
-  },
-  {
-    id: "mills-bits",
-    name: "Mills & Bits",
-    icon: Wrench,
-    color: "from-red-500 to-red-600",
-    description: "Milling tools and bits for section cutting, obstruction removal, and wellbore access",
-    count: 16,
-    products: [
-      { 
-        id: "section-mills", 
-        name: "Section Milling Systems", 
-        description: "Full-bore section mills for casing removal and window cutting operations. Optimized cutter geometry ensures consistent cutting rates and efficient debris management.",
-        price: "Request Technical Evaluation",
-        features: ["Optimized cutter geometry", "Debris management", "Consistent cutting rate"],
-        operationalEnvelope: {
-          pressure: "N/A - mechanical operation",
-          temperature: "Up to 400°F",
-          application: "Casing section removal, window cutting",
-          limits: "RPM: 40-80, WOB: 2,000-6,000 lbs"
-        },
-        image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1590735213920-68192a487bc3?w=600&h=600&fit=crop"
-        ],
-        inStock: true
-      },
-      { 
-        id: "junk-mills", 
-        name: "Junk Mills", 
-        description: "Concave and flat-bottom mills for debris and obstruction removal. Tungsten carbide inserts provide high impact resistance.",
-        price: "Request Technical Evaluation",
-        features: ["Tungsten carbide inserts", "Multiple profiles available", "High impact resistance"],
-        operationalEnvelope: {
-          pressure: "N/A - mechanical operation",
-          temperature: "Up to 400°F",
-          application: "Obstruction milling, debris cleanup",
-          limits: "Formation-dependent parameters"
-        },
-        image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1565087838865-ad5eb48b30d9?w=600&h=600&fit=crop",
           "https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=600&h=600&fit=crop"
         ],
         inStock: true
-      },
-      { 
-        id: "pilot-mills", 
-        name: "Pilot Mills", 
-        description: "Pilot and taper mills for controlled wellbore access and re-entry. Precision guidance with gradual taper design.",
-        price: "Request Technical Evaluation",
-        features: ["Precision guidance", "Gradual taper design", "Controlled material removal"],
-        operationalEnvelope: {
-          pressure: "N/A - mechanical operation",
-          temperature: "Up to 400°F",
-          application: "Well re-entry, controlled milling",
-          limits: "Controlled RPM for accuracy"
-        },
-        image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1590735213920-68192a487bc3?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=600&h=600&fit=crop"
-        ],
-        inStock: true
       }
     ]
   },
   {
-    id: "monitoring-equipment",
-    name: "Monitoring Equipment",
-    icon: Monitor,
+    id: "well-intervention-tools",
+    name: "Well Intervention Tools",
+    icon: Wrench,
     color: "from-purple-500 to-purple-600",
-    description: "Condition monitoring and surveillance systems for operational verification",
-    count: 16,
+    description: "Slickline, wireline, and coiled tubing operations for diagnostics, cleanout, and remedial work",
+    count: 5,
     products: [
       { 
-        id: "corrosion-monitors", 
-        name: "Corrosion Monitoring Systems", 
-        description: "Continuous corrosion rate monitoring with predictive analytics integration. Real-time data transmission enables proactive maintenance planning.",
+        id: "pulling-running-tools", 
+        name: "Pulling & Running Tools", 
+        description: "Pulling and running tools are used to set, retrieve, and service downhole flow-control equipment such as lock mandrels, chokes, standing valves, and other nipple-profile accessories.",
         price: "Request Technical Evaluation",
-        features: ["Real-time data", "AI analytics integration", "Remote monitoring"],
+        features: ["Positive engagement with standard nipple profiles", "Supports faster change-outs and reduced well downtime", "Rigless deployment with slickline or wireline", "Reduces risk of completion damage"],
         operationalEnvelope: {
-          pressure: "Sensor rated to 5,000 PSI",
-          temperature: "Up to 250°F",
-          application: "Pipeline and vessel integrity monitoring",
-          limits: "Wireless range: 5km, Data logging: 1 year"
+          pressure: "Model-dependent based on completion design",
+          temperature: "Depends on elastomer and metallurgy selection",
+          application: "Installation and retrieval of downhole control equipment, routine maintenance",
+          limits: "Requires correct profile match and gauge confirmation"
         },
         image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=300&h=200&fit=crop",
         images: [
           "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=600&h=600&fit=crop"
+          "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=600&fit=crop"
         ],
         inStock: true
       },
       { 
-        id: "leak-detection", 
-        name: "Leak Detection Systems", 
-        description: "Multi-sensor leak detection with precise location identification. Fast response times for critical safety applications.",
+        id: "wellbore-cleanout-tools", 
+        name: "Wellbore Cleanout Tools", 
+        description: "Cleanout tools including scrapers, brushes, and drift subs remove scale, paraffin, debris, and light restrictions to restore ID and prepare the wellbore for subsequent intervention.",
         price: "Request Technical Evaluation",
-        features: ["Multi-sensor array", "Precise location", "Fast response"],
+        features: ["Restores internal diameter and improves conveyance", "Helps reduce sticking risk for subsequent runs", "Configurable cutting/contact elements based on debris type", "Supports rigless and light-intervention operations"],
         operationalEnvelope: {
-          pressure: "Ambient to process conditions",
-          temperature: "-20°F to 150°F",
-          application: "Facility and pipeline leak monitoring",
-          limits: "Detection range: 1-1000 ppm"
+          pressure: "Tool and conveyance dependent",
+          temperature: "Depends on materials and bristle selection",
+          application: "Tubing/casing cleanout, restriction removal, preparation prior to setting",
+          limits: "Not intended for severe obstructions without milling assemblies"
         },
         image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=300&h=200&fit=crop",
         images: [
           "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&h=600&fit=crop"
+        ],
+        inStock: true
+      },
+      { 
+        id: "junk-baskets-magnets", 
+        name: "Junk Baskets & Magnets", 
+        description: "Junk baskets and magnets capture and recover loose debris, metal cuttings, and small parts from the wellbore to improve well integrity and reduce the risk of equipment damage.",
+        price: "Request Technical Evaluation",
+        features: ["Improves wellbore cleanliness", "Reduces risk of equipment damage", "Supports post-milling and post-intervention cleanout", "Multiple basket/magnet configurations available"],
+        operationalEnvelope: {
+          pressure: "Configuration dependent for planned circulation",
+          temperature: "Depends on materials selection, moderate to high temperature",
+          application: "Debris recovery after milling, cleanout prior to completion runs",
+          limits: "Recovery efficiency depends on debris type/size and circulation"
+        },
+        image: "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=300&h=200&fit=crop",
+        images: [
+          "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=600&h=600&fit=crop",
           "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=600&fit=crop"
         ],
         inStock: true
@@ -249,50 +297,173 @@ const productCategories = [
     ]
   },
   {
-    id: "ai-devices",
-    name: "Digital Oversight Systems",
-    icon: Cpu,
+    id: "coiled-tubing-tools",
+    name: "Downhole Coil Tubing Tools",
+    icon: ServerCog,
     color: "from-orange-500 to-orange-600",
-    description: "AI and computer vision systems for safety verification and operational oversight",
-    count: 12,
+    description: "Circulation, cleanout, and downhole motor tools for CT operations",
+    count: 4,
     products: [
       { 
-        id: "ppe-monitoring", 
-        name: "PPE Compliance Verification", 
-        description: "Computer vision system for automated safety equipment detection and logging. 99%+ accuracy with cloud integration capabilities.",
+        id: "ct-circulation-tools", 
+        name: "CT Circulation & Cleanout Tools", 
+        description: "Circulation and cleanout tools including circulating heads, wash tools, bypass subs, and cleanout assemblies direct and manage flow to improve debris transport and restore internal diameter.",
         price: "Request Technical Evaluation",
-        features: ["Real-time detection", "99%+ accuracy", "Cloud integration"],
+        features: ["Improves debris transport", "Restores internal diameter", "Supports controlled circulation", "Prepares wellbore for subsequent operations"],
         operationalEnvelope: {
-          pressure: "N/A - surface system",
-          temperature: "-20°F to 120°F operating",
-          application: "Facility safety compliance monitoring",
-          limits: "Coverage: 50m radius per unit"
+          pressure: "Configured for planned circulation pressures and flow rates",
+          temperature: "Options for elevated temperature and corrosive service",
+          application: "Circulation for cleanout, debris transport, pressure equalization, well kill",
+          limits: "Selection depends on fluid properties and debris load"
         },
-        image: "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=300&h=200&fit=crop",
+        image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=300&h=200&fit=crop",
         images: [
-          "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&h=600&fit=crop",
           "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=600&fit=crop"
         ],
         inStock: true
       },
       { 
-        id: "anomaly-detection", 
-        name: "Operational Anomaly Detection", 
-        description: "Machine learning system for early detection of operational deviations. Customizable thresholds with predictive alerts.",
+        id: "ct-bumper-subs", 
+        name: "Coiled Tubing Bumper Subs", 
+        description: "Bumper subs provide axial stroke to enable positive tagging, setting, and shifting operations on CT. They help transfer controlled weight to downhole tools and absorb shock loads.",
         price: "Request Technical Evaluation",
-        features: ["Pattern recognition", "Predictive alerts", "Customizable thresholds"],
+        features: ["Enables positive tagging operations", "Transfers controlled weight to downhole tools", "Absorbs shock loads to protect CT string", "Multiple stroke lengths available"],
         operationalEnvelope: {
-          pressure: "N/A - analytics system",
-          temperature: "N/A - analytics system",
-          application: "Process optimization and safety",
-          limits: "Integration via API/SDK"
+          pressure: "Rated for planned CT loads and circulating pressures",
+          temperature: "Options for elevated temperature wells and corrosive service",
+          application: "Tagging and locating downhole equipment, assisting shifting tools",
+          limits: "Configuration based on intervention program requirements"
+        },
+        image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=300&h=200&fit=crop",
+        images: [
+          "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=600&h=600&fit=crop"
+        ],
+        inStock: true
+      },
+      { 
+        id: "ct-downhole-motors", 
+        name: "CT Downhole Motors & Milling Tools", 
+        description: "Downhole motors and milling tools provide rotary cutting capability for plug/packer drill-out, restriction removal, and remedial milling during coiled tubing interventions.",
+        price: "Request Technical Evaluation",
+        features: ["Rotary cutting capability for CT interventions", "Multiple motor configurations available", "Optimized cutting structures", "Designed for plug and packer drill-out"],
+        operationalEnvelope: {
+          pressure: "Configured for planned pump rates and torque requirements",
+          temperature: "Depends on motor elastomers and materials selection",
+          application: "Milling composite/metallic plugs, removing restrictions, cutting debris",
+          limits: "Tool selection depends on restriction type and wellbore limitations"
         },
         image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&h=200&fit=crop",
         images: [
           "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=600&h=600&fit=crop"
+        ],
+        inStock: true
+      }
+    ]
+  },
+  {
+    id: "fishing-milling",
+    name: "Fishing & Milling Tools",
+    icon: Drill,
+    color: "from-red-500 to-red-600",
+    description: "Recover lost equipment and restore wellbore integrity with minimal non-productive time",
+    count: 3,
+    products: [
+      { 
+        id: "customized-mills", 
+        name: "Customized Mills", 
+        description: "Customized mills are engineered and dressed to match the specific restriction, plug, or fish to be milled. We tailor OD, pilot, face profile, gauge protection, and cutting structure to maximize cutting efficiency.",
+        price: "Request Technical Evaluation",
+        features: ["Mill types: taper, pilot, string, watermelon, junk mills", "Configurable cutting structures (tungsten carbide, PDC)", "Gauge protection and casing-friendly profiles", "Designed to reduce torque/vibration"],
+        operationalEnvelope: {
+          pressure: "Selected for planned circulation rates and differential pressures",
+          temperature: "Options for elevated temperature and corrosive/sour service",
+          application: "Mill-out of composite/cast-iron plugs, cement/scale/debris removal",
+          limits: "Requires engineered milling plan with adequate stabilization"
+        },
+        image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=300&h=200&fit=crop",
+        images: [
+          "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=600&h=600&fit=crop"
+        ],
+        inStock: true
+      }
+    ]
+  },
+  {
+    id: "digital-ai-systems",
+    name: "Digital Oversight Systems",
+    icon: Cpu,
+    color: "from-indigo-500 to-indigo-600",
+    description: "AI and computer vision systems for safety verification and operational oversight",
+    count: 3,
+    products: [
+      { 
+        id: "facial-recognition", 
+        name: "Facial Recognition System", 
+        description: "AI-powered facial recognition solution for identity verification, secure access control, and attendance/visitor management. Performs fast face detection, matching, and event logging with configurable privacy controls.",
+        price: "Request Technical Evaluation",
+        features: ["Real-time detection", "99%+ accuracy", "Cloud integration", "Configurable privacy controls"],
+        operationalEnvelope: {
+          pressure: "N/A – surface system",
+          temperature: "32°F to 104°F operating",
+          application: "Secure identity verification & facility access monitoring",
+          limits: "Works on Linux environment. Requires dedicated GPU for performance"
+        },
+        image: "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=300&h=200&fit=crop",
+        images: [
           "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&h=600&fit=crop"
+          "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=600&fit=crop"
+        ],
+        inStock: true
+      },
+      { 
+        id: "digital-twin", 
+        name: "Digital Twin System", 
+        description: "3D scanning–powered digital twin platform that captures real-world spaces and assets into accurate, measurable 3D models. Enables remote walkthroughs, layout verification, progress tracking, and documentation.",
+        price: "Request Technical Evaluation",
+        features: ["MM grade preciseness", "Minutes ready data", "Cross application integration", "Cloud integration"],
+        operationalEnvelope: {
+          pressure: "N/A – terrestrial scanning system",
+          temperature: "32°F to 104°F operating",
+          application: "Facility mapping, construction progress documentation, asset inventory",
+          limits: "Scan range varies from 50m radius to KMs based on scanner model"
+        },
+        image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&h=200&fit=crop",
+        images: [
+          "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=600&h=600&fit=crop"
+        ],
+        inStock: true
+      }
+    ]
+  },
+  {
+    id: "corrosion-protection",
+    name: "Corrosion Protection Products",
+    icon: Shield,
+    color: "from-teal-500 to-teal-600",
+    description: "Cathodic protection and corrosion management solutions",
+    count: 2,
+    products: [
+      { 
+        id: "zn-ribbon-anode", 
+        name: "Zn Ribbon Anode", 
+        description: "Zinc ribbon anodes provide distributed cathodic protection without an external power supply. Because it is a continuous ribbon, it gives more uniform current distribution than discrete anodes in short sections or congested areas.",
+        price: "Request Technical Evaluation",
+        features: ["Good current distribution along its length", "Suitable for moderate-to-low resistivity soil", "No external power supply needed", "Continuous ribbon design"],
+        operationalEnvelope: {
+          pressure: "N/A – buried installation",
+          temperature: "Soil temperature dependent",
+          application: "Short pipeline sections, casing protection, repair/retrofit areas",
+          limits: "Design depends on soil resistivity, coating condition, and installation geometry"
+        },
+        image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=300&h=200&fit=crop",
+        images: [
+          "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=600&fit=crop"
         ],
         inStock: true
       }

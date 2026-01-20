@@ -4,7 +4,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { useCart } from "@/context/CartContext";
-
+import logoMain from "@/assets/logo-main.png";
 
 const Header = () => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -62,10 +62,11 @@ const Header = () => {
 
           {/* Logo */}
           <Link to="/" className="flex items-center cursor-pointer">
-            <div className="text-2xl font-bold">
-              <span className="text-primary">SHIVI</span>{" "}
-              <span className="text-secondary">ENERGY</span>
-            </div>
+            <img 
+              src={logoMain} 
+              alt="SSES - Shivi Energy Solutions" 
+              className="h-10 md:h-12 w-auto"
+            />
           </Link>
 
           {/* Desktop Navigation */}

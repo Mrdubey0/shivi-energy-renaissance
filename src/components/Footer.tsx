@@ -7,6 +7,7 @@ import {
   Twitter, 
   Facebook
 } from "lucide-react";
+import logoMain from "@/assets/logo-main.png";
 
 const Footer = () => {
   const services = [
@@ -43,9 +44,12 @@ const Footer = () => {
         <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-6 md:gap-8">
           {/* Company Info */}
           <div className="col-span-2 lg:col-span-2">
-            <div className="text-xl md:text-3xl font-bold mb-3 md:mb-4">
-              <span className="text-primary-foreground">SHIVI</span>{" "}
-              <span className="text-secondary">ENERGY</span>
+            <div className="mb-3 md:mb-4">
+              <img 
+                src={logoMain} 
+                alt="SSES - Shivi Energy Solutions" 
+                className="h-12 md:h-16 w-auto brightness-0 invert"
+              />
             </div>
             <p className="text-primary-foreground/80 mb-4 md:mb-6 leading-relaxed text-xs md:text-base hidden md:block">
               Engineering-led operational services company delivering audit-ready field 

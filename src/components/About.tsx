@@ -2,6 +2,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+
 import { 
   Award, 
   Globe, 
@@ -36,31 +37,28 @@ const About = () => {
 
   const leadership = [
     {
-      name: "Dr. Rajesh Kumar",
-      position: "CEO & Founder",
+      name: "Mr. Vipul S",
+      position: "Founder",
       company: "Shivi Energy Solutions",
-      image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face",
-      bio: "20+ years experience in energy sector operations with focus on execution discipline and operational governance.",
-      linkedin: "#",
-      email: "rajesh@shivienergy.com"
+      image: "src/assets/founder.jpeg",
+      bio: "I’m a global solution specialist with hands-on experience across the energy and oilfield sector, having worked on rigs.",
+      linkedin: "https://www.linkedin.com/in/vipul-s-26a45020/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
     },
     {
-      name: "Ms. Priya Sharma",
-      position: "CTO",
+      name: "Mr. Binay S Sahay",
+      position: "Co-Founder",
       company: "Shivi Energy Solutions",
       image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
-      bio: "Expert in digital oversight systems and AI applications for safety verification and operational monitoring.",
-      linkedin: "#",
-      email: "priya@shivienergy.com"
+      bio: "Telecom domain experience for more than 3 decades. Worked in Equipment Manufacturing, Consulting, and Sales & Marketing.",
+      linkedin: "https://www.linkedin.com/in/binay-s-sahay-a2322225/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
     },
     {
-      name: "Mr. Vikram Singh",
-      position: "VP Operations",
+      name: "Mr. Neelam Maan",
+      position: "Contract and Tendering Manager",
       company: "Shivi Energy Solutions",
-      image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face",
-      bio: "15+ years leading complex field operations with accountability for safety and execution outcomes.",
-      linkedin: "#",
-      email: "vikram@shivienergy.com"
+      image: "",
+      bio: "With over 11 years of experience in the field of Oil & Energy and now working in cathodic protection & Energy field.",
+      linkedin: "https://www.linkedin.com/in/neelam-maan-b579502b/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
     }
   ];
 
@@ -171,10 +169,11 @@ const About = () => {
                   <p className="text-primary font-medium text-sm">{leader.position}</p>
                 </CardHeader>
                 <CardContent className="text-center pt-0 pb-4">
-                  <Button variant="outline" size="sm" className="text-xs">
-                    <Linkedin className="h-3 w-3 mr-1" />
-                    Connect
-                  </Button>
+                      <Button variant="outline" size="sm" className="text-xs"  onClick={() => window.open(leader.linkedin, '_blank')}>
+                        <Linkedin className="h-3 w-3 mr-1" />
+                        Connect
+                      </Button>
+                     
                 </CardContent>
               </Card>
             ))}
@@ -207,7 +206,7 @@ const About = () => {
                     </p>
                     
                     <div className="flex justify-center">
-                      <Button variant="outline" size="sm" className="hover:bg-primary hover:text-primary-foreground">
+                      <Button variant="outline" size="sm" className="hover:bg-primary hover:text-primary-foreground" onClick={() => window.open(leader.linkedin, '_blank')}>
                         <Linkedin className="h-4 w-4 mr-2" />
                         LinkedIn
                       </Button>

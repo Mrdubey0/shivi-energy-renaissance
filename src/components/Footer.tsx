@@ -5,7 +5,8 @@ import {
   MapPin, 
   Linkedin, 
   Twitter, 
-  Facebook
+  Facebook,
+  Search
 } from "lucide-react";
 import { useNavigate, useLocation } from "react-router-dom";
 import logoMain from "@/assets/logo-main.png";
@@ -111,12 +112,14 @@ const Footer = () => {
               <Button variant="ghost" size="icon" className="hover:bg-primary-foreground/10 h-8 w-8 md:h-12 md:w-12">
                 <Linkedin className="h-4 w-4 md:h-7 md:w-7" />
               </Button>
-              <Button variant="ghost" size="icon" className="hover:bg-primary-foreground/10 h-8 w-8 md:h-12 md:w-12">
-                <Twitter className="h-4 w-4 md:h-7 md:w-7" />
+              <Button variant="ghost" size="icon" className="hover:bg-primary-foreground/10 h-20 w-16 md:h-12 md:w-20 "  
+                    onClick={() => window.open("https://www.google.com/search?q=shivienergy&rlz=1C1ONGR_enIN1083IN1083&oq=shivienergy&gs_lcrp=EgZjaHJvbWUyBggAEEUYOTISCAEQLhgNGK8BGMcBGIAEGI4FMgkIAhAAGA0YgAQyCQgDEAAYDRiABDIICAQQABgNGB4yCggFEAAYgAQYogQyBwgGEAAY7wUyCggHEAAYgAQYogTSAQk1ODIxajBqMTWoAgiwAgHxBTRmz7Dab45G8QU0Zs-w2m-ORg&sourceid=chrome&ie=UTF-8", '_blank')}>
+                <Search className="h-4 w-4 md:h-7 md:w-7" />
+                Google
               </Button>
-              <Button variant="ghost" size="icon" className="hover:bg-primary-foreground/10 h-8 w-8 md:h-12 md:w-12">
+              {/* <Button variant="ghost" size="icon" className="hover:bg-primary-foreground/10 h-8 w-8 md:h-12 md:w-12">
                 <Facebook className="h-4 w-4 md:h-7 md:w-7" />
-              </Button>
+              </Button> */}
             </div>
           </div>
 

@@ -1179,18 +1179,18 @@ const ProductCard = ({ product, isInCart, onAddToCart, onViewDetails }: ProductC
       </div>
 
       <CardHeader className="pb-3">
-        <div className="flex items-start justify-between mb-2">
-          <CardTitle className="text-lg font-bold text-foreground group-hover:text-primary transition-colors line-clamp-2">
+        <div className="mb-2">
+          <CardTitle className="text-base font-bold text-foreground group-hover:text-primary transition-colors line-clamp-2 leading-tight">
             {product.name}
           </CardTitle>
         </div>
         
-        <CardDescription className="text-sm text-muted-foreground line-clamp-2 mb-3">
+        <CardDescription className="text-sm text-muted-foreground line-clamp-3 mb-3 leading-relaxed">
           {product.description}
         </CardDescription>
 
-        <div className="flex items-center justify-between">
-          <Badge variant="outline" className="text-xs">
+        <div className="flex items-center">
+          <Badge variant="outline" className="text-xs font-medium">
             {product.categoryName}
           </Badge>
         </div>
@@ -1200,20 +1200,20 @@ const ProductCard = ({ product, isInCart, onAddToCart, onViewDetails }: ProductC
         {/* Operational Envelope Preview */}
         <div className="mb-4 p-3 bg-muted/50 rounded-lg">
           <div className="text-xs font-semibold text-foreground mb-2 flex items-center">
-            <Activity className="h-3 w-3 mr-1" />
-            Operational Envelope
+            <Activity className="h-3 w-3 mr-1.5 flex-shrink-0" />
+            <span>Operational Envelope</span>
           </div>
-          <div className="grid grid-cols-2 gap-2 text-xs text-muted-foreground">
+          <div className="space-y-1.5 text-xs text-muted-foreground">
             {product.operationalEnvelope.pressure && (
-              <div className="flex items-center">
-                <Gauge className="h-3 w-3 mr-1" />
-                {product.operationalEnvelope.pressure}
+              <div className="flex items-start gap-1.5">
+                <Gauge className="h-3 w-3 mt-0.5 flex-shrink-0" />
+                <span className="line-clamp-2 leading-relaxed">{product.operationalEnvelope.pressure}</span>
               </div>
             )}
             {product.operationalEnvelope.temperature && (
-              <div className="flex items-center">
-                <Thermometer className="h-3 w-3 mr-1" />
-                {product.operationalEnvelope.temperature}
+              <div className="flex items-start gap-1.5">
+                <Thermometer className="h-3 w-3 mt-0.5 flex-shrink-0" />
+                <span className="line-clamp-2 leading-relaxed">{product.operationalEnvelope.temperature}</span>
               </div>
             )}
           </div>
@@ -1317,15 +1317,15 @@ const ServiceCard = ({ service, isInCart, onAddToInquiry, onViewDetails }: Servi
       </div>
 
       <CardHeader className="pb-3">
-        <CardTitle className="text-lg font-bold text-foreground group-hover:text-primary transition-colors line-clamp-2">
+        <CardTitle className="text-base font-bold text-foreground group-hover:text-primary transition-colors line-clamp-2 leading-tight mb-2">
           {service.name}
         </CardTitle>
         
-        <CardDescription className="text-sm text-muted-foreground line-clamp-2 mb-3">
+        <CardDescription className="text-sm text-muted-foreground line-clamp-3 mb-3 leading-relaxed">
           {service.shortDescription}
         </CardDescription>
 
-        <Badge variant="outline" className="text-xs w-fit">
+        <Badge variant="outline" className="text-xs font-medium w-fit">
           {service.categoryName}
         </Badge>
       </CardHeader>

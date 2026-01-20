@@ -45,14 +45,24 @@ const Header = () => {
   };
 
   const navigationItems = [
-    { name: "Home", href: "/" },
-    { name: "About Us", href: "/#about" },
-    { name: "Solutions", href: "/solutions" },
-    { name: "Projects", href: "/projects" },
-    { name: "LOCA-LUCAS", href: "/sustainability" },
-    { name: "Blog", href: "/blog" },
-    { name: "Careers", href: "/careers" }
+    { name: "Home", href: "/", matchPaths: ["/"] },
+    { name: "About Us", href: "/#about", matchPaths: [] },
+    { name: "Solutions", href: "/solutions", matchPaths: ["/solutions"] },
+    { name: "Projects", href: "/projects", matchPaths: ["/projects"] },
+    { name: "LOCA-LUCAS", href: "/sustainability", matchPaths: ["/sustainability"] },
+    { name: "Blog", href: "/blog", matchPaths: ["/blog"] },
+    { name: "Careers", href: "/careers", matchPaths: ["/careers"] }
   ];
+
+  const isActiveRoute = (item: typeof navigationItems[0]) => {
+    if (item.href === "/") {
+      return location.pathname === "/" && !location.hash;
+    }
+    if (item.href.startsWith("/#")) {
+      return location.pathname === "/" && location.hash === item.href.substring(1);
+    }
+    return item.matchPaths.some(path => location.pathname === path || location.pathname.startsWith(path + "/"));
+  };
 
   return (
     <header className={`sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border transition-shadow duration-300 ${isScrolled ? 'shadow-lg shadow-foreground/5' : ''}`}>
@@ -71,33 +81,48 @@ const Header = () => {
 
           {/* Desktop Navigation */}
           <nav className="hidden lg:flex items-center space-x-1">
-            {navigationItems.map((item) => (
-              <div key={item.name} className="relative group">
-                {item.href.startsWith('/#') ? (
-                  <a
-                    href={item.href}
-                    className="px-4 py-2 text-foreground hover:text-primary transition-colors duration-200 font-medium rounded-lg hover:bg-muted/50"
-                    onClick={(e) => handleHashNavigation(e, item.href)}
-                  >
-                    {item.name}
-                  </a>
-                ) : item.href.startsWith('/') ? (
-                  <Link
-                    to={item.href}
-                    className="px-4 py-2 text-foreground hover:text-primary transition-colors duration-200 font-medium rounded-lg hover:bg-muted/50"
-                  >
-                    {item.name}
-                  </Link>
-                ) : (
-                  <a
-                    href={item.href}
-                    className="px-4 py-2 text-foreground hover:text-primary transition-colors duration-200 font-medium rounded-lg hover:bg-muted/50"
-                  >
-                    {item.name}
-                  </a>
-                )}
-              </div>
-            ))}
+            {navigationItems.map((item) => {
+              const isActive = isActiveRoute(item);
+              return (
+                <div key={item.name} className="relative group">
+                  {item.href.startsWith('/#') ? (
+                    <a
+                      href={item.href}
+                      className={`px-4 py-2 transition-colors duration-200 font-medium rounded-lg ${
+                        isActive 
+                          ? "text-primary bg-primary/10" 
+                          : "text-foreground hover:text-primary hover:bg-muted/50"
+                      }`}
+                      onClick={(e) => handleHashNavigation(e, item.href)}
+                    >
+                      {item.name}
+                    </a>
+                  ) : item.href.startsWith('/') ? (
+                    <Link
+                      to={item.href}
+                      className={`px-4 py-2 transition-colors duration-200 font-medium rounded-lg ${
+                        isActive 
+                          ? "text-primary bg-primary/10" 
+                          : "text-foreground hover:text-primary hover:bg-muted/50"
+                      }`}
+                    >
+                      {item.name}
+                    </Link>
+                  ) : (
+                    <a
+                      href={item.href}
+                      className={`px-4 py-2 transition-colors duration-200 font-medium rounded-lg ${
+                        isActive 
+                          ? "text-primary bg-primary/10" 
+                          : "text-foreground hover:text-primary hover:bg-muted/50"
+                      }`}
+                    >
+                      {item.name}
+                    </a>
+                  )}
+                </div>
+              );
+            })}
           </nav>
 
           {/* Inquiries Button - Desktop */}
@@ -149,12 +174,15 @@ const Header = () => {
         {isMobileMenuOpen && (
           <div className="lg:hidden py-4 border-t border-border">
             <nav className="flex flex-col space-y-4">
-              {navigationItems.map((item) => (
-                item.href.startsWith('/#') ? (
+              {navigationItems.map((item) => {
+                const isActive = isActiveRoute(item);
+                return item.href.startsWith('/#') ? (
                   <a
                     key={item.name}
                     href={item.href}
-                    className="text-foreground hover:text-primary transition-colors duration-200 font-medium"
+                    className={`transition-colors duration-200 font-medium ${
+                      isActive ? "text-primary" : "text-foreground hover:text-primary"
+                    }`}
                     onClick={(e) => {
                       setIsMobileMenuOpen(false);
                       handleHashNavigation(e, item.href);
@@ -166,7 +194,9 @@ const Header = () => {
                   <Link
                     key={item.name}
                     to={item.href}
-                    className="text-foreground hover:text-primary transition-colors duration-200 font-medium"
+                    className={`transition-colors duration-200 font-medium ${
+                      isActive ? "text-primary" : "text-foreground hover:text-primary"
+                    }`}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item.name}
@@ -175,13 +205,15 @@ const Header = () => {
                   <a
                     key={item.name}
                     href={item.href}
-                    className="text-foreground hover:text-primary transition-colors duration-200 font-medium"
+                    className={`transition-colors duration-200 font-medium ${
+                      isActive ? "text-primary" : "text-foreground hover:text-primary"
+                    }`}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item.name}
                   </a>
-                )
-              ))}
+                );
+              })}
             </nav>
           </div>
         )}

@@ -1145,13 +1145,16 @@ interface ProductCardProps {
 
 const ProductCard = ({ product, isInCart, onAddToCart, onViewDetails }: ProductCardProps) => {
   return (
-    <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-border/50 overflow-hidden h-full cursor-pointer" onClick={onViewDetails}>
+    <Card className="group hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 hover:-translate-y-3 hover:border-primary/30 border-border/50 overflow-hidden h-full cursor-pointer bg-card" onClick={onViewDetails}>
       {/* Product Image */}
       <div className="relative overflow-hidden">
         <div 
-          className="h-48 bg-cover bg-center group-hover:scale-110 transition-transform duration-500"
+          className="h-48 bg-cover bg-center group-hover:scale-110 transition-transform duration-700 ease-out"
           style={{ backgroundImage: `url(${product.image})` }}
         />
+        
+        {/* Gradient Overlay on Hover */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         
         {/* Overlay Badges */}
         <div className="absolute top-3 left-3 flex flex-col gap-2">
@@ -1163,11 +1166,11 @@ const ProductCard = ({ product, isInCart, onAddToCart, onViewDetails }: ProductC
         </div>
 
         {/* Quick Actions */}
-        <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+        <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0">
           <Button 
             variant="secondary" 
             size="icon" 
-            className="h-8 w-8 shadow-md"
+            className="h-8 w-8 shadow-md hover:scale-110 transition-transform duration-200"
             onClick={(e) => {
               e.stopPropagation();
               onViewDetails();
@@ -1285,27 +1288,30 @@ const ServiceCard = ({ service, isInCart, onAddToInquiry, onViewDetails }: Servi
   const IconComponent = service.categoryIcon;
   
   return (
-    <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-border/50 overflow-hidden h-full cursor-pointer" onClick={onViewDetails}>
+    <Card className="group hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 hover:-translate-y-3 hover:border-primary/30 border-border/50 overflow-hidden h-full cursor-pointer bg-card" onClick={onViewDetails}>
       {/* Service Image */}
       <div className="relative overflow-hidden">
         <div 
-          className="h-48 bg-cover bg-center group-hover:scale-110 transition-transform duration-500"
+          className="h-48 bg-cover bg-center group-hover:scale-110 transition-transform duration-700 ease-out"
           style={{ backgroundImage: `url(${service.image})` }}
         />
         
+        {/* Gradient Overlay on Hover */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+        
         {/* Category Badge */}
-        <div className="absolute top-3 left-3">
-          <div className={`w-10 h-10 bg-gradient-to-br ${service.categoryColor} rounded-lg flex items-center justify-center shadow-md`}>
+        <div className="absolute top-3 left-3 transition-transform duration-300 group-hover:scale-110">
+          <div className={`w-10 h-10 bg-gradient-to-br ${service.categoryColor} rounded-lg flex items-center justify-center shadow-md group-hover:shadow-lg transition-shadow duration-300`}>
             <IconComponent className="h-5 w-5 text-white" />
           </div>
         </div>
 
         {/* Quick Actions */}
-        <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+        <div className="absolute top-3 right-3 flex flex-col gap-2 opacity-0 group-hover:opacity-100 transition-all duration-300 translate-x-2 group-hover:translate-x-0">
           <Button 
             variant="secondary" 
             size="icon" 
-            className="h-8 w-8 shadow-md"
+            className="h-8 w-8 shadow-md hover:scale-110 transition-transform duration-200"
             onClick={(e) => {
               e.stopPropagation();
               onViewDetails();

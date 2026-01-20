@@ -1,65 +1,50 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Activity, Shield, Clock } from "lucide-react";
-import { useState, useEffect } from "react";
+import { ArrowRight, Activity, Shield, Clock, ChevronLeft, ChevronRight } from "lucide-react";
+import { useState, useEffect, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
-import heroBg from "@/assets/hero-bg.jpg";
 import TypewriterText from "./TypewriterText";
 import ScrollReveal from "./ScrollReveal";
 
-// Sample slideshow images for mobile
+// Import AI-generated slideshow images
+import heroSlide1 from "@/assets/hero-slide-1.jpg";
+import heroSlide2 from "@/assets/hero-slide-2.jpg";
+import heroSlide3 from "@/assets/hero-slide-3.jpg";
+
+// Slideshow images for both mobile and desktop
 const slideshowImages = [
-  heroBg,
-  "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=1920&h=1080&fit=crop",
-  "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=1920&h=1080&fit=crop",
+  { src: heroSlide1, alt: "Offshore drilling platform at sunset" },
+  { src: heroSlide2, alt: "Modern oil refinery at twilight" },
+  { src: heroSlide3, alt: "Engineers inspecting pipeline infrastructure" },
 ];
 
 const Hero = () => {
   const navigate = useNavigate();
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isMobile, setIsMobile] = useState(false);
 
-  // Check if mobile on mount and resize
+  // Auto-advance slideshow
   useEffect(() => {
-    const checkMobile = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    
-    checkMobile();
-    window.addEventListener('resize', checkMobile);
-    return () => window.removeEventListener('resize', checkMobile);
+    const interval = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slideshowImages.length);
+    }, 5000);
+    return () => clearInterval(interval);
   }, []);
 
-  // Slideshow auto-advance for mobile
-  useEffect(() => {
-    if (isMobile) {
-      const interval = setInterval(() => {
-        setCurrentSlide((prev) => (prev + 1) % slideshowImages.length);
-      }, 5000);
-      return () => clearInterval(interval);
-    }
-  }, [isMobile]);
+  const goToSlide = useCallback((index: number) => {
+    setCurrentSlide(index);
+  }, []);
+
+  const goToPrevSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev - 1 + slideshowImages.length) % slideshowImages.length);
+  }, []);
+
+  const goToNextSlide = useCallback(() => {
+    setCurrentSlide((prev) => (prev + 1) % slideshowImages.length);
+  }, []);
 
   return (
     <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Video Background for Desktop/Tablet */}
-      <div className="absolute inset-0 hidden md:block">
-        <video
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="absolute inset-0 w-full h-full object-cover"
-        >
-          <source 
-            src="https://assets.mixkit.co/videos/preview/mixkit-oil-pump-at-sunset-44398-large.mp4" 
-            type="video/mp4" 
-          />
-        </video>
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/90 via-primary/80 to-primary/90" />
-      </div>
-
-      {/* Slideshow Background for Mobile */}
-      <div className="absolute inset-0 md:hidden">
+      {/* Carousel Background for Both Desktop and Mobile */}
+      <div className="absolute inset-0">
         {slideshowImages.map((image, index) => (
           <div
             key={index}
@@ -67,26 +52,43 @@ const Hero = () => {
               currentSlide === index ? 'opacity-100' : 'opacity-0'
             }`}
             style={{
-              backgroundImage: `url(${image})`
+              backgroundImage: `url(${image.src})`
             }}
           />
         ))}
         <div className="absolute inset-0 bg-gradient-to-b from-primary/90 via-primary/80 to-primary/90" />
-        
-        {/* Slideshow Indicators */}
-        <div className="absolute bottom-24 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
-          {slideshowImages.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentSlide(index)}
-              className={`w-2 h-2 rounded-full transition-all duration-300 ${
-                currentSlide === index 
-                  ? 'bg-secondary w-6' 
-                  : 'bg-primary-foreground/50 hover:bg-primary-foreground/70'
-              }`}
-            />
-          ))}
-        </div>
+      </div>
+
+      {/* Carousel Navigation Arrows - Desktop */}
+      <button
+        onClick={goToPrevSlide}
+        className="absolute left-4 md:left-8 top-1/2 -translate-y-1/2 z-20 hidden md:flex w-12 h-12 items-center justify-center rounded-full bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20 transition-all duration-300"
+        aria-label="Previous slide"
+      >
+        <ChevronLeft className="h-6 w-6" />
+      </button>
+      <button
+        onClick={goToNextSlide}
+        className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-20 hidden md:flex w-12 h-12 items-center justify-center rounded-full bg-primary-foreground/10 backdrop-blur-sm border border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/20 transition-all duration-300"
+        aria-label="Next slide"
+      >
+        <ChevronRight className="h-6 w-6" />
+      </button>
+
+      {/* Slideshow Indicators */}
+      <div className="absolute bottom-24 left-1/2 transform -translate-x-1/2 flex space-x-2 z-20">
+        {slideshowImages.map((_, index) => (
+          <button
+            key={index}
+            onClick={() => goToSlide(index)}
+            className={`h-2 rounded-full transition-all duration-300 ${
+              currentSlide === index 
+                ? 'bg-secondary w-8' 
+                : 'bg-primary-foreground/50 hover:bg-primary-foreground/70 w-2'
+            }`}
+            aria-label={`Go to slide ${index + 1}`}
+          />
+        ))}
       </div>
       
       {/* Subtle Grid Pattern */}

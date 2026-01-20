@@ -11,12 +11,20 @@ import {
 } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
 
+// Import AI-generated client images
+import clientOngc from "@/assets/client-ongc.jpg";
+import clientReliance from "@/assets/client-reliance.jpg";
+import clientGail from "@/assets/client-gail.jpg";
+import clientIoc from "@/assets/client-ioc.jpg";
+import clientHpcl from "@/assets/client-hpcl.jpg";
+import clientBpcl from "@/assets/client-bpcl.jpg";
+
 const Clients = () => {
   const majorClients = [
     {
       name: "Oil & Natural Gas Corporation",
       abbreviation: "ONGC",
-      logo: "https://images.unsplash.com/photo-1560472354-b33ff0c44a43?w=100&h=100&fit=crop&crop=center",
+      logo: clientOngc,
       industry: "Oil & Gas",
       partnership: "2018 - Present",
       projects: "25+",
@@ -27,7 +35,7 @@ const Clients = () => {
     {
       name: "Reliance Industries Limited",
       abbreviation: "RIL",
-      logo: "https://images.unsplash.com/photo-1551836022-deb4988cc6c0?w=100&h=100&fit=crop&crop=center",
+      logo: clientReliance,
       industry: "Petrochemicals",
       partnership: "2019 - Present",
       projects: "18+",
@@ -38,7 +46,7 @@ const Clients = () => {
     {
       name: "Gas Authority of India Limited",
       abbreviation: "GAIL",
-      logo: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=100&h=100&fit=crop&crop=center",
+      logo: clientGail,
       industry: "Natural Gas",
       partnership: "2020 - Present",
       projects: "12+",
@@ -49,7 +57,7 @@ const Clients = () => {
     {
       name: "Indian Oil Corporation",
       abbreviation: "IOC",
-      logo: "https://images.unsplash.com/photo-1497215728101-856f4ea42174?w=100&h=100&fit=crop&crop=center",
+      logo: clientIoc,
       industry: "Refining",
       partnership: "2017 - Present",
       projects: "20+",
@@ -60,7 +68,7 @@ const Clients = () => {
     {
       name: "Hindustan Petroleum",
       abbreviation: "HPCL",
-      logo: "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=100&h=100&fit=crop&crop=center",
+      logo: clientHpcl,
       industry: "Oil Marketing",
       partnership: "2019 - Present",
       projects: "15+",
@@ -71,7 +79,7 @@ const Clients = () => {
     {
       name: "Bharat Petroleum Corporation",
       abbreviation: "BPCL",
-      logo: "https://images.unsplash.com/photo-1507679799987-c73779587ccf?w=100&h=100&fit=crop&crop=center",
+      logo: clientBpcl,
       industry: "Petroleum",
       partnership: "2018 - Present",
       projects: "16+",

@@ -19,6 +19,13 @@ import { useState, useRef } from "react";
 import ScrollReveal from "./ScrollReveal";
 import ProjectDetailPopup from "./ProjectDetailPopup";
 
+// Import AI-generated project images
+import projectOffshore from "@/assets/project-offshore.jpg";
+import projectIntervention from "@/assets/project-intervention.jpg";
+import projectDigital from "@/assets/project-digital.jpg";
+import projectAbandonment from "@/assets/project-abandonment.jpg";
+import projectRefinery from "@/assets/project-refinery.jpg";
+
 interface Project {
   id: number;
   title: string;
@@ -75,7 +82,7 @@ const Projects = () => {
       duration: "2023 - Ongoing",
       category: "Corrosion Management",
       status: "Active",
-      image: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=400&h=250&fit=crop",
+      image: projectOffshore,
       riskContext: "Progressive corrosion degradation threatening structural integrity of aging offshore assets.",
       intervention: "Deployed cathodic protection with AI-powered monitoring for continuous condition assessment.",
       outcomes: [
@@ -93,7 +100,7 @@ const Projects = () => {
       duration: "2022 - 2023",
       category: "Well Interventions",
       status: "Completed",
-      image: "https://images.unsplash.com/photo-1519389950473-47ba0277781c?w=400&h=250&fit=crop",
+      image: projectIntervention,
       riskContext: "Production decline across multiple wells requiring rapid intervention without rig mobilization.",
       intervention: "Thru-tubing velocity strings and fishing operations executed under rigless protocols.",
       outcomes: [
@@ -111,7 +118,7 @@ const Projects = () => {
       duration: "2023 - 2024",
       category: "Digital Oversight",
       status: "Completed",
-      image: "https://images.unsplash.com/photo-1581090464777-f3220bbe1b8b?w=400&h=250&fit=crop",
+      image: projectDigital,
       riskContext: "Manual PPE compliance monitoring creating gaps in safety verification across facilities.",
       intervention: "Computer vision system deployed for automated safety equipment detection and compliance logging.",
       outcomes: [
@@ -129,7 +136,7 @@ const Projects = () => {
       duration: "2023",
       category: "Plug & Abandonment",
       status: "Completed",
-      image: "https://images.unsplash.com/photo-1605810230434-7631ac76ec81?w=400&h=250&fit=crop",
+      image: projectAbandonment,
       riskContext: "End-of-life wells requiring decommissioning with verified zonal isolation and regulatory compliance.",
       intervention: "Bridge plug deployment with cement integrity verification and continuous pressure monitoring.",
       outcomes: [
@@ -147,7 +154,7 @@ const Projects = () => {
       duration: "2023 - Ongoing",
       category: "Digital Oversight",
       status: "Active",
-      image: "https://images.unsplash.com/photo-1485833077593-4278bba3f11f?w=400&h=250&fit=crop",
+      image: projectRefinery,
       riskContext: "Reactive maintenance cycles causing unplanned shutdowns and production losses.",
       intervention: "Integrated sensor network with AI analytics for predictive equipment health assessment.",
       outcomes: [

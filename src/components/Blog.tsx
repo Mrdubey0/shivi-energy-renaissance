@@ -15,6 +15,14 @@ import ScrollReveal from "./ScrollReveal";
 import BlogDetailPopup from "./BlogDetailPopup";
 import { useState, useRef } from "react";
 
+// Import AI-generated blog images
+import blogDigital from "@/assets/blog-digital.jpg";
+import blogSustainability from "@/assets/blog-sustainability.jpg";
+import blogAi from "@/assets/blog-ai.jpg";
+import blogCorrosion from "@/assets/blog-corrosion.jpg";
+import projectOffshore from "@/assets/project-offshore.jpg";
+import projectRefinery from "@/assets/project-refinery.jpg";
+
 export const blogPosts = [
   {
     id: 1,
@@ -41,7 +49,7 @@ export const blogPosts = [
     date: "2024-01-15",
     readTime: "8 min read",
     category: "Digital Innovation",
-    image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=800&h=400&fit=crop",
+    image: blogDigital,
     featured: true
   },
   {
@@ -69,7 +77,7 @@ export const blogPosts = [
     date: "2024-01-12",
     readTime: "6 min read",
     category: "Sustainability",
-    image: "https://images.unsplash.com/photo-1497435334941-8c899ee9e8e9?w=400&h=250&fit=crop"
+    image: blogSustainability
   },
   {
     id: 3,
@@ -96,7 +104,7 @@ export const blogPosts = [
     date: "2024-01-10",
     readTime: "10 min read",
     category: "LOCA-LOCUS",
-    image: "https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?w=400&h=250&fit=crop"
+    image: projectRefinery
   },
   {
     id: 4,
@@ -123,7 +131,7 @@ export const blogPosts = [
     date: "2024-01-08",
     readTime: "7 min read",
     category: "AI & Technology",
-    image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=400&h=250&fit=crop"
+    image: blogAi
   },
   {
     id: 5,
@@ -150,7 +158,7 @@ export const blogPosts = [
     date: "2024-01-05",
     readTime: "9 min read",
     category: "Technical",
-    image: "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=400&h=250&fit=crop"
+    image: blogCorrosion
   },
   {
     id: 6,
@@ -180,7 +188,7 @@ export const blogPosts = [
     date: "2024-01-03",
     readTime: "12 min read",
     category: "Case Study",
-    image: "https://images.unsplash.com/photo-1520637836862-4d197d17c94a?w=400&h=250&fit=crop"
+    image: projectOffshore
   }
 ];
 

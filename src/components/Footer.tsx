@@ -99,11 +99,11 @@ const Footer = () => {
               </div>
               <div className="flex items-center text-xs md:text-base">
                 <Phone className="h-4 w-4 md:h-5 md:w-5 mr-2 md:mr-3 text-secondary" />
-                <span>+91 98765 43210</span>
+                <span>+91 99588 08368</span>
               </div>
               <div className="hidden md:flex items-center">
                 <MapPin className="h-5 w-5 mr-3 text-secondary" />
-                <span>Mumbai, Maharashtra, India</span>
+                <span>7th Floor, Platina Heights, C12, Sector 62, Noida, Uttar Pradesh 201301</span>
               </div>
             </div>
 
@@ -206,7 +206,7 @@ const Footer = () => {
         <div className="container mx-auto px-4 py-6">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-primary-foreground/60 text-sm">
-              © 2024 Shivi Energy Solutions. All rights reserved.
+              © 2026 Shivi Energy Solutions. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
               <a href="#" className="text-primary-foreground/60 hover:text-secondary text-sm transition-colors">

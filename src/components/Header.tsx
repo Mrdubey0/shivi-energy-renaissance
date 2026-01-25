@@ -49,7 +49,7 @@ const Header = () => {
     { name: "About Us", href: "/#about", matchPaths: [] },
     { name: "Solutions", href: "/solutions", matchPaths: ["/solutions"] },
     { name: "Projects", href: "/projects", matchPaths: ["/projects"] },
-    { name: "LOCA-LOCUS", href: "/sustainability", matchPaths: ["/sustainability"] },
+    { name: "Locus", href: "/sustainability", matchPaths: ["/sustainability"] },
     { name: "Blog", href: "/blog", matchPaths: ["/blog"] },
     { name: "Careers", href: "/careers", matchPaths: ["/careers"] }
   ];
@@ -72,11 +72,15 @@ const Header = () => {
 
           {/* Logo */}
           <Link to="/" className="flex items-center cursor-pointer">
-            <img 
+            {/* <img 
               src={logoMain} 
               alt="SSES - Shivi Energy Solutions" 
               className="h-14 md:h-16 lg:h-20 w-auto"
-            />
+            /> */}
+             <div className="text-2xl font-bold">
+              <span className="text-primary">SHIVI</span>{" "}
+              <span className="text-secondary">ENERGY</span>
+            </div>
           </Link>
 
           {/* Desktop Navigation */}

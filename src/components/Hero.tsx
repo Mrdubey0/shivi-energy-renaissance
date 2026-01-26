@@ -114,12 +114,15 @@ const Hero = () => {
 
           {/* Main Headline */}
           <ScrollReveal delay={100}>
-            <h1 className="text-5xl md:text-7xl font-bold text-primary-foreground mb-6 leading-tight">
-              <span className="block">SHIVI ENERGY</span>
-              <span className="block bg-gradient-accent bg-clip-text text-transparent">
-                SOLUTIONS
-              </span>
-            </h1>
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
+            <span className="block">
+              <span className="text-[#F4B400]">SHIVI ENERGY</span>
+            </span>
+            <span className="block text-white">
+              SOLUTIONS
+            </span>
+          </h1>
+
           </ScrollReveal>
 
           {/* Subheading with Typewriter Effect */}

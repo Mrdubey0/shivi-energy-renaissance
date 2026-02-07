@@ -6,10 +6,15 @@ import Clients from "@/components/Clients";
 import Contact from "@/components/Contact";
 import Footer from "@/components/Footer";
 import BottomNav from "@/components/BottomNav";
+import SEO, { organizationSchema, websiteSchema } from "@/components/SEO";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background animate-zoom-in pb-16 md:pb-0">
+      <SEO
+        canonical="/"
+        jsonLd={[organizationSchema, websiteSchema]}
+      />
       <Header />
       <Hero />
       <Services />

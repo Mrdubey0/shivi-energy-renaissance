@@ -1,6 +1,7 @@
 import { useState } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import SEO, { breadcrumbSchema } from "@/components/SEO";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { MapPin, Clock, Users, Mail, Shield, Target, GraduationCap, Briefcase, ExternalLink, ShipWheel, NotebookPen } from "lucide-react";
@@ -75,6 +76,15 @@ const Careers = () => {
 
   return (
     <div className="min-h-screen bg-background animate-zoom-in">
+      <SEO
+        title="Careers"
+        description="Join Shivi Energy Solutions — explore engineering, technology, and operations roles. Build your career with disciplined execution teams in the energy sector."
+        canonical="/careers"
+        jsonLd={breadcrumbSchema([
+          { name: "Home", url: "/" },
+          { name: "Careers", url: "/careers" },
+        ])}
+      />
       <Header />
       <main className="flex-grow">
         {/* Hero Section */}

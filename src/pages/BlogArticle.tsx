@@ -4,6 +4,7 @@ import { useParams, Link } from "react-router-dom";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, Calendar, User, Clock } from "lucide-react";
+import SEO, { breadcrumbSchema } from "@/components/SEO";
 
 const blogPosts = [
   {
@@ -36,6 +37,32 @@ const BlogArticle = () => {
 
   return (
     <div className="min-h-screen bg-background animate-zoom-in">
+      <SEO
+        title={post.title}
+        description={post.content.substring(0, 155)}
+        canonical={`/blog/${post.slug}`}
+        type="article"
+        image={post.image}
+        jsonLd={[
+          breadcrumbSchema([
+            { name: "Home", url: "/" },
+            { name: "Blog", url: "/blog" },
+            { name: post.title, url: `/blog/${post.slug}` },
+          ]),
+          {
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: post.title,
+            author: { "@type": "Person", name: post.author },
+            datePublished: post.date,
+            image: post.image,
+            publisher: {
+              "@type": "Organization",
+              name: "Shivi Energy Solutions",
+            },
+          },
+        ]}
+      />
       <Header />
       <main className="pt-16">
         <article className="py-16">

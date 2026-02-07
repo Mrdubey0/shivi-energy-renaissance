@@ -18,6 +18,7 @@ import {
 import { useState, useRef } from "react";
 import ScrollReveal from "./ScrollReveal";
 import ProjectDetailPopup from "./ProjectDetailPopup";
+import ImageWithSkeleton from "./ImageWithSkeleton";
 
 // Import AI-generated project images
 import projectOffshore from "@/assets/project-offshore.jpg";
@@ -318,10 +319,11 @@ const Projects = () => {
                 <CardContent className="p-3">
                   <div className="flex gap-3">
                     <div className="w-20 h-20 flex-shrink-0 relative rounded-lg overflow-hidden">
-                      <img 
+                      <ImageWithSkeleton 
                         src={project.image} 
                         alt={project.title}
                         className="w-full h-full object-cover"
+                        skeletonClassName="w-full h-full"
                       />
                       <Badge 
                         variant={project.status === "Active" ? "default" : "secondary"}
@@ -352,10 +354,11 @@ const Projects = () => {
                 <div className="flex flex-col md:flex-row gap-6">
                   {/* Project Image */}
                   <div className="w-full md:w-48 h-32 flex-shrink-0 relative rounded-lg overflow-hidden">
-                    <img 
+                    <ImageWithSkeleton 
                       src={project.image} 
                       alt={project.title}
                       className="w-full h-full object-cover"
+                      skeletonClassName="w-full h-full"
                     />
                     <div className="absolute top-2 left-2">
                       <Badge 

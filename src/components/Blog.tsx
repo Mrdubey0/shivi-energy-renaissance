@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
 import BlogDetailPopup from "./BlogDetailPopup";
+import ImageWithSkeleton from "./ImageWithSkeleton";
 import { useState, useRef } from "react";
 
 // Import AI-generated blog images
@@ -313,9 +314,11 @@ const Blog = () => {
             <Card className="overflow-hidden hover:shadow-xl transition-all duration-300 border-primary/20">
               {/* Mobile Layout */}
               <div className="md:hidden">
-                <div 
-                  className="h-48 w-full bg-cover bg-center"
-                  style={{ backgroundImage: `url(${featuredPost.image})` }}
+                <ImageWithSkeleton
+                  src={featuredPost.image}
+                  alt={featuredPost.title}
+                  className="w-full h-48 object-cover"
+                  skeletonClassName="w-full h-48"
                 />
                 <div className="p-4">
                   <div className="flex flex-wrap items-center gap-2 mb-3">
@@ -359,9 +362,11 @@ const Blog = () => {
 
               {/* Desktop Layout */}
               <div className="hidden md:grid lg:grid-cols-2 gap-0">
-                <div 
-                  className="h-64 lg:h-auto min-h-[300px] bg-cover bg-center"
-                  style={{ backgroundImage: `url(${featuredPost.image})` }}
+                <ImageWithSkeleton
+                  src={featuredPost.image}
+                  alt={featuredPost.title}
+                  className="w-full h-full object-cover min-h-[300px]"
+                  skeletonClassName="h-64 lg:h-auto min-h-[300px]"
                 />
                 <div className="p-8">
                   <div className="flex items-center mb-4">
@@ -405,9 +410,11 @@ const Blog = () => {
           {regularPosts.map((post, index) => (
             <ScrollReveal key={post.id} delay={index * 100}>
               <Card className="overflow-hidden group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 h-full">
-                <div 
-                  className="h-48 bg-cover bg-center group-hover:scale-105 transition-transform duration-300"
-                  style={{ backgroundImage: `url(${post.image})` }}
+                <ImageWithSkeleton
+                  src={post.image}
+                  alt={post.title}
+                  className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
+                  skeletonClassName="w-full h-48"
                 />
                 <CardHeader>
                   <div className="flex items-center mb-3">

@@ -16,6 +16,7 @@ import {
 import { useState } from "react";
 import GeneralInquiryForm from "./GeneralInquiryForm";
 import ScrollReveal from "./ScrollReveal";
+import ImageWithSkeleton from "./ImageWithSkeleton";
 
 // Import AI-generated service images
 import serviceEngineering from "@/assets/service-engineering.jpg";
@@ -115,10 +116,11 @@ const Services = () => {
                 {/* Mobile: Compact card with image */}
                 <Card className="md:hidden border-border/50 h-full overflow-hidden">
                   <div className="h-24 w-full overflow-hidden">
-                    <img 
+                    <ImageWithSkeleton 
                       src={service.image} 
                       alt={service.title}
                       className="w-full h-full object-cover"
+                      skeletonClassName="w-full h-full"
                     />
                   </div>
                   <CardHeader className="p-3 pb-2">
@@ -142,10 +144,11 @@ const Services = () => {
                 >
                   {/* Service Image */}
                   <div className="h-48 w-full overflow-hidden relative">
-                    <img 
+                    <ImageWithSkeleton 
                       src={service.image} 
                       alt={service.title}
                       className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                      skeletonClassName="w-full h-full"
                     />
                     <div className="absolute inset-0 bg-gradient-to-t from-background/80 to-transparent" />
                     <div className="absolute bottom-4 left-4">

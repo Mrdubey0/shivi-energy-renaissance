@@ -35,6 +35,7 @@ import ScrollReveal from "./ScrollReveal";
 import { CartProduct, useCart } from "@/context/CartContext";
 import ProductDetailPopup from "./ProductDetailPopup";
 import ServiceDetailPopup from "./ServiceDetailPopup";
+import ImageWithSkeleton from "./ImageWithSkeleton";
 
 // Product categories data - Updated from actual documents
 const productCategories = [
@@ -1148,9 +1149,11 @@ const ProductCard = ({ product, isInCart, onAddToCart, onViewDetails }: ProductC
     <Card className="group hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 hover:-translate-y-3 hover:border-primary/30 border-border/50 overflow-hidden h-full cursor-pointer bg-card" onClick={onViewDetails}>
       {/* Product Image */}
       <div className="relative overflow-hidden">
-        <div 
-          className="h-48 bg-cover bg-center group-hover:scale-110 transition-transform duration-700 ease-out"
-          style={{ backgroundImage: `url(${product.image})` }}
+        <ImageWithSkeleton
+          src={product.image}
+          alt={product.name}
+          className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+          skeletonClassName="w-full h-48"
         />
         
         {/* Gradient Overlay on Hover */}
@@ -1291,9 +1294,11 @@ const ServiceCard = ({ service, isInCart, onAddToInquiry, onViewDetails }: Servi
     <Card className="group hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 hover:-translate-y-3 hover:border-primary/30 border-border/50 overflow-hidden h-full cursor-pointer bg-card" onClick={onViewDetails}>
       {/* Service Image */}
       <div className="relative overflow-hidden">
-        <div 
-          className="h-48 bg-cover bg-center group-hover:scale-110 transition-transform duration-700 ease-out"
-          style={{ backgroundImage: `url(${service.image})` }}
+        <ImageWithSkeleton
+          src={service.image}
+          alt={service.name}
+          className="w-full h-48 object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+          skeletonClassName="w-full h-48"
         />
         
         {/* Gradient Overlay on Hover */}

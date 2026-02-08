@@ -20,6 +20,7 @@ interface GeneralInquiryFormProps {
 
 const GeneralInquiryForm = ({ isOpen, onClose }: GeneralInquiryFormProps) => {
   const { toast } = useToast();
+  const [honeypot, setHoneypot] = useState("");
   const [formData, setFormData] = useState({
     name: "",
     companyName: "",
@@ -65,7 +66,7 @@ const GeneralInquiryForm = ({ isOpen, onClose }: GeneralInquiryFormProps) => {
       Email: formData.email,
       Phone: formData.phone,
       "Technical Requirements": formData.technicalRequirements,
-    });
+    }, honeypot);
 
     toast({
       title: result.success ? "Inquiry Submitted" : "Failed to Send",
@@ -94,6 +95,17 @@ const GeneralInquiryForm = ({ isOpen, onClose }: GeneralInquiryFormProps) => {
         </DialogHeader>
 
         <form onSubmit={handleSubmit} className="space-y-4 mt-2">
+          {/* Honeypot - hidden from humans, catches bots */}
+          <input
+            type="text"
+            name="botfield"
+            value={honeypot}
+            onChange={(e) => setHoneypot(e.target.value)}
+            className="hidden"
+            tabIndex={-1}
+            autoComplete="off"
+            aria-hidden="true"
+          />
           {/* Name */}
           <div className="space-y-2">
             <Label htmlFor="name">

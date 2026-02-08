@@ -6,7 +6,15 @@ interface Web3FormsPayload {
   [key: string]: string | undefined;
 }
 
-export async function sendWeb3FormsEmail(payload: Web3FormsPayload): Promise<{ success: boolean; message: string }> {
+export async function sendWeb3FormsEmail(
+  payload: Web3FormsPayload,
+  honeypotValue?: string
+): Promise<{ success: boolean; message: string }> {
+  // If honeypot field has a value, a bot filled it — silently reject
+  if (honeypotValue) {
+    return { success: true, message: "Email sent successfully." };
+  }
+
   try {
     const response = await fetch(WEB3FORMS_ENDPOINT, {
       method: "POST",
@@ -14,6 +22,7 @@ export async function sendWeb3FormsEmail(payload: Web3FormsPayload): Promise<{ s
       body: JSON.stringify({
         access_key: WEB3FORMS_ACCESS_KEY,
         from_name: "Shivi Energy Website",
+        botcheck: "",
         ...payload,
       }),
     });

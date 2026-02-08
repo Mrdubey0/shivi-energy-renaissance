@@ -31,6 +31,7 @@ interface QuoteRequestFormProps {
 }
 
 const QuoteRequestForm = ({ isOpen, onClose, cartItems, onClearCart, onUpdateQuantity, onRemoveItem }: QuoteRequestFormProps) => {
+  const [honeypot, setHoneypot] = useState("");
   const [formData, setFormData] = useState({
     email: "",
     phone: "",
@@ -129,7 +130,7 @@ const QuoteRequestForm = ({ isOpen, onClose, cartItems, onClearCart, onUpdateQua
       "Procurement Manifest": manifestList || "No items in manifest",
       "Additional Products": selectedProducts.join(", ") || "None",
       "Technical Requirements": formData.message,
-    });
+    }, honeypot);
 
     toast({
       title: result.success ? "Requirement Query Submitted" : "Failed to Send",
@@ -394,6 +395,17 @@ const QuoteRequestForm = ({ isOpen, onClose, cartItems, onClearCart, onUpdateQua
 
           {/* Contact Information Form */}
           <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Honeypot - hidden from humans, catches bots */}
+            <input
+              type="text"
+              name="botfield"
+              value={honeypot}
+              onChange={(e) => setHoneypot(e.target.value)}
+              className="hidden"
+              tabIndex={-1}
+              autoComplete="off"
+              aria-hidden="true"
+            />
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
               <div className="space-y-2">
                 <Label htmlFor="email">Email Address *</Label>

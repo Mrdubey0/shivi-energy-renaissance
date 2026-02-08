@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -12,8 +13,49 @@ import {
   MessageSquare
 } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
+import { useToast } from "@/hooks/use-toast";
+import { sendWeb3FormsEmail } from "@/lib/web3forms";
 
 const Contact = () => {
+  const { toast } = useToast();
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [formData, setFormData] = useState({
+    firstName: "",
+    lastName: "",
+    email: "",
+    phone: "",
+    company: "",
+    subject: "",
+    message: "",
+  });
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setFormData((prev) => ({ ...prev, [e.target.id]: e.target.value }));
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.firstName.trim() || !formData.email.trim() || !formData.message.trim()) {
+      toast({ title: "Required Fields Missing", description: "Please fill in name, email, and message.", variant: "destructive" });
+      return;
+    }
+    setIsSubmitting(true);
+    const result = await sendWeb3FormsEmail({
+      subject: `Contact Form: ${formData.subject || "General Inquiry"}`,
+      "Full Name": `${formData.firstName} ${formData.lastName}`.trim(),
+      Email: formData.email,
+      Phone: formData.phone,
+      Company: formData.company,
+      Message: formData.message,
+    });
+    toast({
+      title: result.success ? "Message Sent!" : "Failed to Send",
+      description: result.success ? "We'll get back to you within 24 hours." : result.message,
+      variant: result.success ? undefined : "destructive",
+    });
+    if (result.success) setFormData({ firstName: "", lastName: "", email: "", phone: "", company: "", subject: "", message: "" });
+    setIsSubmitting(false);
+  };
   const contactInfo = [
     {
       icon: MapPin,
@@ -72,50 +114,53 @@ const Contact = () => {
             </CardHeader>
             
             <CardContent className="p-0">
-              <form className="space-y-6">
+              <form className="space-y-6" onSubmit={handleSubmit}>
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <Label htmlFor="firstName">First Name</Label>
-                    <Input id="firstName" placeholder="John" className="mt-1" />
+                    <Label htmlFor="firstName">First Name <span className="text-destructive">*</span></Label>
+                    <Input id="firstName" placeholder="John" className="mt-1" value={formData.firstName} onChange={handleChange} maxLength={100} />
                   </div>
                   <div>
                     <Label htmlFor="lastName">Last Name</Label>
-                    <Input id="lastName" placeholder="Doe" className="mt-1" />
+                    <Input id="lastName" placeholder="Doe" className="mt-1" value={formData.lastName} onChange={handleChange} maxLength={100} />
                   </div>
                 </div>
                 
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
-                    <Label htmlFor="email">Email Address</Label>
-                    <Input id="email" type="email" placeholder="john@company.com" className="mt-1" />
+                    <Label htmlFor="email">Email Address <span className="text-destructive">*</span></Label>
+                    <Input id="email" type="email" placeholder="john@company.com" className="mt-1" value={formData.email} onChange={handleChange} maxLength={255} />
                   </div>
                   <div>
                     <Label htmlFor="phone">Phone Number</Label>
-                    <Input id="phone" placeholder="+91 98765 43210" className="mt-1" />
+                    <Input id="phone" placeholder="+91 98765 43210" className="mt-1" value={formData.phone} onChange={handleChange} maxLength={20} />
                   </div>
                 </div>
                 
                 <div>
                   <Label htmlFor="company">Company Name</Label>
-                  <Input id="company" placeholder="Your Company Ltd." className="mt-1" />
+                  <Input id="company" placeholder="Your Company Ltd." className="mt-1" value={formData.company} onChange={handleChange} maxLength={150} />
                 </div>
                 
                 <div>
                   <Label htmlFor="subject">Subject</Label>
-                  <Input id="subject" placeholder="Inquiry about energy solutions" className="mt-1" />
+                  <Input id="subject" placeholder="Inquiry about energy solutions" className="mt-1" value={formData.subject} onChange={handleChange} maxLength={200} />
                 </div>
                 
                 <div>
-                  <Label htmlFor="message">Message</Label>
+                  <Label htmlFor="message">Message <span className="text-destructive">*</span></Label>
                   <Textarea 
                     id="message" 
                     placeholder="Tell us about your project requirements..."
                     className="mt-1 min-h-[120px] resize-none"
+                    value={formData.message}
+                    onChange={handleChange}
+                    maxLength={1000}
                   />
                 </div>
                 
-                <Button type="submit" size="lg" className="w-full">
-                  Send Message
+                <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
+                  {isSubmitting ? "Sending..." : "Send Message"}
                   <Send className="ml-2 h-4 w-4" />
                 </Button>
               </form>

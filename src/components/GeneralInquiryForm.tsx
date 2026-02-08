@@ -11,6 +11,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { MessageSquare, Send } from "lucide-react";
+import { sendWeb3FormsEmail } from "@/lib/web3forms";
 
 interface GeneralInquiryFormProps {
   isOpen: boolean;
@@ -57,13 +58,25 @@ const GeneralInquiryForm = ({ isOpen, onClose }: GeneralInquiryFormProps) => {
 
     setIsSubmitting(true);
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    const result = await sendWeb3FormsEmail({
+      subject: "General Inquiry - Shivi Energy",
+      Name: formData.name,
+      "Company Name": formData.companyName,
+      Email: formData.email,
+      Phone: formData.phone,
+      "Technical Requirements": formData.technicalRequirements,
+    });
 
     toast({
-      title: "Inquiry Submitted",
-      description: "Your general inquiry has been sent successfully. We'll get back to you soon.",
+      title: result.success ? "Inquiry Submitted" : "Failed to Send",
+      description: result.success ? "Your general inquiry has been sent successfully. We'll get back to you soon." : result.message,
+      variant: result.success ? undefined : "destructive",
     });
+
+    if (!result.success) {
+      setIsSubmitting(false);
+      return;
+    }
 
     setFormData({ name: "", companyName: "", email: "", phone: "", technicalRequirements: "" });
     setIsSubmitting(false);

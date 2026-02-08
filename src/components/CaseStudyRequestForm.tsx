@@ -11,6 +11,7 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import { FileText, Send } from "lucide-react";
+import { sendWeb3FormsEmail } from "@/lib/web3forms";
 
 interface CaseStudyRequestFormProps {
   isOpen: boolean;
@@ -57,13 +58,25 @@ const CaseStudyRequestForm = ({ isOpen, onClose, projectName }: CaseStudyRequest
 
     setIsSubmitting(true);
 
-    // Simulate API call
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    const result = await sendWeb3FormsEmail({
+      subject: `Case Study Request: ${projectName}`,
+      "Project Name": projectName,
+      "Full Name": formData.name,
+      Email: formData.email,
+      Phone: formData.phone,
+      Remarks: formData.remarks,
+    });
 
     toast({
-      title: "Request Submitted",
-      description: `Your case study request for "${projectName}" has been sent successfully.`,
+      title: result.success ? "Request Submitted" : "Failed to Send",
+      description: result.success ? `Your case study request for "${projectName}" has been sent successfully.` : result.message,
+      variant: result.success ? undefined : "destructive",
     });
+
+    if (!result.success) {
+      setIsSubmitting(false);
+      return;
+    }
 
     setFormData({ name: "", email: "", phone: "", remarks: "" });
     setIsSubmitting(false);

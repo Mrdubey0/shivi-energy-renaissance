@@ -19,6 +19,7 @@ import { sendWeb3FormsEmail } from "@/lib/web3forms";
 const Contact = () => {
   const { toast } = useToast();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [honeypot, setHoneypot] = useState("");
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -47,7 +48,7 @@ const Contact = () => {
       Phone: formData.phone,
       Company: formData.company,
       Message: formData.message,
-    });
+    }, honeypot);
     toast({
       title: result.success ? "Message Sent!" : "Failed to Send",
       description: result.success ? "We'll get back to you within 24 hours." : result.message,
@@ -115,6 +116,18 @@ const Contact = () => {
             
             <CardContent className="p-0">
               <form className="space-y-6" onSubmit={handleSubmit}>
+                {/* Honeypot - hidden from humans, catches bots */}
+                <input
+                  type="text"
+                  name="botfield"
+                  value={honeypot}
+                  onChange={(e) => setHoneypot(e.target.value)}
+                  className="hidden"
+                  tabIndex={-1}
+                  autoComplete="off"
+                  aria-hidden="true"
+                />
+
                 <div className="grid md:grid-cols-2 gap-4">
                   <div>
                     <Label htmlFor="firstName">First Name <span className="text-destructive">*</span></Label>

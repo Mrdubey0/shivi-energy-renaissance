@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useToast } from "@/hooks/use-toast";
 import { FileText, AlertCircle, Plus, Minus, Trash2, X } from "lucide-react";
+import { sendWeb3FormsEmail } from "@/lib/web3forms";
 
 interface Product {
   id: string;
@@ -89,10 +90,11 @@ const QuoteRequestForm = ({ isOpen, onClose, cartItems, onClearCart, onUpdateQua
     "Emergency - Immediate"
   ];
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     
-    // Validate operational context
     if (!formData.wellPhase || !formData.formationType || !formData.mechanicalObjective || !formData.urgencyProtocol) {
       toast({
         title: "Operational Context Required",
@@ -102,32 +104,49 @@ const QuoteRequestForm = ({ isOpen, onClose, cartItems, onClearCart, onUpdateQua
       return;
     }
 
-    // Here you would typically send the data to your backend
-    console.log("Requirement Query:", {
-      ...formData,
-      manifestProducts: cartItems,
-      additionalProducts: selectedProducts
+    if (!formData.email.trim() || !formData.phone.trim()) {
+      toast({
+        title: "Contact Info Required",
+        description: "Please provide your email and phone number.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setIsSubmitting(true);
+
+    const manifestList = cartItems.map(item => `${item.name} (Qty: ${item.quantity || 1}, Type: ${item.type || 'product'})`).join("\n");
+
+    const result = await sendWeb3FormsEmail({
+      subject: `Requirement Query - ${formData.urgencyProtocol}`,
+      Email: formData.email,
+      Phone: formData.phone,
+      "Company Name": formData.companyName,
+      "Well Phase": formData.wellPhase,
+      "Formation Type": formData.formationType,
+      "Mechanical Objective": formData.mechanicalObjective,
+      "Urgency Protocol": formData.urgencyProtocol,
+      "Procurement Manifest": manifestList || "No items in manifest",
+      "Additional Products": selectedProducts.join(", ") || "None",
+      "Technical Requirements": formData.message,
     });
 
     toast({
-      title: "Requirement Query Submitted",
-      description: "Our engineering team will validate compatibility and respond within 24-48 hours.",
+      title: result.success ? "Requirement Query Submitted" : "Failed to Send",
+      description: result.success ? "Our engineering team will validate compatibility and respond within 24-48 hours." : result.message,
+      variant: result.success ? undefined : "destructive",
     });
 
-    // Clear form and cart
-    setFormData({ 
-      email: "", 
-      phone: "", 
-      companyName: "", 
-      message: "",
-      wellPhase: "",
-      formationType: "",
-      mechanicalObjective: "",
-      urgencyProtocol: ""
-    });
-    setSelectedProducts([]);
-    onClearCart();
-    onClose();
+    if (result.success) {
+      setFormData({ 
+        email: "", phone: "", companyName: "", message: "",
+        wellPhase: "", formationType: "", mechanicalObjective: "", urgencyProtocol: ""
+      });
+      setSelectedProducts([]);
+      onClearCart();
+      onClose();
+    }
+    setIsSubmitting(false);
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -426,8 +445,8 @@ const QuoteRequestForm = ({ isOpen, onClose, cartItems, onClearCart, onUpdateQua
             </div>
 
             <div className="flex gap-3 pt-4">
-              <Button type="submit" className="flex-1">
-                Submit Requirement Query
+              <Button type="submit" className="flex-1" disabled={isSubmitting}>
+                {isSubmitting ? "Submitting..." : "Submit Requirement Query"}
               </Button>
               <Button type="button" variant="outline" onClick={onClose}>
                 Cancel

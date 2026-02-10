@@ -51,7 +51,7 @@ const Contact = () => {
     }, honeypot);
     toast({
       title: result.success ? "Message Sent!" : "Failed to Send",
-      description: result.success ? "We'll get back to you within 24 hours." : result.message,
+      description: result.success ? "Thank you for reaching out! We'll contact you within 24-48 hours." : result.message,
       variant: result.success ? undefined : "destructive",
     });
     if (result.success) setFormData({ firstName: "", lastName: "", email: "", phone: "", company: "", subject: "", message: "" });

@@ -22,6 +22,7 @@ export async function sendWeb3FormsEmail(
       body: JSON.stringify({
         access_key: WEB3FORMS_ACCESS_KEY,
         from_name: "Shivi Energy Website",
+        replyto: payload.Email || "",
         botcheck: "",
         ...payload,
       }),

@@ -70,7 +70,7 @@ const CaseStudyRequestForm = ({ isOpen, onClose, projectName }: CaseStudyRequest
 
     toast({
       title: result.success ? "Request Submitted" : "Failed to Send",
-      description: result.success ? `Your case study request for "${projectName}" has been sent successfully.` : result.message,
+      description: result.success ? `Thank you! Your case study request for "${projectName}" has been received. We'll contact you within 24-48 hours.` : result.message,
       variant: result.success ? undefined : "destructive",
     });
 

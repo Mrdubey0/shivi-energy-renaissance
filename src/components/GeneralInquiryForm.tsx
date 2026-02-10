@@ -70,7 +70,7 @@ const GeneralInquiryForm = ({ isOpen, onClose }: GeneralInquiryFormProps) => {
 
     toast({
       title: result.success ? "Inquiry Submitted" : "Failed to Send",
-      description: result.success ? "Your general inquiry has been sent successfully. We'll get back to you soon." : result.message,
+      description: result.success ? "Thank you for your inquiry! We'll contact you within 24-48 hours." : result.message,
       variant: result.success ? undefined : "destructive",
     });
 

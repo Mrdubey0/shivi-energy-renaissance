@@ -211,7 +211,8 @@ const Sustainability = () => {
 
           <div className="flex flex-col md:flex-row gap-4 max-w-5xl mx-auto">
             {lifecycleStages.map((stage, index) => (
-              <div key={stage.step} className="flex-1 relative">
+              <ScrollReveal key={stage.step} delay={index * 120}>
+              <div className="flex-1 relative">
                 <Card className="h-full p-5 text-center border-2 hover:border-primary/30 transition-all duration-300 hover:-translate-y-1">
                   <div className="text-xs font-bold text-secondary mb-2">{stage.step}</div>
                   <h4 className="text-lg font-bold text-foreground mb-2">{stage.name}</h4>
@@ -223,6 +224,7 @@ const Sustainability = () => {
                   </div>
                 )}
               </div>
+              </ScrollReveal>
             ))}
           </div>
         </div>
@@ -242,10 +244,11 @@ const Sustainability = () => {
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
-            {qpsiAxis.map((pillar) => {
+            {qpsiAxis.map((pillar, index) => {
               const IconComponent = pillar.icon;
               return (
-                <Card key={pillar.code} className="relative overflow-hidden group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-2 hover:border-primary/30">
+                <ScrollReveal key={pillar.code} delay={index * 150}>
+                <Card className="relative overflow-hidden group hover:shadow-lg transition-all duration-300 hover:-translate-y-1 border-2 hover:border-primary/30">
                   <div className="absolute top-4 right-4 w-10 h-10 bg-gradient-to-br from-primary to-primary/80 rounded-full flex items-center justify-center">
                     <span className="text-lg font-bold text-primary-foreground">{pillar.code}</span>
                   </div>
@@ -261,6 +264,7 @@ const Sustainability = () => {
                     <p className="text-sm text-muted-foreground leading-relaxed">{pillar.description}</p>
                   </CardContent>
                 </Card>
+                </ScrollReveal>
               );
             })}
           </div>

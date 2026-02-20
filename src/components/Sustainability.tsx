@@ -1,5 +1,6 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import ScrollReveal from "@/components/ScrollReveal";
 import { 
   Shield, 
   Activity, 
@@ -115,6 +116,7 @@ const Sustainability = () => {
 
       <div className="container mx-auto px-4 relative z-10">
         {/* Hero Section */}
+        <ScrollReveal>
         <div className="text-center mb-16 md:mb-20">
           <div className="inline-flex items-center px-6 py-3 rounded-full bg-primary/10 border border-primary/20 mb-6">
             <Shield className="h-5 w-5 text-primary mr-2" />
@@ -133,8 +135,10 @@ const Sustainability = () => {
             <span className="text-foreground font-medium">The score comes from the work — not from a report.</span>
           </p>
         </div>
+        </ScrollReveal>
 
         {/* Two Tools, One Score */}
+        <ScrollReveal delay={100}>
         <div className="mb-16 md:mb-20">
           <div className="text-center mb-10">
             <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
@@ -171,8 +175,10 @@ const Sustainability = () => {
             })}
           </div>
         </div>
+        </ScrollReveal>
 
         {/* LOCA Key Highlights */}
+        <ScrollReveal delay={100}>
         <div className="mb-16 md:mb-20">
           <Card className="max-w-4xl mx-auto p-8 bg-gradient-to-br from-primary to-primary/90 text-primary-foreground">
             <div className="flex items-center gap-3 mb-6">
@@ -189,8 +195,10 @@ const Sustainability = () => {
             </div>
           </Card>
         </div>
+        </ScrollReveal>
 
         {/* Project Lifecycle Integration */}
+        <ScrollReveal delay={100}>
         <div className="mb-16 md:mb-20">
           <div className="text-center mb-10">
             <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
@@ -218,8 +226,10 @@ const Sustainability = () => {
             ))}
           </div>
         </div>
+        </ScrollReveal>
 
         {/* QPSI Foundational Axis */}
+        <ScrollReveal delay={100}>
         <div className="mb-16 md:mb-20">
           <div className="text-center mb-10">
             <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
@@ -261,8 +271,10 @@ const Sustainability = () => {
             </p>
           </div>
         </div>
+        </ScrollReveal>
 
         {/* Core Operating Principles */}
+        <ScrollReveal delay={100}>
         <div className="mb-16 md:mb-20">
           <div className="text-center mb-10">
             <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-3">
@@ -292,8 +304,10 @@ const Sustainability = () => {
             })}
           </div>
         </div>
+        </ScrollReveal>
 
         {/* Brand Pillars */}
+        <ScrollReveal delay={100}>
         <div className="grid lg:grid-cols-3 gap-8 mb-16 md:mb-20 max-w-6xl mx-auto">
           <Card className="p-8 bg-gradient-to-br from-primary to-primary/90 text-primary-foreground">
             <div className="flex items-center gap-3 mb-4">
@@ -367,8 +381,10 @@ const Sustainability = () => {
             </ul>
           </Card>
         </div>
+        </ScrollReveal>
 
         {/* Central Message */}
+        <ScrollReveal delay={100}>
         <div className="mb-16 md:mb-20">
           <div className="bg-gradient-to-r from-primary/5 to-secondary/5 rounded-2xl p-10 md:p-14 border border-primary/20 text-center max-w-4xl mx-auto">
             <h3 className="text-2xl md:text-3xl font-bold text-foreground mb-4">
@@ -379,8 +395,10 @@ const Sustainability = () => {
             </p>
           </div>
         </div>
+        </ScrollReveal>
 
         {/* CTA */}
+        <ScrollReveal delay={150}>
         <div className="text-center">
           <div className="bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl p-8 md:p-12 border border-primary/20">
             <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
@@ -401,6 +419,7 @@ const Sustainability = () => {
             </div>
           </div>
         </div>
+        </ScrollReveal>
       </div>
     </section>
   );

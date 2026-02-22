@@ -40,7 +40,7 @@ const Sustainability = () => {
   ];
 
   const lifecycleStages = [
-    { step: "01", name: "Tender", description: "Business Dev identifies ESG opportunities" },
+    { step: "01", name: "Opportunity", description: "Business Dev identifies ESG opportunities" },
     { step: "02", name: "Forecast", description: "PM defines LOCA baseline" },
     { step: "03", name: "Execute", description: "Site Lead captures evidence" },
     { step: "04", name: "Close-out", description: "Sustainability Lead calculates LOCUS" },
@@ -238,7 +238,7 @@ const Sustainability = () => {
               The Foundational Axis: <span className="text-primary">QPSI</span>
             </h3>
             <p className="text-lg text-muted-foreground max-w-3xl mx-auto">
-              Quality · Performance · Safety · Integrity — embedded across every LOCUS pillar.
+              <span className="font-bold text-foreground">Quality</span> · <span className="font-bold text-foreground">Performance</span> · <span className="font-bold text-foreground">Safety</span> · <span className="font-bold text-foreground">Integrity</span> — embedded across every LOCUS pillar.
               A project cannot score high if it fails on QPSI.
             </p>
           </div>

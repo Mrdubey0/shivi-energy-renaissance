@@ -401,29 +401,6 @@ const Sustainability = () => {
         </div>
         </ScrollReveal>
 
-        {/* CTA */}
-        <ScrollReveal delay={150}>
-        <div className="text-center">
-          <div className="bg-gradient-to-r from-primary/10 to-secondary/10 rounded-2xl p-8 md:p-12 border border-primary/20">
-            <h3 className="text-3xl md:text-4xl font-bold text-foreground mb-4">
-              Request Framework Documentation
-            </h3>
-            <p className="text-xl text-muted-foreground mb-8 max-w-2xl mx-auto">
-              Access detailed LOCA–LOCUS framework documentation and understand 
-              how our governance approach supports your operational and ESG requirements.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button variant="default" size="lg">
-                Access Framework Documentation
-                <ArrowRight className="ml-2 h-4 w-4" />
-              </Button>
-              <Button variant="outline" size="lg">
-                Schedule Governance Review
-              </Button>
-            </div>
-          </div>
-        </div>
-        </ScrollReveal>
       </div>
     </section>
   );

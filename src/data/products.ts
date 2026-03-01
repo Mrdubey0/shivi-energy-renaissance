@@ -655,7 +655,7 @@ export const categories: CategoryData[] = [
     icon: Cpu,
     color: "from-purple-500 to-purple-600",
     description: "AI-powered analytics, computer vision safety platforms, IoT monitoring, and video analytics modules",
-    count: 18,
+    count: 21,
     products: [
       {
         id: "ai-pipeline-anomaly",
@@ -995,6 +995,63 @@ export const categories: CategoryData[] = [
         image: "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=300&h=200&fit=crop",
         images: [
           "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=600&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=600&fit=crop"
+        ],
+        inStock: true
+      },
+      {
+        id: "va-permit-to-work",
+        name: "Video Analytics – Permit-to-Work Zone Compliance",
+        description: "AI software module providing camera-based verification that work is occurring in the correct permitted zone, with basic safety cues and alerts to support PTW enforcement.",
+        price: "Request Technical Evaluation",
+        features: ["Permit zone compliance checks", "Safety cue detection", "Violation alert & evidence", "Zone-activity logs", "Permit roster integration ready", "Supervisor review dashboard"],
+        operationalEnvelope: {
+          pressure: "≥88% correct zone classification",
+          temperature: "<3 seconds from zone violation to alert",
+          application: "Maintenance areas, shutdown worksites, controlled access zones, and active PTW areas",
+          limits: "Defined work zones and permit roster input required; does not replace supervisor on-site verification"
+        },
+        image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&h=200&fit=crop",
+        images: [
+          "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=600&h=600&fit=crop"
+        ],
+        inStock: true
+      },
+      {
+        id: "va-logistics-vehicle",
+        name: "Video Analytics – Logistics, Vehicle & Goods Analytics",
+        description: "AI software module covering gate-to-yard vehicle analytics including entry/exit logging, overspeed and wrong-way detection, parking violations, and goods/cylinder counting at dispatch areas.",
+        price: "Request Technical Evaluation",
+        features: ["Gate entry/exit vehicle logging", "Overspeed & wrong-way detection", "Parking violation alerts", "Goods & cylinder counting", "Delivery verification", "Weighbridge/dispatch integration ready"],
+        operationalEnvelope: {
+          pressure: "≥95% vehicle identification at gates",
+          temperature: "±2 km/hr speed detection accuracy",
+          application: "Dispatch yards, loading gantries, weighbridge approaches, cylinder yards, and internal roads",
+          limits: "Lane-wise camera placement and speed calibration required"
+        },
+        image: "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=300&h=200&fit=crop",
+        images: [
+          "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=600&h=600&fit=crop",
+          "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=600&fit=crop"
+        ],
+        inStock: true
+      },
+      {
+        id: "va-camera-health",
+        name: "Video Analytics – Camera Health & Tamper Monitoring",
+        description: "AI software module continuously monitoring camera uptime, view obstruction, and tampering events across the entire camera estate, reducing surveillance blind spots and maintenance delays.",
+        price: "Request Technical Evaluation",
+        features: ["Camera tamper & obstruction alerts", "Offline & downtime notifications", "View quality health scoring", "Maintenance escalation routing", "System health reports", "Scales with camera count"],
+        operationalEnvelope: {
+          pressure: "Continuous real-time health polling",
+          temperature: "<5 seconds from tamper to alert",
+          application: "All surveillance zones across refineries, terminals, depots, and multi-site portfolios",
+          limits: "Requires stable network access to all camera streams"
+        },
+        image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=300&h=200&fit=crop",
+        images: [
+          "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=600&fit=crop",
           "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=600&fit=crop"
         ],
         inStock: true

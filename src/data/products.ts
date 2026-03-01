@@ -1,4 +1,28 @@
 import { Wrench, Shield, Monitor, Cpu, Package, ScanLine } from "lucide-react";
+import productThruTubing from "@/assets/product-thru-tubing.jpg";
+import productCompletion from "@/assets/product-completion.jpg";
+import productIntervention from "@/assets/product-intervention.jpg";
+import productCtTools from "@/assets/product-ct-tools.jpg";
+import productFishing from "@/assets/product-fishing.jpg";
+import productCorrosion from "@/assets/product-corrosion.jpg";
+import productWellConstruction from "@/assets/product-well-construction.jpg";
+import productDigital from "@/assets/product-digital.jpg";
+import productSurvey from "@/assets/product-survey.jpg";
+import product3dScanning from "@/assets/product-3d-scanning.jpg";
+
+// Image map by category
+const categoryImages: Record<string, string> = {
+  "thru-tubing-tools": productThruTubing,
+  "downhole-completion": productCompletion,
+  "well-intervention": productIntervention,
+  "ct-tools": productCtTools,
+  "fishing-milling": productFishing,
+  "corrosion-prevention": productCorrosion,
+  "well-construction": productWellConstruction,
+  "digital-oversight": productDigital,
+  "survey-instruments": productSurvey,
+  "3d-scanning": product3dScanning,
+};
 
 export interface ProductData {
   id: string;
@@ -1174,3 +1198,14 @@ export const categories: CategoryData[] = [
     ]
   }
 ];
+
+// Apply category images to all products
+categories.forEach(category => {
+  const img = categoryImages[category.id];
+  if (img) {
+    category.products.forEach(product => {
+      product.image = img;
+      product.images = [img];
+    });
+  }
+});

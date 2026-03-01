@@ -1,27 +1,137 @@
 import { Wrench, Shield, Monitor, Cpu, Package, ScanLine } from "lucide-react";
-import productThruTubing from "@/assets/product-thru-tubing.jpg";
-import productCompletion from "@/assets/product-completion.jpg";
-import productIntervention from "@/assets/product-intervention.jpg";
-import productCtTools from "@/assets/product-ct-tools.jpg";
-import productFishing from "@/assets/product-fishing.jpg";
-import productCorrosion from "@/assets/product-corrosion.jpg";
-import productWellConstruction from "@/assets/product-well-construction.jpg";
-import productDigital from "@/assets/product-digital.jpg";
-import productSurvey from "@/assets/product-survey.jpg";
-import product3dScanning from "@/assets/product-3d-scanning.jpg";
 
-// Image map by category
-const categoryImages: Record<string, string> = {
-  "thru-tubing-tools": productThruTubing,
-  "downhole-completion": productCompletion,
-  "well-intervention": productIntervention,
-  "ct-tools": productCtTools,
-  "fishing-milling": productFishing,
-  "corrosion-prevention": productCorrosion,
-  "well-construction": productWellConstruction,
-  "digital-oversight": productDigital,
-  "survey-instruments": productSurvey,
-  "3d-scanning": product3dScanning,
+// Thru-Tubing Tools
+import imgBridgePlug from "@/assets/products/retrievable-bridge-plug.jpg";
+import imgInflatablePacker from "@/assets/products/inflatable-packer.jpg";
+import imgVelocityString from "@/assets/products/velocity-string.jpg";
+import imgWhipstock from "@/assets/products/whipstock.jpg";
+import imgSandScreen from "@/assets/products/sand-screen.jpg";
+
+// Downhole Completion
+import imgLinerHanger from "@/assets/products/liner-hanger.jpg";
+import imgPackers from "@/assets/products/packers.jpg";
+import imgFloatEquipment from "@/assets/products/float-equipment.jpg";
+import imgCentralizers from "@/assets/products/centralizers.jpg";
+import imgSwellablePacker from "@/assets/products/swellable-packer.jpg";
+
+// Well Intervention
+import imgFishingTools from "@/assets/products/fishing-tools.jpg";
+import imgCtMotor from "@/assets/products/ct-motor.jpg";
+import imgBridgePlugDeploy from "@/assets/products/bridge-plug-deploy.jpg";
+import imgChemicalInjection from "@/assets/products/chemical-injection.jpg";
+import imgWirelineJar from "@/assets/products/wireline-jar.jpg";
+
+// CT Tools
+import imgCapillaryString from "@/assets/products/capillary-string.jpg";
+import imgCtCleanout from "@/assets/products/ct-cleanout.jpg";
+import imgCtBhaConnector from "@/assets/products/ct-bha-connector.jpg";
+
+// Fishing & Milling
+import imgTaperMill from "@/assets/products/taper-mill.jpg";
+import imgImpressionBlock from "@/assets/products/impression-block.jpg";
+
+// Corrosion Prevention
+import imgMmoAnode from "@/assets/products/mmo-anode.jpg";
+import imgSacrificialAnode from "@/assets/products/sacrificial-anode.jpg";
+import imgRectifier from "@/assets/products/rectifier.jpg";
+import imgReferenceElectrode from "@/assets/products/reference-electrode.jpg";
+import imgAcDecoupler from "@/assets/products/ac-decoupler.jpg";
+import imgJunctionBox from "@/assets/products/junction-box.jpg";
+import imgCorrosionInhibitor from "@/assets/products/corrosion-inhibitor.jpg";
+import imgAntiCorrosionCoating from "@/assets/products/anti-corrosion-coating.jpg";
+
+// Well Construction
+import imgDrillingAdditives from "@/assets/products/drilling-additives.jpg";
+
+// Digital Oversight
+import imgAiAnomaly from "@/assets/products/ai-anomaly.jpg";
+import imgCvSafety from "@/assets/products/cv-safety.jpg";
+import imgIotCp from "@/assets/products/iot-cp.jpg";
+import imgDigitalTwin from "@/assets/products/digital-twin.jpg";
+import imgDroneMonitoring from "@/assets/products/drone-monitoring.jpg";
+import imgFrsAttendance from "@/assets/products/frs-attendance.jpg";
+import imgPpeDetection from "@/assets/products/ppe-detection.jpg";
+import imgFireDetection from "@/assets/products/fire-detection.jpg";
+import imgSpillageDetection from "@/assets/products/spillage-detection.jpg";
+import imgProcessMonitoring from "@/assets/products/process-monitoring.jpg";
+import imgAssetInspection from "@/assets/products/asset-inspection.jpg";
+import imgCorrosionDetection from "@/assets/products/corrosion-detection.jpg";
+import imgMachineSafety from "@/assets/products/machine-safety.jpg";
+import imgCrowdCounting from "@/assets/products/crowd-counting.jpg";
+import imgVisitorTracking from "@/assets/products/visitor-tracking.jpg";
+import imgEmissionsMonitoring from "@/assets/products/emissions-monitoring.jpg";
+import imgIntrusionDetection from "@/assets/products/intrusion-detection.jpg";
+import imgLoneWorker from "@/assets/products/lone-worker.jpg";
+import imgPermitToWork from "@/assets/products/permit-to-work.jpg";
+import imgLogisticsVehicle from "@/assets/products/logistics-vehicle.jpg";
+import imgCameraHealth from "@/assets/products/camera-health.jpg";
+
+// Survey Instruments
+import imgCpSurveyKit from "@/assets/products/cp-survey-kit.jpg";
+
+// 3D Scanning
+import imgTrimbleX7 from "@/assets/products/trimble-x7.jpg";
+import imgTrimbleX9 from "@/assets/products/trimble-x9.jpg";
+import imgTrimbleX12 from "@/assets/products/trimble-x12.jpg";
+import imgTrimbleSx12 from "@/assets/products/trimble-sx12.jpg";
+
+// Product ID to image mapping
+const productImages: Record<string, string> = {
+  "retrievable-bridge-plug": imgBridgePlug,
+  "inflatable-packer-straddle": imgInflatablePacker,
+  "velocity-string-assembly": imgVelocityString,
+  "thru-tubing-whipstock": imgWhipstock,
+  "downhole-sand-screen": imgSandScreen,
+  "liner-hanger-system": imgLinerHanger,
+  "permanent-retrievable-packers": imgPackers,
+  "float-shoe-collar-guide": imgFloatEquipment,
+  "casing-centralizers": imgCentralizers,
+  "swellable-packer-systems": imgSwellablePacker,
+  "fishing-tool-suite": imgFishingTools,
+  "ct-downhole-motor": imgCtMotor,
+  "bridge-plug-deployment": imgBridgePlugDeploy,
+  "chemical-injection-tools": imgChemicalInjection,
+  "wireline-jar-accelerator": imgWirelineJar,
+  "capillary-string-system": imgCapillaryString,
+  "ct-cleanout-jetting": imgCtCleanout,
+  "ct-bha-connector-kit": imgCtBhaConnector,
+  "taper-section-mill": imgTaperMill,
+  "impression-block-gauge": imgImpressionBlock,
+  "mmo-anodes": imgMmoAnode,
+  "sacrificial-anodes": imgSacrificialAnode,
+  "transformer-rectifier": imgRectifier,
+  "reference-electrodes": imgReferenceElectrode,
+  "ac-decoupler": imgAcDecoupler,
+  "junction-boxes": imgJunctionBox,
+  "corrosion-inhibitor-chemicals": imgCorrosionInhibitor,
+  "anti-corrosion-coating": imgAntiCorrosionCoating,
+  "drilling-fluid-additives": imgDrillingAdditives,
+  "ai-pipeline-anomaly": imgAiAnomaly,
+  "cv-safety-platform": imgCvSafety,
+  "iot-cp-monitoring": imgIotCp,
+  "predictive-maintenance-twin": imgDigitalTwin,
+  "drone-construction-monitoring": imgDroneMonitoring,
+  "va-frs-attendance": imgFrsAttendance,
+  "va-ppe-compliance": imgPpeDetection,
+  "va-fire-flare-smoke": imgFireDetection,
+  "va-spillage-leakage": imgSpillageDetection,
+  "va-process-area": imgProcessMonitoring,
+  "va-asset-inspection": imgAssetInspection,
+  "va-corrosion-detection": imgCorrosionDetection,
+  "va-machine-safety": imgMachineSafety,
+  "va-crowd-muster": imgCrowdCounting,
+  "va-visitor-tracking": imgVisitorTracking,
+  "va-environment-emissions": imgEmissionsMonitoring,
+  "va-intrusion-detection": imgIntrusionDetection,
+  "va-lone-worker": imgLoneWorker,
+  "va-permit-to-work": imgPermitToWork,
+  "va-logistics-vehicle": imgLogisticsVehicle,
+  "va-camera-health": imgCameraHealth,
+  "cp-survey-kit": imgCpSurveyKit,
+  "trimble-x7": imgTrimbleX7,
+  "trimble-x9": imgTrimbleX9,
+  "trimble-x12": imgTrimbleX12,
+  "trimble-sx12": imgTrimbleSx12,
 };
 
 export interface ProductData {
@@ -1199,13 +1309,13 @@ export const categories: CategoryData[] = [
   }
 ];
 
-// Apply category images to all products
+// Apply individual product images
 categories.forEach(category => {
-  const img = categoryImages[category.id];
-  if (img) {
-    category.products.forEach(product => {
+  category.products.forEach(product => {
+    const img = productImages[product.id];
+    if (img) {
       product.image = img;
       product.images = [img];
-    });
-  }
+    }
+  });
 });

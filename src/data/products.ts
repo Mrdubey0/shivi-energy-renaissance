@@ -177,16 +177,13 @@ export const categories: CategoryData[] = [
         price: "Request Technical Evaluation",
         features: ["Slim OD design for thru-tubing deployment", "High expansion ratio", "ISO 14310 certified", "Single-trip set and release", "Rated to 10,000 PSI"],
         operationalEnvelope: {
-          pressure: "Up to 10,000 PSI",
-          temperature: "-20°C to 150°C",
+          pressure: "Working Pressure: Up to 10,000 PSI",
+          temperature: "Operating Temperature: -20°C to 150°C",
           application: "Temporary zonal isolation, well testing, pressure containment",
           limits: "H₂S/CO₂ environments require CRA material upgrade"
         },
-        image: "https://images.unsplash.com/photo-1590735213920-68192a487bc3?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1590735213920-68192a487bc3?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
@@ -196,16 +193,13 @@ export const categories: CategoryData[] = [
         price: "Request Technical Evaluation",
         features: ["Hydraulic inflation", "High-pressure sealing", "Retrievable or permanent", "Single or dual straddle", "API compliant"],
         operationalEnvelope: {
-          pressure: "Up to 8,000 PSI",
-          temperature: "-10°C to 175°C",
+          pressure: "Working Pressure: Up to 8,000 PSI",
+          temperature: "Operating Temperature: -10°C to 175°C",
           application: "Zonal isolation, leak remediation, well stimulation isolation",
           limits: "Inflation medium must be clean filtered fluid"
         },
-        image: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1590735213920-68192a487bc3?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
@@ -215,16 +209,13 @@ export const categories: CategoryData[] = [
         price: "Request Technical Evaluation",
         features: ["1\" to 2\" OD range", "Carbon steel & CRA grades", "Proven uplift 20–30%", "No rig required", "Field-tested in ONGC Ahmedabad & Rajahmundry"],
         operationalEnvelope: {
-          pressure: "Up to 5,000 PSI wellhead",
-          temperature: "Up to 3,500 m TVD",
+          pressure: "Working Pressure: Up to 5,000 PSI wellhead",
+          temperature: "Deployment Depth: Up to 3,500 m TVD",
           application: "Liquid unloading, gas well deliquification, mature field production boost",
           limits: "Minimum tubing ID 2.441\"; H₂S service requires CRA string"
         },
-        image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
@@ -234,16 +225,13 @@ export const categories: CategoryData[] = [
         price: "Request Technical Evaluation",
         features: ["Single-trip retrievable", "Hard-face deflector ramp", "Compatible with standard BHA", "Cased & open-hole versions", "Orientation by gyro or magnetic survey"],
         operationalEnvelope: {
-          pressure: "Up to 7,500 PSI",
-          temperature: "-20°C to 150°C",
+          pressure: "Working Pressure: Up to 7,500 PSI",
+          temperature: "Operating Temperature: -20°C to 150°C",
           application: "Sidetrack drilling, re-entry milling, lateral well construction",
           limits: "Requires adequate casing weight; BHA compatibility check mandatory"
         },
-        image: "https://images.unsplash.com/photo-1565087838865-ad5eb48b30d9?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1565087838865-ad5eb48b30d9?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
@@ -253,16 +241,13 @@ export const categories: CategoryData[] = [
         price: "Request Technical Evaluation",
         features: ["Wire-wrap & premium mesh options", "2⅜\" to 5½\" OD range", "CRA alloy available", "Gravel-pack compatible", "API 19SS compliant"],
         operationalEnvelope: {
-          pressure: "Up to 5,000 PSI differential",
-          temperature: "100 – 500 micron (custom)",
+          pressure: "Working Pressure: Up to 5,000 PSI differential",
+          temperature: "Slot/Gauge Opening: 100 – 500 micron (custom)",
           application: "Sand control in oil/gas wells, gravel pack completions, water injection wells",
           limits: "Screen sizing requires formation particle size analysis (PSD)"
         },
-        image: "https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1590735213920-68192a487bc3?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       }
     ]
@@ -282,16 +267,13 @@ export const categories: CategoryData[] = [
         price: "Request Technical Evaluation",
         features: ["Mechanical & hydraulic setting", "Cementing head included", "Rotating liner option", "ISO 11960 compatible", "Retrievable setting tool"],
         operationalEnvelope: {
-          pressure: "Up to 10,000 PSI",
-          temperature: "-20°C to 175°C",
+          pressure: "Working Pressure: Up to 10,000 PSI",
+          temperature: "Operating Temperature: -20°C to 175°C",
           application: "Liner drilling, well completion, sidetrack liner placement",
           limits: "Configuration dependent on casing size and well deviation"
         },
-        image: "https://images.unsplash.com/photo-1590735213920-68192a487bc3?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1590735213920-68192a487bc3?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
@@ -301,16 +283,13 @@ export const categories: CategoryData[] = [
         price: "Request Technical Evaluation",
         features: ["V0 gas-tight seal", "H₂S & CO₂ rated", "Straight-pull or J-latch release", "API 11D1 compliant", "Multiple slip types"],
         operationalEnvelope: {
-          pressure: "Up to 15,000 PSI",
-          temperature: "-20°C to 175°C",
+          pressure: "Working Pressure: Up to 15,000 PSI",
+          temperature: "Operating Temperature: -20°C to 175°C",
           application: "Production isolation, ESP completion, gas lift, stimulation squeeze",
           limits: "Elastomer selection dependent on fluid type and temperature"
         },
-        image: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
@@ -320,16 +299,13 @@ export const categories: CategoryData[] = [
         price: "Request Technical Evaluation",
         features: ["PDC & ball-drop drillout", "Aluminium & composite insert", "High flow-through ports", "API 10D rated", "Compatible with all major casing ODs"],
         operationalEnvelope: {
-          pressure: "Up to 5,000 PSI float",
-          temperature: "Up to 150°C",
+          pressure: "Differential Pressure: Up to 5,000 PSI float",
+          temperature: "Operating Temperature: Up to 150°C",
           application: "Casing cementing in vertical, directional and horizontal wells",
           limits: "Flow rate limited by port ID; drillout torque to be confirmed"
         },
-        image: "https://images.unsplash.com/photo-1565087838865-ad5eb48b30d9?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1565087838865-ad5eb48b30d9?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
@@ -339,16 +315,13 @@ export const categories: CategoryData[] = [
         price: "Request Technical Evaluation",
         features: ["Bow-spring & rigid types", "Spiral blade design", "Positive standoff in deviated wells", "API 10D compliant", "Custom OD/ID sizing"],
         operationalEnvelope: {
-          pressure: "50 – 2,000 lbf (configurable)",
-          temperature: "Up to 175°C",
+          pressure: "Centralizer Restoring Force: 50 – 2,000 lbf (configurable)",
+          temperature: "Operating Temperature: Up to 175°C",
           application: "Directional and horizontal well casing cementing",
           limits: "Sized to casing OD and open-hole ID; running force to be calculated"
         },
-        image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1565087838865-ad5eb48b30d9?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
@@ -358,16 +331,13 @@ export const categories: CategoryData[] = [
         price: "Request Technical Evaluation",
         features: ["Oil-swell & water-swell variants", "Passive activation – no mechanical setting", "Openhole & cased-hole versions", "Sustained seal integrity"],
         operationalEnvelope: {
-          pressure: "Up to 200% radial expansion",
-          temperature: "Up to 150°C",
+          pressure: "Swell Expansion Ratio: Up to 200% radial expansion",
+          temperature: "Operating Temperature: Up to 150°C",
           application: "Open-hole zonal isolation, shale gas, coal-bed methane, horizontal completions",
           limits: "Activation time dependent on formation fluid and temperature"
         },
-        image: "https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1590735213920-68192a487bc3?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       }
     ]
@@ -387,16 +357,13 @@ export const categories: CategoryData[] = [
         price: "Request Technical Evaluation",
         features: ["Grapple & bowl overshots", "Internal spears", "Junk baskets & magnets", "Multi-size range", "Rotational release options"],
         operationalEnvelope: {
-          pressure: "Up to 10,000 PSI",
-          temperature: "-20°C to 175°C",
+          pressure: "Working Pressure: Up to 10,000 PSI",
+          temperature: "Operating Temperature: -20°C to 175°C",
           application: "Stuck pipe retrieval, dropped BHA, downhole debris removal",
           limits: "Fish OD and condition must be confirmed before tool selection"
         },
-        image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
@@ -406,16 +373,13 @@ export const categories: CategoryData[] = [
         price: "Request Technical Evaluation",
         features: ["High-torque PDM", "Tungsten carbide mill inserts", "Vibration dampener", "CT-compatible OD", "Compatible with N₂ and coiled tubing fluids"],
         operationalEnvelope: {
-          pressure: "Up to 7,500 PSI",
-          temperature: "Up to 150 HP (configurable)",
+          pressure: "Working Pressure: Up to 7,500 PSI",
+          temperature: "Motor Power Output: Up to 150 HP (configurable)",
           application: "Scale/cement milling, gate valve milling, perforation cleanouts",
           limits: "OD matched to CT string and tubing ID; RPM constrained by CT torque"
         },
-        image: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
@@ -425,16 +389,13 @@ export const categories: CategoryData[] = [
         price: "Request Technical Evaluation",
         features: ["E-line & slickline conveyed", "Setting tool integrated", "Depth control via CCL", "Fast single-trip operation", "ISO 14310 rated plugs"],
         operationalEnvelope: {
-          pressure: "Up to 10,000 PSI",
-          temperature: "±0.5 m via CCL correlation",
+          pressure: "Working Pressure: Up to 10,000 PSI",
+          temperature: "Setting Depth Accuracy: ±0.5 m via CCL correlation",
           application: "Temporary & permanent zonal isolation, workover, plug & abandonment",
           limits: "Requires wireline unit and CCL log for accurate depth placement"
         },
-        image: "https://images.unsplash.com/photo-1565087838865-ad5eb48b30d9?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1565087838865-ad5eb48b30d9?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1590735213920-68192a487bc3?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
@@ -444,16 +405,13 @@ export const categories: CategoryData[] = [
         price: "Request Technical Evaluation",
         features: ["Side-pocket mandrel & capillary options", "Positive check valve", "CRA wetted parts", "Surface chemical injection pump compatible"],
         operationalEnvelope: {
-          pressure: "Up to 5,000 PSI",
-          temperature: "Up to 130°C",
+          pressure: "Injection Pressure: Up to 5,000 PSI",
+          temperature: "Operating Temperature: Up to 130°C",
           application: "Corrosion/scale inhibitor injection, paraffin control, hydrate prevention",
           limits: "Chemical compatibility with elastomers must be confirmed"
         },
-        image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
@@ -463,16 +421,13 @@ export const categories: CategoryData[] = [
         price: "Request Technical Evaluation",
         features: ["Mechanical & hydraulic action", "Bidirectional jarring", "High-impact energy release", "Slim OD for thru-tubing", "Multiple size range"],
         operationalEnvelope: {
-          pressure: "Up to 10,000 PSI",
-          temperature: "Up to 50,000 lbf (configurable)",
+          pressure: "Working Pressure: Up to 10,000 PSI",
+          temperature: "Impact Force: Up to 50,000 lbf (configurable)",
           application: "Stuck tool retrieval, BHA release, junk shot assistance",
           limits: "Tubing ID must accommodate tool OD; jarring force limited by string integrity"
         },
-        image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1565087838865-ad5eb48b30d9?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       }
     ]
@@ -492,16 +447,13 @@ export const categories: CategoryData[] = [
         price: "Request Technical Evaluation",
         features: ["1/4\" to 1/2\" OD capillary", "316 SS & Inconel options", "Continuous or batch injection", "Surface reel deployment", "NACE MR0175 compliant"],
         operationalEnvelope: {
-          pressure: "Up to 5,000 PSI",
-          temperature: "Up to 3,000 m (surface-deployed)",
+          pressure: "Injection Pressure: Up to 5,000 PSI",
+          temperature: "Deployment Depth: Up to 3,000 m (surface-deployed)",
           application: "Corrosion inhibitor, scale inhibitor, methanol injection for hydrate prevention",
           limits: "Chemical compatibility check required; flow rate constrained by capillary ID"
         },
-        image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
@@ -511,16 +463,13 @@ export const categories: CategoryData[] = [
         price: "Request Technical Evaluation",
         features: ["Multi-port jetting nozzles", "Rotating or fixed head", "High-impact fluid velocity", "Compatible with N₂ foam", "Debris sub included"],
         operationalEnvelope: {
-          pressure: "Up to 6,000 PSI",
-          temperature: "0.5 – 4.0 BPM",
+          pressure: "Jetting Pressure: Up to 6,000 PSI",
+          temperature: "Flow Rate: 0.5 – 4.0 BPM",
           application: "Sand cleanout, wax removal, scale dissolution, kill fluid circulation",
           limits: "Fluid returns management system required at surface"
         },
-        image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1590735213920-68192a487bc3?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
@@ -530,16 +479,13 @@ export const categories: CategoryData[] = [
         price: "Request Technical Evaluation",
         features: ["Quick-connect design", "Check valve integrated", "Safety shear sub", "Mechanical disconnect", "Compatible with 1\" to 2⅜\" CT string"],
         operationalEnvelope: {
-          pressure: "Up to 10,000 PSI",
-          temperature: "Up to 150°C",
+          pressure: "Working Pressure: Up to 10,000 PSI",
+          temperature: "Operating Temperature: Up to 150°C",
           application: "CT nitrogen lift, stimulation, well cleanout, thru-tubing logging",
           limits: "OD selection matched to CT string and tubing ID"
         },
-        image: "https://images.unsplash.com/photo-1565087838865-ad5eb48b30d9?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1565087838865-ad5eb48b30d9?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       }
     ]
@@ -559,16 +505,13 @@ export const categories: CategoryData[] = [
         price: "Request Technical Evaluation",
         features: ["Hydraulic actuation", "Replaceable TC-insert blades", "Single-trip window cut", "Cement milling capable", "Custom OD sizing"],
         operationalEnvelope: {
-          pressure: "Up to 5,000 PSI",
-          temperature: "0.5 – 3 m/hr (formation dependent)",
+          pressure: "Working Pressure: Up to 5,000 PSI",
+          temperature: "Milling ROP: 0.5 – 3 m/hr (formation dependent)",
           application: "Casing milling, section milling, plug & abandonment, window cut for sidetrack",
           limits: "Adequate WOB and RPM required; mill OD sized to casing ID"
         },
-        image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
@@ -578,16 +521,13 @@ export const categories: CategoryData[] = [
         price: "Request Technical Evaluation",
         features: ["Lead-faced impression block", "Multiple OD sizes", "Positive fish profile identification", "Re-usable gauge ring set"],
         operationalEnvelope: {
-          pressure: "Up to 5,000 PSI",
-          temperature: "±2 mm fish profile resolution",
+          pressure: "Working Pressure: Up to 5,000 PSI",
+          temperature: "Identification Accuracy: ±2 mm fish profile resolution",
           application: "Fish identification, casing restriction gauging, pre-fishing diagnostic run",
           limits: "Single use for impression block; requires slow WOB landing for clear impression"
         },
-        image: "https://images.unsplash.com/photo-1565087838865-ad5eb48b30d9?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1565087838865-ad5eb48b30d9?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       }
     ]
@@ -607,16 +547,13 @@ export const categories: CategoryData[] = [
         price: "Request Technical Evaluation",
         features: ["High current output", "20+ year design life", "Low consumption rate", "Flexible tubular & canistered formats", "DNV-certified"],
         operationalEnvelope: {
-          pressure: "Up to 100 A/m² (tubular)",
-          temperature: "-20°C to 60°C (soil/immersed)",
+          pressure: "Operating Current Density: Up to 100 A/m² (tubular)",
+          temperature: "Operating Temperature: -20°C to 60°C (soil/immersed)",
           application: "Pipeline ICCP anode beds, tank floor CP, offshore ICCP retrofits",
           limits: "Anode sizing requires soil resistivity and current demand calculations"
         },
-        image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
@@ -624,18 +561,15 @@ export const categories: CategoryData[] = [
         name: "Zinc & Magnesium Sacrificial Anodes",
         description: "High-purity zinc and magnesium sacrificial anodes pre-packaged with activated backfill for buried pipeline and storage tank cathodic protection.",
         price: "Request Technical Evaluation",
-        features: ["Zinc & Mg alloy options", "Pre-packaged with backfill", "NACE SP0169 compliant", "Multiple form factors"],
+        features: ["Zinc & Mg alloy options", "Pre-packaged with gypsum/clay/sodium sulphate backfill", "NACE SP0169 compliant", "Multiple form factors"],
         operationalEnvelope: {
-          pressure: "780 A·hr/kg (Zn) | 1,100 A·hr/kg (Mg)",
-          temperature: "-20°C to 50°C (buried/immersed)",
+          pressure: "Electrochemical Capacity: 780 A·hr/kg (Zn) | 1,100 A·hr/kg (Mg)",
+          temperature: "Operating Temperature: -20°C to 50°C (buried/immersed)",
           application: "Underground pipeline SACP, water tank protection, LPG plant piping",
           limits: "Current output inversely proportional to soil/electrolyte resistivity"
         },
-        image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
@@ -645,16 +579,13 @@ export const categories: CategoryData[] = [
         price: "Request Technical Evaluation",
         features: ["Auto-potential & manual modes", "SCADA/remote monitoring ready", "FLP & weatherproof enclosures", "5A to 100A output range", "3-phase & single-phase input"],
         operationalEnvelope: {
-          pressure: "5 A – 100 A DC (configurable)",
-          temperature: "0 – 50 V DC (adjustable)",
+          pressure: "Output Current Range: 5 A – 100 A DC (configurable)",
+          temperature: "Output Voltage Range: 0 – 50 V DC (adjustable)",
           application: "ICCP power supply for cross-country pipelines, tank farms, concrete jetties",
           limits: "Mains AC power supply required (or solar for remote sites)"
         },
-        image: "https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
@@ -664,16 +595,13 @@ export const categories: CategoryData[] = [
         price: "Request Technical Evaluation",
         features: ["Cu/CuSO₄ & Zn types", "20+ year design life", "Hermetically sealed", "UPVC test post with tamper-proof cap", "Pre-wired terminal block"],
         operationalEnvelope: {
-          pressure: "±5 mV vs. CSE",
-          temperature: "-20°C to 70°C (buried)",
+          pressure: "Reference Accuracy: ±5 mV vs. CSE",
+          temperature: "Operating Temperature: -20°C to 70°C (buried)",
           application: "CP monitoring stations, ON/OFF PSP surveys, buried pipeline networks",
           limits: "Stable soil contact essential; regular electrolyte replenishment for Cu/CuSO₄"
         },
-        image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
@@ -683,16 +611,13 @@ export const categories: CategoryData[] = [
         price: "Request Technical Evaluation",
         features: ["ATEX/FLP-rated versions", "Bi-directional", "Zero maintenance", "Blocking voltage up to 5 V DC", "AC pass-through up to 1,000 A fault current"],
         operationalEnvelope: {
-          pressure: "Up to 5 V DC blocking",
-          temperature: "Up to 1,000 A (1-sec surge)",
+          pressure: "DC Blocking Voltage: Up to 5 V DC",
+          temperature: "AC Fault Current Rating: Up to 1,000 A (1-sec surge)",
           application: "AC interference mitigation on pipelines near HV lines or electrified rail",
           limits: "Fault current rating must exceed site-specific short-circuit analysis"
         },
-        image: "https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
@@ -702,16 +627,13 @@ export const categories: CategoryData[] = [
         price: "Request Technical Evaluation",
         features: ["ATEX Zone 1 & 2 certified", "SS316 & GI enclosures", "Tamper-proof design", "Multi-circuit terminal blocks", "IP66 rating"],
         operationalEnvelope: {
-          pressure: "Up to 10 anode circuits per box",
-          temperature: "-20°C to 60°C ambient",
+          pressure: "Circuit Capacity: Up to 10 anode circuits per box",
+          temperature: "Operating Temperature: -20°C to 60°C ambient",
           application: "ICCP current distribution in refineries, tank farms, hazardous area pipelines",
           limits: "Rated for specific ATEX zone classification; cable gland sizing required"
         },
-        image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
@@ -721,16 +643,13 @@ export const categories: CategoryData[] = [
         price: "Request Technical Evaluation",
         features: ["Film-forming inhibitor", "Scale & paraffin control", "Batch & continuous dosing", "HPHT rated", "NACE MR0175 compliant", "Biodegradable options"],
         operationalEnvelope: {
-          pressure: "50 – 500 ppm (application-specific)",
-          temperature: "-10°C to 150°C",
+          pressure: "Dosage Rate: 50 – 500 ppm (application-specific)",
+          temperature: "Operating Temperature: -10°C to 150°C",
           application: "Oil & gas flowlines, water injection systems, gas gathering pipelines",
           limits: "Fluid compatibility testing and inhibitor screening required per system"
         },
-        image: "https://images.unsplash.com/photo-1590735213920-68192a487bc3?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1590735213920-68192a487bc3?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
@@ -740,16 +659,13 @@ export const categories: CategoryData[] = [
         price: "Request Technical Evaluation",
         features: ["FBE, 3LPE & 3LPP options", "Holiday detection included", "DFT up to 3 mm", "Marine splash zone rated", "ISO 21809 compliant"],
         operationalEnvelope: {
-          pressure: "400 µm – 3,000 µm (system-specific)",
-          temperature: "-40°C to 110°C (FBE) / 140°C (3LPP)",
+          pressure: "Dry Film Thickness (DFT): 400 µm – 3,000 µm (system-specific)",
+          temperature: "Operating Temperature: -40°C to 110°C (FBE) / 140°C (3LPP)",
           application: "Buried cross-country pipelines, marine splash zone structures, offshore risers",
           limits: "Surface preparation to Sa 2.5 mandatory; application in controlled conditions"
         },
-        image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1590735213920-68192a487bc3?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       }
     ]
@@ -769,16 +685,13 @@ export const categories: CategoryData[] = [
         price: "Request Technical Evaluation",
         features: ["Fluid loss additives", "Shale stabilizers", "Oil-based mud additives", "Loss circulation materials (LCM)", "HPHT certified", "ONGC & OIL field-tested"],
         operationalEnvelope: {
-          pressure: "2 – 10 ppb (product-specific)",
-          temperature: "Up to 200°C BHST",
+          pressure: "Concentration / Dosage: 2 – 10 ppb (product-specific)",
+          temperature: "Operating Temperature: Up to 200°C BHST",
           application: "HPHT well drilling, shale formations, deepwater and directional drilling",
           limits: "Formulation selection requires mud engineer review and rig lab testing"
         },
-        image: "https://images.unsplash.com/photo-1590735213920-68192a487bc3?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1590735213920-68192a487bc3?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       }
     ]
@@ -798,16 +711,13 @@ export const categories: CategoryData[] = [
         price: "Request Technical Evaluation",
         features: ["Real-time & batch analysis", "90%+ detection accuracy", "Cloud alert dashboard", "Multi-asset monitoring", "Integration with existing CCTV/drone feeds"],
         operationalEnvelope: {
-          pressure: "≥90% detection accuracy",
-          temperature: "<2 seconds per frame",
+          pressure: "Detection Accuracy: ≥90% (validated on field datasets)",
+          temperature: "Inference Latency: <2 seconds per frame",
           application: "Pipeline integrity, refinery inspection, offshore asset surveillance",
           limits: "Minimum image resolution 1080p; camera/drone access required"
         },
-        image: "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
@@ -817,16 +727,13 @@ export const categories: CategoryData[] = [
         price: "Request Technical Evaluation",
         features: ["PPE & permit compliance", "Lone worker distress detection", "Intrusion & perimeter alerts", "Vehicle & traffic monitoring", "Camera tamper alerts"],
         operationalEnvelope: {
-          pressure: "Minimum 1080p (2MP); 4K supported",
-          temperature: "<1 second real-time alert",
+          pressure: "Image Resolution: Minimum 1080p (2MP); 4K supported",
+          temperature: "Detection Latency: <1 second real-time alert",
           application: "Refinery HSE compliance, oil field security, renewable energy site safety",
           limits: "Camera placement and site network bandwidth assessment required"
         },
-        image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
@@ -836,16 +743,13 @@ export const categories: CategoryData[] = [
         price: "Request Technical Evaluation",
         features: ["GSM/GPRS data loggers", "Multi-site cloud dashboard", "Auto-alert on CP failure", "Historical trending & reporting", "SCADA integration"],
         operationalEnvelope: {
-          pressure: "±5 mV potential measurement",
-          temperature: "1 min – 24 hr (configurable)",
+          pressure: "Measurement Accuracy: ±5 mV potential measurement",
+          temperature: "Data Logging Interval: 1 min – 24 hr (configurable)",
           application: "Remote CP monitoring for cross-country pipelines and tank farms",
           limits: "GSM connectivity required at monitoring points; SCADA integration needs IT sign-off"
         },
-        image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
@@ -855,16 +759,13 @@ export const categories: CategoryData[] = [
         price: "Request Technical Evaluation",
         features: ["Digital twin simulation", "ML failure prediction", "IoT sensor integration", "Custom KPI dashboards", "Sustainability & emissions reporting"],
         operationalEnvelope: {
-          pressure: "7 – 90 days advance warning",
-          temperature: "Real-time (streaming) or daily batch",
+          pressure: "Prediction Horizon: 7 – 90 days advance warning",
+          temperature: "Model Update Frequency: Real-time (streaming) or daily batch",
           application: "Well production optimisation, CP system simulation, facility maintenance scheduling",
           limits: "Requires access to historical sensor data and plant SCADA/DCS feeds via API"
         },
-        image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
@@ -874,320 +775,269 @@ export const categories: CategoryData[] = [
         price: "Request Technical Evaluation",
         features: ["Automated flight path optimisation", "Photogrammetry & 3D mapping", "Real-time progress dashboards", "Defect detection & reporting", "Solar & wind farm compatible"],
         operationalEnvelope: {
-          pressure: "Up to 1 cm/pixel (GSD at 50 m AGL)",
-          temperature: "Up to 200 ha/hr per drone flight",
+          pressure: "Spatial Resolution: Up to 1 cm/pixel (GSD at 50 m AGL)",
+          temperature: "Coverage Rate: Up to 200 ha/hr per drone flight",
           application: "Pipeline ROW monitoring, solar/wind farm construction, offshore platform inspection",
           limits: "Regulatory DGCA approvals required; no-fly zones restrict some applications"
         },
-        image: "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
         id: "va-frs-attendance",
-        name: "Video Analytics – FRS Attendance & Access Control",
-        description: "Face recognition software module for automated attendance logging, access monitoring, and watchlist-based alerts at gates and restricted areas.",
+        name: "Video Analytics Solution – FRS Attendance & Access Control Module",
+        description: "Face recognition software module for automated attendance logging, access monitoring, and watchlist-based alerts at gates and restricted areas. Hardware-agnostic; works with existing IP cameras.",
         price: "Request Technical Evaluation",
         features: ["Face recognition attendance", "Watchlist & access alerts", "Shift-wise log reports", "Visitor linkage", "VMS/NVR integration", "Audit-ready dashboards"],
         operationalEnvelope: {
-          pressure: "≥97% match rate",
-          temperature: "<2 seconds per person",
+          pressure: "Face Recognition Accuracy: ≥97% match rate (adequate lighting, enrolled DB)",
+          temperature: "Processing Speed: <2 seconds per person identification at gate",
           application: "Gates, control rooms, offices, and restricted areas in refineries, terminals, and depots",
-          limits: "Enrolled face database and clear camera view required"
+          limits: "Enrolled face database and clear camera view required; local privacy and consent policies must be followed"
         },
-        image: "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
         id: "va-ppe-compliance",
-        name: "Video Analytics – PPE Compliance Detection",
+        name: "Video Analytics Solution – PPE Compliance Detection Module",
         description: "AI software module detecting helmet, vest, gloves, and other PPE compliance in hazardous zones, generating real-time supervisor alerts and violation snapshots.",
         price: "Request Technical Evaluation",
         features: ["Helmet, vest & glove detection", "Configurable zone rules", "Violation snapshot capture", "Trend & compliance reports", "Multi-PPE class support", "Integration-ready API"],
         operationalEnvelope: {
-          pressure: "≥90% precision across PPE classes",
-          temperature: "<3 seconds from violation to alert",
+          pressure: "PPE Detection Accuracy: ≥90% precision across standard PPE classes",
+          temperature: "Alert Latency: <3 seconds from violation to supervisor alert",
           application: "Process units, tank farms, loading bays, maintenance areas, and shutdown work zones",
-          limits: "Camera angle must clearly capture head and torso"
+          limits: "Camera angle must clearly capture head and torso; PPE classes must be configured per site requirements"
         },
-        image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
         id: "va-fire-flare-smoke",
-        name: "Video Analytics – Fire, Flare & Smoke Detection",
+        name: "Video Analytics Solution – Fire, Flare & Smoke Detection Module",
         description: "AI software module providing early warning for visible flame, abnormal flare events, and smoke in outdoor industrial areas, triggering alerts before conventional detectors activate.",
         price: "Request Technical Evaluation",
         features: ["Fire/flame & smoke AI detection", "Flare event monitoring", "False alarm tuning", "Siren/API/SMS trigger integration", "Event timeline & evidence logging", "Thermal camera compatible"],
         operationalEnvelope: {
-          pressure: "Up to 100 m radius per camera",
-          temperature: "<5% after site-specific calibration",
+          pressure: "Detection Range: Up to 100 m radius per camera (standard lens)",
+          temperature: "False Alarm Rate: <5% after site-specific calibration and tuning",
           application: "Tank farms, flare areas, pump rooms, loading zones, and open process yards",
-          limits: "Heavy rain, fog, or night-time may require thermal/hybrid cameras"
+          limits: "Camera placement critical; heavy rain, fog, or night-time may require thermal/hybrid cameras in critical zones"
         },
-        image: "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
         id: "va-spillage-leakage",
-        name: "Video Analytics – Spillage & Leakage Detection",
+        name: "Video Analytics Solution – Spillage & Leakage Visual Detection Module",
         description: "AI software module detecting visible oil or chemical spillage on floors and bund areas to reduce slip risk, product loss, and environmental incidents.",
         price: "Request Technical Evaluation",
-        features: ["Liquid spill & pool detection", "Configurable area alarms", "Evidence clip capture", "Escalation workflow integration", "Incident reporting"],
+        features: ["Liquid spill & pool detection", "Configurable area alarms", "Evidence clip capture", "Escalation workflow integration", "Incident reporting", "Storage retention for compliance"],
         operationalEnvelope: {
-          pressure: "~0.1 m² minimum detectable spill",
-          temperature: "<5 seconds from spill to alert",
+          pressure: "Spill Detection Sensitivity: Minimum detectable spill area: ~0.1 m²",
+          temperature: "Alert Latency: <5 seconds from spill event to control room alert",
           application: "Pump rooms, manifolds, loading bays, bunded tank areas, and chemical handling zones",
-          limits: "Requires clear floor visibility; detects visible surface spills only"
+          limits: "Requires clear floor visibility in camera view; detects visible surface spills only — hidden/internal leaks require sensors"
         },
-        image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
         id: "va-process-area",
-        name: "Video Analytics – Process Area Monitoring",
-        description: "AI software module monitoring defined process areas for abnormal visual conditions such as smoke, unusual activity, or unsafe proximity.",
+        name: "Video Analytics Solution – Process Area Monitoring Module",
+        description: "AI software module monitoring defined process areas for abnormal visual conditions such as smoke, unusual activity, or unsafe proximity, supporting operator situational awareness.",
         price: "Request Technical Evaluation",
-        features: ["Custom area monitoring rules", "Abnormal activity detection", "Alert routing & escalation", "Event playback", "Central operations dashboard"],
+        features: ["Custom area monitoring rules", "Abnormal activity detection", "Alert routing & escalation", "Event playback", "Central operations dashboard", "SOP checkpoint integration"],
         operationalEnvelope: {
-          pressure: "Up to 20 custom rules per camera",
-          temperature: "<3 seconds from trigger to alert",
+          pressure: "Rule Configuration: Up to 20 custom detection rules per camera",
+          temperature: "Event Response Time: <3 seconds from trigger to operator alert",
           application: "Critical process zones, utility corridors, compressor areas, and active operating units",
-          limits: "Visual monitoring only; does not replace process sensors or SCADA"
+          limits: "Visual monitoring support only; does not replace process sensors or SCADA instrumentation"
         },
-        image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
         id: "va-asset-inspection",
-        name: "Video Analytics – AI Asset Visual Inspection",
-        description: "AI-assisted visual inspection software for machine condition monitoring, corrosion indicators, and equipment anomalies using fixed or mobile cameras.",
+        name: "Video Analytics Solution – AI Asset Visual Inspection Module",
+        description: "AI-assisted visual inspection software module for machine condition monitoring, corrosion indicators, and equipment anomalies using fixed or mobile cameras on defined inspection routes.",
         price: "Request Technical Evaluation",
-        features: ["Machine condition monitoring", "Corrosion & anomaly flagging", "Trend snapshot history", "Remote review workflow", "Configurable defect classes"],
+        features: ["Machine condition monitoring", "Corrosion & anomaly flagging", "Trend snapshot history", "Remote review workflow", "Configurable defect classes", "Fixed & mobile camera support"],
         operationalEnvelope: {
-          pressure: "≥88% on configured defect classes",
-          temperature: "Minimum 2 MP input",
+          pressure: "Anomaly Detection Accuracy: ≥88% on configured defect classes (post-training)",
+          temperature: "Inspection Image Resolution: Minimum 2 MP input for reliable defect detection",
           application: "Pumps, valves, heat exchangers, skids, pipelines, and general equipment zones",
-          limits: "Best for visible defects; critical findings must be confirmed with NDT"
+          limits: "Best for visible defects; critical findings must be confirmed with engineering inspection or NDT"
         },
-        image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
         id: "va-corrosion-detection",
-        name: "Video Analytics – Corrosion Visual Detection",
-        description: "AI software module highlighting visible corrosion, rust, and coating damage on equipment and structures from camera feeds.",
+        name: "Video Analytics Solution – Corrosion Visual Detection Module",
+        description: "AI software module highlighting visible corrosion, rust, and coating damage on equipment and structures from camera feeds, supporting proactive integrity management and maintenance scheduling.",
         price: "Request Technical Evaluation",
-        features: ["Visible corrosion & rust detection", "Area tagging & severity indication", "Evidence image archive", "Trend tracking over time", "Maintenance workflow integration"],
+        features: ["Visible corrosion & rust detection", "Area tagging & severity indication", "Evidence image archive", "Trend tracking over time", "Maintenance workflow integration", "Review dashboard"],
         operationalEnvelope: {
-          pressure: "≥85% on surface corrosion",
-          temperature: "~5 cm² visible corrosion patch at 2 m",
+          pressure: "Corrosion Detection Accuracy: ≥85% on surface corrosion (trained per asset type)",
+          temperature: "Minimum Detectable Area: ~5 cm² visible corrosion patch at 2 m range",
           application: "Pipes, tanks, structures, painted surfaces in refineries, plants, and depots",
-          limits: "Surface visibility and lighting dependent; internal corrosion requires NDT"
+          limits: "Surface visibility and lighting dependent; deep pitting and internal corrosion require NDT confirmation"
         },
-        image: "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
         id: "va-machine-safety",
-        name: "Video Analytics – Machine Condition & Safety Compliance",
-        description: "AI software module detecting visible machine hazards — missing guards, open access panels, unsafe proximity to rotating equipment.",
+        name: "Video Analytics Solution – Machine Condition & Safety Compliance Module",
+        description: "AI software module detecting visible machine hazards — missing guards, open access panels, unsafe proximity to rotating equipment — to prevent incidents in workshop and equipment areas.",
         price: "Request Technical Evaluation",
-        features: ["Missing guard & open panel detection", "Unsafe proximity alerts", "Abnormal activity detection", "Evidence clips", "Shift-level compliance reports"],
+        features: ["Missing guard & open panel detection", "Unsafe proximity alerts", "Abnormal activity detection", "Evidence clips", "Shift-level compliance reports", "Multi-machine configuration"],
         operationalEnvelope: {
-          pressure: "≥88% for configured hazard classes",
-          temperature: "<3 seconds from event to alert",
+          pressure: "Detection Accuracy: ≥88% for configured visual hazard classes",
+          temperature: "Alert Latency: <3 seconds from event detection to alert",
           application: "Rotating equipment areas, workshops, compressor halls, and mechanical maintenance zones",
-          limits: "Camera must clearly see the machine; some faults not detectable visually"
+          limits: "Camera must clearly see the machine; some faults not detectable visually — physical inspection still required"
         },
-        image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
         id: "va-crowd-muster",
-        name: "Video Analytics – Crowd Counting & Muster Point",
-        description: "AI software module monitoring crowd density and assembly point occupancy during drills and real incidents, enabling faster headcount.",
+        name: "Video Analytics Solution – Crowd Counting & Muster Point Module",
+        description: "AI software module monitoring crowd density and assembly point occupancy during drills and real incidents, enabling faster headcount and accountability without manual counting.",
         price: "Request Technical Evaluation",
-        features: ["Real-time crowd counting", "Density threshold alerts", "Muster point monitoring", "Optional FRS integration", "Drill report generation"],
+        features: ["Real-time crowd counting", "Density threshold alerts", "Muster point occupancy monitoring", "Optional FRS integration for identity-level reconciliation", "Drill report generation"],
         operationalEnvelope: {
-          pressure: "±5% count error",
-          temperature: "Real-time (<1 second per frame)",
+          pressure: "Counting Accuracy: ±5% count error in non-overlapping crowd scenes",
+          temperature: "Scene Processing Speed: Real-time (<1 second per frame update)",
           application: "Muster points, assembly areas, canteens, and gate queues at industrial facilities",
-          limits: "Dense crowd overlap reduces accuracy; multi-camera recommended"
+          limits: "Dense crowd overlap reduces accuracy; multi-camera coverage recommended for large assembly areas"
         },
-        image: "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
         id: "va-visitor-tracking",
-        name: "Video Analytics – Visitor Tracking & Zone Access",
-        description: "AI software module tracking visitor movement in defined zones and managing authorized access time windows.",
+        name: "Video Analytics Solution – Visitor Tracking & Zone Access Module",
+        description: "AI software module tracking visitor movement in defined zones and managing authorized access time windows, generating audit logs for compliance and security reviews.",
         price: "Request Technical Evaluation",
-        features: ["Visitor zone tracking", "Time-window access permissions", "Unauthorised zone alerts", "Timestamped access logs", "Dashboard & reporting"],
+        features: ["Visitor zone tracking", "Time-window access permissions", "Unauthorised zone alerts", "Timestamped access logs", "Dashboard & reporting", "VMS/access system integration"],
         operationalEnvelope: {
-          pressure: "≥92% visitor re-identification",
-          temperature: "<3 seconds for zone breach",
+          pressure: "Tracking Accuracy: ≥92% visitor re-identification across zones",
+          temperature: "Alert Latency: <3 seconds for out-of-zone or time-window breach",
           application: "Visitor entry points, controlled access corridors, and restricted areas in industrial facilities",
-          limits: "Visitor registration workflow required; privacy policy must be in place"
+          limits: "Visitor registration workflow required; privacy policy and data retention controls must be in place"
         },
-        image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
         id: "va-environment-emissions",
-        name: "Video Analytics – Environment & Emissions Monitoring",
-        description: "AI software module for environmental monitoring using cameras to detect visible smoke, dust plumes, and abnormal emissions from stacks, vents, and perimeter zones.",
+        name: "Video Analytics Solution – Environment & Emissions Visual Monitoring Module",
+        description: "AI software module supporting environmental monitoring using cameras to detect visible smoke, dust plumes, and abnormal emissions from stacks, vents, and perimeter zones.",
         price: "Request Technical Evaluation",
-        features: ["Smoke & dust plume detection", "Visible emission event logging", "Zone-level alerts", "Evidence clip archive", "Reporting for environmental reviews"],
+        features: ["Smoke & dust plume detection", "Visible emission event logging", "Zone-level alerts", "Evidence clip archive", "Reporting for environmental reviews", "Sensor pairing ready"],
         operationalEnvelope: {
-          pressure: "Visible plume from ~10 m distance",
-          temperature: "<5 seconds from emission to alert",
+          pressure: "Detection Sensitivity: Visible plume/smoke from ~10 m camera distance",
+          temperature: "Alert Latency: <5 seconds from emission event to logged alert",
           application: "Stack areas, flare vicinity, perimeter zones, and open yards in refineries and terminals",
-          limits: "Visual monitoring only; certified gas sensors required for regulatory compliance"
+          limits: "Visual monitoring only; certified gas sensors required for regulatory emission measurement compliance"
         },
-        image: "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
         id: "va-intrusion-detection",
-        name: "Video Analytics – Restricted Zone Intrusion Detection",
-        description: "AI software module detecting unauthorised person entry into mapped restricted zones and escalating incidents with timestamped evidence clips.",
+        name: "Video Analytics Solution – Restricted Zone Intrusion Detection Module",
+        description: "AI software module detecting unauthorised person entry into mapped restricted zones and escalating incidents with timestamped evidence clips to security teams.",
         price: "Request Technical Evaluation",
-        features: ["Person intrusion detection", "Configurable zone boundary rules", "Alert escalation (SMS/PA/email)", "Timestamped evidence clips", "Night & IR camera compatible"],
+        features: ["Person intrusion detection", "Configurable zone boundary rules", "Alert escalation (SMS/PA/email)", "Timestamped evidence clips", "Security dashboard", "Night & IR camera compatible"],
         operationalEnvelope: {
-          pressure: "≥92% true positive rate",
-          temperature: "<2 seconds from zone breach to alert",
+          pressure: "Intrusion Detection Accuracy: ≥92% true positive rate after site calibration",
+          temperature: "Alert Latency: <2 seconds from zone breach to security alert",
           application: "Perimeter fencing, tank farms, substations, hazardous storage, and restricted corridors",
-          limits: "Zones must be clearly mapped; night coverage may need IR or thermal support"
+          limits: "Zones must be clearly mapped; night coverage may need IR or thermal support; periodic zone revalidation required"
         },
-        image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
         id: "va-lone-worker",
-        name: "Video Analytics – Lone Worker & Person-Down Detection",
-        description: "AI software module detecting lone worker presence in isolated areas and person-down events, triggering immediate multi-channel escalation.",
+        name: "Video Analytics Solution – Lone Worker & Person-Down Detection Module",
+        description: "AI software module detecting lone worker presence in isolated areas and person-down events, triggering immediate multi-channel escalation to reduce emergency response time.",
         price: "Request Technical Evaluation",
-        features: ["Lone worker presence detection", "Person-down & fall detection", "Multi-channel escalation", "Response log & evidence clips", "Drill & test mode"],
+        features: ["Lone worker presence detection", "Person-down & fall detection", "Multi-channel escalation (SMS/email/PA)", "Response log & evidence clips", "Drill & test mode", "UPS-ready deployment"],
         operationalEnvelope: {
-          pressure: "Event detected within 10 seconds",
-          temperature: "1 camera per 50 m² isolated area",
+          pressure: "Person-Down Detection Time: Event detected and alerted within 10 seconds",
+          temperature: "Camera Coverage: Minimum 1 camera per 50 m² isolated work area",
           application: "Remote corridors, night shift areas, isolated utility yards, and unmanned process zones",
-          limits: "No camera blind spots in monitored zone; periodic test drills required"
+          limits: "No camera blind spots in monitored zone; response SOPs and periodic test drills required for effectiveness"
         },
-        image: "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
         id: "va-permit-to-work",
-        name: "Video Analytics – Permit-to-Work Zone Compliance",
+        name: "Video Analytics Solution – Permit-to-Work Zone Compliance Module",
         description: "AI software module providing camera-based verification that work is occurring in the correct permitted zone, with basic safety cues and alerts to support PTW enforcement.",
         price: "Request Technical Evaluation",
         features: ["Permit zone compliance checks", "Safety cue detection", "Violation alert & evidence", "Zone-activity logs", "Permit roster integration ready", "Supervisor review dashboard"],
         operationalEnvelope: {
-          pressure: "≥88% correct zone classification",
-          temperature: "<3 seconds from zone violation to alert",
+          pressure: "Zone Compliance Accuracy: ≥88% correct zone classification (post-config)",
+          temperature: "Alert Latency: <3 seconds from zone violation to supervisor alert",
           application: "Maintenance areas, shutdown worksites, controlled access zones, and active PTW areas",
           limits: "Defined work zones and permit roster input required; does not replace supervisor on-site verification"
         },
-        image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
         id: "va-logistics-vehicle",
-        name: "Video Analytics – Logistics, Vehicle & Goods Analytics",
+        name: "Video Analytics Solution – Logistics, Vehicle & Goods Analytics Module",
         description: "AI software module covering gate-to-yard vehicle analytics including entry/exit logging, overspeed and wrong-way detection, parking violations, and goods/cylinder counting at dispatch areas.",
         price: "Request Technical Evaluation",
         features: ["Gate entry/exit vehicle logging", "Overspeed & wrong-way detection", "Parking violation alerts", "Goods & cylinder counting", "Delivery verification", "Weighbridge/dispatch integration ready"],
         operationalEnvelope: {
-          pressure: "≥95% vehicle identification at gates",
-          temperature: "±2 km/hr speed detection accuracy",
+          pressure: "Vehicle Detection Accuracy: ≥95% vehicle identification at calibrated gates",
+          temperature: "Speed Detection Accuracy: ±2 km/hr at configured speed thresholds",
           application: "Dispatch yards, loading gantries, weighbridge approaches, cylinder yards, and internal roads",
-          limits: "Lane-wise camera placement and speed calibration required"
+          limits: "Lane-wise camera placement and speed calibration required; performance depends on camera angle and road markings"
         },
-        image: "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
         id: "va-camera-health",
-        name: "Video Analytics – Camera Health & Tamper Monitoring",
+        name: "Video Analytics Solution – Camera Health & Tamper Monitoring Module",
         description: "AI software module continuously monitoring camera uptime, view obstruction, and tampering events across the entire camera estate, reducing surveillance blind spots and maintenance delays.",
         price: "Request Technical Evaluation",
         features: ["Camera tamper & obstruction alerts", "Offline & downtime notifications", "View quality health scoring", "Maintenance escalation routing", "System health reports", "Scales with camera count"],
         operationalEnvelope: {
-          pressure: "Continuous real-time health polling",
-          temperature: "<5 seconds from tamper to alert",
+          pressure: "Health Check Frequency: Continuous real-time per-camera health polling",
+          temperature: "Tamper Alert Latency: <5 seconds from tamper event to maintenance alert",
           application: "All surveillance zones across refineries, terminals, depots, and multi-site portfolios",
-          limits: "Requires stable network access to all camera streams"
+          limits: "Requires stable network access to all camera streams; physical camera maintenance still required"
         },
-        image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       }
     ]
@@ -1207,16 +1057,13 @@ export const categories: CategoryData[] = [
         price: "Request Technical Evaluation",
         features: ["High-impedance voltmeter (>1 MΩ)", "GPS-integrated data logger", "Remote current interrupter", "CAT signal generator", "Rechargeable battery powered", "Export to CSV/Excel"],
         operationalEnvelope: {
-          pressure: "±1 mV resolution, ±5 mV accuracy",
-          temperature: "100,000+ GPS-tagged readings",
+          pressure: "Measurement Accuracy: ±1 mV resolution, ±5 mV accuracy",
+          temperature: "Data Storage: 100,000+ GPS-tagged readings per survey run",
           application: "Pipeline CP surveys (CIPS, DCVG, CAT, ACVG), tank floor surveys",
           limits: "Requires coordinated current interruption with pipeline operator"
         },
-        image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       }
     ]
@@ -1236,73 +1083,61 @@ export const categories: CategoryData[] = [
         price: "Request Technical Evaluation",
         features: ["Auto-calibration in field", "In-field scan registration", "Survey-grade point cloud", "Portable lightweight design", "Field verification display", "Trimble Perspective software compatible"],
         operationalEnvelope: {
-          pressure: "0.6 – 80 m range; ±2 mm @ 10 m",
-          temperature: "-20°C to +50°C",
-          application: "Indoor plant rooms, skids, equipment areas, and congested process units",
-          limits: "Line-of-sight required; reflective surfaces may need additional scan positions"
+          pressure: "Measurement Range & Accuracy: 0.6 – 80 m range; ±2 mm @ 10 m accuracy",
+          temperature: "Operating Temperature: -20°C to +50°C (field deployment)",
+          application: "Indoor plant rooms, skids, equipment areas, and congested process units requiring accurate as-built capture",
+          limits: "Line-of-sight required; reflective surfaces and steam may need additional scan positions"
         },
-        image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
         id: "trimble-x9",
         name: "Trimble X9 3D Laser Scanner",
-        description: "High-productivity terrestrial laser scanner for medium-to-large refinery and terminal capture programs, combining longer scan range with fast cycle times.",
+        description: "High-productivity terrestrial laser scanner for medium-to-large refinery and terminal capture programs, combining longer scan range with fast cycle times for efficient plant documentation.",
         price: "Request Technical Evaluation",
         features: ["Fast scan cycle times", "Higher sensitivity & dynamic range", "Long-range capture", "Field workflow integration", "Automatic scan quality check", "Trimble Perspective compatible"],
         operationalEnvelope: {
-          pressure: "0.6 – 150 m range; ±2 mm @ 40 m",
-          temperature: "-20°C to +50°C",
-          application: "Process units, tank farms, utilities, and open plant areas",
-          limits: "Dense congested areas require multiple scan stations"
+          pressure: "Measurement Range & Accuracy: 0.6 – 150 m range; ±2 mm @ 40 m accuracy",
+          temperature: "Operating Temperature: -20°C to +50°C (field deployment)",
+          application: "Process units, tank farms, utilities, and open plant areas requiring faster coverage over larger distances",
+          limits: "Dense congested areas require multiple scan stations and careful scan coordination for full coverage"
         },
-        image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
         id: "trimble-x12",
         name: "Trimble X12 High-End 3D Laser Scanner",
-        description: "Premium high-speed, high-accuracy laser scanner for complex industrial geometry and large-scale capture programs requiring superior point density.",
+        description: "Premium high-speed, high-accuracy laser scanner for complex industrial geometry and large-scale capture programs requiring superior point density and extended range for engineering-grade digital twins.",
         price: "Request Technical Evaluation",
         features: ["High-speed scan output", "Superior point density", "Extended working range", "Integrated imaging", "Industrial workflow optimised", "Survey control & target integration"],
         operationalEnvelope: {
-          pressure: "0.3 – 250 m range; ±1.5 mm @ 40 m",
-          temperature: "Per OEM spec; designed for industrial field use",
+          pressure: "Measurement Range & Accuracy: 0.3 – 250 m range; ±1.5 mm @ 40 m accuracy",
+          temperature: "Operating Temperature: Per OEM spec; designed for industrial field use",
           application: "Complex steel structures, pipe racks, large-scale plant capture, and engineering-grade digital twin programs",
-          limits: "Requires trained operators, survey control targets, and high-capacity data processing"
+          limits: "Requires trained operators, careful scan coordination, survey control targets, and high-capacity data processing workflow"
         },
-        image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       },
       {
         id: "trimble-sx12",
         name: "Trimble SX12 Scanning Total Station",
-        description: "Hybrid instrument combining precise total station survey control with 3D laser scanning point capture for industrial surveys.",
+        description: "Hybrid instrument combining precise total station survey control with 3D laser scanning point capture for industrial surveys requiring both accurate geospatial positioning and point cloud data.",
         price: "Request Technical Evaluation",
-        features: ["Total station survey control + scanning", "Long-range point capture up to 600 m", "Precision angular measurement", "Integrated imaging", "Trimble survey & scanning workflow"],
+        features: ["Total station survey control + scanning", "Long-range point capture up to 600 m", "Precision angular measurement", "Integrated imaging", "Trimble survey & scanning workflow", "Single-setup efficiency"],
         operationalEnvelope: {
-          pressure: "Up to 600 m range; 1\" angular accuracy",
-          temperature: "-20°C to +50°C",
+          pressure: "Survey Range & Angular Accuracy: Up to 600 m range; 1\" angular accuracy (total station mode)",
+          temperature: "Operating Temperature: -20°C to +50°C (field deployment)",
           application: "Tank farms, long-range pipeline surveys, and projects requiring survey control and scanning in one setup",
-          limits: "Not the fastest for dense close-range 3D capture; best for hybrid survey + scan workflows"
+          limits: "Not the fastest option for dense close-range 3D capture; best suited for hybrid survey + scan workflows"
         },
-        image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=300&h=200&fit=crop",
-        images: [
-          "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=600&h=600&fit=crop",
-          "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=600&h=600&fit=crop"
-        ],
+        image: "",
+        images: [],
         inStock: true
       }
     ]

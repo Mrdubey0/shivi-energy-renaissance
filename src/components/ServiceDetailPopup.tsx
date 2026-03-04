@@ -1,7 +1,7 @@
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { ShoppingCart, Check, AlertTriangle, Shield, Activity, TrendingUp, CheckCircle, ChevronLeft, ChevronRight } from "lucide-react";
+import { ShoppingCart, Check, Gauge, Thermometer, Activity, Settings, CheckCircle, ChevronLeft, ChevronRight } from "lucide-react";
 import { useState } from "react";
 import { CartProduct, useCart } from "@/context/CartContext";
 import { useToast } from "@/hooks/use-toast";
@@ -11,10 +11,12 @@ interface ServiceDetailPopupProps {
   isOpen: boolean;
   onClose: () => void;
   serviceDetails?: {
-    riskAddressed?: string;
-    mitigationProtocol?: string;
-    digitalOversight?: string;
-    lifecycleImpact?: string;
+    param1Label?: string;
+    param1Value?: string;
+    param2Label?: string;
+    param2Value?: string;
+    application?: string;
+    limits?: string;
   };
 }
 
@@ -114,55 +116,53 @@ const ServiceDetailPopup = ({ service, isOpen, onClose, serviceDetails }: Servic
               <p className="text-muted-foreground">{service.description}</p>
             </div>
 
-            {/* Risk Addressed */}
-            {serviceDetails?.riskAddressed && (
-              <div className="p-4 bg-destructive/10 rounded-lg">
-                <div className="flex items-center text-sm font-semibold text-destructive mb-2">
-                  <AlertTriangle className="h-4 w-4 mr-2" />
-                  Risk Addressed
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  {serviceDetails.riskAddressed}
-                </p>
-              </div>
-            )}
+            {/* Operational Envelope */}
+            {serviceDetails && (
+              <div className="space-y-3">
+                <h3 className="text-lg font-semibold flex items-center gap-2">
+                  <Activity className="h-5 w-5 text-primary" />
+                  Operational Envelope
+                </h3>
+                
+                {serviceDetails.param1Label && serviceDetails.param1Value && (
+                  <div className="p-3 bg-primary/10 rounded-lg">
+                    <div className="flex items-center text-sm font-semibold text-primary mb-1">
+                      <Gauge className="h-4 w-4 mr-2" />
+                      {serviceDetails.param1Label}
+                    </div>
+                    <p className="text-sm text-muted-foreground">{serviceDetails.param1Value}</p>
+                  </div>
+                )}
 
-            {/* Mitigation Protocol */}
-            {serviceDetails?.mitigationProtocol && (
-              <div className="p-4 bg-primary/10 rounded-lg">
-                <div className="flex items-center text-sm font-semibold text-primary mb-2">
-                  <Shield className="h-4 w-4 mr-2" />
-                  Mitigation Protocol
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  {serviceDetails.mitigationProtocol}
-                </p>
-              </div>
-            )}
+                {serviceDetails.param2Label && serviceDetails.param2Value && (
+                  <div className="p-3 bg-secondary/10 rounded-lg">
+                    <div className="flex items-center text-sm font-semibold text-foreground mb-1">
+                      <Thermometer className="h-4 w-4 mr-2" />
+                      {serviceDetails.param2Label}
+                    </div>
+                    <p className="text-sm text-muted-foreground">{serviceDetails.param2Value}</p>
+                  </div>
+                )}
 
-            {/* Digital Oversight */}
-            {serviceDetails?.digitalOversight && (
-              <div className="p-4 bg-secondary/10 rounded-lg">
-                <div className="flex items-center text-sm font-semibold text-secondary mb-2">
-                  <Activity className="h-4 w-4 mr-2" />
-                  Digital Oversight
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  {serviceDetails.digitalOversight}
-                </p>
-              </div>
-            )}
+                {serviceDetails.application && (
+                  <div className="p-3 bg-accent/10 rounded-lg">
+                    <div className="flex items-center text-sm font-semibold text-foreground mb-1">
+                      <Settings className="h-4 w-4 mr-2" />
+                      Application
+                    </div>
+                    <p className="text-sm text-muted-foreground">{serviceDetails.application}</p>
+                  </div>
+                )}
 
-            {/* Lifecycle Impact */}
-            {serviceDetails?.lifecycleImpact && (
-              <div className="p-4 bg-accent/10 rounded-lg">
-                <div className="flex items-center text-sm font-semibold text-accent mb-2">
-                  <TrendingUp className="h-4 w-4 mr-2" />
-                  Lifecycle Impact
-                </div>
-                <p className="text-sm text-muted-foreground">
-                  {serviceDetails.lifecycleImpact}
-                </p>
+                {serviceDetails.limits && (
+                  <div className="p-3 bg-destructive/10 rounded-lg">
+                    <div className="flex items-center text-sm font-semibold text-destructive mb-1">
+                      <Activity className="h-4 w-4 mr-2" />
+                      Limits & Constraints
+                    </div>
+                    <p className="text-sm text-muted-foreground">{serviceDetails.limits}</p>
+                  </div>
+                )}
               </div>
             )}
 

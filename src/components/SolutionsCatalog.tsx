@@ -38,171 +38,12 @@ import ProductDetailPopup from "./ProductDetailPopup";
 import ServiceDetailPopup from "./ServiceDetailPopup";
 import ImageWithSkeleton from "./ImageWithSkeleton";
 import { categories as productCategories } from "@/data/products";
+import { serviceCategories } from "@/data/services";
 const ITEMS_PER_PAGE = 10;
 
 
-// Service categories data
-const serviceCategories = [
-  {
-    id: "engineering",
-    name: "Engineering & Consultation",
-    icon: Cog,
-    color: "from-blue-500 to-blue-600",
-    description: "Field-validated engineering assessments with lifecycle risk modeling",
-    count: 5,
-    services: [
-      {
-        id: "well-integrity",
-        name: "Well Integrity Assessment",
-        shortDescription: "Comprehensive well integrity evaluation with lifecycle risk modeling.",
-        riskAddressed: "Unmitigated design flaws leading to operational failures and unplanned interventions.",
-        mitigationProtocol: "Field-validated engineering assessments with lifecycle risk modeling.",
-        digitalOversight: "Real-time monitoring dashboards with early anomaly detection.",
-        lifecycleImpact: "Reduced repeat interventions and extended asset operational life.",
-        features: ["Comprehensive well integrity assessment", "Formation evaluation and modeling", "Equipment compatibility analysis", "Risk mitigation strategy development", "Regulatory compliance verification"],
-        image: "https://images.unsplash.com/photo-1581092795360-fd1ca04f0952?w=300&h=200&fit=crop"
-      },
-      {
-        id: "formation-evaluation",
-        name: "Formation Evaluation",
-        shortDescription: "Detailed geological analysis for optimal well planning.",
-        riskAddressed: "Poor well placement and production underperformance.",
-        mitigationProtocol: "Advanced logging and core analysis with integrated interpretation.",
-        digitalOversight: "3D reservoir modeling with real-time data integration.",
-        lifecycleImpact: "Optimized well placement and improved recovery factors.",
-        features: ["Log analysis and interpretation", "Core analysis coordination", "Reservoir characterization", "Production forecasting", "Completion optimization"],
-        image: "https://images.unsplash.com/photo-1590735213920-68192a487bc3?w=300&h=200&fit=crop"
-      }
-    ]
-  },
-  {
-    id: "corrosion-management",
-    name: "Corrosion Management",
-    icon: Shield,
-    color: "from-green-500 to-green-600",
-    description: "Cathodic protection systems with continuous condition monitoring",
-    count: 4,
-    services: [
-      {
-        id: "cathodic-protection",
-        name: "Cathodic Protection Systems",
-        shortDescription: "Complete CP design, installation, and monitoring solutions.",
-        riskAddressed: "Integrity degradation causing equipment failure, leaks, and environmental exposure.",
-        mitigationProtocol: "Cathodic protection systems with continuous condition monitoring.",
-        digitalOversight: "AI-powered corrosion rate prediction and automated alert systems.",
-        lifecycleImpact: "40% reduction in unplanned maintenance and extended equipment lifespan.",
-        features: ["Cathodic protection design and installation", "Corrosion rate monitoring systems", "Protective coating specification", "Chemical treatment programs", "Integrity data management"],
-        image: "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=300&h=200&fit=crop"
-      },
-      {
-        id: "integrity-monitoring",
-        name: "Integrity Monitoring Programs",
-        shortDescription: "Continuous asset integrity surveillance and reporting.",
-        riskAddressed: "Undetected degradation leading to catastrophic failures.",
-        mitigationProtocol: "Multi-technique inspection with data trending and analysis.",
-        digitalOversight: "Integrated dashboards with predictive failure analytics.",
-        lifecycleImpact: "Extended asset life and reduced inspection costs.",
-        features: ["Inspection scheduling", "Data trending analysis", "Anomaly detection", "Compliance reporting", "Risk-based prioritization"],
-        image: "https://images.unsplash.com/photo-1485827404703-89b55fcc595e?w=300&h=200&fit=crop"
-      }
-    ]
-  },
-  {
-    id: "intervention",
-    name: "Rigless Intervention",
-    icon: Wrench,
-    color: "from-purple-500 to-purple-600",
-    description: "Thru-tubing solutions with precision fishing and milling operations",
-    count: 5,
-    services: [
-      {
-        id: "slickline-services",
-        name: "Slickline & Wireline Services",
-        shortDescription: "Comprehensive wireline services for well intervention and data acquisition.",
-        riskAddressed: "Well production decline and mechanical obstructions requiring costly rig mobilization.",
-        mitigationProtocol: "Thru-tubing solutions with precision fishing and milling operations.",
-        digitalOversight: "Downhole sensor integration for real-time intervention verification.",
-        lifecycleImpact: "Reduced rig dependency and minimized well downtime exposure.",
-        features: ["Slickline and wireline services", "Coiled tubing operations", "Well stimulation treatments", "Fishing and recovery services", "Scale and wax removal"],
-        image: "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=300&h=200&fit=crop"
-      },
-      {
-        id: "coiled-tubing",
-        name: "Coiled Tubing Operations",
-        shortDescription: "Advanced CT services for well cleanout, stimulation, and milling.",
-        riskAddressed: "Production impairment from wellbore debris and scale buildup.",
-        mitigationProtocol: "High-pressure CT with real-time downhole monitoring.",
-        digitalOversight: "Surface data acquisition with downhole tool telemetry.",
-        lifecycleImpact: "Restored production rates with minimal surface footprint.",
-        features: ["Well cleanout", "Nitrogen kickoffs", "Acid stimulation", "Mechanical isolation", "Milling operations"],
-        image: "https://images.unsplash.com/photo-1565087838865-ad5eb48b30d9?w=300&h=200&fit=crop"
-      }
-    ]
-  },
-  {
-    id: "mills-solutions",
-    name: "Mills & Bits Solutions",
-    icon: Drill,
-    color: "from-red-500 to-red-600",
-    description: "Application-specific milling geometry for defined operational envelopes",
-    count: 4,
-    services: [
-      {
-        id: "section-milling",
-        name: "Section Milling Operations",
-        shortDescription: "Full-bore section milling for casing removal and sidetrack window cutting.",
-        riskAddressed: "Wellbore obstructions, cement, and debris preventing operational access.",
-        mitigationProtocol: "Application-specific milling geometry for defined operational envelopes.",
-        digitalOversight: "Torque and weight-on-bit monitoring for optimized cutting performance.",
-        lifecycleImpact: "Improved first-run success rates and reduced intervention cycles.",
-        features: ["Section milling systems", "Casing exit windows", "Cement and bridge plug milling", "Junk milling and fishing", "Pilot mills and dress mills"],
-        image: "https://images.unsplash.com/photo-1581092162384-8987c1d64718?w=300&h=200&fit=crop"
-      }
-    ]
-  },
-  {
-    id: "rig-support",
-    name: "Rig Support",
-    icon: Settings,
-    color: "from-orange-500 to-orange-600",
-    description: "Preventive maintenance protocols with rapid equipment deployment",
-    count: 4,
-    services: [
-      {
-        id: "technical-support",
-        name: "24/7 Technical Support",
-        shortDescription: "Round-the-clock technical assistance and troubleshooting.",
-        riskAddressed: "Equipment failures and operational inefficiencies causing drilling delays.",
-        mitigationProtocol: "Preventive maintenance protocols with rapid equipment deployment.",
-        digitalOversight: "Equipment health monitoring with predictive failure analytics.",
-        lifecycleImpact: "Optimized rig performance with reduced non-productive time.",
-        features: ["24/7 technical support", "Equipment rental and supply", "Crew training and competency", "Logistics coordination", "Emergency response services"],
-        image: "https://images.unsplash.com/photo-1527474305487-b87b222841cc?w=300&h=200&fit=crop"
-      }
-    ]
-  },
-  {
-    id: "abandonment",
-    name: "Plug & Abandonment",
-    icon: Lock,
-    color: "from-slate-500 to-slate-600",
-    description: "Bridge plug systems with verified cement integrity and regulatory compliance",
-    count: 5,
-    services: [
-      {
-        id: "well-abandonment",
-        name: "Well Abandonment Services",
-        shortDescription: "Complete P&A solutions with full regulatory compliance.",
-        riskAddressed: "Environmental liability from improper well decommissioning and zonal isolation failure.",
-        mitigationProtocol: "Bridge plug systems with verified cement integrity and regulatory compliance.",
-        digitalOversight: "Pressure monitoring and seal verification throughout abandonment process.",
-        lifecycleImpact: "Zero-leakage assurance with complete regulatory documentation.",
-        features: ["Well kill and secure operations", "Casing and tubing recovery", "Cement plug placement", "Barrier verification testing", "Environmental compliance documentation"],
-        image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=300&h=200&fit=crop"
-      }
-    ]
-  }
-];
+
+
 
 type SolutionMode = "products" | "services";
 
@@ -215,10 +56,12 @@ const SolutionsCatalog = () => {
   const [isDetailOpen, setIsDetailOpen] = useState(false);
   const [selectedService, setSelectedService] = useState<CartProduct | null>(null);
   const [selectedServiceDetails, setSelectedServiceDetails] = useState<{
-    riskAddressed?: string;
-    mitigationProtocol?: string;
-    digitalOversight?: string;
-    lifecycleImpact?: string;
+    param1Label?: string;
+    param1Value?: string;
+    param2Label?: string;
+    param2Value?: string;
+    application?: string;
+    limits?: string;
   } | null>(null);
   const [isServiceDetailOpen, setIsServiceDetailOpen] = useState(false);
   const { toast } = useToast();
@@ -281,14 +124,16 @@ const SolutionsCatalog = () => {
     setIsDetailOpen(true);
   };
 
-  const openServiceDetail = (service: CartProduct, details: {
-    riskAddressed?: string;
-    mitigationProtocol?: string;
-    digitalOversight?: string;
-    lifecycleImpact?: string;
+  const openServiceDetail = (service: CartProduct, details?: {
+    param1Label?: string;
+    param1Value?: string;
+    param2Label?: string;
+    param2Value?: string;
+    application?: string;
+    limits?: string;
   }) => {
     setSelectedService(service);
-    setSelectedServiceDetails(details);
+    setSelectedServiceDetails(details || null);
     setIsServiceDetailOpen(true);
   };
 
@@ -603,7 +448,12 @@ const SolutionsCatalog = () => {
                       description: service.shortDescription,
                       price: "Request Technical Evaluation",
                       features: service.features,
-                      operationalEnvelope: {},
+                      operationalEnvelope: service.operationalEnvelope ? {
+                        pressure: service.operationalEnvelope.param1Value,
+                        temperature: service.operationalEnvelope.param2Value,
+                        application: service.operationalEnvelope.application,
+                        limits: service.operationalEnvelope.limits,
+                      } : {},
                       image: service.image,
                       inStock: true,
                       category: service.category,
@@ -615,12 +465,7 @@ const SolutionsCatalog = () => {
                           service={service} 
                           isInCart={isInCart(service.id)}
                           onAddToInquiry={() => handleAddToInquiry(cartService)}
-                          onViewDetails={() => openServiceDetail(cartService, {
-                            riskAddressed: service.riskAddressed,
-                            mitigationProtocol: service.mitigationProtocol,
-                            digitalOversight: service.digitalOversight,
-                            lifecycleImpact: service.lifecycleImpact,
-                          })}
+                          onViewDetails={() => openServiceDetail(cartService, service.operationalEnvelope)}
                         />
                       </ScrollReveal>
                     );
@@ -662,7 +507,12 @@ const SolutionsCatalog = () => {
                           description: service.shortDescription,
                           price: "Request Technical Evaluation",
                           features: service.features,
-                          operationalEnvelope: {},
+                          operationalEnvelope: service.operationalEnvelope ? {
+                            pressure: service.operationalEnvelope.param1Value,
+                            temperature: service.operationalEnvelope.param2Value,
+                            application: service.operationalEnvelope.application,
+                            limits: service.operationalEnvelope.limits,
+                          } : {},
                           image: service.image,
                           inStock: true,
                           category: category.id,
@@ -674,12 +524,7 @@ const SolutionsCatalog = () => {
                               service={fullService}
                               isInCart={isInCart(service.id)}
                               onAddToInquiry={() => handleAddToInquiry(cartService)}
-                              onViewDetails={() => openServiceDetail(cartService, {
-                                riskAddressed: service.riskAddressed,
-                                mitigationProtocol: service.mitigationProtocol,
-                                digitalOversight: service.digitalOversight,
-                                lifecycleImpact: service.lifecycleImpact,
-                              })}
+                              onViewDetails={() => openServiceDetail(cartService, service.operationalEnvelope)}
                             />
                           </ScrollReveal>
                         );
@@ -946,11 +791,15 @@ interface ServiceCardProps {
     id: string;
     name: string;
     shortDescription: string;
-    riskAddressed: string;
-    mitigationProtocol: string;
-    digitalOversight: string;
-    lifecycleImpact: string;
     features: string[];
+    operationalEnvelope?: {
+      param1Label?: string;
+      param1Value?: string;
+      param2Label?: string;
+      param2Value?: string;
+      application?: string;
+      limits?: string;
+    };
     image: string;
     category: string;
     categoryName: string;

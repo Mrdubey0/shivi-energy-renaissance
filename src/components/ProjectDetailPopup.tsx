@@ -15,24 +15,11 @@ import {
   Shield, 
   Target,
   ExternalLink,
-  X
+  X,
+  TrendingUp
 } from "lucide-react";
 import CaseStudyRequestForm from "./CaseStudyRequestForm";
-
-interface Project {
-  id: number;
-  title: string;
-  client: string;
-  location: string;
-  duration: string;
-  category: string;
-  status: string;
-  image: string;
-  riskContext: string;
-  intervention: string;
-  outcomes: string[];
-  locaInterpretation: string;
-}
+import { type Project } from "@/data/projects";
 
 interface ProjectDetailPopupProps {
   project: Project | null;
@@ -58,7 +45,7 @@ const ProjectDetailPopup = ({ project, isOpen, onClose }: ProjectDetailPopupProp
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/50 to-transparent" />
           <div className="absolute top-4 left-4">
             <Badge 
-              variant={project.status === "Active" ? "default" : "secondary"}
+              variant={project.status === "Active" || project.status === "Ongoing" ? "default" : "secondary"}
               className="text-sm"
             >
               {project.status}
@@ -94,7 +81,7 @@ const ProjectDetailPopup = ({ project, isOpen, onClose }: ProjectDetailPopupProp
             </div>
             <div className="flex items-center gap-2 bg-muted/50 rounded-lg p-3">
               <MapPin className="w-4 h-4 text-primary" />
-              <span>{project.location}</span>
+              <span>{project.location || "India"}</span>
             </div>
             <div className="flex items-center gap-2 bg-muted/50 rounded-lg p-3">
               <Calendar className="w-4 h-4 text-primary" />
@@ -126,29 +113,27 @@ const ProjectDetailPopup = ({ project, isOpen, onClose }: ProjectDetailPopupProp
               </p>
             </div>
 
-            {/* Measured Outcomes */}
+            {/* Outcomes */}
             <div className="bg-accent/5 border border-accent/20 rounded-lg p-4">
               <div className="flex items-center text-sm font-semibold text-accent mb-2">
                 <Target className="h-4 w-4 mr-2" />
-                Measured Outcomes
+                Outcomes
               </div>
-              <ul className="text-sm text-muted-foreground space-y-2">
-                {project.outcomes.map((outcome, idx) => (
-                  <li key={idx} className="flex items-start">
-                    <span className="w-2 h-2 bg-accent rounded-full mr-3 mt-1.5 flex-shrink-0" />
-                    {outcome}
-                  </li>
-                ))}
-              </ul>
+              <p className="text-sm text-muted-foreground">
+                {project.outcomes}
+              </p>
             </div>
-          </div>
 
-          {/* LOCA Interpretation */}
-          <div className="bg-muted rounded-lg p-4 mb-6">
-            <p className="text-sm text-muted-foreground">
-              <span className="font-semibold text-foreground">Lifecycle Assessment: </span>
-              {project.locaInterpretation}
-            </p>
+            {/* Lifecycle Assessment */}
+            <div className="bg-muted rounded-lg p-4">
+              <div className="flex items-center text-sm font-semibold text-foreground mb-2">
+                <TrendingUp className="h-4 w-4 mr-2" />
+                Lifecycle Assessment
+              </div>
+              <p className="text-sm text-muted-foreground">
+                {project.lifecycleAssessment}
+              </p>
+            </div>
           </div>
 
           {/* CTA */}

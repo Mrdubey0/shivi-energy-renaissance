@@ -6,49 +6,36 @@ import {
   MapPin, 
   Calendar, 
   Eye, 
-  ArrowRight,
   Users,
   Target,
   Award,
   AlertTriangle,
   Shield,
   TrendingUp,
-  Search
+  Search,
+  ChevronLeft,
+  ChevronRight
 } from "lucide-react";
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import ScrollReveal from "./ScrollReveal";
 import ProjectDetailPopup from "./ProjectDetailPopup";
 import ImageWithSkeleton from "./ImageWithSkeleton";
+import { projects, projectCategories, type Project } from "@/data/projects";
 
-// Import AI-generated project images
-import projectOffshore from "@/assets/project-offshore.jpg";
-import projectIntervention from "@/assets/project-intervention.jpg";
-import projectDigital from "@/assets/project-digital.jpg";
-import projectAbandonment from "@/assets/project-abandonment.jpg";
-import projectRefinery from "@/assets/project-refinery.jpg";
-
-interface Project {
-  id: number;
-  title: string;
-  client: string;
-  location: string;
-  duration: string;
-  category: string;
-  status: string;
-  image: string;
-  riskContext: string;
-  intervention: string;
-  outcomes: string[];
-  locaInterpretation: string;
-}
+const ITEMS_PER_PAGE = 10;
 
 const Projects = () => {
   const [searchTerm, setSearchTerm] = useState("");
-  const [activeYear, setActiveYear] = useState("all");
   const [activeCategory, setActiveCategory] = useState("all");
+  const [currentPage, setCurrentPage] = useState(1);
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const contentSectionRef = useRef<HTMLDivElement>(null);
+
+  // Reset page when filters change
+  useEffect(() => {
+    setCurrentPage(1);
+  }, [searchTerm, activeCategory]);
 
   const scrollToContent = () => {
     if (contentSectionRef.current) {
@@ -59,14 +46,14 @@ const Projects = () => {
     }
   };
 
-  const handleYearChange = (year: string) => {
-    setActiveYear(year);
-    setTimeout(() => scrollToContent(), 100);
-  };
-
   const handleCategoryChange = (category: string) => {
     setActiveCategory(category);
     setTimeout(() => scrollToContent(), 100);
+  };
+
+  const handlePageChange = (page: number) => {
+    setCurrentPage(page);
+    scrollToContent();
   };
 
   const handleViewDetails = (project: Project) => {
@@ -74,126 +61,64 @@ const Projects = () => {
     setIsPopupOpen(true);
   };
 
-  const projects = [
-    {
-      id: 1,
-      title: "ONGC Offshore Platform Integrity Management",
-      client: "Oil & Natural Gas Corporation",
-      location: "Mumbai High, India",
-      duration: "2023 - Ongoing",
-      category: "Corrosion Management",
-      status: "Active",
-      image: projectOffshore,
-      riskContext: "Progressive corrosion degradation threatening structural integrity of aging offshore assets.",
-      intervention: "Deployed cathodic protection with AI-powered monitoring for continuous condition assessment.",
-      outcomes: [
-        "40% reduction in unplanned maintenance interventions",
-        "Zero integrity-related shutdowns since deployment",
-        "Extended projected asset life by 8 years"
-      ],
-      locaInterpretation: "Reduced material replacement frequency and intervention exposure through early detection."
-    },
-    {
-      id: 2,
-      title: "Reliance Industries Well Intervention Program",
-      client: "Reliance Industries Limited",
-      location: "Gujarat, India",
-      duration: "2022 - 2023",
-      category: "Well Interventions",
-      status: "Completed",
-      image: projectIntervention,
-      riskContext: "Production decline across multiple wells requiring rapid intervention without rig mobilization.",
-      intervention: "Thru-tubing velocity strings and fishing operations executed under rigless protocols.",
-      outcomes: [
-        "95% first-run success rate across interventions",
-        "30% faster completion vs. conventional methods",
-        "15% production uplift post-intervention"
-      ],
-      locaInterpretation: "Avoided rig mobilization exposure and reduced operational footprint per well."
-    },
-    {
-      id: 3,
-      title: "Indian Navy Safety Verification System",
-      client: "Indian Navy",
-      location: "Various Naval Bases",
-      duration: "2023 - 2024",
-      category: "Digital Oversight",
-      status: "Completed",
-      image: projectDigital,
-      riskContext: "Manual PPE compliance monitoring creating gaps in safety verification across facilities.",
-      intervention: "Computer vision system deployed for automated safety equipment detection and compliance logging.",
-      outcomes: [
-        "100% automated compliance verification",
-        "50% reduction in safety-related incidents",
-        "Real-time alert system for immediate response"
-      ],
-      locaInterpretation: "Reduced human exposure to verification tasks and improved response time to violations."
-    },
-    {
-      id: 4,
-      title: "GAIL Well Abandonment Execution",
-      client: "Gas Authority of India Limited",
-      location: "Assam, India",
-      duration: "2023",
-      category: "Plug & Abandonment",
-      status: "Completed",
-      image: projectAbandonment,
-      riskContext: "End-of-life wells requiring decommissioning with verified zonal isolation and regulatory compliance.",
-      intervention: "Bridge plug deployment with cement integrity verification and continuous pressure monitoring.",
-      outcomes: [
-        "100% regulatory compliance achieved",
-        "Zero post-abandonment leakage incidents",
-        "Completed 20% ahead of projected schedule"
-      ],
-      locaInterpretation: "Eliminated long-term environmental liability through verified permanent isolation."
-    },
-    {
-      id: 5,
-      title: "HP Refinery Digital Oversight Implementation",
-      client: "Hindustan Petroleum",
-      location: "Multiple Refineries",
-      duration: "2023 - Ongoing",
-      category: "Digital Oversight",
-      status: "Active",
-      image: projectRefinery,
-      riskContext: "Reactive maintenance cycles causing unplanned shutdowns and production losses.",
-      intervention: "Integrated sensor network with AI analytics for predictive equipment health assessment.",
-      outcomes: [
-        "15% improvement in operational efficiency",
-        "Predictive maintenance reducing failures by 35%",
-        "Real-time optimization of process parameters"
-      ],
-      locaInterpretation: "Shifted from reactive to predictive operations, reducing failure-driven interventions."
-    }
-  ];
-
   const projectStats = [
-    { icon: Award, label: "Execution Outcomes", value: "150+" },
-    { icon: Shield, label: "Zero-Incident Executions", value: "142" },
+    { icon: Award, label: "Execution Outcomes", value: `${projects.length}+` },
+    { icon: Shield, label: "Zero-Incident Executions", value: `${projects.filter(p => p.status === "Completed").length}` },
     { icon: Target, label: "On-Time Delivery", value: "98.7%" },
     { icon: TrendingUp, label: "Avg. Lifecycle Extension", value: "6+ Years" }
   ];
 
-  // Extract unique years from projects
-  const years = ["all", ...new Set(projects.map(p => {
-    const yearMatch = p.duration.match(/\d{4}/);
-    return yearMatch ? yearMatch[0] : "";
-  }).filter(Boolean).sort((a, b) => Number(b) - Number(a)))];
-
-  // Extract unique categories from projects
-  const categories = ["all", ...new Set(projects.map(p => p.category))];
-
-  // Filter projects based on search, year, and category
+  // Filter projects based on search and category
   const filteredProjects = projects.filter(project => {
     const matchesSearch = 
       project.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
       project.client.toLowerCase().includes(searchTerm.toLowerCase()) ||
       project.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
       project.category.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesYear = activeYear === "all" || project.duration.includes(activeYear);
-    const matchesCategory = activeCategory === "all" || project.category === activeCategory;
-    return matchesSearch && matchesYear && matchesCategory;
+    const matchesCategory = activeCategory === "all" || project.parentCategory === activeCategory;
+    return matchesSearch && matchesCategory;
   });
+
+  // Pagination
+  const totalPages = Math.ceil(filteredProjects.length / ITEMS_PER_PAGE);
+  const startIndex = (currentPage - 1) * ITEMS_PER_PAGE;
+  const endIndex = startIndex + ITEMS_PER_PAGE;
+  const paginatedProjects = filteredProjects.slice(startIndex, endIndex);
+
+  const PaginationControls = () => {
+    if (totalPages <= 1) return null;
+    return (
+      <div className="flex items-center justify-center gap-2 mt-8">
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => handlePageChange(currentPage - 1)}
+          disabled={currentPage === 1}
+        >
+          <ChevronLeft className="h-4 w-4" />
+        </Button>
+        {Array.from({ length: totalPages }, (_, i) => i + 1).map(page => (
+          <Button
+            key={page}
+            variant={currentPage === page ? "default" : "outline"}
+            size="sm"
+            onClick={() => handlePageChange(page)}
+            className="min-w-[36px]"
+          >
+            {page}
+          </Button>
+        ))}
+        <Button
+          variant="outline"
+          size="sm"
+          onClick={() => handlePageChange(currentPage + 1)}
+          disabled={currentPage === totalPages}
+        >
+          <ChevronRight className="h-4 w-4" />
+        </Button>
+      </div>
+    );
+  };
 
   return (
     <section id="projects" className="py-16 md:py-20 bg-gradient-to-br from-slate-50 to-blue-50 dark:from-slate-900 dark:to-blue-950 relative">
@@ -236,10 +161,10 @@ const Projects = () => {
               })}
             </div>
             
-            {/* Project Stats - Mobile: Compact inline */}
+            {/* Project Stats - Mobile */}
             <div className="flex justify-center gap-6 mb-6 md:hidden">
               <div className="text-center">
-                <div className="text-xl font-bold text-primary">150+</div>
+                <div className="text-xl font-bold text-primary">{projects.length}+</div>
                 <div className="text-xs text-muted-foreground">Projects</div>
               </div>
               <div className="text-center">
@@ -254,7 +179,7 @@ const Projects = () => {
         <ScrollReveal delay={100}>
           <div className="bg-background/80 backdrop-blur-sm rounded-2xl p-4 mb-8 border border-border shadow-lg">
             <div className="flex flex-col gap-4">
-              {/* Search and Year Filter Row */}
+              {/* Search */}
               <div className="flex flex-col md:flex-row gap-3 items-center">
                 <div className="relative w-full md:w-64">
                   <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
@@ -265,36 +190,33 @@ const Projects = () => {
                     className="pl-9 h-10 text-sm"
                   />
                 </div>
-                
-                <div className="flex gap-2 flex-wrap justify-center">
-                  {years.map((year) => (
-                    <Button
-                      key={year}
-                      variant={activeYear === year ? "default" : "outline"}
-                      size="sm"
-                      onClick={() => handleYearChange(year)}
-                      className="capitalize text-xs"
-                    >
-                      {year === "all" ? "All Years" : year}
-                    </Button>
-                  ))}
-                </div>
               </div>
 
-              {/* Category Filter Row */}
+              {/* Category Filter */}
               <div className="flex gap-2 flex-wrap justify-center border-t border-border pt-3">
-                {categories.map((category) => (
+                <Badge
+                  variant={activeCategory === "all" ? "default" : "outline"}
+                  className={`cursor-pointer px-3 py-1.5 text-xs transition-colors ${
+                    activeCategory === "all" 
+                      ? "bg-primary text-primary-foreground" 
+                      : "hover:bg-primary/10"
+                  }`}
+                  onClick={() => handleCategoryChange("all")}
+                >
+                  All Categories
+                </Badge>
+                {projectCategories.map((category) => (
                   <Badge
-                    key={category}
-                    variant={activeCategory === category ? "default" : "outline"}
+                    key={category.id}
+                    variant={activeCategory === category.id ? "default" : "outline"}
                     className={`cursor-pointer px-3 py-1.5 text-xs transition-colors ${
-                      activeCategory === category 
+                      activeCategory === category.id 
                         ? "bg-primary text-primary-foreground" 
                         : "hover:bg-primary/10"
                     }`}
-                    onClick={() => handleCategoryChange(category)}
+                    onClick={() => handleCategoryChange(category.id)}
                   >
-                    {category === "all" ? "All Categories" : category}
+                    {category.name}
                   </Badge>
                 ))}
               </div>
@@ -302,14 +224,19 @@ const Projects = () => {
           </div>
         </ScrollReveal>
 
+        {/* Results count */}
+        <div className="text-sm text-muted-foreground mb-4 text-center">
+          Showing {startIndex + 1}–{Math.min(endIndex, filteredProjects.length)} of {filteredProjects.length} projects
+        </div>
+
         {/* Projects List */}
         <div className="space-y-4 md:space-y-6" ref={contentSectionRef}>
-          {filteredProjects.length === 0 ? (
+          {paginatedProjects.length === 0 ? (
             <div className="text-center py-8 md:py-16">
               <p className="text-sm md:text-lg text-muted-foreground">No projects found matching your criteria.</p>
             </div>
           ) : (
-            filteredProjects.map((project, index) => (
+            paginatedProjects.map((project, index) => (
             <ScrollReveal key={project.id} delay={index * 100}>
               {/* Mobile: Compact card */}
               <Card 
@@ -326,7 +253,7 @@ const Projects = () => {
                         skeletonClassName="w-full h-full"
                       />
                       <Badge 
-                        variant={project.status === "Active" ? "default" : "secondary"}
+                        variant={project.status === "Active" || project.status === "Ongoing" ? "default" : "secondary"}
                         className="absolute top-1 left-1 text-[10px] px-1.5 py-0.5"
                       >
                         {project.status}
@@ -338,7 +265,7 @@ const Projects = () => {
                       </h3>
                       <div className="flex items-center gap-1 text-xs text-muted-foreground mb-1">
                         <MapPin className="w-3 h-3" />
-                        <span className="truncate">{project.location}</span>
+                        <span className="truncate">{project.location || "India"}</span>
                       </div>
                       <Badge variant="outline" className="text-[10px] px-1.5 py-0.5">
                         {project.category}
@@ -362,7 +289,7 @@ const Projects = () => {
                     />
                     <div className="absolute top-2 left-2">
                       <Badge 
-                        variant={project.status === "Active" ? "default" : "secondary"}
+                        variant={project.status === "Active" || project.status === "Ongoing" ? "default" : "secondary"}
                         className="bg-background/90 backdrop-blur-sm text-xs"
                       >
                         {project.status}
@@ -388,7 +315,7 @@ const Projects = () => {
                       </div>
                       <div className="flex items-center gap-2">
                         <MapPin className="w-4 h-4" />
-                        <span>{project.location}</span>
+                        <span>{project.location || "India"}</span>
                       </div>
                       <div className="flex items-center gap-2">
                         <Calendar className="w-4 h-4" />
@@ -404,7 +331,7 @@ const Projects = () => {
                           <AlertTriangle className="h-4 w-4 mr-2" />
                           Risk Context
                         </div>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm text-muted-foreground line-clamp-3">
                           {project.riskContext}
                         </p>
                       </div>
@@ -415,33 +342,28 @@ const Projects = () => {
                           <Shield className="h-4 w-4 mr-2" />
                           Intervention
                         </div>
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-sm text-muted-foreground line-clamp-3">
                           {project.intervention}
                         </p>
                       </div>
                       
-                      {/* Measured Outcomes */}
+                      {/* Outcomes */}
                       <div className="space-y-1">
                         <div className="flex items-center text-sm font-semibold text-accent">
                           <Target className="h-4 w-4 mr-2" />
-                          Measured Outcomes
+                          Outcomes
                         </div>
-                        <ul className="text-sm text-muted-foreground space-y-1">
-                          {project.outcomes.slice(0, 2).map((outcome, idx) => (
-                            <li key={idx} className="flex items-start">
-                              <span className="w-1.5 h-1.5 bg-primary rounded-full mr-2 mt-1.5 flex-shrink-0" />
-                              {outcome}
-                            </li>
-                          ))}
-                        </ul>
+                        <p className="text-sm text-muted-foreground line-clamp-3">
+                          {project.outcomes}
+                        </p>
                       </div>
                     </div>
 
-                    {/* LOCA Interpretation */}
+                    {/* Lifecycle Assessment */}
                     <div className="bg-muted/50 rounded-lg p-3 mb-4">
-                      <p className="text-sm text-muted-foreground italic">
+                      <p className="text-sm text-muted-foreground italic line-clamp-2">
                         <span className="font-semibold text-foreground">Lifecycle Assessment: </span>
-                        {project.locaInterpretation}
+                        {project.lifecycleAssessment}
                       </p>
                     </div>
                     
@@ -462,15 +384,8 @@ const Projects = () => {
           )}
         </div>
 
-        {/* View All Projects CTA
-        <ScrollReveal>
-          <div className="text-center mt-16">
-            <Button variant="energy" size="lg">
-              View All Execution Outcomes
-              <ArrowRight className="ml-2 h-4 w-4" />
-            </Button>
-          </div>
-        </ScrollReveal> */}
+        {/* Pagination */}
+        <PaginationControls />
 
         {/* Project Detail Popup */}
         <ProjectDetailPopup

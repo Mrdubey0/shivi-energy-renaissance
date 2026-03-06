@@ -290,7 +290,7 @@ const Projects = () => {
                     <div className="absolute top-2 left-2">
                       <Badge 
                         variant={project.status === "Active" || project.status === "Ongoing" ? "default" : "secondary"}
-                        className="bg-background/90 backdrop-blur-sm text-xs"
+                        className={`backdrop-blur-sm text-xs ${project.status === "Active" || project.status === "Ongoing" ? "" : "bg-background/90"}`}
                       >
                         {project.status}
                       </Badge>

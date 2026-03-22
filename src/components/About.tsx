@@ -50,7 +50,7 @@ const About = () => {
       name: "Mr. Binay S Sahay",
       position: "Co-Founder",
       company: "Shivi Energy Solutions",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
+      image: founderBinay,
       bio: "Telecom domain experience for more than 3 decades. Worked in Equipment Manufacturing, Consulting, and Sales & Marketing.",
       linkedin: "https://www.linkedin.com/in/binay-s-sahay-a2322225/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
     },

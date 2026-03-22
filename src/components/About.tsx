@@ -56,7 +56,7 @@ const About = () => {
       linkedin: "https://www.linkedin.com/in/binay-s-sahay-a2322225/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
     },
     {
-      name: "Mr. Neelam Maan",
+      name: "Mrs. Neelam Maan",
       position: "Contract and Tendering Manager",
       company: "Shivi Energy Solutions",
       image: founderNeelam,

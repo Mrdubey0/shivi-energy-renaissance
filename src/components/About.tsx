@@ -59,7 +59,7 @@ const About = () => {
       name: "Mr. Neelam Maan",
       position: "Contract and Tendering Manager",
       company: "Shivi Energy Solutions",
-      image: "",
+      image: founderNeelam,
       bio: "With over 11 years of experience in the field of Oil & Energy and now working in cathodic protection & Energy field.",
       linkedin: "https://www.linkedin.com/in/neelam-maan-b579502b/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
     }

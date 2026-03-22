@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import founderVipul from "@/assets/founder-vipul.jpg";
 import founderBinay from "@/assets/founder-binay.jpg";
+import founderNeelam from "@/assets/founder-neelam.jpg";
 
 import { 
   Award, 

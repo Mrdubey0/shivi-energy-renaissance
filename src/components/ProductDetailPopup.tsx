@@ -61,7 +61,7 @@ const ProductDetailPopup = ({ product, isOpen, onClose }: ProductDetailPopupProp
               <img
                 src={images[currentImageIndex]}
                 alt={product.name}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain p-4"
               />
               {images.length > 1 && (
                 <>

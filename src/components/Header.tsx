@@ -25,22 +25,20 @@ const Header = () => {
     e.preventDefault();
     const sectionId = href.substring(2); // Remove "/#"
     
-    // If we're on the home page, just scroll
-    if (location.pathname === "/") {
+    const scrollToSection = () => {
       const section = document.getElementById(sectionId);
       if (section) {
-        section.scrollIntoView({ behavior: 'smooth' });
+        const headerOffset = 80;
+        const elementPosition = section.getBoundingClientRect().top + window.scrollY;
+        window.scrollTo({ top: elementPosition - headerOffset, behavior: 'smooth' });
       }
+    };
+
+    if (location.pathname === "/") {
+      scrollToSection();
     } else {
-      // Navigate to home page with the hash
       navigate("/" + "#" + sectionId);
-      // After navigation, scroll to section
-      setTimeout(() => {
-        const section = document.getElementById(sectionId);
-        if (section) {
-          section.scrollIntoView({ behavior: 'smooth' });
-        }
-      }, 100);
+      setTimeout(scrollToSection, 100);
     }
   };
 

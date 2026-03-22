@@ -6,6 +6,7 @@ interface SEOProps {
   canonical?: string;
   type?: string;
   image?: string;
+  keywords?: string;
   jsonLd?: Record<string, unknown> | Record<string, unknown>[];
 }
 
@@ -14,6 +15,7 @@ const BASE_URL = "https://www.shivienergy.com";
 const DEFAULT_DESCRIPTION =
   "Shivi Energy Solutions delivers engineering-led execution systems for integrity management, corrosion control, rigless intervention, and operational risk reduction across the energy sector.";
 const DEFAULT_IMAGE = `${BASE_URL}/og-image.png`;
+const DEFAULT_KEYWORDS = "oilfield services, corrosion management, cathodic protection, rigless intervention, well integrity, plug and abandonment, downhole tools, pipeline integrity, energy solutions India";
 
 const SEO = ({
   title,
@@ -21,6 +23,7 @@ const SEO = ({
   canonical,
   type = "website",
   image = DEFAULT_IMAGE,
+  keywords = DEFAULT_KEYWORDS,
   jsonLd,
 }: SEOProps) => {
   const pageTitle = title
@@ -34,7 +37,12 @@ const SEO = ({
       {/* Primary Meta Tags */}
       <title>{pageTitle}</title>
       <meta name="description" content={description} />
+      <meta name="keywords" content={keywords} />
       <link rel="canonical" href={pageUrl} />
+      <meta name="author" content="Shivi Energy Solutions Pvt. Ltd." />
+
+      {/* Robots - allow large snippets for AI */}
+      <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
 
       {/* Open Graph */}
       <meta property="og:type" content={type} />
@@ -43,6 +51,7 @@ const SEO = ({
       <meta property="og:description" content={description} />
       <meta property="og:image" content={image} />
       <meta property="og:site_name" content={SITE_NAME} />
+      <meta property="og:locale" content="en_IN" />
 
       {/* Twitter */}
       <meta name="twitter:card" content="summary_large_image" />
@@ -65,16 +74,22 @@ export const organizationSchema = {
   "@context": "https://schema.org",
   "@type": "Organization",
   name: "Shivi Energy Solutions",
-  alternateName: "SSES",
+  alternateName: ["SSES", "Shivi Energy Solutions Pvt. Ltd."],
   url: "https://www.shivienergy.com",
   logo: "https://www.shivienergy.com/logo-main.png",
+  description: "Engineering-led execution systems for integrity management, corrosion control, rigless intervention, and digital oversight in the energy sector.",
+  foundingDate: "2020",
+  numberOfEmployees: {
+    "@type": "QuantitativeValue",
+    minValue: 200,
+  },
   contactPoint: {
     "@type": "ContactPoint",
     telephone: "+91-99588-08368",
     contactType: "customer service",
     email: "info@shivienergy.com",
-    areaServed: "IN",
-    availableLanguage: "English",
+    areaServed: "Worldwide",
+    availableLanguage: ["English", "Hindi"],
   },
   address: {
     "@type": "PostalAddress",
@@ -84,7 +99,20 @@ export const organizationSchema = {
     postalCode: "201301",
     addressCountry: "IN",
   },
-  sameAs: [],
+  knowsAbout: [
+    "Cathodic Protection",
+    "Corrosion Management",
+    "Well Integrity Management",
+    "Rigless Intervention",
+    "Plug and Abandonment",
+    "Pipeline Integrity",
+    "AI Pipeline Monitoring",
+    "Digital Twin Technology",
+    "3D Laser Scanning",
+  ],
+  sameAs: [
+    "https://www.linkedin.com/company/shivi-energy-solutions",
+  ],
 };
 
 export const websiteSchema = {

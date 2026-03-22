@@ -42,7 +42,7 @@ const About = () => {
       name: "Mr. Vipul S",
       position: "Founder",
       company: "Shivi Energy Solutions",
-      image: "src/assets/founder.jpeg",
+      image: founderVipul,
       bio: "I’m a global solution specialist with hands-on experience across the energy and oilfield sector, having worked on rigs.",
       linkedin: "https://www.linkedin.com/in/vipul-s-26a45020/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
     },

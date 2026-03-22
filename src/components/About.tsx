@@ -2,6 +2,8 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import founderVipul from "@/assets/founder-vipul.jpg";
+import founderBinay from "@/assets/founder-binay.jpg";
 
 import { 
   Award, 
@@ -40,7 +42,7 @@ const About = () => {
       name: "Mr. Vipul S",
       position: "Founder",
       company: "Shivi Energy Solutions",
-      image: "src/assets/founder.jpeg",
+      image: founderVipul,
       bio: "I’m a global solution specialist with hands-on experience across the energy and oilfield sector, having worked on rigs.",
       linkedin: "https://www.linkedin.com/in/vipul-s-26a45020/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
     },
@@ -48,7 +50,7 @@ const About = () => {
       name: "Mr. Binay S Sahay",
       position: "Co-Founder",
       company: "Shivi Energy Solutions",
-      image: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face",
+      image: founderBinay,
       bio: "Telecom domain experience for more than 3 decades. Worked in Equipment Manufacturing, Consulting, and Sales & Marketing.",
       linkedin: "https://www.linkedin.com/in/binay-s-sahay-a2322225/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
     },

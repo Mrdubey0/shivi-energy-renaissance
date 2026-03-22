@@ -8,9 +8,10 @@ const ProjectsPage = () => {
   return (
     <div className="min-h-screen bg-background animate-zoom-in">
       <SEO
-        title="Execution Outcomes"
-        description="View Shivi Energy's proven project execution outcomes across offshore platforms, refinery turnarounds, rigless interventions, and plug & abandonment operations."
+        title="Projects — Execution Outcomes & Case Studies"
+        description="View Shivi Energy's proven project execution outcomes across ONGC, Oil India, IOCL — offshore platforms, refinery turnarounds, rigless interventions, and plug & abandonment operations."
         canonical="/projects"
+        keywords="oilfield project execution, ONGC vendor, Oil India projects, corrosion management projects, rigless intervention case study, plug and abandonment India"
         jsonLd={breadcrumbSchema([
           { name: "Home", url: "/" },
           { name: "Projects", url: "/projects" },

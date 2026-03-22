@@ -1,0 +1,117 @@
+# Shivi Energy Solutions
+
+> Engineering-Led Execution Systems for the Energy Sector
+
+## About
+
+Shivi Energy Solutions (SSES) is an India-based oilfield services and energy technology company delivering engineering-led execution across integrity management, corrosion control, rigless intervention, and operational risk reduction for the global energy industry.
+
+- **Founded**: 2020
+- **Headquarters**: Noida, Uttar Pradesh, India
+- **Employees**: 200+ technical professionals
+- **Countries Served**: 25+
+- **On-Time Execution Rate**: 98.7%
+- **Incident-Free Hours**: 2.4M+
+
+## Products (55+)
+
+### Thru-Tubing Tools
+- Retrievable Bridge Plug — High-expansion retrievable bridge plug for temporary zonal isolation, ISO 14310 certified, rated to 10,000 PSI
+- Inflatable Packer & Straddle System — Zonal isolation and leak remediation, up to 8,000 PSI
+- Velocity String Assembly — Small-diameter tubing for gas well liquid unloading, no rig required
+- Thru-Tubing Whipstock Assembly — Single-trip retrievable whipstock for sidetrack drilling
+- Downhole Sand Screen — Wire-wrap and premium mesh sand screens for sand control
+
+### Downhole Completion Tools
+- Liner Hanger System (Mechanical & Hydraulic) — ISO 11960 compatible, up to 10,000 PSI
+- Permanent & Retrievable Packers — V0 gas-tight, H₂S/CO₂ rated, up to 15,000 PSI
+- Float Shoe, Float Collar & Guide Shoe — PDC and ball-drop drillout, API 10D rated
+- Casing Centralizers & Spiralizers — Bow-spring and rigid blade, API 10D compliant
+- Swellable Packer Systems — Oil-swell and water-swell, up to 200% radial expansion
+
+### Well Intervention Tools
+- Fishing Tool Suite — Overshots, spears, junk baskets, 90%+ retrieval success
+- Coiled Tubing Downhole Motor & Milling BHA — PDM with tungsten carbide inserts
+- Bridge Plug Deployment (Wireline & E-line) — ISO 14310 rated, ±0.5 m depth accuracy
+- Production Enhancement Chemical Injection Tools — Side-pocket mandrel & capillary options
+- Wireline Jar & Accelerator — Up to 50,000 lbf impact force
+
+### Downhole Coil Tubing Tools
+- Capillary String & Chemical Injection System — NACE MR0175 compliant
+- CT Cleanout Tool & Jetting Assembly — Multi-port jetting, up to 6,000 PSI
+- Coiled Tubing BHA Connector & Check Valve Kit — Quick-connect, up to 10,000 PSI
+
+### Fishing & Milling Tools
+- Taper Mill & Section Mill — Hydraulically-actuated, TC-insert blades
+- Impression Block & Gauge Ring Set — Lead-faced, ±2 mm resolution
+
+### Corrosion Prevention Products
+- MMO Tubular & Canistered Anodes — 20+ year design life, DNV-certified
+- Zinc & Magnesium Sacrificial Anodes — NACE SP0169 compliant
+- Transformer Rectifier Unit (ICCP) — 5A to 100A, SCADA-ready
+- Permanent Reference Electrodes & Test Posts — ±5 mV accuracy, 20+ year life
+- AC Decoupler / Solid-State Polarisation Cell — ATEX/FLP rated, up to 1,000 A fault
+- Anode & Cathode Junction Box (FLP) — ATEX Zone 1 & 2 certified, IP66
+- Corrosion Inhibitor Chemicals — Film-forming, reduces corrosion by up to 70%
+- Anti-Corrosion Coating System — FBE, 3LPE, 3LPP, ISO 21809 compliant
+
+### Well Construction Materials
+- Drilling Fluid Additives & Shale Stabilizers — HPHT certified, up to 200°C
+
+### Digital Oversight Systems
+- AI-Powered Pipeline & Asset Anomaly Detection — 90%+ accuracy, <2s inference
+- Computer Vision Safety & HSE Compliance — Real-time PPE monitoring
+- IoT Remote CP Monitoring Platform — Cloud SCADA, ±5 mV accuracy
+- Predictive Maintenance & Digital Twin — 7-90 day advance failure warning
+- Drone Progress & Construction Monitoring — Up to 1 cm/pixel resolution
+- Video Analytics Suite (14 modules): FRS Attendance, PPE Compliance, Fire/Smoke Detection, Spillage Detection, Process Area Monitoring, Asset Inspection, Corrosion Detection, Machine Safety, Crowd Counting, Visitor Tracking, Environment Monitoring, Intrusion Detection, Lone Worker Safety, PTW Compliance, Logistics/Vehicle Analytics, Camera Health Monitoring
+
+### Survey Instruments
+- CP Survey Instruments & Data Logger Kit — ±1 mV resolution, GPS-integrated
+
+### 3D Scanning Equipment
+- Trimble X7 — Portable, auto-calibrating, ±2 mm @ 10 m
+- Trimble X9 — Long range up to 150 m, ±2 mm @ 40 m
+- Trimble X12 — Premium, up to 250 m range, ±1.5 mm accuracy
+- Trimble SX12 — Hybrid total station + scanner, up to 600 m
+
+## Services (70+)
+
+### Corrosion Management
+CP System AMC, CIPS/DCVG/CAT Surveys, CP System Design, ICCP Panel Repair, AC/DC Stray Current Mitigation, CUI Inspection, Marine ICCP Retrofit, Pipeline Inhibitor Programs, Leak Detection & Coating, CP Elevation Profiling, Tank Farm CP, Corrosion Failure Analysis, Coating Inspection, ICCP Anode Bed Installation, Subsea Anode Retrofit
+
+### Well Integrity & Management
+Well Integrity Audit, Annular Pressure Management, Casing Inspection, Tubing Integrity, Wellhead & Xmas Tree Maintenance, BOP Testing, Well Suspension, DHSV Testing, Production Monitoring, Well Barrier Verification, Chemical Squeeze, Perforation Services, Formation Damage Assessment, Sand Control, Well Kill Operations
+
+### Rigless Intervention
+Slickline Services, E-line Services, CT Well Cleanout, CT Nitrogen Lift, Mechanical Plug Setting, Gauge Cutter & Drift, Memory Production Logging, CT Acidizing, Wellbore Fishing, Zone Isolation, Velocity String Installation, Scale Removal, Paraffin Treatment, CT Milling, Inflatable Packer Services
+
+### Rig Support & Construction
+Casing Running, Cementing Support, BHA Assembly, Mud Engineering, Directional Drilling Support, Wellsite Supervision, Drilling Waste Management, Well Testing, Completion Installation, Wellhead Installation, Conductor Installation, Pile Driving, Shallow Gas Protection, Hot Tapping & Plugging, Inspection & NDT
+
+### Digital & AI Solutions
+AI Asset Inspection, Computer Vision Safety, Drone Survey, IoT Monitoring, Predictive Maintenance, 3D Laser Scanning, Digital Twin, Pipeline Integrity Software, SCADA Integration, Remote CP Monitoring, Data Analytics, Automated Reporting, Cloud Dashboards, Video Analytics, Cybersecurity
+
+## Key Clients
+
+ONGC, Oil India Limited, IOCL, GAIL, BPCL, HPCL, Cairn Oil & Gas, Vedanta, Reliance Industries, and international operators
+
+## Sustainability — LOCA–LOCUS Framework
+
+SSES uses a proprietary ESG measurement framework:
+- **LOCA** (Long-term Operations & Compliance Assessment) — the structured evidence-based process for ESG data collection
+- **LOCUS** — the unified ESG score generated from LOCA assessments
+- **QPSI** pillars: Quality, Performance, Safety, Integrity
+
+## Leadership
+
+- **Mr. Vipul S** — Founder, global solution specialist with hands-on rig experience
+- **Mr. Binay S Sahay** — Co-Founder, 30+ years telecom domain experience
+- **Mrs. Neelam Maan** — Contract and Tendering Manager, 11+ years oil & energy experience
+
+## Contact
+
+- Website: https://www.shivienergy.com
+- Email: info@shivienergy.com
+- Phone: +91-99588-08368
+- Address: 7th Floor, Platina Heights, C12, Sector 62, Noida, UP 201301, India

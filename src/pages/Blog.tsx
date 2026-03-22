@@ -8,9 +8,10 @@ const BlogPage = () => {
   return (
     <div className="min-h-screen bg-background animate-zoom-in">
       <SEO
-        title="Blog"
-        description="Industry insights, technical articles, and thought leadership on energy operations, corrosion management, digital transformation, and sustainable practices."
+        title="Blog — Technical Insights & Industry Articles"
+        description="Technical articles on corrosion management, rigless intervention, well integrity, AI pipeline monitoring, plug & abandonment, and energy sector digital transformation."
         canonical="/blog"
+        keywords="oilfield blog, corrosion management articles, rigless intervention insights, well integrity technical, AI pipeline monitoring, energy digital transformation"
         jsonLd={breadcrumbSchema([
           { name: "Home", url: "/" },
           { name: "Blog", url: "/blog" },

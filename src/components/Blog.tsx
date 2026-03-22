@@ -49,12 +49,14 @@ const Blog = () => {
   }, [activeCategory]);
 
   const scrollToContent = () => {
-    if (contentSectionRef.current) {
-      const yOffset = -100;
-      const element = contentSectionRef.current;
-      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: 'smooth' });
-    }
+    setTimeout(() => {
+      if (contentSectionRef.current) {
+        const headerOffset = 100;
+        const element = contentSectionRef.current;
+        const y = element.getBoundingClientRect().top + window.scrollY - headerOffset;
+        window.scrollTo({ top: y, behavior: 'smooth' });
+      }
+    }, 50);
   };
 
   const handleCategoryChange = (categoryName: string) => {

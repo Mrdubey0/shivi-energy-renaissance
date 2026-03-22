@@ -668,7 +668,7 @@ const ProductCard = ({ product, isInCart, onAddToCart, onViewDetails }: ProductC
   return (
     <Card className="group hover:shadow-2xl hover:shadow-primary/10 transition-all duration-500 hover:-translate-y-3 hover:border-primary/30 border-border/50 overflow-hidden h-full cursor-pointer bg-card" onClick={onViewDetails}>
       {/* Product Image */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-slate-800 via-blue-900 to-slate-900">
+      <div className="relative overflow-hidden bg-gradient-to-br from-primary/5 via-accent/5 to-primary/10 border-b border-border/30">
         <ImageWithSkeleton
           src={product.image}
           alt={product.name}

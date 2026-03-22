@@ -57,7 +57,7 @@ const ProductDetailPopup = ({ product, isOpen, onClose }: ProductDetailPopupProp
         <div className="grid md:grid-cols-2 gap-6 mt-4">
           {/* Image Gallery */}
           <div className="space-y-4">
-            <div className="relative aspect-square rounded-lg overflow-hidden bg-gradient-to-br from-slate-800 via-blue-900 to-slate-900">
+            <div className="relative aspect-square rounded-lg overflow-hidden bg-gradient-to-br from-primary/5 via-accent/5 to-primary/10 border border-border/30">
               <img
                 src={images[currentImageIndex]}
                 alt={product.name}

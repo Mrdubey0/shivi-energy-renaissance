@@ -8,9 +8,10 @@ const Solutions = () => {
   return (
     <div className="min-h-screen bg-background animate-zoom-in">
       <SEO
-        title="Solutions"
-        description="Explore Shivi Energy's engineering solutions: corrosion management, rigless intervention, plug & abandonment, rig support, and mills & bits for the energy sector."
+        title="Solutions — Oilfield Products & Services"
+        description="Explore 55+ engineered products and 70+ field services: corrosion management, rigless intervention, downhole tools, cathodic protection, AI digital oversight, and 3D scanning for oil & gas."
         canonical="/solutions"
+        keywords="oilfield products, corrosion management solutions, cathodic protection, rigless intervention, downhole tools, bridge plug, liner hanger, ICCP rectifier, AI pipeline monitoring, 3D laser scanning"
         jsonLd={breadcrumbSchema([
           { name: "Home", url: "/" },
           { name: "Solutions", url: "/solutions" },

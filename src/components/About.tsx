@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import founderVipul from "@/assets/founder-vipul.jpg";
 import founderBinay from "@/assets/founder-binay.jpg";
@@ -258,13 +259,12 @@ const About = () => {
               </div>
 
               <div className="flex flex-col sm:flex-row gap-3 md:gap-4">
-                <Button variant="default" size="default" className="md:size-lg text-sm md:text-base">
-                  View Documentation
-                  <ArrowRight className="ml-2 h-4 w-4" />
-                </Button>
-                <Button variant="outline" size="default" className="hidden md:flex md:size-lg">
-                  Access Technical Overview
-                </Button>
+                <Link to="/sustainability">
+                  <Button variant="default" size="default" className="md:size-lg text-sm md:text-base">
+                    View Documentation
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
               </div>
             </div>
           </ScrollReveal>

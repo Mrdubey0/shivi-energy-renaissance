@@ -9,13 +9,22 @@ import {
   HardHat,
   Award,
   CheckCircle,
-  MapPin
 } from "lucide-react";
 import ScrollReveal from "./ScrollReveal";
+
+import hpclLogo from "@/assets/logos/hpcl.png";
+import bpclLogo from "@/assets/logos/bpcl.png";
+import ioclLogo from "@/assets/logos/iocl.png";
+import mnglLogo from "@/assets/logos/mngl.png";
+import navyLogo from "@/assets/logos/indian-navy.png";
+import avantikaLogo from "@/assets/logos/avantika.png";
+import ioclAviationLogo from "@/assets/logos/iocl-aviation.png";
+import isprlLogo from "@/assets/logos/isprl.png";
 
 const Clients = () => {
   const clients = [
     {
+      logo: hpclLogo,
       abbreviation: "HPCL",
       name: "Hindustan Petroleum Corporation Limited",
       sector: "Oil & Gas PSU | Pan-India",
@@ -31,6 +40,7 @@ const Clients = () => {
       },
     },
     {
+      logo: bpclLogo,
       abbreviation: "BPCL",
       name: "Bharat Petroleum Corporation Limited",
       sector: "Oil & Gas PSU | Pan-India",
@@ -46,6 +56,7 @@ const Clients = () => {
       },
     },
     {
+      logo: ioclLogo,
       abbreviation: "IOCL",
       name: "Indian Oil Corporation Limited",
       sector: "Oil & Gas PSU | Refineries & Pipelines",
@@ -61,6 +72,7 @@ const Clients = () => {
       },
     },
     {
+      logo: mnglLogo,
       abbreviation: "MNGL",
       name: "MNGL",
       sector: "City Gas Distribution | Bangalore Region",
@@ -76,6 +88,7 @@ const Clients = () => {
       },
     },
     {
+      logo: navyLogo,
       abbreviation: "NAVY",
       name: "Indian Navy",
       sector: "Ministry of Defence, Government of India",
@@ -91,6 +104,7 @@ const Clients = () => {
       },
     },
     {
+      logo: avantikaLogo,
       abbreviation: "AVNT",
       name: "Avantika Gas Distribution",
       sector: "City Gas Distribution | Madhya Pradesh",
@@ -148,39 +162,50 @@ const Clients = () => {
     { icon: Award, score: "5.71", label: "Overall", sub: "Service Excellence" },
   ];
 
+  const clientLogos = [
+    { name: "HPCL", logo: hpclLogo },
+    { name: "BPCL", logo: bpclLogo },
+    { name: "IOCL", logo: ioclLogo },
+    { name: "MNGL", logo: mnglLogo },
+    { name: "Indian Navy", logo: navyLogo },
+    { name: "IOCL Aviation", logo: ioclAviationLogo },
+    { name: "Avantika Gas", logo: avantikaLogo },
+    { name: "ISPRL", logo: isprlLogo },
+  ];
+
   const paramBarWidth = (score: number) => `${(score / 6) * 100}%`;
 
   return (
-    <section id="clients" className="py-12 md:py-24 bg-background">
+    <section id="clients" className="py-8 md:py-16 bg-background">
       <div className="container mx-auto px-4">
         {/* Header */}
         <ScrollReveal>
-          <div className="text-center mb-8 md:mb-16">
-            <div className="inline-flex items-center px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-secondary/10 border border-secondary/20 mb-4 md:mb-6">
+          <div className="text-center mb-6 md:mb-10">
+            <div className="inline-flex items-center px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-secondary/10 border border-secondary/20 mb-3 md:mb-4">
               <span className="text-xs md:text-sm font-medium text-secondary">Verified Client Evaluations</span>
             </div>
 
-            <h2 className="text-2xl md:text-5xl font-bold text-foreground mb-3 md:mb-6">
+            <h2 className="text-2xl md:text-5xl font-bold text-foreground mb-2 md:mb-4">
               Trusted by India's <span className="text-primary">Leading Energy Majors</span>
             </h2>
 
-            <p className="text-sm md:text-lg text-muted-foreground max-w-3xl mx-auto mb-6 md:mb-12 hidden md:block">
+            <p className="text-sm md:text-lg text-muted-foreground max-w-3xl mx-auto mb-4 md:mb-8 hidden md:block">
               Every service visit is independently evaluated by our clients through a formal
               Operations Performance Evaluation (OPE). Our scores speak for themselves.
             </p>
 
             {/* KPI Strip */}
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-6 mb-8 md:mb-16 max-w-4xl mx-auto">
+            <div className="grid grid-cols-3 md:grid-cols-5 gap-2 md:gap-4 mb-6 md:mb-10 max-w-4xl mx-auto">
               {[
                 { value: "4.8/5", label: "Overall Rating" },
                 { value: "79", label: "Verified Evaluations" },
                 { value: "8", label: "Major Organisations" },
-                { value: "30+", label: "Sites Covered" },
-                { value: "100%", label: "OPE Compliance" },
+                { value: "30+", label: "Sites Covered", hideOnMobile: true },
+                { value: "100%", label: "OPE Compliance", hideOnMobile: true },
               ].map((kpi, i) => (
-                <div key={i} className="text-center p-3 md:p-4 rounded-xl bg-card border border-border">
-                  <div className="text-xl md:text-3xl font-bold text-primary">{kpi.value}</div>
-                  <div className="text-[10px] md:text-xs text-muted-foreground mt-1">{kpi.label}</div>
+                <div key={i} className={`text-center p-2 md:p-4 rounded-xl bg-card border border-border ${(kpi as any).hideOnMobile ? 'hidden md:block' : ''}`}>
+                  <div className="text-lg md:text-3xl font-bold text-primary">{kpi.value}</div>
+                  <div className="text-[9px] md:text-xs text-muted-foreground mt-0.5">{kpi.label}</div>
                 </div>
               ))}
             </div>
@@ -189,23 +214,23 @@ const Clients = () => {
 
         {/* Performance Benchmarks */}
         <ScrollReveal>
-          <div className="bg-gradient-hero rounded-2xl p-6 md:p-10 mb-10 md:mb-16">
-            <h3 className="text-lg md:text-2xl font-bold text-primary-foreground text-center mb-2">
+          <div className="bg-gradient-hero rounded-2xl p-4 md:p-8 mb-6 md:mb-10">
+            <h3 className="text-base md:text-2xl font-bold text-primary-foreground text-center mb-1 md:mb-2">
               Rated Across 5 Critical Service Dimensions
             </h3>
-            <p className="text-xs md:text-sm text-primary-foreground/70 text-center mb-6 md:mb-8 max-w-xl mx-auto">
+            <p className="text-[10px] md:text-sm text-primary-foreground/70 text-center mb-4 md:mb-6 max-w-xl mx-auto">
               Verified aggregate scores across all 79 evaluations on the OPE 6-point scale.
             </p>
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-3 md:gap-5">
+            <div className="grid grid-cols-5 gap-1.5 md:gap-5">
               {benchmarks.map((b, i) => {
                 const Icon = b.icon;
                 return (
-                  <div key={i} className="text-center bg-primary-foreground/10 border border-primary-foreground/15 rounded-xl p-4 md:p-6">
-                    <Icon className="h-6 w-6 md:h-7 md:w-7 text-primary-foreground/80 mx-auto mb-2" />
-                    <div className="text-2xl md:text-3xl font-extrabold text-primary-foreground">
-                      {b.score}<span className="text-sm md:text-base font-normal text-primary-foreground/50">/6</span>
+                  <div key={i} className="text-center bg-primary-foreground/10 border border-primary-foreground/15 rounded-lg md:rounded-xl p-2 md:p-6">
+                    <Icon className="h-4 w-4 md:h-7 md:w-7 text-primary-foreground/80 mx-auto mb-1 md:mb-2" />
+                    <div className="text-base md:text-3xl font-extrabold text-primary-foreground">
+                      {b.score}<span className="text-[8px] md:text-base font-normal text-primary-foreground/50">/6</span>
                     </div>
-                    <div className="text-[10px] md:text-xs font-semibold text-primary-foreground/80 uppercase tracking-wider mt-1">
+                    <div className="text-[7px] md:text-xs font-semibold text-primary-foreground/80 uppercase tracking-wider mt-0.5">
                       {b.label}
                     </div>
                     <div className="text-[9px] md:text-[10px] text-primary-foreground/50 mt-0.5 hidden md:block">
@@ -220,41 +245,35 @@ const Clients = () => {
 
         {/* Organisation Rating Cards */}
         <ScrollReveal>
-          <div className="mb-4 md:mb-8">
-            <h3 className="text-lg md:text-2xl font-bold text-foreground mb-1">
+          <div className="mb-3 md:mb-6">
+            <h3 className="text-base md:text-2xl font-bold text-foreground mb-1">
               Aggregate OPE Ratings by Organisation
             </h3>
-            <p className="text-xs md:text-sm text-muted-foreground mb-6">
+            <p className="text-[10px] md:text-sm text-muted-foreground mb-4">
               Averaged across all formal OPE forms submitted by each organisation's authorised representatives.
             </p>
           </div>
         </ScrollReveal>
 
-        {/* Mobile: horizontal scroll */}
-        <div className="flex gap-3 overflow-x-auto pb-4 md:hidden snap-x snap-mandatory -mx-4 px-4 mb-8">
+        {/* Mobile: compact horizontal scroll */}
+        <div className="flex gap-2.5 overflow-x-auto pb-3 md:hidden snap-x snap-mandatory -mx-4 px-4 mb-5">
           {clients.map((client, index) => (
-            <Card key={index} className={`flex-shrink-0 w-56 snap-center ${client.featured ? 'border-secondary' : ''}`}>
-              <CardContent className="p-4">
-                <div className="flex items-center gap-2 mb-3">
-                  <div className="w-10 h-10 rounded-lg bg-gradient-hero flex items-center justify-center text-primary-foreground text-xs font-bold">
-                    {client.abbreviation}
-                  </div>
+            <Card key={index} className={`flex-shrink-0 w-44 snap-center ${client.featured ? 'border-secondary' : ''}`}>
+              <CardContent className="p-3">
+                <div className="flex items-center gap-2 mb-2">
+                  <img src={client.logo} alt={client.abbreviation} className="w-8 h-8 rounded-md object-contain bg-white p-0.5" loading="lazy" />
                   <div className="flex-1 min-w-0">
-                    <div className="text-sm font-bold truncate">{client.abbreviation}</div>
-                    <div className="text-[10px] text-muted-foreground">{client.visits} Visits</div>
+                    <div className="text-xs font-bold truncate">{client.abbreviation}</div>
+                    <div className="text-[9px] text-muted-foreground">{client.visits} Visits</div>
                   </div>
                 </div>
-                <div className="text-center mb-3">
-                  <div className="text-2xl font-extrabold text-primary">{client.rating.toFixed(2)}<span className="text-xs text-muted-foreground font-normal">/5</span></div>
-                  <div className="flex justify-center mt-1">
+                <div className="text-center">
+                  <div className="text-xl font-extrabold text-primary">{client.rating.toFixed(2)}<span className="text-[9px] text-muted-foreground font-normal">/5</span></div>
+                  <div className="flex justify-center mt-0.5">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="h-3 w-3 text-yellow-500 fill-current" />
+                      <Star key={i} className="h-2.5 w-2.5 text-yellow-500 fill-current" />
                     ))}
                   </div>
-                </div>
-                <div className="flex items-center gap-1 text-[10px] text-green-600 font-semibold">
-                  <CheckCircle className="h-3 w-3" />
-                  Verified OPE
                 </div>
               </CardContent>
             </Card>
@@ -262,20 +281,17 @@ const Clients = () => {
         </div>
 
         {/* Desktop: Grid */}
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
           {clients.map((client, index) => (
             <ScrollReveal key={index} delay={index * 80}>
               <Card className={`group hover:shadow-card transition-all duration-300 hover:-translate-y-2 h-full relative overflow-hidden ${client.featured ? 'border-secondary' : ''}`}>
-                {/* Top accent bar */}
                 <div className={`absolute top-0 left-0 right-0 h-1 ${client.featured ? 'bg-gradient-to-r from-secondary to-primary' : 'bg-gradient-hero'}`} />
 
-                <CardContent className="p-6 pt-8">
+                <CardContent className="p-5 pt-7">
                   {/* Header */}
-                  <div className="flex items-start justify-between mb-5">
+                  <div className="flex items-start justify-between mb-4">
                     <div className="flex items-center gap-3">
-                      <div className="w-12 h-12 rounded-xl bg-gradient-hero flex items-center justify-center text-primary-foreground text-sm font-bold">
-                        {client.abbreviation}
-                      </div>
+                      <img src={client.logo} alt={client.abbreviation} className="w-11 h-11 rounded-xl object-contain bg-white p-1 border border-border" loading="lazy" />
                       <div>
                         <div className="text-sm font-bold text-foreground group-hover:text-primary transition-colors">
                           {client.name}
@@ -289,28 +305,28 @@ const Clients = () => {
                   </div>
 
                   {/* Grand Score */}
-                  <div className="text-center py-4 border-y border-border mb-5">
-                    <div className="text-4xl font-extrabold text-primary leading-none">
-                      {client.rating.toFixed(2)}<span className="text-lg text-muted-foreground font-normal">/5</span>
+                  <div className="text-center py-3 border-y border-border mb-4">
+                    <div className="text-3xl font-extrabold text-primary leading-none">
+                      {client.rating.toFixed(2)}<span className="text-base text-muted-foreground font-normal">/5</span>
                     </div>
-                    <div className="flex justify-center mt-2">
+                    <div className="flex justify-center mt-1.5">
                       {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="h-4 w-4 text-yellow-500 fill-current" />
+                        <Star key={i} className="h-3.5 w-3.5 text-yellow-500 fill-current" />
                       ))}
                     </div>
-                    <div className="text-[10px] text-muted-foreground uppercase tracking-widest mt-2">
+                    <div className="text-[10px] text-muted-foreground uppercase tracking-widest mt-1.5">
                       Grand Average — All Parameters
                     </div>
                   </div>
 
                   {/* Parameter Bars */}
-                  <div className="space-y-2.5">
+                  <div className="space-y-2">
                     {Object.entries(client.params).map(([key, val]) => (
                       <div key={key} className="grid grid-cols-[80px_1fr_36px] gap-2 items-center">
                         <span className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wide">
                           {key}
                         </span>
-                        <div className="h-2 bg-muted rounded-full overflow-hidden">
+                        <div className="h-1.5 bg-muted rounded-full overflow-hidden">
                           <div
                             className="h-full rounded-full bg-gradient-hero transition-all duration-700"
                             style={{ width: paramBarWidth(val) }}
@@ -321,7 +337,7 @@ const Clients = () => {
                     ))}
                   </div>
 
-                  <div className="flex items-center gap-1 mt-4 text-[10px] text-green-600 font-semibold">
+                  <div className="flex items-center gap-1 mt-3 text-[10px] text-green-600 font-semibold">
                     <CheckCircle className="h-3 w-3" />
                     Verified via Formal OPE Documentation
                   </div>
@@ -333,43 +349,40 @@ const Clients = () => {
 
         {/* Testimonials */}
         <ScrollReveal>
-          <div className="mb-4 md:mb-8">
-            <h3 className="text-lg md:text-2xl font-bold text-foreground mb-1">
+          <div className="mb-3 md:mb-6">
+            <h3 className="text-base md:text-2xl font-bold text-foreground mb-1">
               Directly From the Field
             </h3>
-            <p className="text-xs md:text-sm text-muted-foreground mb-6">
+            <p className="text-[10px] md:text-sm text-muted-foreground mb-4">
               Comments recorded verbatim on formal OPE evaluation forms by our clients' authorised representatives.
             </p>
           </div>
         </ScrollReveal>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10 md:mb-16">
+        {/* Mobile: show only 3 testimonials, Desktop: all 6 */}
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 mb-6 md:mb-10">
           {testimonials.map((t, index) => (
             <ScrollReveal key={index} delay={index * 80}>
-              <Card className="h-full hover:shadow-card transition-all duration-300 hover:-translate-y-1 relative">
-                <CardContent className="p-5 md:p-6">
-                  <Quote className="h-6 w-6 text-primary/15 absolute top-4 right-4" />
-                  <div className="flex mb-3">
+              <Card className={`h-full hover:shadow-card transition-all duration-300 hover:-translate-y-1 relative ${index >= 3 ? 'hidden md:block' : ''}`}>
+                <CardContent className="p-4 md:p-5">
+                  <Quote className="h-5 w-5 text-primary/15 absolute top-3 right-3" />
+                  <div className="flex mb-2">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="h-4 w-4 text-yellow-500 fill-current" />
+                      <Star key={i} className="h-3 w-3 md:h-4 md:w-4 text-yellow-500 fill-current" />
                     ))}
                   </div>
-                  <p className="text-sm text-muted-foreground italic leading-relaxed mb-4">
+                  <p className="text-xs md:text-sm text-muted-foreground italic leading-relaxed mb-3 line-clamp-3 md:line-clamp-none">
                     "{t.text}"
                   </p>
-                  <div className="flex items-center gap-3">
-                    <div className="w-9 h-9 rounded-full bg-gradient-hero flex items-center justify-center text-primary-foreground text-xs font-bold">
-                      AR
-                    </div>
+                  <div className="flex items-center gap-2">
                     <div className="flex-1">
-                      <div className="text-xs font-bold text-foreground">Authorised Representative</div>
-                      <div className="text-[10px] text-muted-foreground">{t.org}</div>
-                      <div className="flex items-center gap-1 text-[10px] text-green-600 font-semibold mt-0.5">
-                        <CheckCircle className="h-2.5 w-2.5" />
-                        Verified OPE Form
-                      </div>
+                      <div className="text-[10px] md:text-xs font-bold text-foreground">Authorised Representative</div>
+                      <div className="text-[9px] md:text-[10px] text-muted-foreground">{t.org}</div>
                     </div>
-                    <div className="text-[10px] text-muted-foreground">{t.date}</div>
+                    <div className="flex items-center gap-1 text-[9px] md:text-[10px] text-green-600 font-semibold">
+                      <CheckCircle className="h-2.5 w-2.5" />
+                      {t.date}
+                    </div>
                   </div>
                 </CardContent>
               </Card>
@@ -377,21 +390,12 @@ const Clients = () => {
           ))}
         </div>
 
-        {/* Client Strip */}
+        {/* Client Logo Strip */}
         <ScrollReveal>
-          <div className="flex flex-wrap justify-center gap-2 md:gap-3 mb-8">
-            {[
-              "Hindustan Petroleum Corporation Limited",
-              "Bharat Petroleum Corporation Limited",
-              "Indian Oil Corporation Limited",
-              "MNGL",
-              "Indian Navy",
-              "IOCL Aviation",
-              "Avantika Gas Distribution",
-              "ISPRL Mangalore",
-            ].map((name, i) => (
-              <div key={i} className="bg-card border border-border rounded-lg px-3 py-2 text-xs md:text-sm font-semibold text-foreground">
-                {name}
+          <div className="flex flex-wrap justify-center items-center gap-3 md:gap-5 mb-5 md:mb-8">
+            {clientLogos.map((c, i) => (
+              <div key={i} className="bg-white border border-border rounded-lg p-2 md:p-3 flex items-center justify-center w-16 h-16 md:w-20 md:h-20">
+                <img src={c.logo} alt={c.name} className="w-full h-full object-contain" loading="lazy" />
               </div>
             ))}
           </div>
@@ -399,16 +403,16 @@ const Clients = () => {
 
         {/* Trust Strip */}
         <ScrollReveal>
-          <div className="bg-gradient-hero rounded-xl p-4 md:p-6">
-            <div className="flex flex-wrap justify-center gap-4 md:gap-8">
+          <div className="bg-gradient-hero rounded-xl p-3 md:p-5">
+            <div className="flex flex-wrap justify-center gap-3 md:gap-6">
               {[
-                { icon: "📋", text: "Formal OPE Evaluation Process" },
+                { icon: "📋", text: "Formal OPE Process" },
                 { icon: "🏭", text: "Approved Vendor — Major PSUs" },
-                { icon: "🛡️", text: "HSSE-Certified Field Teams" },
-                { icon: "🔬", text: "NACE-Aware CP Specialists" },
-                { icon: "📍", text: "30+ Sites | Pan-India Coverage" },
+                { icon: "🛡️", text: "HSSE-Certified Teams" },
+                { icon: "🔬", text: "NACE-Aware Specialists" },
+                { icon: "📍", text: "30+ Sites Pan-India" },
               ].map((item, i) => (
-                <div key={i} className="flex items-center gap-2 text-primary-foreground text-xs md:text-sm font-semibold">
+                <div key={i} className="flex items-center gap-1.5 text-primary-foreground text-[10px] md:text-sm font-semibold">
                   <span>{item.icon}</span>
                   {item.text}
                 </div>
@@ -418,7 +422,7 @@ const Clients = () => {
         </ScrollReveal>
 
         {/* Data Transparency Note */}
-        <p className="text-[10px] md:text-xs text-muted-foreground text-center mt-6 max-w-3xl mx-auto">
+        <p className="text-[9px] md:text-xs text-muted-foreground text-center mt-4 max-w-3xl mx-auto hidden md:block">
           <strong>Data Transparency:</strong> All ratings are derived from formal Operations Performance Evaluation (OPE) forms — Document No. OPE-G3-QA-1, Service Quality, Issue Date January 2020 — submitted by authorised representatives. Scores range 1–6 on the OPE scale, normalised to 5-star equivalent. 79 evaluations collected between May 2024 and January 2026.
         </p>
       </div>

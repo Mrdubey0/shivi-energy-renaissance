@@ -18,8 +18,7 @@ import ioclLogo from "@/assets/logos/iocl.png";
 import mnglLogo from "@/assets/logos/mngl.png";
 import navyLogo from "@/assets/logos/indian-navy.png";
 import avantikaLogo from "@/assets/logos/avantika.png";
-import ioclAviationLogo from "@/assets/logos/iocl-aviation.png";
-import isprlLogo from "@/assets/logos/isprl.png";
+
 
 const Clients = () => {
   const clients = [
@@ -168,9 +167,7 @@ const Clients = () => {
     { name: "IOCL", logo: ioclLogo },
     { name: "MNGL", logo: mnglLogo },
     { name: "Indian Navy", logo: navyLogo },
-    { name: "IOCL Aviation", logo: ioclAviationLogo },
     { name: "Avantika Gas", logo: avantikaLogo },
-    { name: "ISPRL", logo: isprlLogo },
   ];
 
   const paramBarWidth = (score: number) => `${(score / 6) * 100}%`;
@@ -400,31 +397,6 @@ const Clients = () => {
             ))}
           </div>
         </ScrollReveal>
-
-        {/* Trust Strip */}
-        <ScrollReveal>
-          <div className="bg-gradient-hero rounded-xl p-3 md:p-5">
-            <div className="flex flex-wrap justify-center gap-3 md:gap-6">
-              {[
-                { icon: "📋", text: "Formal OPE Process" },
-                { icon: "🏭", text: "Approved Vendor — Major PSUs" },
-                { icon: "🛡️", text: "HSSE-Certified Teams" },
-                { icon: "🔬", text: "NACE-Aware Specialists" },
-                { icon: "📍", text: "30+ Sites Pan-India" },
-              ].map((item, i) => (
-                <div key={i} className="flex items-center gap-1.5 text-primary-foreground text-[10px] md:text-sm font-semibold">
-                  <span>{item.icon}</span>
-                  {item.text}
-                </div>
-              ))}
-            </div>
-          </div>
-        </ScrollReveal>
-
-        {/* Data Transparency Note */}
-        <p className="text-[9px] md:text-xs text-muted-foreground text-center mt-4 max-w-3xl mx-auto hidden md:block">
-          <strong>Data Transparency:</strong> All ratings are derived from formal Operations Performance Evaluation (OPE) forms — Document No. OPE-G3-QA-1, Service Quality, Issue Date January 2020 — submitted by authorised representatives. Scores range 1–6 on the OPE scale, normalised to 5-star equivalent. 79 evaluations collected between May 2024 and January 2026.
-        </p>
       </div>
     </section>
   );

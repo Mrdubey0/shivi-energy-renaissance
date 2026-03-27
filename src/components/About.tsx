@@ -49,7 +49,7 @@ const About = () => {
       linkedin: "https://www.linkedin.com/in/vipul-s-26a45020/?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=android_app"
     },
     {
-      name: "Mr. Binay S Sahay",
+      name: "Mr. B.S Sahay",
       position: "Co-Founder",
       company: "Shivi Energy Solutions",
       image: founderBinay,

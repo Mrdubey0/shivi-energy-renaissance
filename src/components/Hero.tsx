@@ -157,14 +157,14 @@ const Hero = () => {
               <div className="group">
                 <div className="flex items-center justify-center mb-2">
                   <Activity className="h-5 w-5 mr-2 text-secondary" />
-                  <span className="text-3xl font-bold text-secondary">127</span>
+                  <span className="text-3xl font-bold text-secondary">40</span>
                 </div>
                 <div className="text-sm">Active Executions</div>
               </div>
               <div className="group">
                 <div className="flex items-center justify-center mb-2">
                   <Shield className="h-5 w-5 mr-2 text-accent" />
-                  <span className="text-3xl font-bold text-accent">2.4M+</span>
+                  <span className="text-3xl font-bold text-accent">1M+</span>
                 </div>
                 <div className="text-sm">Incident-Free Hours</div>
               </div>
@@ -185,7 +185,7 @@ const Hero = () => {
             {/* Mobile: Only show 2 key stats */}
             <div className="grid grid-cols-2 gap-4 md:hidden text-center text-primary-foreground/80">
               <div>
-                <span className="text-2xl font-bold text-secondary">2.4M+</span>
+                <span className="text-2xl font-bold text-secondary">1M+</span>
                 <div className="text-xs">Incident-Free Hours</div>
               </div>
               <div>

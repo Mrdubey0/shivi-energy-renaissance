@@ -48,7 +48,7 @@ const Header = () => {
     { name: "Solutions", href: "/solutions", matchPaths: ["/solutions"] },
     { name: "Projects", href: "/projects", matchPaths: ["/projects"] },
     { name: "Locus", href: "/sustainability", matchPaths: ["/sustainability"] },
-    { name: "Blog", href: "/blog", matchPaths: ["/blog"] },
+    { name: "Blogs", href: "/blog", matchPaths: ["/blog"] },
     { name: "Careers", href: "/careers", matchPaths: ["/careers"] }
   ];
 

@@ -24,9 +24,9 @@ import ScrollReveal from "./ScrollReveal";
 
 const About = () => {
   const stats = [
-    { icon: Shield, label: "Incident-Free Hours", value: "2.4M+" },
-    { icon: Globe, label: "Countries Served", value: "25+" },
-    { icon: Users, label: "Technical Professionals", value: "200+" },
+    { icon: Shield, label: "Incident-Free Hours", value: "1M+" },
+    { icon: Globe, label: "Countries Served", value: "4+" },
+    { icon: Users, label: "Technical Professionals", value: "40+" },
     { icon: Target, label: "On-Time Execution", value: "98.7%" }
   ];
 

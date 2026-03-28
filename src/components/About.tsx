@@ -138,10 +138,10 @@ const About = () => {
         </div>
 
         {/* Section 2: Leadership Team */}
-        <div className="mb-16 md:mb-24">
+        <div className="mb-8 md:mb-14">
           <ScrollReveal>
-            <div className="text-center mb-8 md:mb-12">
-              <div className="inline-flex items-center px-4 py-2 rounded-full bg-secondary/10 border border-secondary/20 mb-6">
+            <div className="text-center mb-6 md:mb-10">
+              <div className="inline-flex items-center px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-secondary/10 border border-secondary/20 mb-3 md:mb-4">
                 <span className="text-sm font-medium text-secondary">Our Team</span>
               </div>
               <h3 className="text-2xl md:text-4xl font-bold text-foreground mb-3 md:mb-4">

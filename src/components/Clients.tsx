@@ -276,7 +276,7 @@ const Clients = () => {
         </ScrollReveal>
 
         {/* Mobile: compact horizontal scroll */}
-        <div className="flex gap-2.5 overflow-x-auto pb-3 md:hidden snap-x snap-mandatory -mx-4 px-4 mb-5">
+        <div ref={clientsScrollRef} className="flex gap-2.5 overflow-x-auto pb-3 md:hidden snap-x snap-mandatory -mx-4 px-4 mb-5 scrollbar-hide">
           {clients.map((client, index) => (
             <Card key={index} className={`flex-shrink-0 w-44 snap-center ${client.featured ? 'border-secondary' : ''}`}>
               <CardContent className="p-3">

@@ -173,6 +173,27 @@ const Clients = () => {
 
   const paramBarWidth = (score: number) => `${(score / 6) * 100}%`;
 
+  const clientsScrollRef = useRef<HTMLDivElement>(null);
+  const reviewsScrollRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const createAutoScroll = (el: HTMLDivElement | null, speed: number) => {
+      if (!el) return undefined;
+      let idx = 0;
+      const total = el.children.length;
+      const timer = setInterval(() => {
+        idx = (idx + 1) % total;
+        (el.children[idx] as HTMLElement).scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+      }, speed);
+      const pause = () => clearInterval(timer);
+      el.addEventListener('touchstart', pause, { once: true });
+      return () => { clearInterval(timer); el.removeEventListener('touchstart', pause); };
+    };
+    const c1 = createAutoScroll(clientsScrollRef.current, 2500);
+    const c2 = createAutoScroll(reviewsScrollRef.current, 3500);
+    return () => { c1?.(); c2?.(); };
+  }, []);
+
   return (
     <section id="clients" className="py-8 md:py-16 bg-background">
       <div className="container mx-auto px-4">

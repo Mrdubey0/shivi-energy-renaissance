@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { 
@@ -175,24 +175,45 @@ const Clients = () => {
 
   const clientsScrollRef = useRef<HTMLDivElement>(null);
   const reviewsScrollRef = useRef<HTMLDivElement>(null);
+  const [clientIdx, setClientIdx] = useState(0);
+  const [reviewIdx, setReviewIdx] = useState(0);
+  const clientsPaused = useRef(false);
+  const reviewsPaused = useRef(false);
+
+  const scrollTo = useCallback((ref: React.RefObject<HTMLDivElement>, idx: number) => {
+    const el = ref.current;
+    if (!el || !el.children[idx]) return;
+    (el.children[idx] as HTMLElement).scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+  }, []);
 
   useEffect(() => {
-    const createAutoScroll = (el: HTMLDivElement | null, speed: number) => {
-      if (!el) return undefined;
-      let idx = 0;
-      const total = el.children.length;
-      const timer = setInterval(() => {
-        idx = (idx + 1) % total;
-        (el.children[idx] as HTMLElement).scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
-      }, speed);
-      const pause = () => clearInterval(timer);
-      el.addEventListener('touchstart', pause, { once: true });
-      return () => { clearInterval(timer); el.removeEventListener('touchstart', pause); };
+    const t1 = setInterval(() => {
+      if (clientsPaused.current) return;
+      setClientIdx(prev => {
+        const next = (prev + 1) % clients.length;
+        scrollTo(clientsScrollRef, next);
+        return next;
+      });
+    }, 3000);
+    const t2 = setInterval(() => {
+      if (reviewsPaused.current) return;
+      setReviewIdx(prev => {
+        const next = (prev + 1) % testimonials.length;
+        scrollTo(reviewsScrollRef, next);
+        return next;
+      });
+    }, 4000);
+    const pauseClients = () => { clientsPaused.current = true; };
+    const pauseReviews = () => { reviewsPaused.current = true; };
+    clientsScrollRef.current?.addEventListener('touchstart', pauseClients, { once: true });
+    reviewsScrollRef.current?.addEventListener('touchstart', pauseReviews, { once: true });
+    return () => {
+      clearInterval(t1);
+      clearInterval(t2);
+      clientsScrollRef.current?.removeEventListener('touchstart', pauseClients);
+      reviewsScrollRef.current?.removeEventListener('touchstart', pauseReviews);
     };
-    const c1 = createAutoScroll(clientsScrollRef.current, 2500);
-    const c2 = createAutoScroll(reviewsScrollRef.current, 3500);
-    return () => { c1?.(); c2?.(); };
-  }, []);
+  }, [clients.length, testimonials.length, scrollTo]);
 
   return (
     <section id="clients" className="py-8 md:py-16 bg-background">
@@ -299,8 +320,17 @@ const Clients = () => {
             </Card>
           ))}
         </div>
+        {/* Client dots */}
+        <div className="flex justify-center gap-1.5 mb-5 md:hidden">
+          {clients.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => { setClientIdx(i); scrollTo(clientsScrollRef, i); clientsPaused.current = true; }}
+              className={`h-1.5 rounded-full transition-all duration-300 ${i === clientIdx ? 'w-4 bg-primary' : 'w-1.5 bg-muted-foreground/30'}`}
+            />
+          ))}
+        </div>
 
-        {/* Desktop: Grid */}
         <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
           {clients.map((client, index) => (
             <ScrollReveal key={index} delay={index * 80}>
@@ -407,8 +437,17 @@ const Clients = () => {
             </Card>
           ))}
         </div>
+        {/* Review dots */}
+        <div className="flex justify-center gap-1.5 mb-5 md:hidden">
+          {testimonials.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => { setReviewIdx(i); scrollTo(reviewsScrollRef, i); reviewsPaused.current = true; }}
+              className={`h-1.5 rounded-full transition-all duration-300 ${i === reviewIdx ? 'w-4 bg-primary' : 'w-1.5 bg-muted-foreground/30'}`}
+            />
+          ))}
+        </div>
 
-        {/* Desktop: grid testimonials */}
         <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
           {testimonials.map((t, index) => (
             <ScrollReveal key={index} delay={index * 80}>

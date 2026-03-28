@@ -71,10 +71,10 @@ const About = () => {
       <div className="container mx-auto px-4">
         
         {/* Section 1: Mission & Vision */}
-        <div className="mb-16 md:mb-24">
+        <div className="mb-8 md:mb-14">
           <ScrollReveal>
-            <div className="text-center mb-10 md:mb-14">
-              <div className="inline-flex items-center px-4 py-2 rounded-full bg-primary/10 border border-primary/20 mb-6">
+            <div className="text-center mb-6 md:mb-10">
+              <div className="inline-flex items-center px-3 py-1.5 md:px-4 md:py-2 rounded-full bg-primary/10 border border-primary/20 mb-3 md:mb-4">
                 <span className="text-sm font-medium text-primary">Our Purpose</span>
               </div>
               <h2 className="text-3xl md:text-5xl font-bold text-foreground">

@@ -320,8 +320,17 @@ const Clients = () => {
             </Card>
           ))}
         </div>
+        {/* Client dots */}
+        <div className="flex justify-center gap-1.5 mb-5 md:hidden">
+          {clients.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => { setClientIdx(i); scrollTo(clientsScrollRef, i); clientsPaused.current = true; }}
+              className={`h-1.5 rounded-full transition-all duration-300 ${i === clientIdx ? 'w-4 bg-primary' : 'w-1.5 bg-muted-foreground/30'}`}
+            />
+          ))}
+        </div>
 
-        {/* Desktop: Grid */}
         <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
           {clients.map((client, index) => (
             <ScrollReveal key={index} delay={index * 80}>

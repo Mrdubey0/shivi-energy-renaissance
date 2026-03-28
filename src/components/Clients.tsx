@@ -437,8 +437,17 @@ const Clients = () => {
             </Card>
           ))}
         </div>
+        {/* Review dots */}
+        <div className="flex justify-center gap-1.5 mb-5 md:hidden">
+          {testimonials.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => { setReviewIdx(i); scrollTo(reviewsScrollRef, i); reviewsPaused.current = true; }}
+              className={`h-1.5 rounded-full transition-all duration-300 ${i === reviewIdx ? 'w-4 bg-primary' : 'w-1.5 bg-muted-foreground/30'}`}
+            />
+          ))}
+        </div>
 
-        {/* Desktop: grid testimonials */}
         <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
           {testimonials.map((t, index) => (
             <ScrollReveal key={index} delay={index * 80}>

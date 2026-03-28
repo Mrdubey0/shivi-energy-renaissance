@@ -10,7 +10,7 @@ import SEO, { organizationSchema, websiteSchema } from "@/components/SEO";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-background animate-zoom-in pb-16 md:pb-0">
+    <div className="min-h-screen bg-background animate-zoom-in">
       <SEO
         canonical="/"
         jsonLd={[organizationSchema, websiteSchema]}

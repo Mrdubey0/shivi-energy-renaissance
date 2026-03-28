@@ -223,7 +223,7 @@ const Clients = () => {
                 const Icon = b.icon;
                 const isLast = i === benchmarks.length - 1;
                 return (
-                  <div key={i} className={`text-center bg-primary-foreground/10 border border-primary-foreground/15 rounded-lg md:rounded-xl p-3 md:p-6 ${isLast ? 'col-span-2 md:col-span-1 max-w-[50%] mx-auto md:max-w-none' : ''}`}>
+                  <div key={i} className={`text-center bg-primary-foreground/10 border border-primary-foreground/15 rounded-lg md:rounded-xl p-3 md:p-6 ${isLast ? 'col-span-2 md:col-span-1' : ''}`}>
                     <Icon className="h-4 w-4 md:h-7 md:w-7 text-primary-foreground/80 mx-auto mb-1 md:mb-2" />
                     <div className="text-base md:text-3xl font-extrabold text-primary-foreground">
                       {b.score}<span className="text-[8px] md:text-base font-normal text-primary-foreground/50">/6</span>

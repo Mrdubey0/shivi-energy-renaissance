@@ -67,7 +67,7 @@ const About = () => {
   ];
 
   return (
-    <section id="about" className="py-24 bg-background">
+    <section id="about" className="py-8 md:py-16 bg-background">
       <div className="container mx-auto px-4">
         
         {/* Section 1: Mission & Vision */}

@@ -223,7 +223,7 @@ const About = () => {
         </div>
 
         {/* Section 3: Engineering-Led Operational Services */}
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-2 gap-8 md:gap-12 items-center">
           {/* Content Side */}
           <ScrollReveal>
             <div>

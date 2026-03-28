@@ -379,27 +379,56 @@ const Clients = () => {
           </div>
         </ScrollReveal>
 
-        {/* Mobile: show only 3 testimonials, Desktop: all 6 */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-3 md:gap-4 mb-6 md:mb-10">
+        {/* Mobile: carousel testimonials */}
+        <div ref={reviewsScrollRef} className="flex gap-2.5 overflow-x-auto pb-3 md:hidden snap-x snap-mandatory -mx-4 px-4 mb-5 scrollbar-hide">
+          {testimonials.map((t, index) => (
+            <Card key={index} className="flex-shrink-0 w-72 snap-center relative">
+              <CardContent className="p-4">
+                <Quote className="h-4 w-4 text-primary/15 absolute top-3 right-3" />
+                <div className="flex mb-1.5">
+                  {[...Array(5)].map((_, i) => (
+                    <Star key={i} className="h-2.5 w-2.5 text-yellow-500 fill-current" />
+                  ))}
+                </div>
+                <p className="text-[11px] text-muted-foreground italic leading-relaxed mb-2 line-clamp-4">
+                  "{t.text}"
+                </p>
+                <div className="flex items-center gap-2">
+                  <div className="flex-1">
+                    <div className="text-[10px] font-bold text-foreground">Authorised Representative</div>
+                    <div className="text-[9px] text-muted-foreground">{t.org}</div>
+                  </div>
+                  <div className="flex items-center gap-1 text-[9px] text-green-600 font-semibold">
+                    <CheckCircle className="h-2.5 w-2.5" />
+                    {t.date}
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          ))}
+        </div>
+
+        {/* Desktop: grid testimonials */}
+        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-4 mb-10">
           {testimonials.map((t, index) => (
             <ScrollReveal key={index} delay={index * 80}>
-              <Card className={`h-full hover:shadow-card transition-all duration-300 hover:-translate-y-1 relative ${index >= 3 ? 'hidden md:block' : ''}`}>
-                <CardContent className="p-4 md:p-5">
+              <Card className="h-full hover:shadow-card transition-all duration-300 hover:-translate-y-1 relative">
+                <CardContent className="p-5">
                   <Quote className="h-5 w-5 text-primary/15 absolute top-3 right-3" />
                   <div className="flex mb-2">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="h-3 w-3 md:h-4 md:w-4 text-yellow-500 fill-current" />
+                      <Star key={i} className="h-4 w-4 text-yellow-500 fill-current" />
                     ))}
                   </div>
-                  <p className="text-xs md:text-sm text-muted-foreground italic leading-relaxed mb-3 line-clamp-3 md:line-clamp-none">
+                  <p className="text-sm text-muted-foreground italic leading-relaxed mb-3">
                     "{t.text}"
                   </p>
                   <div className="flex items-center gap-2">
                     <div className="flex-1">
-                      <div className="text-[10px] md:text-xs font-bold text-foreground">Authorised Representative</div>
-                      <div className="text-[9px] md:text-[10px] text-muted-foreground">{t.org}</div>
+                      <div className="text-xs font-bold text-foreground">Authorised Representative</div>
+                      <div className="text-[10px] text-muted-foreground">{t.org}</div>
                     </div>
-                    <div className="flex items-center gap-1 text-[9px] md:text-[10px] text-green-600 font-semibold">
+                    <div className="flex items-center gap-1 text-[10px] text-green-600 font-semibold">
                       <CheckCircle className="h-2.5 w-2.5" />
                       {t.date}
                     </div>

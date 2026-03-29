@@ -188,6 +188,24 @@ const Clients = () => {
     el.scrollTo({ left: scrollLeft, behavior: 'smooth' });
   }, []);
 
+  // Reset reviews to start when section scrolls into view
+  useEffect(() => {
+    const reviewsEl = reviewsScrollRef.current;
+    if (!reviewsEl) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          reviewsEl.scrollTo({ left: 0, behavior: 'instant' });
+          setReviewIdx(0);
+          reviewsPaused.current = false;
+        }
+      },
+      { threshold: 0.3 }
+    );
+    observer.observe(reviewsEl);
+    return () => observer.disconnect();
+  }, []);
+
   useEffect(() => {
     const t1 = setInterval(() => {
       if (clientsPaused.current) return;
@@ -196,7 +214,7 @@ const Clients = () => {
         scrollTo(clientsScrollRef, next);
         return next;
       });
-    }, 3000);
+    }, 3500);
     const t2 = setInterval(() => {
       if (reviewsPaused.current) return;
       setReviewIdx(prev => {
@@ -204,7 +222,7 @@ const Clients = () => {
         scrollTo(reviewsScrollRef, next);
         return next;
       });
-    }, 4000);
+    }, 4500);
     const pauseClients = () => { clientsPaused.current = true; };
     const pauseReviews = () => { reviewsPaused.current = true; };
     clientsScrollRef.current?.addEventListener('touchstart', pauseClients, { once: true });
@@ -301,7 +319,7 @@ const Clients = () => {
         {/* Scrollable client cards — mobile & desktop */}
         <div ref={clientsScrollRef} className="flex gap-2.5 md:gap-5 overflow-x-auto pb-3 snap-x snap-mandatory -mx-4 px-4 mb-2 scrollbar-hide">
           {clients.map((client, index) => (
-            <Card key={index} className={`flex-shrink-0 w-44 md:w-80 snap-center group hover:shadow-card transition-all duration-300 relative overflow-hidden ${client.featured ? 'border-secondary' : ''}`}>
+            <Card key={index} className={`flex-shrink-0 w-48 md:w-[340px] snap-center group hover:shadow-card transition-all duration-300 relative overflow-hidden ${client.featured ? 'border-secondary' : ''}`}>
               <div className={`absolute top-0 left-0 right-0 h-1 ${client.featured ? 'bg-gradient-to-r from-secondary to-primary' : 'bg-gradient-hero'}`} />
               <CardContent className="p-3 md:p-5 md:pt-7">
                 {/* Header */}

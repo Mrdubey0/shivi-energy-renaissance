@@ -183,7 +183,9 @@ const Clients = () => {
   const scrollTo = useCallback((ref: React.RefObject<HTMLDivElement>, idx: number) => {
     const el = ref.current;
     if (!el || !el.children[idx]) return;
-    (el.children[idx] as HTMLElement).scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
+    const child = el.children[idx] as HTMLElement;
+    const scrollLeft = child.offsetLeft - el.offsetWidth / 2 + child.offsetWidth / 2;
+    el.scrollTo({ left: scrollLeft, behavior: 'smooth' });
   }, []);
 
   useEffect(() => {
@@ -296,104 +298,66 @@ const Clients = () => {
           </div>
         </ScrollReveal>
 
-        {/* Mobile: compact horizontal scroll */}
-        <div ref={clientsScrollRef} className="flex gap-2.5 overflow-x-auto pb-3 md:hidden snap-x snap-mandatory -mx-4 px-4 mb-5 scrollbar-hide">
+        {/* Scrollable client cards — mobile & desktop */}
+        <div ref={clientsScrollRef} className="flex gap-2.5 md:gap-5 overflow-x-auto pb-3 snap-x snap-mandatory -mx-4 px-4 mb-2 scrollbar-hide">
           {clients.map((client, index) => (
-            <Card key={index} className={`flex-shrink-0 w-44 snap-center ${client.featured ? 'border-secondary' : ''}`}>
-              <CardContent className="p-3">
-                <div className="flex items-center gap-2 mb-2">
-                  <img src={client.logo} alt={client.abbreviation} className="w-8 h-8 rounded-md object-contain bg-white p-0.5" loading="lazy" />
+            <Card key={index} className={`flex-shrink-0 w-44 md:w-80 snap-center group hover:shadow-card transition-all duration-300 relative overflow-hidden ${client.featured ? 'border-secondary' : ''}`}>
+              <div className={`absolute top-0 left-0 right-0 h-1 ${client.featured ? 'bg-gradient-to-r from-secondary to-primary' : 'bg-gradient-hero'}`} />
+              <CardContent className="p-3 md:p-5 md:pt-7">
+                {/* Header */}
+                <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-4">
+                  <img src={client.logo} alt={client.abbreviation} className="w-8 h-8 md:w-11 md:h-11 rounded-md md:rounded-xl object-contain bg-white p-0.5 md:p-1 border border-border" loading="lazy" />
                   <div className="flex-1 min-w-0">
-                    <div className="text-xs font-bold truncate">{client.abbreviation}</div>
-                    <div className="text-[9px] text-muted-foreground">{client.visits} Visits</div>
+                    <div className="text-xs md:text-sm font-bold truncate group-hover:text-primary transition-colors">{client.abbreviation}</div>
+                    <div className="text-[9px] md:text-xs text-muted-foreground truncate">{client.sector}</div>
                   </div>
+                  <Badge variant="secondary" className="text-[8px] md:text-[10px] shrink-0 hidden md:inline-flex">
+                    {client.visits} Visits
+                  </Badge>
                 </div>
-                <div className="text-center">
-                  <div className="text-xl font-extrabold text-primary">{client.rating.toFixed(2)}<span className="text-[9px] text-muted-foreground font-normal">/5</span></div>
-                  <div className="flex justify-center mt-0.5">
+
+                {/* Score */}
+                <div className="text-center md:py-3 md:border-y md:border-border md:mb-4">
+                  <div className="text-xl md:text-3xl font-extrabold text-primary">{client.rating.toFixed(2)}<span className="text-[9px] md:text-base text-muted-foreground font-normal">/5</span></div>
+                  <div className="flex justify-center mt-0.5 md:mt-1.5">
                     {[...Array(5)].map((_, i) => (
-                      <Star key={i} className="h-2.5 w-2.5 text-yellow-500 fill-current" />
+                      <Star key={i} className="h-2.5 w-2.5 md:h-3.5 md:w-3.5 text-yellow-500 fill-current" />
                     ))}
                   </div>
+                  <div className="hidden md:block text-[10px] text-muted-foreground uppercase tracking-widest mt-1.5">
+                    Grand Average — All Parameters
+                  </div>
+                </div>
+
+                {/* Parameter Bars — desktop only */}
+                <div className="hidden md:block space-y-2">
+                  {Object.entries(client.params).map(([key, val]) => (
+                    <div key={key} className="grid grid-cols-[80px_1fr_36px] gap-2 items-center">
+                      <span className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wide">{key}</span>
+                      <div className="h-1.5 bg-muted rounded-full overflow-hidden">
+                        <div className="h-full rounded-full bg-gradient-hero transition-all duration-700" style={{ width: paramBarWidth(val) }} />
+                      </div>
+                      <span className="text-xs font-bold text-primary text-right">{val.toFixed(2)}</span>
+                    </div>
+                  ))}
+                </div>
+
+                <div className="hidden md:flex items-center gap-1 mt-3 text-[10px] text-green-600 font-semibold">
+                  <CheckCircle className="h-3 w-3" />
+                  Verified via Formal OPE Documentation
                 </div>
               </CardContent>
             </Card>
           ))}
         </div>
         {/* Client dots */}
-        <div className="flex justify-center gap-1.5 mb-5 md:hidden">
+        <div className="flex justify-center gap-1.5 mb-5">
           {clients.map((_, i) => (
             <button
               key={i}
               onClick={() => { setClientIdx(i); scrollTo(clientsScrollRef, i); clientsPaused.current = true; }}
               className={`h-1.5 rounded-full transition-all duration-300 ${i === clientIdx ? 'w-4 bg-primary' : 'w-1.5 bg-muted-foreground/30'}`}
             />
-          ))}
-        </div>
-
-        <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 gap-5 mb-10">
-          {clients.map((client, index) => (
-            <ScrollReveal key={index} delay={index * 80}>
-              <Card className={`group hover:shadow-card transition-all duration-300 hover:-translate-y-2 h-full relative overflow-hidden ${client.featured ? 'border-secondary' : ''}`}>
-                <div className={`absolute top-0 left-0 right-0 h-1 ${client.featured ? 'bg-gradient-to-r from-secondary to-primary' : 'bg-gradient-hero'}`} />
-
-                <CardContent className="p-5 pt-7">
-                  {/* Header */}
-                  <div className="flex items-start justify-between mb-4">
-                    <div className="flex items-center gap-3">
-                      <img src={client.logo} alt={client.abbreviation} className="w-11 h-11 rounded-xl object-contain bg-white p-1 border border-border" loading="lazy" />
-                      <div>
-                        <div className="text-sm font-bold text-foreground group-hover:text-primary transition-colors">
-                          {client.name}
-                        </div>
-                        <div className="text-xs text-muted-foreground">{client.sector}</div>
-                      </div>
-                    </div>
-                    <Badge variant="secondary" className="text-[10px] shrink-0">
-                      {client.visits} Visits
-                    </Badge>
-                  </div>
-
-                  {/* Grand Score */}
-                  <div className="text-center py-3 border-y border-border mb-4">
-                    <div className="text-3xl font-extrabold text-primary leading-none">
-                      {client.rating.toFixed(2)}<span className="text-base text-muted-foreground font-normal">/5</span>
-                    </div>
-                    <div className="flex justify-center mt-1.5">
-                      {[...Array(5)].map((_, i) => (
-                        <Star key={i} className="h-3.5 w-3.5 text-yellow-500 fill-current" />
-                      ))}
-                    </div>
-                    <div className="text-[10px] text-muted-foreground uppercase tracking-widest mt-1.5">
-                      Grand Average — All Parameters
-                    </div>
-                  </div>
-
-                  {/* Parameter Bars */}
-                  <div className="space-y-2">
-                    {Object.entries(client.params).map(([key, val]) => (
-                      <div key={key} className="grid grid-cols-[80px_1fr_36px] gap-2 items-center">
-                        <span className="text-[10px] font-semibold text-muted-foreground uppercase tracking-wide">
-                          {key}
-                        </span>
-                        <div className="h-1.5 bg-muted rounded-full overflow-hidden">
-                          <div
-                            className="h-full rounded-full bg-gradient-hero transition-all duration-700"
-                            style={{ width: paramBarWidth(val) }}
-                          />
-                        </div>
-                        <span className="text-xs font-bold text-primary text-right">{val.toFixed(2)}</span>
-                      </div>
-                    ))}
-                  </div>
-
-                  <div className="flex items-center gap-1 mt-3 text-[10px] text-green-600 font-semibold">
-                    <CheckCircle className="h-3 w-3" />
-                    Verified via Formal OPE Documentation
-                  </div>
-                </CardContent>
-              </Card>
-            </ScrollReveal>
           ))}
         </div>
 

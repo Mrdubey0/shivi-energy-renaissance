@@ -394,7 +394,7 @@ const Clients = () => {
         {/* Scrollable testimonials — mobile & desktop */}
         <div ref={reviewsScrollRef} className="flex gap-2.5 md:gap-5 overflow-x-auto pb-3 snap-x snap-mandatory -mx-4 px-4 mb-2 scrollbar-hide">
           {testimonials.map((t, index) => (
-            <Card key={index} className="flex-shrink-0 w-72 md:w-96 snap-center relative hover:shadow-card transition-all duration-300">
+            <Card key={index} className="flex-shrink-0 w-[280px] md:w-[420px] snap-center relative hover:shadow-card transition-all duration-300">
               <CardContent className="p-4 md:p-5">
                 <Quote className="h-4 w-4 md:h-5 md:w-5 text-primary/15 absolute top-3 right-3" />
                 <div className="flex mb-1.5 md:mb-2">

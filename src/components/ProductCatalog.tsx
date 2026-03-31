@@ -245,9 +245,9 @@ const ProductCard = ({ product, isInCart, onAddToCart, onViewDetails }: ProductC
   return (
     <Card className="group hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 border-border/50 overflow-hidden h-full cursor-pointer" onClick={onViewDetails}>
       {/* Product Image */}
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden bg-black">
         <div 
-          className="h-48 bg-cover bg-center group-hover:scale-110 transition-transform duration-500"
+          className="h-48 bg-contain bg-center bg-no-repeat group-hover:scale-110 transition-transform duration-500"
           style={{ backgroundImage: `url(${product.image})` }}
         />
         

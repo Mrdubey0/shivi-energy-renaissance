@@ -42,30 +42,28 @@ const Footer = () => {
   };
 
   const services = [
-    { name: "Engineering Consultation", href: "/solutions" },
-    { name: "Corrosion Management", href: "/solutions" },
-    { name: "Rigless Intervention", href: "/solutions" },
-    { name: "Mills & Bits", href: "/solutions" },
-    { name: "Rig Support", href: "/solutions" },
-    { name: "Plug & Abandonment", href: "/solutions" }
+    { name: "Solutions", href: "/solutions" },
+    { name: "Projects", href: "/projects" },
+    { name: "Blogs", href: "/blog" },
+    { name: "Locus", href: "/sustainability" },
+    { name: "Careers", href: "/careers" },
   ];
 
   const company = [
+    { name: "Home", href: "/" },
     { name: "About Us", href: "/#about" },
     { name: "Leadership Team", href: "/#about" },
-    { name: "Careers", href: "/careers" },
+    { name: "Our Clients", href: "/#clients" },
     { name: "Execution Outcomes", href: "/projects" },
     { name: "Certifications", href: "/#about" },
-    { name: "Governance", href: "/#about" }
   ];
 
   const support = [
-    { name: "Technical Documentation", href: "/solutions" },
-    { name: "Safety Guidelines", href: "/sustainability" },
+    { name: "Solutions Catalogue", href: "/solutions" },
+    { name: "Sustainability (Locus)", href: "/sustainability" },
     { name: "Quality Assurance", href: "/#about" },
-    { name: "Training Programs", href: "/careers" },
-    { name: "Emergency Services", href: "/#contact" },
-    { name: "Contact Support", href: "/#contact" }
+    { name: "Careers & Training", href: "/careers" },
+    { name: "Blog & Insights", href: "/blog" },
   ];
 
   return (
@@ -125,7 +123,7 @@ const Footer = () => {
 
           {/* Services - Hidden on mobile */}
           <div className="hidden md:block">
-            <h3 className="text-lg font-semibold mb-6">Services</h3>
+            <h3 className="text-lg font-semibold mb-6">Explore</h3>
             <ul className="space-y-3">
               {services.map((service) => (
                 <li key={service.name}>

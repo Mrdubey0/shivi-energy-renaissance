@@ -123,7 +123,7 @@ const Footer = () => {
 
           {/* Services - Hidden on mobile */}
           <div className="hidden md:block">
-            <h3 className="text-lg font-semibold mb-6">Services</h3>
+            <h3 className="text-lg font-semibold mb-6">Explore</h3>
             <ul className="space-y-3">
               {services.map((service) => (
                 <li key={service.name}>

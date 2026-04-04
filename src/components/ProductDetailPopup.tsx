@@ -57,11 +57,11 @@ const ProductDetailPopup = ({ product, isOpen, onClose }: ProductDetailPopupProp
         <div className="grid md:grid-cols-2 gap-6 mt-4">
           {/* Image Gallery */}
           <div className="space-y-4">
-            <div className="relative aspect-square rounded-lg overflow-hidden bg-muted">
+            <div className="relative aspect-square rounded-lg overflow-hidden bg-black">
               <img
                 src={images[currentImageIndex]}
                 alt={product.name}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-contain p-2"
               />
               {images.length > 1 && (
                 <>
@@ -95,7 +95,7 @@ const ProductDetailPopup = ({ product, isOpen, onClose }: ProductDetailPopupProp
                     currentImageIndex === idx ? 'border-primary' : 'border-transparent'
                   }`}
                 >
-                  <img src={img} alt={`${product.name} ${idx + 1}`} className="w-full h-full object-cover" />
+                  <img src={img} alt={`${product.name} ${idx + 1}`} className="w-full h-full object-contain bg-black" />
                 </button>
               ))}
             </div>

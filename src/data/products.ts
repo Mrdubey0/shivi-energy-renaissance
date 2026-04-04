@@ -1163,13 +1163,24 @@ export const categories: CategoryData[] = [
   }
 ];
 
+// Gallery images mapping (additional views for products)
+const productGalleryImages: Record<string, string[]> = {
+  "float-shoe-collar-guide": [imgFloatEquipment, imgFloatCollar],
+  "casing-centralizers": [imgCentralizers, imgFlutedCentralizer, imgBowSpringCentralizer],
+  "permanent-retrievable-packers": [imgPackers, imgSealborePacker],
+  "bridge-plug-deployment": [imgBridgePlugDeploy, imgDrillableBridgePlug, imgKasseumSettingTool],
+  "ct-bha-connector-kit": [imgCtBhaConnector, imgDimpleConnector, imgRollOnConnector, imgDoubleRollConnector, imgExternalGrappleConnector, imgExternalSlipConnector],
+  "capillary-string-system": [imgCapillaryString, imgStraightBar, imgKnuckleJoint],
+  "impression-block-gauge": [imgImpressionBlock, imgGaugeRing],
+};
+
 // Apply individual product images
 categories.forEach(category => {
   category.products.forEach(product => {
     const img = productImages[product.id];
     if (img) {
       product.image = img;
-      product.images = [img];
+      product.images = productGalleryImages[product.id] || [img];
     }
   });
 });

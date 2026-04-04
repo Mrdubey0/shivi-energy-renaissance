@@ -95,7 +95,7 @@ const ProductDetailPopup = ({ product, isOpen, onClose }: ProductDetailPopupProp
                     currentImageIndex === idx ? 'border-primary' : 'border-transparent'
                   }`}
                 >
-                  <img src={img} alt={`${product.name} ${idx + 1}`} className="w-full h-full object-cover" />
+                  <img src={img} alt={`${product.name} ${idx + 1}`} className="w-full h-full object-contain bg-black" />
                 </button>
               ))}
             </div>

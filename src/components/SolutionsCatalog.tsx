@@ -672,7 +672,7 @@ const ProductCard = ({ product, isInCart, onAddToCart, onViewDetails }: ProductC
         <ImageWithSkeleton
           src={product.image}
           alt={product.name}
-          className="w-full h-48 object-contain group-hover:scale-110 transition-transform duration-700 ease-out"
+          className="w-full h-48 object-contain p-2"
           skeletonClassName="w-full h-48"
         />
         

@@ -13,6 +13,11 @@ import imgPackers from "@/assets/products/packers.jpg";
 import imgFloatEquipment from "@/assets/products/float-equipment.jpg";
 import imgCentralizers from "@/assets/products/centralizers.jpg";
 import imgSwellablePacker from "@/assets/products/swellable-packer.jpg";
+// Gallery extras
+import imgFloatCollar from "@/assets/products/float-collar.jpg";
+import imgFlutedCentralizer from "@/assets/products/fluted-centralizer.jpg";
+import imgBowSpringCentralizer from "@/assets/products/bow-spring-centralizer.jpg";
+import imgSealborePacker from "@/assets/products/sealbore-packer.jpg";
 
 // Well Intervention
 import imgFishingTools from "@/assets/products/fishing-tools.jpg";
@@ -20,15 +25,28 @@ import imgCtMotor from "@/assets/products/ct-motor.jpg";
 import imgBridgePlugDeploy from "@/assets/products/bridge-plug-deploy.jpg";
 import imgChemicalInjection from "@/assets/products/chemical-injection.jpg";
 import imgWirelineJar from "@/assets/products/wireline-jar.jpg";
+// Gallery extras
+import imgKasseumSettingTool from "@/assets/products/kasseum-setting-tool.jpg";
+import imgDrillableBridgePlug from "@/assets/products/drillable-bridge-plug.jpg";
 
 // CT Tools
 import imgCapillaryString from "@/assets/products/capillary-string.jpg";
 import imgCtCleanout from "@/assets/products/ct-cleanout.jpg";
 import imgCtBhaConnector from "@/assets/products/ct-bha-connector.jpg";
+// Gallery extras
+import imgDimpleConnector from "@/assets/products/dimple-connector.jpg";
+import imgDoubleRollConnector from "@/assets/products/double-roll-connector.jpg";
+import imgExternalGrappleConnector from "@/assets/products/external-grapple-connector.jpg";
+import imgExternalSlipConnector from "@/assets/products/external-slip-connector.jpg";
+import imgRollOnConnector from "@/assets/products/roll-on-connector.jpg";
+import imgStraightBar from "@/assets/products/straight-bar.jpg";
+import imgKnuckleJoint from "@/assets/products/knuckle-joint.jpg";
 
 // Fishing & Milling
 import imgTaperMill from "@/assets/products/taper-mill.jpg";
 import imgImpressionBlock from "@/assets/products/impression-block.jpg";
+// Gallery extras
+import imgGaugeRing from "@/assets/products/gauge-ring.jpg";
 
 // Corrosion Prevention
 import imgMmoAnode from "@/assets/products/mmo-anode.jpg";
@@ -74,6 +92,7 @@ import imgTrimbleX7 from "@/assets/products/trimble-x7.jpg";
 import imgTrimbleX9 from "@/assets/products/trimble-x9.jpg";
 import imgTrimbleX12 from "@/assets/products/trimble-x12.jpg";
 import imgTrimbleSx12 from "@/assets/products/trimble-sx12.jpg";
+
 
 // Product ID to image mapping
 const productImages: Record<string, string> = {
